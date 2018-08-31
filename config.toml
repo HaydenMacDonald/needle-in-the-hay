@@ -1,7 +1,7 @@
 baseurl = "https://needleinthehay.ca/"
 DefaultContentLanguage = "en"
 #DefaultContentLanguage = "ja"
-title = "Hayden MacDonald"
+title = "Needle in the Hay"
 theme = "beautifulhugo"
 paginate = 5
 PaginatePath = "post"
