@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</managingEditor>
     <webMaster>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</webMaster>
-    <lastBuildDate>Tue, 08 Mar 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 31 Aug 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Bayes</title>
+      <link>/tags/bayes/</link>
+      <pubDate>Fri, 31 Aug 2018 00:00:00 +0000</pubDate>
+      <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
+      <guid>/tags/bayes/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Code</title>
@@ -18,6 +27,15 @@
       <pubDate>Tue, 08 Mar 2016 00:00:00 +0000</pubDate>
       <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
       <guid>/tags/code/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Esports</title>
+      <link>/tags/esports/</link>
+      <pubDate>Fri, 31 Aug 2018 00:00:00 +0000</pubDate>
+      <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
+      <guid>/tags/esports/</guid>
       <description></description>
     </item>
     
@@ -58,6 +76,15 @@
     </item>
     
     <item>
+      <title>R</title>
+      <link>/tags/r/</link>
+      <pubDate>Fri, 31 Aug 2018 00:00:00 +0000</pubDate>
+      <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
+      <guid>/tags/r/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>R Markdown</title>
       <link>/tags/r-markdown/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
@@ -72,6 +99,15 @@
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
       <guid>/tags/regression/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rstats</title>
+      <link>/tags/rstats/</link>
+      <pubDate>Fri, 31 Aug 2018 00:00:00 +0000</pubDate>
+      <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
+      <guid>/tags/rstats/</guid>
       <description></description>
     </item>
     

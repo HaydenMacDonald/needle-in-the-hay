@@ -1,0 +1,157 @@
+---
+title: Empirical Bayes Estimation of Hungrybox's 2017 Character Matchups
+author: Hayden MacDonald
+date: '2018-08-31'
+slug: hbox-bayes
+categories:
+  - R
+  - rstats
+  - esports
+  - bayes
+tags:
+  - R
+  - rstats
+  - esports
+  - bayes
+subtitle: ''
+---
+
+
+
+<pre class="r"><code>library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>library(tidyr)
+library(ggplot2)
+library(RColorBrewer)
+library(MASS)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;MASS&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     select</code></pre>
+<div id="arranging-data" class="section level3">
+<h3>Arranging Data</h3>
+<pre class="r"><code>Hbox &lt;- read.csv(file = &quot;Hbox2017.csv&quot;, sep = &quot;,&quot;, header = TRUE)
+Hbox</code></pre>
+<pre><code>##    OpponentCharacter Wins Losses Total Win.Percent
+## 1     Captain Falcon   32     10    42       76.19
+## 2              Falco    8      2    10       80.00
+## 3                Fox  145    104   249       58.23
+## 4       Ice Climbers    9      4    13       69.23
+## 5              Marth    7      1     8       87.50
+## 6            Pikachu    4      2     6       66.67
+## 7             Samus    12      2    14       85.71
+## 8              Sheik   12      2    14       85.71
+## 9              Yoshi    3      1     4       75.00
+## 10        Young Link    2      2     4       50.00</code></pre>
+<pre class="r"><code>Hbox &lt;- arrange(Hbox, desc(Win.Percent))
+Hbox</code></pre>
+<pre><code>##    OpponentCharacter Wins Losses Total Win.Percent
+## 1              Marth    7      1     8       87.50
+## 2             Samus    12      2    14       85.71
+## 3              Sheik   12      2    14       85.71
+## 4              Falco    8      2    10       80.00
+## 5     Captain Falcon   32     10    42       76.19
+## 6              Yoshi    3      1     4       75.00
+## 7       Ice Climbers    9      4    13       69.23
+## 8            Pikachu    4      2     6       66.67
+## 9                Fox  145    104   249       58.23
+## 10        Young Link    2      2     4       50.00</code></pre>
+</div>
+<div id="visualizing-all-matchups" class="section level3">
+<h3>Visualizing All Matchups</h3>
+<pre class="r"><code>ggplot(data = Hbox, aes(x = OpponentCharacter, y = Hbox$Win.Percent, fill = Win.Percent)) + geom_bar(stat = &quot;identity&quot;, show.legend = FALSE) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + ylab(&quot;Win Percentage&quot;) + xlab(&quot;Opponent Character&quot;) + scale_x_discrete(limits = c(&quot;Marth&quot;, &quot;Samus &quot;, &quot;Sheik&quot;, &quot;Falco&quot;, &quot;Captain Falcon&quot;, &quot;Yoshi&quot;, &quot;Ice Climbers&quot;, &quot;Pikachu&quot;, &quot;Fox&quot;, &quot;Young Link&quot;)) + coord_cartesian(ylim = c(0,100))</code></pre>
+<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="histogram-of-all-win-average-values" class="section level3">
+<h3>Histogram of All Win Average Values</h3>
+<pre class="r"><code>#Histogram of win average values across all matchups
+Hbox$Win.Average &lt;- Hbox$Wins/Hbox$Total
+ggplot(data = Hbox, aes(x = factor(Hbox$Win.Average))) + geom_bar()</code></pre>
+<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>#Estimation of alpha and beta parameters of beta distribution from mean and variance of above data (Method of Moments Estimation)
+estBetaParams &lt;- function(mu, var) {
+     alpha &lt;- ((1 - mu) / var - 1 / mu) * mu ^ 2
+     beta &lt;- alpha * (1 / mu - 1)
+     return(params = list(alpha = alpha, beta = beta))
+ }
+H.mu &lt;- mean(Hbox$Win.Average)
+H.var &lt;- var(Hbox$Win.Average)
+Hbox.est &lt;- estBetaParams(H.mu, H.var)
+ggplot(Hbox) + geom_histogram(aes(Hbox$Win.Average, y = ..density..), binwidth = .005) + stat_function(fun = function(x) dbeta(x, Hbox.est$alpha, Hbox.est$beta), color = &quot;red&quot;, size = 1)</code></pre>
+<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<pre class="r"><code>#How did our empirical Bayes change the matchup averages?
+Hbox.eb &lt;- Hbox %&gt;%
+    mutate(eb_estimate = (Wins + Hbox.est$alpha) / (Total + Hbox.est$alpha + Hbox.est$beta))
+ggplot(Hbox.eb, aes(Hbox$Win.Average, eb_estimate, color = Total)) + geom_hline(yintercept = Hbox.est$alpha / (Hbox.est$alpha + Hbox.est$beta), color = &quot;red&quot;, lty = 2) + geom_point() + geom_abline(color = &quot;red&quot;) + scale_colour_gradient(trans = &quot;log&quot;, breaks = 10 ^ (1:5)) + xlab(&quot;Win Average&quot;) + ylab(&quot;Empirical Bayes Matchup Average&quot;)</code></pre>
+<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-4-3.png" width="672" /></p>
+<pre class="r"><code>#What if we had no evidence at all? What would we predict Hbox&#39;s win average across all matchups to be?
+sprintf(&quot;%.3f&quot;, Hbox.est$alpha / (Hbox.est$alpha + Hbox.est$beta))</code></pre>
+<pre><code>## [1] &quot;0.734&quot;</code></pre>
+<pre class="r"><code>#Now to plot our new estimates of Hbox&#39;s 2017 matchup win averages
+Hbox.eb</code></pre>
+<pre><code>##    OpponentCharacter Wins Losses Total Win.Percent Win.Average eb_estimate
+## 1              Marth    7      1     8       87.50   0.8750000   0.7917661
+## 2             Samus    12      2    14       85.71   0.8571429   0.8015172
+## 3              Sheik   12      2    14       85.71   0.8571429   0.8015172
+## 4              Falco    8      2    10       80.00   0.8000000   0.7647219
+## 5     Captain Falcon   32     10    42       76.19   0.7619048   0.7559290
+## 6              Yoshi    3      1     4       75.00   0.7500000   0.7382940
+## 7       Ice Climbers    9      4    13       69.23   0.6923077   0.7120644
+## 8            Pikachu    4      2     6       66.67   0.6666667   0.7111797
+## 9                Fox  145    104   249       58.23   0.5823293   0.5890789
+## 10        Young Link    2      2     4       50.00   0.5000000   0.6740968</code></pre>
+<pre class="r"><code>scaleFUN &lt;- function(x) sprintf(&quot;%.2s&quot;, x)
+ggplot(data = Hbox.eb, aes(x = Hbox.eb$OpponentCharacter, y = Hbox.eb$eb_estimate, fill = Hbox.eb$eb_estimate)) + geom_bar(stat = &quot;identity&quot;, show.legend = FALSE) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + ylab(&quot;Empirical Estimation of Win Average&quot;) + xlab(&quot;Opponent Character&quot;) + scale_x_discrete(limits = c(&quot;Marth&quot;, &quot;Samus &quot;, &quot;Sheik&quot;, &quot;Falco&quot;, &quot;Captain Falcon&quot;, &quot;Yoshi&quot;, &quot;Ice Climbers&quot;, &quot;Pikachu&quot;, &quot;Fox&quot;, &quot;Young Link&quot;)) + coord_cartesian(ylim = c(0.0, 1.0))</code></pre>
+<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-4-4.png" width="672" /></p>
+<pre class="r"><code>#Alternatively, we can use fitdistr to conduct a Maximum-Likelihood Estimation of alpha and beta
+Hbox.est2 &lt;- fitdistr(Hbox$Win.Average,dbeta,list(shape1=1,shape2=1), lower = c(0,0))
+Hbox.est2</code></pre>
+<pre><code>##     shape1      shape2  
+##   10.403528    3.780885 
+##  ( 4.665568) ( 1.625258)</code></pre>
+<pre class="r"><code>ggplot(Hbox) + geom_histogram(aes(Hbox$Win.Average, y = ..density..), binwidth = .005) + stat_function(fun = function(x) dbeta(x, Hbox.est2$estimate[1], Hbox.est2$estimate[2]), color = &quot;red&quot;, size = 1)</code></pre>
+<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code>#How did our empirical Bayes change the matchup averages?
+Hbox.eb2 &lt;- Hbox %&gt;%
+  mutate(eb_estimate2 = (Wins + Hbox.est2$estimate[1]) / (Total + Hbox.est2$estimate[1] + Hbox.est2$estimate[2]))
+ggplot(Hbox.eb2, aes(Hbox$Win.Average, eb_estimate2, color = Total)) + geom_hline(yintercept = Hbox.est2$estimate[1] / (Hbox.est2$estimate[1] + Hbox.est2$estimate[2]), color = &quot;red&quot;, lty = 2) + geom_point() + geom_abline(color = &quot;red&quot;) + scale_colour_gradient(trans = &quot;log&quot;, breaks = 10 ^ (1:5)) + xlab(&quot;Win Average&quot;) + ylab(&quot;Empirical Bayes Matchup Average&quot;)</code></pre>
+<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
+<pre class="r"><code>#Again, what if we had no evidence at all? What would we predict Hbox&#39;s win average across all matchups to be?
+sprintf(&quot;%.3f&quot;, Hbox.est2$estimate[1] / (Hbox.est2$estimate[1] + Hbox.est2$estimate[2]))</code></pre>
+<pre><code>## [1] &quot;0.733&quot;</code></pre>
+<pre class="r"><code>#Plot
+Hbox.eb2</code></pre>
+<pre><code>##    OpponentCharacter Wins Losses Total Win.Percent Win.Average
+## 1              Marth    7      1     8       87.50   0.8750000
+## 2             Samus    12      2    14       85.71   0.8571429
+## 3              Sheik   12      2    14       85.71   0.8571429
+## 4              Falco    8      2    10       80.00   0.8000000
+## 5     Captain Falcon   32     10    42       76.19   0.7619048
+## 6              Yoshi    3      1     4       75.00   0.7500000
+## 7       Ice Climbers    9      4    13       69.23   0.6923077
+## 8            Pikachu    4      2     6       66.67   0.6666667
+## 9                Fox  145    104   249       58.23   0.5823293
+## 10        Young Link    2      2     4       50.00   0.5000000
+##    eb_estimate2
+## 1     0.7844935
+## 2     0.7948907
+## 3     0.7948907
+## 4     0.7609665
+## 5     0.7547205
+## 6     0.7370889
+## 7     0.7137740
+## 8     0.7135966
+## 9     0.5904739
+## 10    0.6820967</code></pre>
+<pre class="r"><code>scaleFUN &lt;- function(x) sprintf(&quot;%.2s&quot;, x)
+ggplot(data = Hbox.eb2, aes(x = Hbox.eb2$OpponentCharacter, y = Hbox.eb2$eb_estimate, fill = Hbox.eb2$eb_estimate)) + geom_bar(stat = &quot;identity&quot;, show.legend = FALSE) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + ylab(&quot;Empirical Estimation of Win Average&quot;) + xlab(&quot;Opponent Character&quot;) + scale_x_discrete(limits = c(&quot;Marth&quot;, &quot;Samus &quot;, &quot;Sheik&quot;, &quot;Falco&quot;, &quot;Captain Falcon&quot;, &quot;Yoshi&quot;, &quot;Ice Climbers&quot;, &quot;Pikachu&quot;, &quot;Fox&quot;, &quot;Young Link&quot;)) + coord_cartesian(ylim = c(0.0, 1.0))</code></pre>
+<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-5-3.png" width="672" /></p>
+</div>

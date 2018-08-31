@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bayes on Needle in the Hay</title>
+    <link>/tags/bayes/</link>
+    <description>Recent content in Bayes on Needle in the Hay</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</managingEditor>
+    <webMaster>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</webMaster>
+    <lastBuildDate>Fri, 31 Aug 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/bayes/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Empirical Bayes Estimation of Hungrybox&#39;s 2017 Character Matchups</title>
+      <link>/2018/08/31/hbox-bayes/</link>
+      <pubDate>Fri, 31 Aug 2018 00:00:00 +0000</pubDate>
+      <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
+      <guid>/2018/08/31/hbox-bayes/</guid>
+      <description>library(dplyr)## ## Attaching package: &amp;#39;dplyr&amp;#39;## The following objects are masked from &amp;#39;package:stats&amp;#39;:## ## filter, lag## The following objects are masked from &amp;#39;package:base&amp;#39;:## ## intersect, setdiff, setequal, unionlibrary(tidyr)library(ggplot2)library(RColorBrewer)library(MASS)## ## Attaching package: &amp;#39;MASS&amp;#39;## The following object is masked from &amp;#39;package:dplyr&amp;#39;:## ## selectArranging DataHbox &amp;lt;- read.csv(file = &amp;quot;Hbox2017.csv&amp;quot;, sep = &amp;quot;,&amp;quot;, header = TRUE)Hbox## OpponentCharacter Wins Losses Total Win.</description>
+    </item>
+    
+  </channel>
+</rss>

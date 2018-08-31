@@ -1,0 +1,111 @@
+---
+title: Empirical Bayes Estimation of Hungrybox's 2017 Character Matchups
+author: Hayden MacDonald
+date: '2018-08-31'
+slug: hbox-bayes
+categories:
+  - R
+  - rstats
+  - esports
+  - bayes
+tags:
+  - R
+  - rstats
+  - esports
+  - bayes
+subtitle: ''
+---
+
+```{r}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(RColorBrewer)
+library(MASS)
+```
+
+###Arranging Data
+
+```{r}
+Hbox <- read.csv(file = "Hbox2017.csv", sep = ",", header = TRUE)
+Hbox
+Hbox <- arrange(Hbox, desc(Win.Percent))
+Hbox
+```
+
+###Visualizing All Matchups
+
+```{r}
+ggplot(data = Hbox, aes(x = OpponentCharacter, y = Hbox$Win.Percent, fill = Win.Percent)) + geom_bar(stat = "identity", show.legend = FALSE) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + ylab("Win Percentage") + xlab("Opponent Character") + scale_x_discrete(limits = c("Marth", "Samus ", "Sheik", "Falco", "Captain Falcon", "Yoshi", "Ice Climbers", "Pikachu", "Fox", "Young Link")) + coord_cartesian(ylim = c(0,100))
+```
+
+###Histogram of All Win Average Values
+
+```{r}
+#Histogram of win average values across all matchups
+Hbox$Win.Average <- Hbox$Wins/Hbox$Total
+ggplot(data = Hbox, aes(x = factor(Hbox$Win.Average))) + geom_bar()
+
+#Estimation of alpha and beta parameters of beta distribution from mean and variance of above data (Method of Moments Estimation)
+estBetaParams <- function(mu, var) {
+     alpha <- ((1 - mu) / var - 1 / mu) * mu ^ 2
+     beta <- alpha * (1 / mu - 1)
+     return(params = list(alpha = alpha, beta = beta))
+ }
+H.mu <- mean(Hbox$Win.Average)
+H.var <- var(Hbox$Win.Average)
+Hbox.est <- estBetaParams(H.mu, H.var)
+ggplot(Hbox) + geom_histogram(aes(Hbox$Win.Average, y = ..density..), binwidth = .005) + stat_function(fun = function(x) dbeta(x, Hbox.est$alpha, Hbox.est$beta), color = "red", size = 1)
+
+#How did our empirical Bayes change the matchup averages?
+Hbox.eb <- Hbox %>%
+    mutate(eb_estimate = (Wins + Hbox.est$alpha) / (Total + Hbox.est$alpha + Hbox.est$beta))
+ggplot(Hbox.eb, aes(Hbox$Win.Average, eb_estimate, color = Total)) + geom_hline(yintercept = Hbox.est$alpha / (Hbox.est$alpha + Hbox.est$beta), color = "red", lty = 2) + geom_point() + geom_abline(color = "red") + scale_colour_gradient(trans = "log", breaks = 10 ^ (1:5)) + xlab("Win Average") + ylab("Empirical Bayes Matchup Average")
+
+#What if we had no evidence at all? What would we predict Hbox's win average across all matchups to be?
+sprintf("%.3f", Hbox.est$alpha / (Hbox.est$alpha + Hbox.est$beta))
+
+#Now to plot our new estimates of Hbox's 2017 matchup win averages
+Hbox.eb
+scaleFUN <- function(x) sprintf("%.2s", x)
+ggplot(data = Hbox.eb, aes(x = Hbox.eb$OpponentCharacter, y = Hbox.eb$eb_estimate, fill = Hbox.eb$eb_estimate)) + geom_bar(stat = "identity", show.legend = FALSE) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + ylab("Empirical Estimation of Win Average") + xlab("Opponent Character") + scale_x_discrete(limits = c("Marth", "Samus ", "Sheik", "Falco", "Captain Falcon", "Yoshi", "Ice Climbers", "Pikachu", "Fox", "Young Link")) + coord_cartesian(ylim = c(0.0, 1.0))
+```
+
+```{r}
+#Alternatively, we can use fitdistr to conduct a Maximum-Likelihood Estimation of alpha and beta
+Hbox.est2 <- fitdistr(Hbox$Win.Average,dbeta,list(shape1=1,shape2=1), lower = c(0,0))
+Hbox.est2
+ggplot(Hbox) + geom_histogram(aes(Hbox$Win.Average, y = ..density..), binwidth = .005) + stat_function(fun = function(x) dbeta(x, Hbox.est2$estimate[1], Hbox.est2$estimate[2]), color = "red", size = 1)
+
+#How did our empirical Bayes change the matchup averages?
+Hbox.eb2 <- Hbox %>%
+  mutate(eb_estimate2 = (Wins + Hbox.est2$estimate[1]) / (Total + Hbox.est2$estimate[1] + Hbox.est2$estimate[2]))
+ggplot(Hbox.eb2, aes(Hbox$Win.Average, eb_estimate2, color = Total)) + geom_hline(yintercept = Hbox.est2$estimate[1] / (Hbox.est2$estimate[1] + Hbox.est2$estimate[2]), color = "red", lty = 2) + geom_point() + geom_abline(color = "red") + scale_colour_gradient(trans = "log", breaks = 10 ^ (1:5)) + xlab("Win Average") + ylab("Empirical Bayes Matchup Average")
+
+#Again, what if we had no evidence at all? What would we predict Hbox's win average across all matchups to be?
+sprintf("%.3f", Hbox.est2$estimate[1] / (Hbox.est2$estimate[1] + Hbox.est2$estimate[2]))
+
+#Plot
+Hbox.eb2
+scaleFUN <- function(x) sprintf("%.2s", x)
+ggplot(data = Hbox.eb2, aes(x = Hbox.eb2$OpponentCharacter, y = Hbox.eb2$eb_estimate, fill = Hbox.eb2$eb_estimate)) + geom_bar(stat = "identity", show.legend = FALSE) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + ylab("Empirical Estimation of Win Average") + xlab("Opponent Character") + scale_x_discrete(limits = c("Marth", "Samus ", "Sheik", "Falco", "Captain Falcon", "Yoshi", "Ice Climbers", "Pikachu", "Fox", "Young Link")) + coord_cartesian(ylim = c(0.0, 1.0))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
