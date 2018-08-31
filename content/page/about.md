@@ -12,22 +12,18 @@ My interests include research, statistical data analysis, and data visualization
 
 In my spare time, I enjoy cooking, hiking, cycling, SCUBA diving, birding as well as watching films and eSports.
 
-----
+-------
 
-### Why is your blog called "Needle in the Hay"?
+### Education
 
-Usually, ["needle in the hay"](https://en.wikipedia.org/wiki/Needle_in_a_haystack) is a figure of speech used to convey the impossibility, hopelessness or frustrating nature of a problem or objective. 
+**Master of Science - Cognitive, Developmental & Brain Sciences (Graduation Fall 2018)**
+Department of Psychology, Faculty of Social Science  
+University of Western Ontario  
 
-This is a bit bleak for my blog. 
+**Bachelor of Science - Honors Specialization in Animal Behaviour (2016)**  
+Department of Biology, Faculty of Science  
+University of Western Ontario  
 
-I chose "Needle in the Hay" as the name for my blog because it is my analogy for the diligent search for the right questions, among many *possible* questions, and their approximate answers, among all *possible* answers. My career mission is to use the scientific method (i.e. data analytics) to sift through the "hay" in search of the "needle" when addressing new world business problems.
-
-----
-
-### What should I expect to see on this blog?
-
-
-My goal for this blog is to create quality content that documents my professional growth in programming and data analytics. My posts will contain educational content for myself and others, but may also contain personal reflections or opinions. Most of my posts will be based in *R*, but as I continue with my studies I plan to include python and SQL as well.
 
 -------
 
