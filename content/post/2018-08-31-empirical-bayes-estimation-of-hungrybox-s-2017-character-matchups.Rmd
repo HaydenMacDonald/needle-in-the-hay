@@ -1,5 +1,5 @@
 ---
-title: Empirical Bayes Estimation of Hungrybox's 2017 Character Matchups
+title: The Case Against Young Link
 author: Hayden MacDonald
 date: '2018-08-31'
 slug: hbox-bayes
@@ -13,10 +13,22 @@ tags:
   - rstats
   - esports
   - bayes
-subtitle: ''
+subtitle: "Empirical Bayes Estimation of Hungrybox's 2017 Character Matchup Win Percentages"
 ---
 
-```{r}
+## Melee
+
+Here I will elaborate about Melee.
+
+```{r echo=FALSE}
+blogdown::shortcode('tweet', '927976731905900544')
+```
+
+----
+
+### Set-Up
+
+```{r message = FALSE, warning = FALSE}
 library(dplyr)
 library(tidyr)
 library(ggplot2)
@@ -24,20 +36,25 @@ library(RColorBrewer)
 library(MASS)
 ```
 
-###Arranging Data
+----
+
+### Arranging Data
 
 ```{r}
 Hbox <- read.csv(file = "Hbox2017.csv", sep = ",", header = TRUE)
-Hbox
 Hbox <- arrange(Hbox, desc(Win.Percent))
 Hbox
 ```
 
-###Visualizing All Matchups
+----
+
+### Visualizing All Matchups
 
 ```{r}
 ggplot(data = Hbox, aes(x = OpponentCharacter, y = Hbox$Win.Percent, fill = Win.Percent)) + geom_bar(stat = "identity", show.legend = FALSE) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + ylab("Win Percentage") + xlab("Opponent Character") + scale_x_discrete(limits = c("Marth", "Samus ", "Sheik", "Falco", "Captain Falcon", "Yoshi", "Ice Climbers", "Pikachu", "Fox", "Young Link")) + coord_cartesian(ylim = c(0,100))
 ```
+
+----
 
 ###Histogram of All Win Average Values
 
@@ -70,6 +87,8 @@ Hbox.eb
 scaleFUN <- function(x) sprintf("%.2s", x)
 ggplot(data = Hbox.eb, aes(x = Hbox.eb$OpponentCharacter, y = Hbox.eb$eb_estimate, fill = Hbox.eb$eb_estimate)) + geom_bar(stat = "identity", show.legend = FALSE) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + ylab("Empirical Estimation of Win Average") + xlab("Opponent Character") + scale_x_discrete(limits = c("Marth", "Samus ", "Sheik", "Falco", "Captain Falcon", "Yoshi", "Ice Climbers", "Pikachu", "Fox", "Young Link")) + coord_cartesian(ylim = c(0.0, 1.0))
 ```
+
+----
 
 ```{r}
 #Alternatively, we can use fitdistr to conduct a Maximum-Likelihood Estimation of alpha and beta
