@@ -52,7 +52,13 @@ Hbox</code></pre>
 </div>
 <div id="visualizing-all-matchups" class="section level3">
 <h3>Visualizing All Matchups</h3>
-<pre class="r"><code>ggplot(data = Hbox, aes(x = OpponentCharacter, y = Hbox$Win.Percent, fill = Win.Percent)) + geom_bar(stat = &quot;identity&quot;, show.legend = FALSE) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + ylab(&quot;Win Percentage&quot;) + xlab(&quot;Opponent Character&quot;) + scale_x_discrete(limits = c(&quot;Marth&quot;, &quot;Samus &quot;, &quot;Sheik&quot;, &quot;Falco&quot;, &quot;Captain Falcon&quot;, &quot;Yoshi&quot;, &quot;Ice Climbers&quot;, &quot;Pikachu&quot;, &quot;Fox&quot;, &quot;Young Link&quot;)) + coord_cartesian(ylim = c(0,100))</code></pre>
+<pre class="r"><code>ggplot(data = Hbox, aes(x = OpponentCharacter, y = Hbox$Win.Percent, fill = Win.Percent)) + 
+  geom_bar(stat = &quot;identity&quot;, show.legend = FALSE) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  ylab(&quot;Win Percentage&quot;) + 
+  xlab(&quot;Opponent Character&quot;) + 
+  scale_x_discrete(limits = c(&quot;Marth&quot;, &quot;Samus &quot;, &quot;Sheik&quot;, &quot;Falco&quot;, &quot;Captain Falcon&quot;, &quot;Yoshi&quot;, &quot;Ice Climbers&quot;, &quot;Pikachu&quot;, &quot;Fox&quot;, &quot;Young Link&quot;)) + 
+  coord_cartesian(ylim = c(0,100))</code></pre>
 <p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <hr />
 </div>

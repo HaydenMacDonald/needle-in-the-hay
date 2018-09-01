@@ -57,7 +57,7 @@ blockquote p:first-child {
 hr {
   max-width: 1200px;
   margin: 15px auto;
-  border-width: 2px;
+  border-width: 1px;
   border-color: #404040;
   border-radius: 3px;
 }
@@ -66,6 +66,10 @@ pre {
   box-shadow: 5px 5px 5px #eee;
   padding: 1em;
   overflow-x: auto;
+}
+code {
+  font-family: "Fira Code Medium", Monaco, monospace;
+  font-size: 85%;
 }
 
 .main-content {

@@ -51,7 +51,13 @@ Hbox
 ### Visualizing All Matchups
 
 ```{r}
-ggplot(data = Hbox, aes(x = OpponentCharacter, y = Hbox$Win.Percent, fill = Win.Percent)) + geom_bar(stat = "identity", show.legend = FALSE) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + ylab("Win Percentage") + xlab("Opponent Character") + scale_x_discrete(limits = c("Marth", "Samus ", "Sheik", "Falco", "Captain Falcon", "Yoshi", "Ice Climbers", "Pikachu", "Fox", "Young Link")) + coord_cartesian(ylim = c(0,100))
+ggplot(data = Hbox, aes(x = OpponentCharacter, y = Hbox$Win.Percent, fill = Win.Percent)) + 
+  geom_bar(stat = "identity", show.legend = FALSE) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  ylab("Win Percentage") + 
+  xlab("Opponent Character") + 
+  scale_x_discrete(limits = c("Marth", "Samus ", "Sheik", "Falco", "Captain Falcon", "Yoshi", "Ice Climbers", "Pikachu", "Fox", "Young Link")) + 
+  coord_cartesian(ylim = c(0,100))
 ```
 
 ----

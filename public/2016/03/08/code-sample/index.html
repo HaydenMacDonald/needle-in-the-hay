@@ -30,7 +30,10 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
-  <link rel="stylesheet" href="/css/highlight.min.css" /><link rel="stylesheet" href="/css/codeblock.css" />
+  <link rel="stylesheet" href="/css/codeblock.css" />
+  <link rel="stylesheet" href="/css/solarized-dark.css" rel="stylesheet" id="theme-stylesheet">
+  <script src="/js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
 
 
 
@@ -85,6 +88,7 @@
 </div>
 
 </head>
+
 
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
@@ -200,29 +204,29 @@
 <p></p>
 
 <p>The following is a code sample using triple backticks ( ``` ) code fencing provided in Hugo. This is client side highlighting and does not require any special installation.</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript">    <span class="kd">var</span> <span class="nx">num1</span><span class="p">,</span> <span class="nx">num2</span><span class="p">,</span> <span class="nx">sum</span>
-    <span class="nx">num1</span> <span class="o">=</span> <span class="nx">prompt</span><span class="p">(</span><span class="s2">&#34;Enter first number&#34;</span><span class="p">)</span>
-    <span class="nx">num2</span> <span class="o">=</span> <span class="nx">prompt</span><span class="p">(</span><span class="s2">&#34;Enter second number&#34;</span><span class="p">)</span>
-    <span class="nx">sum</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">num1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">num2</span><span class="p">)</span> <span class="c1">// &#34;+&#34; means &#34;add&#34;
-</span><span class="c1"></span>    <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;Sum = &#34;</span> <span class="o">+</span> <span class="nx">sum</span><span class="p">)</span>  <span class="c1">// &#34;+&#34; means combine into a string
-</span><span class="c1"></span></code></pre></div>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#268bd2">var</span> num1, num2, sum
+    num1 <span style="color:#719e07">=</span> prompt(<span style="color:#2aa198">&#34;Enter first number&#34;</span>)
+    num2 <span style="color:#719e07">=</span> prompt(<span style="color:#2aa198">&#34;Enter second number&#34;</span>)
+    sum <span style="color:#719e07">=</span> <span style="color:#b58900">parseInt</span>(num1) <span style="color:#719e07">+</span> <span style="color:#b58900">parseInt</span>(num2) <span style="color:#586e75">// &#34;+&#34; means &#34;add&#34;
+</span><span style="color:#586e75"></span>    alert(<span style="color:#2aa198">&#34;Sum = &#34;</span> <span style="color:#719e07">+</span> sum)  <span style="color:#586e75">// &#34;+&#34; means combine into a string
+</span><span style="color:#586e75"></span></code></pre></div>
 <p>The following is a code sample using the &ldquo;highlight&rdquo; shortcode provided in Hugo. This is server side highlighting and requires Python and Pygments to be installed.</p>
 
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript">    <span class="kd">var</span> <span class="nx">num1</span><span class="p">,</span> <span class="nx">num2</span><span class="p">,</span> <span class="nx">sum</span>
-    <span class="nx">num1</span> <span class="o">=</span> <span class="nx">prompt</span><span class="p">(</span><span class="s2">&#34;Enter first number&#34;</span><span class="p">)</span>
-    <span class="nx">num2</span> <span class="o">=</span> <span class="nx">prompt</span><span class="p">(</span><span class="s2">&#34;Enter second number&#34;</span><span class="p">)</span>
-    <span class="nx">sum</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">num1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">num2</span><span class="p">)</span> <span class="c1">// &#34;+&#34; means &#34;add&#34;
-</span><span class="c1"></span>    <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;Sum = &#34;</span> <span class="o">+</span> <span class="nx">sum</span><span class="p">)</span>  <span class="c1">// &#34;+&#34; means combine into a string
-</span><span class="c1"></span></code></pre></div>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#268bd2">var</span> num1, num2, sum
+    num1 <span style="color:#719e07">=</span> prompt(<span style="color:#2aa198">&#34;Enter first number&#34;</span>)
+    num2 <span style="color:#719e07">=</span> prompt(<span style="color:#2aa198">&#34;Enter second number&#34;</span>)
+    sum <span style="color:#719e07">=</span> <span style="color:#b58900">parseInt</span>(num1) <span style="color:#719e07">+</span> <span style="color:#b58900">parseInt</span>(num2) <span style="color:#586e75">// &#34;+&#34; means &#34;add&#34;
+</span><span style="color:#586e75"></span>    alert(<span style="color:#2aa198">&#34;Sum = &#34;</span> <span style="color:#719e07">+</span> sum)  <span style="color:#586e75">// &#34;+&#34; means combine into a string
+</span><span style="color:#586e75"></span></code></pre></div>
 
 <p>And here is the same code with line numbers:</p>
 
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="ln">1</span>    <span class="kd">var</span> <span class="nx">num1</span><span class="p">,</span> <span class="nx">num2</span><span class="p">,</span> <span class="nx">sum</span>
-<span class="ln">2</span>    <span class="nx">num1</span> <span class="o">=</span> <span class="nx">prompt</span><span class="p">(</span><span class="s2">&#34;Enter first number&#34;</span><span class="p">)</span>
-<span class="ln">3</span>    <span class="nx">num2</span> <span class="o">=</span> <span class="nx">prompt</span><span class="p">(</span><span class="s2">&#34;Enter second number&#34;</span><span class="p">)</span>
-<span class="ln">4</span>    <span class="nx">sum</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">num1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">num2</span><span class="p">)</span> <span class="c1">// &#34;+&#34; means &#34;add&#34;
-</span><span class="ln">5</span><span class="c1"></span>    <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;Sum = &#34;</span> <span class="o">+</span> <span class="nx">sum</span><span class="p">)</span>  <span class="c1">// &#34;+&#34; means combine into a string
-</span><span class="ln">6</span><span class="c1"></span></code></pre></div>
+<div class="highlight"><pre style="color:#93a1a1;background-color:#002b36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">1</span>    <span style="color:#268bd2">var</span> num1, num2, sum
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">2</span>    num1 <span style="color:#719e07">=</span> prompt(<span style="color:#2aa198">&#34;Enter first number&#34;</span>)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">3</span>    num2 <span style="color:#719e07">=</span> prompt(<span style="color:#2aa198">&#34;Enter second number&#34;</span>)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">4</span>    sum <span style="color:#719e07">=</span> <span style="color:#b58900">parseInt</span>(num1) <span style="color:#719e07">+</span> <span style="color:#b58900">parseInt</span>(num2) <span style="color:#586e75">// &#34;+&#34; means &#34;add&#34;
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">5</span><span style="color:#586e75"></span>    alert(<span style="color:#2aa198">&#34;Sum = &#34;</span> <span style="color:#719e07">+</span> sum)  <span style="color:#586e75">// &#34;+&#34; means combine into a string
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#495050">6</span><span style="color:#586e75"></span></code></pre></div>
 
         
           <div class="blog-tags">

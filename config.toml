@@ -6,12 +6,12 @@ theme = "beautifulhugo"
 paginate = 5
 PaginatePath = "post"
 metaDataFormat = "yaml"
-pygmentsStyle = "trac"
-pygmentsUseClasses = true
-pygmentsCodeFences = true
+pygmentsStyle = "solarized-dark"
+#pygmentsUseClasses = true
+pygmentsCodefences = true
 pygmentsCodefencesGuessSyntax = true
 #pygmentsUseClassic = true
-#pygmentOptions = "linenos=inline"
+pygmentOptions = "linenos=table"
 #disqusShortname = "XXX"
 #googleAnalytics = "XXX"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
@@ -31,6 +31,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   readingTime = true
   useHLJS = true
   socialShare = false
+  
 #  gcse = "012345678901234567890:abcdefghijk" # Get your code from google.com/cse. Make sure to go to "Look and Feel" and change Layout to "Full Width" and Theme to "Classic"
 
 #[[Params.bigimg]]
