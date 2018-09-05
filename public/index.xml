@@ -14,21 +14,19 @@
     
     <item>
       <title>The Case Against Young Link</title>
-      <link>/2018/08/31/hbox-bayes/</link>
+      <link>/hbox-bayes/</link>
       <pubDate>Fri, 31 Aug 2018 00:00:00 +0000</pubDate>
       <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
-      <guid>/2018/08/31/hbox-bayes/</guid>
-      <description>MeleeHere I will elaborate about Melee.
-Imagine how many Young Link comments that would show up if I showed this yesterday (Hbox&amp;#39;s 2017 char data) pic.twitter.com/ZjT8tDy1QO
-&amp;mdash; CLG Tafo (@tafokints) November 7, 2017  Set-Uplibrary(dplyr)library(tidyr)library(ggplot2)library(RColorBrewer)library(MASS)Arranging DataHbox &amp;lt;- read.csv(file = &amp;quot;Hbox2017.csv&amp;quot;, sep = &amp;quot;,&amp;quot;, header = TRUE)Hbox &amp;lt;- arrange(Hbox, desc(Win.Percent))Hbox## OpponentCharacter Wins Losses Total Win.Percent## 1 Marth 7 1 8 87.</description>
+      <guid>/hbox-bayes/</guid>
+      <description>Melee!Super Smash Bros. Melee for the Nintendo GameCube was released in 2001. Since then, it has become one of the most fondly remembered and adored games of the last twenty years. The game features many characters from various Nintendo game franchises, which players choose between before entering a match. The objective of each match is relatively simple: fight your opponent(s) and hit them beyond the boundaries of the stage. In contrast to other fighting games, each time a player is struck they gain percentage points.</description>
     </item>
     
     <item>
       <title>Math Sample</title>
-      <link>/2017/03/05/math-sample/</link>
+      <link>/math-sample/</link>
       <pubDate>Sun, 05 Mar 2017 00:00:00 +0000</pubDate>
       <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
-      <guid>/2017/03/05/math-sample/</guid>
+      <guid>/math-sample/</guid>
       <description>&lt;p&gt;KaTeX can be used to generate complex math formulas server-side.&lt;/p&gt;
 
 &lt;p&gt;$$
@@ -41,10 +39,10 @@ $$&lt;/p&gt;
     
     <item>
       <title>Code Sample</title>
-      <link>/2016/03/08/code-sample/</link>
+      <link>/code-sample/</link>
       <pubDate>Tue, 08 Mar 2016 00:00:00 +0000</pubDate>
       <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
-      <guid>/2016/03/08/code-sample/</guid>
+      <guid>/code-sample/</guid>
       <description>&lt;p&gt;The following are two code samples using syntax highlighting.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
@@ -52,10 +50,10 @@ $$&lt;/p&gt;
     
     <item>
       <title>Hello R Markdown</title>
-      <link>/2015/07/23/hello-r-markdown/</link>
+      <link>/hello-r-markdown/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
-      <guid>/2015/07/23/hello-r-markdown/</guid>
+      <guid>/hello-r-markdown/</guid>
       <description>R MarkdownThis is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
 You can embed an R code chunk like this:
 summary(cars)## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.</description>
@@ -63,10 +61,10 @@ summary(cars)## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
     
     <item>
       <title>Test markdown</title>
-      <link>/2015/02/20/test-markdown/</link>
+      <link>/test-markdown/</link>
       <pubDate>Fri, 20 Feb 2015 00:00:00 +0000</pubDate>
       <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
-      <guid>/2015/02/20/test-markdown/</guid>
+      <guid>/test-markdown/</guid>
       <description>You can write regular markdown here and Jekyll will automatically convert it to a nice webpage. I strongly encourage you to take 5 minutes to learn how to write in markdown - it&amp;rsquo;ll teach you how to transform regular text into bold/italics/headings/tables/etc.
 Here is some bold text
 Here is a secondary heading Here&amp;rsquo;s a useless table:

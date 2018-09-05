@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>The Case Against Young Link</title>
+  <meta property="og:title" content="The Case Against Young Link" />
+  <meta name="twitter:title" content="The Case Against Young Link" />
+  <meta name="description" content="Empirical Bayes Estimation of Hungrybox&#39;s 2017 Character Matchup Win Percentages">
+  <meta property="og:description" content="Empirical Bayes Estimation of Hungrybox&#39;s 2017 Character Matchup Win Percentages">
+  <meta name="twitter:description" content="Empirical Bayes Estimation of Hungrybox&#39;s 2017 Character Matchup Win Percentages">
+  <meta name="author" content="Hayden MacDonald"/>
+  <link href='/img/needle.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="/img/hmd2.png" />
+  <meta name="twitter:image" content="/img/hmd2.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@/HYDNMCDNLD" />
+  <meta name="twitter:creator" content="@/HYDNMCDNLD" />
+  <meta property="og:url" content="/hbox-bayes/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Needle in the Hay" />
+
+  <meta name="generator" content="Hugo 0.48" />
+  <link rel="canonical" href="/hbox-bayes/" />
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Needle in the Hay">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="/css/codeblock.css" />
+  <link rel="stylesheet" href="/css/solarized-dark.css" rel="stylesheet" id="theme-stylesheet">
+  <script src="/js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Needle in the Hay</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/post/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags/">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Needle in the Hay" href="/">
+            <img class="avatar-img" src="/img/hmd2.png" alt="Needle in the Hay" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              <h1>The Case Against Young Link</h1>
+                
+                  
+                    <h2 class="post-subheading">Empirical Bayes Estimation of Hungrybox&#39;s 2017 Character Matchup Win Percentages</h2>
+                  
+                
+                
+                  <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on 2018/08/31
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 10 minutes (2039 words)
+  
+  
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <div id="melee" class="section level2">
+<h2>Melee!</h2>
+<p><a href="https://en.wikipedia.org/wiki/Super_Smash_Bros._Melee">Super Smash Bros. Melee for the Nintendo GameCube</a> was released in 2001. Since then, it has become one of the most fondly remembered and adored games of the last twenty years. The game features many characters from various Nintendo game franchises, which players choose between before entering a match. The objective of each match is relatively simple: fight your opponent(s) and hit them beyond the boundaries of the stage. In contrast to other fighting games, each time a player is struck they <em>gain</em> percentage points. As these percentage points accumulate, each successive attack received sends the player’s character further away and closer to the stage boundaries. Each time a player goes past the stage boundary, they lose a “stock” (i.e. a life). Lose all your stocks and the game is over.</p>
+<p>Today, Melee is a popular esport across North America and Europe, where players can watch or enter tournaments with cash prizes. The early days of the competitive scene are documented in a <a href="https://youtu.be/jX9hbbA-WP4">4 hour fan-made documentary</a>. The documentary includes interviews with various personalities and players and touches on some of the advanced mechanics of the game. Although these advanced mechanics were not intended by the developers, they ended up contributing nuance and mechanical difficulty to the game, which substantially raised the skill ceiling in competitive tournaments. Explanations of these mechanics are well beyond the scope of this blog post and probably deserve a documentary of their own. What is important to understand is that the game, although simple in premise, is actually very complicated and it requires an absurd amount of time and effort to become a great player.</p>
+<p>The best Melee player in the world is Juan “Hungrybox” DeBiedma, currently ranked #1 by a panel of competive players and community figures. Hungrybox plays Jigglypuff, a character originally found in the Pokémon franchise, and he is sponsored by Team Liquid, a prolific esports organization.</p>
+<p>His results in the image below are from the first half of 2018.</p>
+<div class="figure">
+<img src="https://image.redbull.com/rbcom/052/2018-08-02/5a64fdf3-da49-443a-82bd-880ae5f04c36/0001/1/1050/1/mpgr-summer-2018-1.png" alt="Panda Global Rankings Melee: Summer 2018" />
+<p class="caption">Panda Global Rankings Melee: Summer 2018</p>
+</div>
+<p>Hungrybox’s dominance within the highest levels of Melee gives him the right to be called one of the “Five Gods” of Melee. The “Five Gods” title carries significant weight and generally begets more attention, positive or negative, than some would prefer. Although Hungrybox has many fans, there are many members of the Melee community (spectators and players alike) that do not like that Hungrybox is the best player in the world. Despite his indisputable #1 rankings in <a href="https://www.redbull.com/us-en/ssbmrank-2017-10-1">2017</a> and Summer 2018, Hungrybox regularly faces criticism concerning his character choice, playstyle and/or personality. Some fans go as far to say that his play is actually “killing” Melee’s competitive scene.</p>
+<p>In late 2017, Hungrybox won five consecutive high level tournaments, much to the chagrin of his opponents and critics. Displeasure over his dominance led to some online discussions concerning “What should top players do to beat Hungrybox?”. For context, Fox is considered to be the best character to use versus Jigglypuff, as he is generally considered to be the strongest but most technically challenging character to play. Fans in turmoil casted doubt on Fox and considered which alternate characters might be effective when facing Hungrybox. These discussions among fans became the subject of ridicule by Leffen, currently ranked #4 in the world, in the following tweet:</p>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">i was thinking, what should we do to beat hungrybox? as if it were fate, i came upon this reddit thread.<br>Now I know exactly what not to do! <a href="https://t.co/PyT3cPwnb1">pic.twitter.com/PyT3cPwnb1</a></p>&mdash; leffen (@TSM_Leffen) <a href="https://twitter.com/TSM_Leffen/status/927971399301464065?ref_src=twsrc%5Etfw">November 7, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>Leffen’s tweet features screenshots of fan comments on Reddit that suggest absurd or simplistic strategies that disregard the logic behind high level play. His tweet should speak for itself, but there is a large knowledge gap between fans and top players when it comes to playing against the best player in the world.</p>
+<p>The sentiment of Leffen’s tweet is later echoed by Tafo, another community member.</p>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Imagine how many Young Link comments that would show up if I showed this yesterday (Hbox&#39;s 2017 char data) <a href="https://t.co/ZjT8tDy1QO">pic.twitter.com/ZjT8tDy1QO</a></p>&mdash; CLG Tafo (@tafokints) <a href="https://twitter.com/tafokints/status/927976731905900544?ref_src=twsrc%5Etfw">November 7, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>Although Tafo’s comments are also made at the expense of fans, he includes a dataset of Hungrybox’s character matchup data for 2017. Tafo effectively highlights a specific misunderstanding that fans have about character matchups in Melee.</p>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Yup, but I imagine people will run with this regardless of sample size</p>&mdash; CLG Tafo (@tafokints) <a href="https://twitter.com/tafokints/status/927978438274596864?ref_src=twsrc%5Etfw">November 7, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>The essential sentiment is that Melee fans and laypeople will tend to look past the sample size when making inferences on performance. It is implied that fans will look at the win percentages on the right hand side of the table and take them at face value. Here is the same data reorganized:</p>
+<pre><code>##    OpponentCharacter Wins Losses Total Win.Percent
+## 1              Marth    7      1     8       87.50
+## 2             Samus    12      2    14       85.71
+## 3              Sheik   12      2    14       85.71
+## 4              Falco    8      2    10       80.00
+## 5     Captain Falcon   32     10    42       76.19
+## 6              Yoshi    3      1     4       75.00
+## 7       Ice Climbers    9      4    13       69.23
+## 8            Pikachu    4      2     6       66.67
+## 9                Fox  145    104   249       58.23
+## 10        Young Link    2      2     4       50.00</code></pre>
+<p>Here is where the essential question of this blog post comes in.</p>
+<p>Does Hungrybox win more versus Fox than he does versus Young Link? The answers seems obvious. Hungrybox wins 58.23% of his matches versus Fox and 50.00% of his matches versus Young Link, so clearly he is better at the Fox matchup compared to the Young Link matchup, right?</p>
+<p>In order to make that conclusion, one would have to disregard the sample size or the amount of evidence behind each matchup. Up until 2017/11/07, Hungrybox had won 2/4 matches versus Young Link, whereas he had won 145/249 matches versus Fox. Knowing this, can we confidently say that Hungrybox’s win percentage versus Young Link is truly lower than his win percentage versus Fox?</p>
+<p>Given the data available, there is a statistical technique called <strong>empirical Bayes estimation</strong> that will allow us to predict the proportion of wins in each of Hungrybox’s character matchups. The specific goal of this analysis will be to gain a better estimate of Hungrybox’s win percentage versus Young Link and Fox and make an informed judgement on which is truly the best character to use against Hungrybox in high level play.</p>
+<hr />
+<div id="set-up" class="section level3">
+<h3>Set-Up</h3>
+<pre class="r"><code>library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(RColorBrewer)
+library(MASS)</code></pre>
+<hr />
+</div>
+<div id="arranging-data" class="section level3">
+<h3>Arranging Data</h3>
+<pre class="r"><code>Hbox &lt;- read.csv(file = &quot;Hbox2017.csv&quot;)
+
+Hbox %&gt;%
+  arrange(desc(Win.Percent))</code></pre>
+<pre><code>##    OpponentCharacter Wins Losses Total Win.Percent
+## 1              Marth    7      1     8       87.50
+## 2             Samus    12      2    14       85.71
+## 3              Sheik   12      2    14       85.71
+## 4              Falco    8      2    10       80.00
+## 5     Captain Falcon   32     10    42       76.19
+## 6              Yoshi    3      1     4       75.00
+## 7       Ice Climbers    9      4    13       69.23
+## 8            Pikachu    4      2     6       66.67
+## 9                Fox  145    104   249       58.23
+## 10        Young Link    2      2     4       50.00</code></pre>
+<hr />
+</div>
+<div id="visualizing-all-matchups" class="section level3">
+<h3>Visualizing All Matchups</h3>
+<pre class="r"><code>Hbox %&gt;%
+  ggplot(aes(x = OpponentCharacter, y = Hbox$Win.Percent, fill = Win.Percent)) + 
+  geom_bar(stat = &quot;identity&quot;, show.legend = FALSE) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.35)) + 
+  labs(y = &quot;Win Percentage&quot;, x = &quot;Opponent Character&quot;) +
+  scale_x_discrete(limits = c(&quot;Marth&quot;, &quot;Samus &quot;, &quot;Sheik&quot;, &quot;Falco&quot;, &quot;Captain Falcon&quot;, &quot;Yoshi&quot;, &quot;Ice Climbers&quot;, &quot;Pikachu&quot;, &quot;Fox&quot;, &quot;Young Link&quot;)) + 
+  coord_cartesian(ylim = c(0,100))</code></pre>
+<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/Visualize-1.png" width="672" /></p>
+<hr />
+</div>
+<div id="histogram-of-all-win-average-values" class="section level3">
+<h3>Histogram of All Win Average Values</h3>
+<pre class="r"><code>#Create new win average column
+Hbox &lt;- Hbox %&gt;%
+  mutate(Win.Average = Wins/Total)
+
+#Round Win.Average to 2 decimals
+Hbox2 &lt;- Hbox %&gt;%
+  mutate(Win.Average = sprintf(&quot;%0.2f&quot;, Win.Average))
+
+#Plot histogram of win averages 
+Hbox2 %&gt;%
+  ggplot(aes(x = factor(Win.Average))) + 
+  geom_bar() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.35)) +
+  labs(x = &quot;Win Average&quot;)</code></pre>
+<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/Win%20Averages%20Histogram-1.png" width="672" /></p>
+<p>We can estimate the alpha and beta parameters of the beta distribution from the mean and variance using this custom function:</p>
+<pre class="r"><code>estBetaParams &lt;- function(mu, var) {
+     alpha &lt;- ((1 - mu) / var - 1 / mu) * mu ^ 2
+     beta &lt;- alpha * (1 / mu - 1)
+     return(params = list(alpha = alpha, beta = beta))
+ }</code></pre>
+<p>Credit goes to <a href="https://stats.stackexchange.com/questions/12232/calculating-the-parameters-of-a-beta-distribution-using-the-mean-and-variance">this Cross Validated user.</a></p>
+<p>So, we input the mean and variance of Hungrybox’s win percentages across all matchups and use the resulting alpha and beta parameters to inform the shape of our beta distribution (shown in red).</p>
+<pre class="r"><code>H.mu &lt;- mean(Hbox$Win.Average)
+
+H.var &lt;- var(Hbox$Win.Average)
+
+Hbox.est &lt;- estBetaParams(H.mu, H.var)
+
+Hbox %&gt;%
+  ggplot(aes(Win.Average)) + 
+  geom_histogram(aes(y = ..density..), binwidth = .005) + 
+  stat_function(fun = function(x) dbeta(x, Hbox.est$alpha, Hbox.est$beta), 
+                color = &quot;red&quot;, size = 1)</code></pre>
+<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/Method%20of%20Moments%20estimates-1.png" width="672" /></p>
+<pre class="r"><code>#How did our empirical Bayes change the matchup averages?
+Hbox.eb &lt;- Hbox %&gt;%
+    mutate(eb_estimate = (Wins + Hbox.est$alpha) / (Total + Hbox.est$alpha + Hbox.est$beta))
+
+Hbox.eb %&gt;%
+  ggplot(aes(Win.Average, eb_estimate, color = Total)) + 
+  geom_hline(yintercept = Hbox.est$alpha / (Hbox.est$alpha + Hbox.est$beta), 
+             color = &quot;red&quot;, lty = 2) + 
+  geom_point() + 
+  geom_abline(color = &quot;red&quot;) + 
+  scale_colour_gradient(trans = &quot;log&quot;, breaks = 10 ^ (1:5)) + 
+  labs(x = &quot;Win Average&quot;, y = &quot;Empirical Bayes Matchup Average&quot;)</code></pre>
+<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/Change%20in%20Estimates-1.png" width="672" /></p>
+<p>What if we had no evidence at all? What would we predict Hbox’s win average across all matchups to be?</p>
+<pre class="r"><code>sprintf(&quot;%.3f&quot;, Hbox.est$alpha / (Hbox.est$alpha + Hbox.est$beta))</code></pre>
+<pre><code>## [1] &quot;0.734&quot;</code></pre>
+<pre class="r"><code>#Now to plot our new estimates of Hbox&#39;s 2017 matchup win averages
+Hbox.eb</code></pre>
+<pre><code>##    OpponentCharacter Wins Losses Total Win.Percent Win.Average eb_estimate
+## 1     Captain Falcon   32     10    42       76.19   0.7619048   0.7559290
+## 2              Falco    8      2    10       80.00   0.8000000   0.7647219
+## 3                Fox  145    104   249       58.23   0.5823293   0.5890789
+## 4       Ice Climbers    9      4    13       69.23   0.6923077   0.7120644
+## 5              Marth    7      1     8       87.50   0.8750000   0.7917661
+## 6            Pikachu    4      2     6       66.67   0.6666667   0.7111797
+## 7             Samus    12      2    14       85.71   0.8571429   0.8015172
+## 8              Sheik   12      2    14       85.71   0.8571429   0.8015172
+## 9              Yoshi    3      1     4       75.00   0.7500000   0.7382940
+## 10        Young Link    2      2     4       50.00   0.5000000   0.6740968</code></pre>
+<pre class="r"><code>scaleFUN &lt;- function(x) sprintf(&quot;%.2s&quot;, x)
+
+Hbox.eb %&gt;%
+  ggplot(aes(x = OpponentCharacter, y = eb_estimate, fill = eb_estimate)) + 
+  geom_bar(stat = &quot;identity&quot;, show.legend = FALSE) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  labs(y = &quot;Empirical Estimation of Win Average&quot;, x = &quot;Opponent Character&quot;) + 
+  scale_x_discrete(limits = c(&quot;Marth&quot;, &quot;Samus &quot;, &quot;Sheik&quot;, &quot;Falco&quot;, &quot;Captain Falcon&quot;, &quot;Yoshi&quot;, &quot;Ice Climbers&quot;, &quot;Pikachu&quot;, &quot;Fox&quot;, &quot;Young Link&quot;)) + 
+  coord_cartesian(ylim = c(0.0, 1.0))</code></pre>
+<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/Results-1.png" width="672" /></p>
+<hr />
+</div>
+<div id="maximum-likelihood-estimation" class="section level3">
+<h3>Maximum Likelihood Estimation</h3>
+<pre class="r"><code>#Alternatively, we can use fitdistr to conduct a Maximum-Likelihood Estimation of alpha and beta
+Hbox.est2 &lt;- fitdistr(Hbox$Win.Average,dbeta,list(shape1=1,shape2=1), lower = c(0,0))
+
+Hbox.est2</code></pre>
+<pre><code>##     shape1      shape2  
+##   10.403528    3.780885 
+##  ( 4.665568) ( 1.625258)</code></pre>
+<pre class="r"><code>Hbox %&gt;%
+  ggplot(aes(Win.Average)) + 
+  geom_histogram(aes(y = ..density..), binwidth = .005) + 
+  stat_function(fun = function(x) 
+    dbeta(x, Hbox.est2$estimate[1], Hbox.est2$estimate[2]), 
+    color = &quot;red&quot;, size = 1)</code></pre>
+<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/Maximum%20Likelihood%20Estimation-1.png" width="672" /></p>
+<pre class="r"><code>#How did our empirical Bayes change the matchup averages?
+Hbox.eb2 &lt;- Hbox %&gt;%
+  mutate(eb_estimate2 = (Wins + Hbox.est2$estimate[1]) / (Total + Hbox.est2$estimate[1] + Hbox.est2$estimate[2]))
+
+Hbox.eb2 %&gt;%
+  ggplot(aes(Win.Average, eb_estimate2, color = Total)) + 
+  geom_hline(yintercept = Hbox.est2$estimate[1] / (Hbox.est2$estimate[1] + Hbox.est2$estimate[2]), 
+             color = &quot;red&quot;, lty = 2) + 
+  geom_point() + 
+  geom_abline(color = &quot;red&quot;) + 
+  scale_colour_gradient(trans = &quot;log&quot;, breaks = 10 ^ (1:5)) + 
+  labs(x = &quot;Win Average&quot;, y = &quot;Empirical Bayes Matchup Average&quot;)</code></pre>
+<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/Maximum%20Likelihood%20Estimation-2.png" width="672" /></p>
+<pre class="r"><code>#Again, what if we had no evidence at all? What would we predict Hbox&#39;s win average across all matchups to be?
+sprintf(&quot;%.3f&quot;, Hbox.est2$estimate[1] / (Hbox.est2$estimate[1] + Hbox.est2$estimate[2]))</code></pre>
+<pre><code>## [1] &quot;0.733&quot;</code></pre>
+<pre class="r"><code>#Plot
+Hbox.eb2</code></pre>
+<pre><code>##    OpponentCharacter Wins Losses Total Win.Percent Win.Average
+## 1     Captain Falcon   32     10    42       76.19   0.7619048
+## 2              Falco    8      2    10       80.00   0.8000000
+## 3                Fox  145    104   249       58.23   0.5823293
+## 4       Ice Climbers    9      4    13       69.23   0.6923077
+## 5              Marth    7      1     8       87.50   0.8750000
+## 6            Pikachu    4      2     6       66.67   0.6666667
+## 7             Samus    12      2    14       85.71   0.8571429
+## 8              Sheik   12      2    14       85.71   0.8571429
+## 9              Yoshi    3      1     4       75.00   0.7500000
+## 10        Young Link    2      2     4       50.00   0.5000000
+##    eb_estimate2
+## 1     0.7547205
+## 2     0.7609665
+## 3     0.5904739
+## 4     0.7137740
+## 5     0.7844935
+## 6     0.7135966
+## 7     0.7948907
+## 8     0.7948907
+## 9     0.7370889
+## 10    0.6820967</code></pre>
+<pre class="r"><code>scaleFUN &lt;- function(x) sprintf(&quot;%.2s&quot;, x)
+
+ggplot(data = Hbox.eb2, aes(x = Hbox.eb2$OpponentCharacter, y = Hbox.eb2$eb_estimate, fill = Hbox.eb2$eb_estimate)) + 
+  geom_bar(stat = &quot;identity&quot;, show.legend = FALSE) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  ylab(&quot;Empirical Estimation of Win Average&quot;) + 
+  xlab(&quot;Opponent Character&quot;) + 
+  scale_x_discrete(limits = c(&quot;Marth&quot;, &quot;Samus &quot;, &quot;Sheik&quot;, &quot;Falco&quot;, &quot;Captain Falcon&quot;, &quot;Yoshi&quot;, &quot;Ice Climbers&quot;, &quot;Pikachu&quot;, &quot;Fox&quot;, &quot;Young Link&quot;)) + 
+  coord_cartesian(ylim = c(0.0, 1.0))</code></pre>
+<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/Maximum%20Likelihood%20Estimation-3.png" width="672" /></p>
+<hr />
+</div>
+<div id="conclusion" class="section level3">
+<h3>Conclusion</h3>
+<p><a href="http://www.espn.com/esports/story/_/id/24492926/zain-zain-naghmi-overcomes-juan-hungrybox-debiedma-win-shine-2018-title-boston" class="uri">http://www.espn.com/esports/story/_/id/24492926/zain-zain-naghmi-overcomes-juan-hungrybox-debiedma-win-shine-2018-title-boston</a></p>
+</div>
+</div>
+
+
+        
+          <div class="blog-tags">
+            
+              <a href="//tags/r/">R</a>&nbsp;
+            
+              <a href="//tags/rstats/">rstats</a>&nbsp;
+            
+              <a href="//tags/esports/">esports</a>&nbsp;
+            
+              <a href="//tags/bayes/">bayes</a>&nbsp;
+            
+          </div>
+        
+
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="/math-sample/" data-toggle="tooltip" data-placement="top" title="Math Sample">&larr; Previous Post</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:hayden.macdonald.8778@gmail.com" title="Email Me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com//HaydenMacDonald" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com//HYDNMCDNLD" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/hayden-macdonald/" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              Hayden MacDonald
+            
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="/">Needle in the Hay</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.48</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="/js/main.js"></script>
+<script src="/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

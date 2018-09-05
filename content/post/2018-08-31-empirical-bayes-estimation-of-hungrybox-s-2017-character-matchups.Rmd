@@ -16,19 +16,62 @@ tags:
 subtitle: "Empirical Bayes Estimation of Hungrybox's 2017 Character Matchup Win Percentages"
 ---
 
-## Melee
+## Melee!
 
-Here I will elaborate about Melee.
+[Super Smash Bros. Melee for the Nintendo GameCube](https://en.wikipedia.org/wiki/Super_Smash_Bros._Melee) was released in 2001. Since then, it has become one of the most fondly remembered and adored games of the last twenty years. The game features many characters from various Nintendo game franchises, which players choose between before entering a match. The objective of each match is relatively simple: fight your opponent(s) and hit them beyond the boundaries of the stage. In contrast to other fighting games, each time a player is struck they *gain* percentage points. As these percentage points accumulate, each successive attack received sends the player's character further away and closer to the stage boundaries. Each time a player goes past the stage boundary, they lose a "stock" (i.e. a life). Lose all your stocks and the game is over.  
+
+Today, Melee is a popular esport across North America and Europe, where players can watch or enter tournaments with cash prizes. The early days of the competitive scene are documented in a [4 hour fan-made documentary](https://youtu.be/jX9hbbA-WP4). The documentary includes interviews with various personalities and players and touches on some of the advanced mechanics of the game. Although these advanced mechanics were not intended by the developers, they ended up contributing nuance and mechanical difficulty to the game, which substantially raised the skill ceiling in competitive tournaments. Explanations of these mechanics are well beyond the scope of this blog post and probably deserve a documentary of their own. What is important to understand is that the game, although simple in premise, is actually very complicated and it requires an absurd amount of time and effort to become a great player.  
+
+The best Melee player in the world is Juan "Hungrybox" DeBiedma, currently ranked #1 by a panel of competive players and community figures. Hungrybox plays Jigglypuff, a character originally found in the Pokémon franchise, and he is sponsored by Team Liquid, a prolific esports organization.
+
+His results in the image below are from the first half of 2018.  
+
+![Panda Global Rankings Melee: Summer 2018](https://image.redbull.com/rbcom/052/2018-08-02/5a64fdf3-da49-443a-82bd-880ae5f04c36/0001/1/1050/1/mpgr-summer-2018-1.png)
+
+Hungrybox's dominance within the highest levels of Melee gives him the right to be called one of the "Five Gods" of Melee. The "Five Gods" title carries significant weight and generally begets more attention, positive or negative, than some would prefer. Although Hungrybox has many fans, there are many members of the Melee community (spectators and players alike) that do not like that Hungrybox is the best player in the world. Despite his indisputable #1 rankings in [2017](https://www.redbull.com/us-en/ssbmrank-2017-10-1) and Summer 2018, Hungrybox regularly faces criticism concerning his character choice, playstyle and/or personality. Some fans go as far to say that his play is actually "killing" Melee's competitive scene.  
+
+In late 2017, Hungrybox won five consecutive high level tournaments, much to the chagrin of his opponents and critics. Displeasure over his dominance led to some online discussions concerning "What should top players do to beat Hungrybox?". For context, Fox is considered to be the best character to use versus Jigglypuff, as he is generally considered to be the strongest but most technically challenging character to play. Fans in turmoil casted doubt on Fox and considered which alternate characters might be effective when facing Hungrybox. These discussions among fans became the subject of ridicule by Leffen, currently ranked #4 in the world, in the following tweet:  
+
+```{r echo=FALSE}
+blogdown::shortcode('tweet', '927971399301464065')
+```
+
+Leffen's tweet features screenshots of fan comments on Reddit that suggest absurd or simplistic strategies that disregard the logic behind high level play. His tweet should speak for itself, but there is a large knowledge gap between fans and top players when it comes to playing against the best player in the world.  
+
+The sentiment of Leffen's tweet is later echoed by Tafo, another community member. 
 
 ```{r echo=FALSE}
 blogdown::shortcode('tweet', '927976731905900544')
 ```
 
+Although Tafo's comments are also made at the expense of fans, he includes a dataset of Hungrybox's character matchup data for 2017. Tafo effectively highlights a specific misunderstanding that fans have about character matchups in Melee.  
+
+```{r echo=FALSE}
+blogdown::shortcode('tweet', '927978438274596864')
+```
+
+The essential sentiment is that Melee fans and laypeople will tend to look past the sample size when making inferences on performance. It is implied that fans will look at the win percentages on the right hand side of the table and take them at face value. Here is the same data reorganized:  
+
+```{r echo=FALSE, message = FALSE}
+library(dplyr)
+Hbox <- read.csv(file = "Hbox2017.csv")
+Hbox %>%
+  arrange(desc(Win.Percent))
+```
+
+Here is where the essential question of this blog post comes in.  
+
+Does Hungrybox win more versus Fox than he does versus Young Link? The answers seems obvious. Hungrybox wins 58.23% of his matches versus Fox and 50.00% of his matches versus Young Link, so clearly he is better at the Fox matchup compared to the Young Link matchup, right?  
+
+In order to make that conclusion, one would have to disregard the sample size or the amount of evidence behind each matchup. Up until 2017/11/07, Hungrybox had won 2/4 matches versus Young Link, whereas he had won 145/249 matches versus Fox. Knowing this, can we confidently say that Hungrybox's win percentage versus Young Link is truly lower than his win percentage versus Fox?
+
+Given the data available, there is a statistical technique called **empirical Bayes estimation** that will allow us to predict the proportion of wins in each of Hungrybox's character matchups. The specific goal of this analysis will be to gain a better estimate of Hungrybox's win percentage versus Young Link and Fox and make an informed judgement on which is truly the best character to use against Hungrybox in high level play.
+
 ----
 
 ### Set-Up
 
-```{r message = FALSE, warning = FALSE}
+```{r SetUp, message = FALSE, warning = FALSE}
 library(dplyr)
 library(tidyr)
 library(ggplot2)
@@ -40,22 +83,23 @@ library(MASS)
 
 ### Arranging Data
 
-```{r}
-Hbox <- read.csv(file = "Hbox2017.csv", sep = ",", header = TRUE)
-Hbox <- arrange(Hbox, desc(Win.Percent))
-Hbox
+```{r Arrange}
+Hbox <- read.csv(file = "Hbox2017.csv")
+
+Hbox %>%
+  arrange(desc(Win.Percent))
 ```
 
 ----
 
 ### Visualizing All Matchups
 
-```{r}
-ggplot(data = Hbox, aes(x = OpponentCharacter, y = Hbox$Win.Percent, fill = Win.Percent)) + 
+```{r Visualize}
+Hbox %>%
+  ggplot(aes(x = OpponentCharacter, y = Hbox$Win.Percent, fill = Win.Percent)) + 
   geom_bar(stat = "identity", show.legend = FALSE) + 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
-  ylab("Win Percentage") + 
-  xlab("Opponent Character") + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.35)) + 
+  labs(y = "Win Percentage", x = "Opponent Character") +
   scale_x_discrete(limits = c("Marth", "Samus ", "Sheik", "Falco", "Captain Falcon", "Yoshi", "Ice Climbers", "Pikachu", "Fox", "Young Link")) + 
   coord_cartesian(ylim = c(0,100))
 ```
@@ -64,60 +108,137 @@ ggplot(data = Hbox, aes(x = OpponentCharacter, y = Hbox$Win.Percent, fill = Win.
 
 ###Histogram of All Win Average Values
 
-```{r}
-#Histogram of win average values across all matchups
-Hbox$Win.Average <- Hbox$Wins/Hbox$Total
-ggplot(data = Hbox, aes(x = factor(Hbox$Win.Average))) + geom_bar()
+```{r Win Averages Histogram}
+#Create new win average column
+Hbox <- Hbox %>%
+  mutate(Win.Average = Wins/Total)
 
-#Estimation of alpha and beta parameters of beta distribution from mean and variance of above data (Method of Moments Estimation)
+#Round Win.Average to 2 decimals
+Hbox2 <- Hbox %>%
+  mutate(Win.Average = sprintf("%0.2f", Win.Average))
+
+#Plot histogram of win averages 
+Hbox2 %>%
+  ggplot(aes(x = factor(Win.Average))) + 
+  geom_bar() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.35)) +
+  labs(x = "Win Average")
+```
+
+
+We can estimate the alpha and beta parameters of the beta distribution from the mean and variance using this custom function: 
+```{r Method of Moments function}
 estBetaParams <- function(mu, var) {
      alpha <- ((1 - mu) / var - 1 / mu) * mu ^ 2
      beta <- alpha * (1 / mu - 1)
      return(params = list(alpha = alpha, beta = beta))
  }
-H.mu <- mean(Hbox$Win.Average)
-H.var <- var(Hbox$Win.Average)
-Hbox.est <- estBetaParams(H.mu, H.var)
-ggplot(Hbox) + geom_histogram(aes(Hbox$Win.Average, y = ..density..), binwidth = .005) + stat_function(fun = function(x) dbeta(x, Hbox.est$alpha, Hbox.est$beta), color = "red", size = 1)
+```
+Credit goes to [this Cross Validated user.](https://stats.stackexchange.com/questions/12232/calculating-the-parameters-of-a-beta-distribution-using-the-mean-and-variance)  
 
+So, we input the mean and variance of Hungrybox's win percentages across all matchups and use the resulting alpha and beta parameters to inform the shape of our beta distribution (shown in red).
+
+```{r Method of Moments estimates}
+H.mu <- mean(Hbox$Win.Average)
+
+H.var <- var(Hbox$Win.Average)
+
+Hbox.est <- estBetaParams(H.mu, H.var)
+
+Hbox %>%
+  ggplot(aes(Win.Average)) + 
+  geom_histogram(aes(y = ..density..), binwidth = .005) + 
+  stat_function(fun = function(x) dbeta(x, Hbox.est$alpha, Hbox.est$beta), 
+                color = "red", size = 1)
+```
+
+
+```{r Change in Estimates}
 #How did our empirical Bayes change the matchup averages?
 Hbox.eb <- Hbox %>%
     mutate(eb_estimate = (Wins + Hbox.est$alpha) / (Total + Hbox.est$alpha + Hbox.est$beta))
-ggplot(Hbox.eb, aes(Hbox$Win.Average, eb_estimate, color = Total)) + geom_hline(yintercept = Hbox.est$alpha / (Hbox.est$alpha + Hbox.est$beta), color = "red", lty = 2) + geom_point() + geom_abline(color = "red") + scale_colour_gradient(trans = "log", breaks = 10 ^ (1:5)) + xlab("Win Average") + ylab("Empirical Bayes Matchup Average")
 
-#What if we had no evidence at all? What would we predict Hbox's win average across all matchups to be?
+Hbox.eb %>%
+  ggplot(aes(Win.Average, eb_estimate, color = Total)) + 
+  geom_hline(yintercept = Hbox.est$alpha / (Hbox.est$alpha + Hbox.est$beta), 
+             color = "red", lty = 2) + 
+  geom_point() + 
+  geom_abline(color = "red") + 
+  scale_colour_gradient(trans = "log", breaks = 10 ^ (1:5)) + 
+  labs(x = "Win Average", y = "Empirical Bayes Matchup Average")
+```
+
+What if we had no evidence at all? What would we predict Hbox's win average across all matchups to be?
+```{r All matchups given no evidence}
 sprintf("%.3f", Hbox.est$alpha / (Hbox.est$alpha + Hbox.est$beta))
+```
 
+```{r Results}
 #Now to plot our new estimates of Hbox's 2017 matchup win averages
 Hbox.eb
+
 scaleFUN <- function(x) sprintf("%.2s", x)
-ggplot(data = Hbox.eb, aes(x = Hbox.eb$OpponentCharacter, y = Hbox.eb$eb_estimate, fill = Hbox.eb$eb_estimate)) + geom_bar(stat = "identity", show.legend = FALSE) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + ylab("Empirical Estimation of Win Average") + xlab("Opponent Character") + scale_x_discrete(limits = c("Marth", "Samus ", "Sheik", "Falco", "Captain Falcon", "Yoshi", "Ice Climbers", "Pikachu", "Fox", "Young Link")) + coord_cartesian(ylim = c(0.0, 1.0))
+
+Hbox.eb %>%
+  ggplot(aes(x = OpponentCharacter, y = eb_estimate, fill = eb_estimate)) + 
+  geom_bar(stat = "identity", show.legend = FALSE) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  labs(y = "Empirical Estimation of Win Average", x = "Opponent Character") + 
+  scale_x_discrete(limits = c("Marth", "Samus ", "Sheik", "Falco", "Captain Falcon", "Yoshi", "Ice Climbers", "Pikachu", "Fox", "Young Link")) + 
+  coord_cartesian(ylim = c(0.0, 1.0))
 ```
 
 ----
 
-```{r}
+### Maximum Likelihood Estimation
+
+```{r Maximum Likelihood Estimation}
 #Alternatively, we can use fitdistr to conduct a Maximum-Likelihood Estimation of alpha and beta
 Hbox.est2 <- fitdistr(Hbox$Win.Average,dbeta,list(shape1=1,shape2=1), lower = c(0,0))
+
 Hbox.est2
-ggplot(Hbox) + geom_histogram(aes(Hbox$Win.Average, y = ..density..), binwidth = .005) + stat_function(fun = function(x) dbeta(x, Hbox.est2$estimate[1], Hbox.est2$estimate[2]), color = "red", size = 1)
+
+Hbox %>%
+  ggplot(aes(Win.Average)) + 
+  geom_histogram(aes(y = ..density..), binwidth = .005) + 
+  stat_function(fun = function(x) 
+    dbeta(x, Hbox.est2$estimate[1], Hbox.est2$estimate[2]), 
+    color = "red", size = 1)
 
 #How did our empirical Bayes change the matchup averages?
 Hbox.eb2 <- Hbox %>%
   mutate(eb_estimate2 = (Wins + Hbox.est2$estimate[1]) / (Total + Hbox.est2$estimate[1] + Hbox.est2$estimate[2]))
-ggplot(Hbox.eb2, aes(Hbox$Win.Average, eb_estimate2, color = Total)) + geom_hline(yintercept = Hbox.est2$estimate[1] / (Hbox.est2$estimate[1] + Hbox.est2$estimate[2]), color = "red", lty = 2) + geom_point() + geom_abline(color = "red") + scale_colour_gradient(trans = "log", breaks = 10 ^ (1:5)) + xlab("Win Average") + ylab("Empirical Bayes Matchup Average")
+
+Hbox.eb2 %>%
+  ggplot(aes(Win.Average, eb_estimate2, color = Total)) + 
+  geom_hline(yintercept = Hbox.est2$estimate[1] / (Hbox.est2$estimate[1] + Hbox.est2$estimate[2]), 
+             color = "red", lty = 2) + 
+  geom_point() + 
+  geom_abline(color = "red") + 
+  scale_colour_gradient(trans = "log", breaks = 10 ^ (1:5)) + 
+  labs(x = "Win Average", y = "Empirical Bayes Matchup Average")
 
 #Again, what if we had no evidence at all? What would we predict Hbox's win average across all matchups to be?
 sprintf("%.3f", Hbox.est2$estimate[1] / (Hbox.est2$estimate[1] + Hbox.est2$estimate[2]))
 
 #Plot
 Hbox.eb2
+
 scaleFUN <- function(x) sprintf("%.2s", x)
-ggplot(data = Hbox.eb2, aes(x = Hbox.eb2$OpponentCharacter, y = Hbox.eb2$eb_estimate, fill = Hbox.eb2$eb_estimate)) + geom_bar(stat = "identity", show.legend = FALSE) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + ylab("Empirical Estimation of Win Average") + xlab("Opponent Character") + scale_x_discrete(limits = c("Marth", "Samus ", "Sheik", "Falco", "Captain Falcon", "Yoshi", "Ice Climbers", "Pikachu", "Fox", "Young Link")) + coord_cartesian(ylim = c(0.0, 1.0))
+
+ggplot(data = Hbox.eb2, aes(x = Hbox.eb2$OpponentCharacter, y = Hbox.eb2$eb_estimate, fill = Hbox.eb2$eb_estimate)) + 
+  geom_bar(stat = "identity", show.legend = FALSE) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  ylab("Empirical Estimation of Win Average") + 
+  xlab("Opponent Character") + 
+  scale_x_discrete(limits = c("Marth", "Samus ", "Sheik", "Falco", "Captain Falcon", "Yoshi", "Ice Climbers", "Pikachu", "Fox", "Young Link")) + 
+  coord_cartesian(ylim = c(0.0, 1.0))
 ```
 
+----
 
-
+### Conclusion
+http://www.espn.com/esports/story/_/id/24492926/zain-zain-naghmi-overcomes-juan-hungrybox-debiedma-win-shine-2018-title-boston
 
 
 

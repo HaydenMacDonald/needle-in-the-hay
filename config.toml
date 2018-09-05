@@ -17,7 +17,7 @@ pygmentOptions = "linenos=table"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [permalinks]
-  post = "/:year/:month/:day/:slug/"
+  post = "/:slug/"
 
 [Params]
   homeTitle = "Needle in the Hay" # Set a different text for the header on the home page
