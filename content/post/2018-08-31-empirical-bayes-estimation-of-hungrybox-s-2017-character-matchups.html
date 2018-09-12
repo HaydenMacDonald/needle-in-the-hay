@@ -22,8 +22,8 @@ subtitle: "Empirical Bayes Estimation of Hungrybox's 2017 Character Matchup Win 
 <h2>Melee!</h2>
 <p><a href="https://en.wikipedia.org/wiki/Super_Smash_Bros._Melee">Super Smash Bros. Melee for the Nintendo GameCube</a> was released in 2001. Since then, it has become one of the most fondly remembered and adored games of the last twenty years. The game features many characters from various Nintendo game franchises, which players choose between before entering a match. The objective of each match is relatively simple: fight your opponent(s) and hit them beyond the boundaries of the stage. In contrast to other fighting games, each time a player is struck they <em>gain</em> percentage points. As these percentage points accumulate, each successive attack received sends the player’s character further away and closer to the stage boundaries. Each time a player goes past the stage boundary, they lose a “stock” (i.e. a life). Lose all your stocks and the game is over.</p>
 <p>Today, Melee is a popular esport across North America and Europe, where players can watch or enter tournaments with cash prizes. The early days of the competitive scene are documented in a <a href="https://youtu.be/jX9hbbA-WP4">4 hour fan-made documentary</a>. The documentary includes interviews with various personalities and players and touches on some of the advanced mechanics of the game. Although these advanced mechanics were not intended by the developers, they ended up contributing nuance and mechanical difficulty to the game, which substantially raised the skill ceiling in competitive tournaments. Explanations of these mechanics are well beyond the scope of this blog post and probably deserve a documentary of their own. What is important to understand is that the game, although simple in premise, is actually very complicated and it requires an absurd amount of time and effort to become a great player.</p>
-<p>The best Melee player in the world is Juan “Hungrybox” DeBiedma, currently ranked #1 by a panel of competive players and community figures. Hungrybox plays Jigglypuff, a character originally found in the Pokémon franchise, and he is sponsored by Team Liquid, a prolific esports organization.</p>
-<p>His results in the image below are from the first half of 2018.</p>
+<p>The best Melee player in the world is Juan “Hungrybox” DeBiedma, currently ranked #1 by a panel of competive players and community figures. Hungrybox plays Jigglypuff, a character originally found in the Pokémon franchise, and he is sponsored by Team Liquid, a high profile esports organization.</p>
+<p>His placings in the image below are from the first half of 2018.</p>
 <div class="figure">
 <img src="https://image.redbull.com/rbcom/052/2018-08-02/5a64fdf3-da49-443a-82bd-880ae5f04c36/0001/1/1050/1/mpgr-summer-2018-1.png" alt="Panda Global Rankings Melee: Summer 2018" />
 <p class="caption">Panda Global Rankings Melee: Summer 2018</p>
@@ -34,201 +34,208 @@ subtitle: "Empirical Bayes Estimation of Hungrybox's 2017 Character Matchup Win 
 <p>Leffen’s tweet features screenshots of fan comments on Reddit that suggest absurd or simplistic strategies that disregard the logic behind high level play. His tweet should speak for itself, but there is a large knowledge gap between fans and top players when it comes to playing against the best player in the world.</p>
 <p>The sentiment of Leffen’s tweet is later echoed by Tafo, another community member.</p>
 {{% tweet "927976731905900544" %}}
-<p>Although Tafo’s comments are also made at the expense of fans, he includes a dataset of Hungrybox’s character matchup data for 2017. Tafo effectively highlights a specific misunderstanding that fans have about character matchups in Melee.</p>
+<p>Although Tafo’s comments are also made at the expense of fans, he includes a dataset of Hungrybox’s character matchup data for 2017 (against players in the top 50). Tafo effectively highlights a specific misunderstanding that fans have about character matchups in Melee.</p>
 {{% tweet "927978438274596864" %}}
-<p>The essential sentiment is that Melee fans and laypeople will tend to look past the sample size when making inferences on performance. It is implied that fans will look at the win percentages on the right hand side of the table and take them at face value. Here is the same data reorganized:</p>
-<pre><code>##    OpponentCharacter Wins Losses Total Win.Percent
-## 1              Marth    7      1     8       87.50
-## 2             Samus    12      2    14       85.71
-## 3              Sheik   12      2    14       85.71
-## 4              Falco    8      2    10       80.00
-## 5     Captain Falcon   32     10    42       76.19
-## 6              Yoshi    3      1     4       75.00
-## 7       Ice Climbers    9      4    13       69.23
-## 8            Pikachu    4      2     6       66.67
-## 9                Fox  145    104   249       58.23
-## 10        Young Link    2      2     4       50.00</code></pre>
+<p>The essential sentiment is that fans tend to look past sample size when making inferences on performance. It is implied that fans will look at the win percentages on the right hand side of the table and take them at face value. Here is the same data reorganized:</p>
+<pre><code>##    OpponentCharacter Wins Losses TotalGames WinPercent
+## 1              Marth    7      1          8      87.50
+## 2             Samus    12      2         14      85.71
+## 3              Sheik   12      2         14      85.71
+## 4              Falco    8      2         10      80.00
+## 5     Captain Falcon   32     10         42      76.19
+## 6              Yoshi    3      1          4      75.00
+## 7       Ice Climbers    9      4         13      69.23
+## 8            Pikachu    4      2          6      66.67
+## 9                Fox  145    104        249      58.23
+## 10        Young Link    2      2          4      50.00</code></pre>
 <p>Here is where the essential question of this blog post comes in.</p>
-<p>Does Hungrybox win more versus Fox than he does versus Young Link? The answers seems obvious. Hungrybox wins 58.23% of his matches versus Fox and 50.00% of his matches versus Young Link, so clearly he is better at the Fox matchup compared to the Young Link matchup, right?</p>
+<p>Does Hungrybox win more versus Fox than he does versus Young Link? On face value, the answers seems obvious. Hungrybox wins 58.23% of his matches versus Fox and 50.00% of his matches versus Young Link, so clearly he is better at the Fox matchup, right?</p>
 <p>In order to make that conclusion, one would have to disregard the sample size or the amount of evidence behind each matchup. Up until 2017/11/07, Hungrybox had won 2/4 matches versus Young Link, whereas he had won 145/249 matches versus Fox. Knowing this, can we confidently say that Hungrybox’s win percentage versus Young Link is truly lower than his win percentage versus Fox?</p>
-<p>Given the data available, there is a statistical technique called <strong>empirical Bayes estimation</strong> that will allow us to predict the proportion of wins in each of Hungrybox’s character matchups. The specific goal of this analysis will be to gain a better estimate of Hungrybox’s win percentage versus Young Link and Fox and make an informed judgement on which is truly the best character to use against Hungrybox in high level play.</p>
+<p>Thankfully, there is a statistical technique called <strong>empirical Bayes estimation</strong> that will allow us to predict the proportion of wins in each of Hungrybox’s character matchups. The specific goal of this analysis will be to gain a better estimate of Hungrybox’s win percentage versus Young Link and Fox, given the data available. This analysis will allow us to make an informed approximation of which is the best character to use against Hungrybox in high level play.</p>
+<hr />
+<blockquote>
+<p>Before we dive in, I would like to credit <a href="http://varianceexplained.org/">David Robinson</a> for his excellent series of posts on Bayesian data analysis. Learning about empirical Bayes estimation through his posts inspired me to use these methods on data that were interesting to me.</p>
+</blockquote>
 <hr />
 <div id="set-up" class="section level3">
 <h3>Set-Up</h3>
-<pre class="r"><code>library(dplyr)
+<pre class="r"><code>#data tidying and wrangling
+library(dplyr)
 library(tidyr)
+
+#visualization
 library(ggplot2)
+library(ggthemes)
 library(RColorBrewer)
+library(ggrepel)
+
+#stats
 library(MASS)</code></pre>
 <hr />
 </div>
-<div id="arranging-data" class="section level3">
-<h3>Arranging Data</h3>
+<div id="import-and-arrange-data" class="section level3">
+<h3>Import and Arrange Data</h3>
+<p>Here is the Hungrybox’s matchup data arranged by win percentage in descending order.</p>
 <pre class="r"><code>Hbox &lt;- read.csv(file = &quot;Hbox2017.csv&quot;)
 
 Hbox %&gt;%
-  arrange(desc(Win.Percent))</code></pre>
-<pre><code>##    OpponentCharacter Wins Losses Total Win.Percent
-## 1              Marth    7      1     8       87.50
-## 2             Samus    12      2    14       85.71
-## 3              Sheik   12      2    14       85.71
-## 4              Falco    8      2    10       80.00
-## 5     Captain Falcon   32     10    42       76.19
-## 6              Yoshi    3      1     4       75.00
-## 7       Ice Climbers    9      4    13       69.23
-## 8            Pikachu    4      2     6       66.67
-## 9                Fox  145    104   249       58.23
-## 10        Young Link    2      2     4       50.00</code></pre>
+  arrange(desc(WinPercent))</code></pre>
+<pre><code>##    OpponentCharacter Wins Losses TotalGames WinPercent
+## 1              Marth    7      1          8      87.50
+## 2             Samus    12      2         14      85.71
+## 3              Sheik   12      2         14      85.71
+## 4              Falco    8      2         10      80.00
+## 5     Captain Falcon   32     10         42      76.19
+## 6              Yoshi    3      1          4      75.00
+## 7       Ice Climbers    9      4         13      69.23
+## 8            Pikachu    4      2          6      66.67
+## 9                Fox  145    104        249      58.23
+## 10        Young Link    2      2          4      50.00</code></pre>
+<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/Visualize%20matchups-1.png" width="672" /></p>
+<p>And here is the win percentage data visualized. Across the x-axis is the characters of Hungrybox’s opponents and the y-axis is Hungrybox’s win percentage in those matchups at the time of 2017/11/07. Again, the raw data suggest that Hungrybox wins less versus Young Link than versus Fox. My goal is to generate a better approximation of Hungrybox’s win averages across matchups.</p>
 <hr />
 </div>
-<div id="visualizing-all-matchups" class="section level3">
-<h3>Visualizing All Matchups</h3>
-<pre class="r"><code>Hbox %&gt;%
-  ggplot(aes(x = OpponentCharacter, y = Hbox$Win.Percent, fill = Win.Percent)) + 
-  geom_bar(stat = &quot;identity&quot;, show.legend = FALSE) + 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.35)) + 
-  labs(y = &quot;Win Percentage&quot;, x = &quot;Opponent Character&quot;) +
-  scale_x_discrete(limits = c(&quot;Marth&quot;, &quot;Samus &quot;, &quot;Sheik&quot;, &quot;Falco&quot;, &quot;Captain Falcon&quot;, &quot;Yoshi&quot;, &quot;Ice Climbers&quot;, &quot;Pikachu&quot;, &quot;Fox&quot;, &quot;Young Link&quot;)) + 
-  coord_cartesian(ylim = c(0,100))</code></pre>
-<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/Visualize-1.png" width="672" /></p>
-<hr />
-</div>
-<div id="histogram-of-all-win-average-values" class="section level3">
-<h3>Histogram of All Win Average Values</h3>
+<div id="win-averages" class="section level3">
+<h3>Win Averages</h3>
 <pre class="r"><code>#Create new win average column
 Hbox &lt;- Hbox %&gt;%
-  mutate(Win.Average = Wins/Total)
+  mutate(WinAverage = Wins/TotalGames)
 
-#Round Win.Average to 2 decimals
+#Round WinAverage to 2 decimals
 Hbox2 &lt;- Hbox %&gt;%
-  mutate(Win.Average = sprintf(&quot;%0.2f&quot;, Win.Average))
+  mutate(WinAverage = sprintf(&quot;%0.2f&quot;, WinAverage))
 
 #Plot histogram of win averages 
 Hbox2 %&gt;%
-  ggplot(aes(x = factor(Win.Average))) + 
+  ggplot(aes(x = factor(WinAverage))) + 
   geom_bar() +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.35)) +
+  theme_tufte() +
+  theme(axis.line = element_line(colour = &quot;#000000&quot;, size = 0.5), 
+        axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.35)) +
   labs(x = &quot;Win Average&quot;)</code></pre>
 <p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/Win%20Averages%20Histogram-1.png" width="672" /></p>
-<p>We can estimate the alpha and beta parameters of the beta distribution from the mean and variance using this custom function:</p>
+<p>Alternatively, here is a the distribution of win averages across all matchups. This distribution leaves a lot to be desired because it has a small number of observations. This is due to the fact that there are not many characters (out of the 26 possible characters) that are played in high level Melee. Unfortunately, the small amount of data will not yield the strongest approximations of win percentages, but we will continue with what we have.</p>
+<hr />
+</div>
+<div id="prior" class="section level3">
+<h3>Prior</h3>
+<p>For this analysis, we will be relying on the <a href="https://en.wikipedia.org/wiki/Beta_distribution">beta distribution</a> and its parameters, alpha and beta, to model the distribution of win averages. For our purposes, we will use the “method of moments” to estimate the alpha and beta parameters from the mean and variance of our data using this custom function:</p>
 <pre class="r"><code>estBetaParams &lt;- function(mu, var) {
      alpha &lt;- ((1 - mu) / var - 1 / mu) * mu ^ 2
      beta &lt;- alpha * (1 / mu - 1)
      return(params = list(alpha = alpha, beta = beta))
  }</code></pre>
-<p>Credit goes to <a href="https://stats.stackexchange.com/questions/12232/calculating-the-parameters-of-a-beta-distribution-using-the-mean-and-variance">this Cross Validated user.</a></p>
-<p>So, we input the mean and variance of Hungrybox’s win percentages across all matchups and use the resulting alpha and beta parameters to inform the shape of our beta distribution (shown in red).</p>
-<pre class="r"><code>H.mu &lt;- mean(Hbox$Win.Average)
-
-H.var &lt;- var(Hbox$Win.Average)
-
-Hbox.est &lt;- estBetaParams(H.mu, H.var)
-
-Hbox %&gt;%
-  ggplot(aes(Win.Average)) + 
-  geom_histogram(aes(y = ..density..), binwidth = .005) + 
-  stat_function(fun = function(x) dbeta(x, Hbox.est$alpha, Hbox.est$beta), 
-                color = &quot;red&quot;, size = 1)</code></pre>
-<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/Method%20of%20Moments%20estimates-1.png" width="672" /></p>
-<pre class="r"><code>#How did our empirical Bayes change the matchup averages?
+<blockquote>
+<p>Credit goes to <a href="https://stats.stackexchange.com/questions/12232/calculating-the-parameters-of-a-beta-distribution-using-the-mean-and-variance">this Cross Validated user</a> for their insight and function.</p>
+</blockquote>
+<p>So, let’s calculate the mean and variance of Hungrybox’s win averages across all matchups and plug those values into our <code>estBetaParams</code> function.</p>
+<pre class="r"><code>H.mu &lt;- mean(Hbox$WinAverage)
+H.var &lt;- var(Hbox$WinAverage)
+paste(H.mu, H.var)</code></pre>
+<pre><code>## [1] &quot;0.734249415243391 0.0155146002762766&quot;</code></pre>
+<pre class="r"><code>Hbox.est &lt;- estBetaParams(H.mu, H.var)
+Hbox.est</code></pre>
+<pre><code>## $alpha
+## [1] 8.500409
+## 
+## $beta
+## [1] 3.076596</code></pre>
+<p>The resulting alpha and beta parameters will inform the shape of our beta distribution (shown in red).</p>
+<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/Visualize%20beta%20distribution-1.png" width="672" /></p>
+<p>Again, our distribution and number of observations leaves something to be desired. Nonetheless, we will use this distribution to inform our approximations of Hungrybox’s individual character matchups.</p>
+<p>To do so, we add alpha and the number of wins in each matchup then divide that by the sum of the total number of games, alpha, and beta.</p>
+<p><span class="math display">\[
+\frac{Number of Wins + \alpha}{Total Number of Games + \alpha + \beta}
+\]</span></p>
+<pre class="r"><code>#How does empirical Bayes estimation change the matchup averages?
 Hbox.eb &lt;- Hbox %&gt;%
-    mutate(eb_estimate = (Wins + Hbox.est$alpha) / (Total + Hbox.est$alpha + Hbox.est$beta))
+    mutate(eb_estimate = 
+             (Wins + Hbox.est$alpha) / (TotalGames + Hbox.est$alpha + Hbox.est$beta))
 
 Hbox.eb %&gt;%
-  ggplot(aes(Win.Average, eb_estimate, color = Total)) + 
+  dplyr::select(-WinPercent) %&gt;%
+  arrange(desc(abs(eb_estimate - WinAverage)))</code></pre>
+<pre><code>##    OpponentCharacter Wins Losses TotalGames WinAverage eb_estimate
+## 1         Young Link    2      2          4  0.5000000   0.6740968
+## 2              Marth    7      1          8  0.8750000   0.7917661
+## 3             Samus    12      2         14  0.8571429   0.8015172
+## 4              Sheik   12      2         14  0.8571429   0.8015172
+## 5            Pikachu    4      2          6  0.6666667   0.7111797
+## 6              Falco    8      2         10  0.8000000   0.7647219
+## 7       Ice Climbers    9      4         13  0.6923077   0.7120644
+## 8              Yoshi    3      1          4  0.7500000   0.7382940
+## 9                Fox  145    104        249  0.5823293   0.5890789
+## 10    Captain Falcon   32     10         42  0.7619048   0.7559290</code></pre>
+<p>The data above have been arranged in descending order by the absolute difference between their new win average estimates and their old win average estimates. Young Link shows the largest change in win percentage between the two estimates, which is interesting considering that we were hoping to improve our estimate of this specific matchup. Alteratively, Hungrybox’s win percentage in the Fox matchup shows one of the smallest differences between the two estimates. This makes sense considering that we have a large amount of data for that specific matchup.</p>
+</div>
+<div id="visualize-the-changes-in-win-average-estimates" class="section level3">
+<h3>Visualize the changes in win average estimates</h3>
+<pre class="r"><code>Hbox.eb %&gt;%
+  ggplot(aes(WinAverage, eb_estimate, colour = TotalGames)) + 
   geom_hline(yintercept = Hbox.est$alpha / (Hbox.est$alpha + Hbox.est$beta), 
              color = &quot;red&quot;, lty = 2) + 
   geom_point() + 
   geom_abline(color = &quot;red&quot;) + 
-  scale_colour_gradient(trans = &quot;log&quot;, breaks = 10 ^ (1:5)) + 
-  labs(x = &quot;Win Average&quot;, y = &quot;Empirical Bayes Matchup Average&quot;)</code></pre>
-<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/Change%20in%20Estimates-1.png" width="672" /></p>
-<p>What if we had no evidence at all? What would we predict Hbox’s win average across all matchups to be?</p>
+  geom_text_repel(aes(label = OpponentCharacter)) +
+  scale_colour_gradient(trans = &quot;log&quot;, 
+                        breaks = 10 ^ (1:5)) + 
+  labs(x = &quot;Win Average&quot;, y = &quot;Empirical Bayes Matchup Average&quot;) +
+  theme_tufte() +
+  theme(axis.line = element_line(colour = &quot;#000000&quot;, size = 0.5), 
+        axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.35)) +
+  guides(colour = guide_colourbar(title = &quot;Total Games&quot;))</code></pre>
+<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>Generally, we can see that as win averages increase, so do the empirical Bayes estimations of the win percentages. We also have two distinct red lines that represent different insights.</p>
+<p>The y-intercept of the dashed red line indicates the estimate of Hungrybox’s win average in a matchup given <em>no</em> data. What does this value tell us? Well, what if we had no matchup evidence at all for a matchup? Luigi or Peach are characters that are not included in this dataset. So what would our best estimate of Hungrybox’s win averages versus those characters?</p>
 <pre class="r"><code>sprintf(&quot;%.3f&quot;, Hbox.est$alpha / (Hbox.est$alpha + Hbox.est$beta))</code></pre>
 <pre><code>## [1] &quot;0.734&quot;</code></pre>
+<p>Given the data we have, we can estimate Hungrybox’s win average to be 0.734 against characters with no previous evidence. That’s an excellent win rate.</p>
+<p>The solid red line indicates where Hungrybox’s win averages are equal to the Bayesian estimates. What this allows us to infer, is the change in estimates. The further away a point lies from the line, the greater change between the original average and the new average. For example, Young Link, Sheik, Marth, Samus and Falco generally show more change in their estimates compared to the other characters.</p>
+<p>Now it’s time to turn back to our original bar chart. Let’s visualize the reordered bar chart based on their new win average estimates.</p>
 <pre class="r"><code>#Now to plot our new estimates of Hbox&#39;s 2017 matchup win averages
-Hbox.eb</code></pre>
-<pre><code>##    OpponentCharacter Wins Losses Total Win.Percent Win.Average eb_estimate
-## 1     Captain Falcon   32     10    42       76.19   0.7619048   0.7559290
-## 2              Falco    8      2    10       80.00   0.8000000   0.7647219
-## 3                Fox  145    104   249       58.23   0.5823293   0.5890789
-## 4       Ice Climbers    9      4    13       69.23   0.6923077   0.7120644
-## 5              Marth    7      1     8       87.50   0.8750000   0.7917661
-## 6            Pikachu    4      2     6       66.67   0.6666667   0.7111797
-## 7             Samus    12      2    14       85.71   0.8571429   0.8015172
-## 8              Sheik   12      2    14       85.71   0.8571429   0.8015172
-## 9              Yoshi    3      1     4       75.00   0.7500000   0.7382940
-## 10        Young Link    2      2     4       50.00   0.5000000   0.6740968</code></pre>
-<pre class="r"><code>scaleFUN &lt;- function(x) sprintf(&quot;%.2s&quot;, x)
-
 Hbox.eb %&gt;%
   ggplot(aes(x = OpponentCharacter, y = eb_estimate, fill = eb_estimate)) + 
   geom_bar(stat = &quot;identity&quot;, show.legend = FALSE) + 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  theme_tufte() +
+  theme(axis.line = element_line(colour = &quot;#000000&quot;, size = 0.5), 
+        axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.35)) +
   labs(y = &quot;Empirical Estimation of Win Average&quot;, x = &quot;Opponent Character&quot;) + 
   scale_x_discrete(limits = c(&quot;Marth&quot;, &quot;Samus &quot;, &quot;Sheik&quot;, &quot;Falco&quot;, &quot;Captain Falcon&quot;, &quot;Yoshi&quot;, &quot;Ice Climbers&quot;, &quot;Pikachu&quot;, &quot;Fox&quot;, &quot;Young Link&quot;)) + 
   coord_cartesian(ylim = c(0.0, 1.0))</code></pre>
 <p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/Results-1.png" width="672" /></p>
+<p>As mentioned before, Hungrybox’s win average versus Young Link has increased substantially (0.500 to 0.634). This is likely due to the small number of observations in the matchup at the time of 2017/11/07 and how the base estimate of Hungrybox’s win average (0.734) was higher than the original estimate. The new estimate for Young Link is now more in line with the estimates of all of Hungrybox’s matchups. Conversely, there was only a very small change in Hungrybox’s win average estimate for the Fox matchup. The win average estimate for Fox is now lower than any other matchup in the dataset.</p>
+<hr />
+</div>
+<div id="conclusions" class="section level3">
+<h3>Conclusions</h3>
+<p>Well, what did we learn? First we learned that sample size and the number of observations is important. We should not make bold conclusions on percentages or proportions that have a small number of underlying observations. That principle should also be applied to this analysis. Due to the nature of high level competitive Melee, we only had a few matchups that made up our win average distribution. This affected the resolution of our estimates of the alpha, beta, and resulting estimates for each of Hungrybox’s matchups.</p>
+<p>With these limitations in mind, this analysis suggests that Young Link is not an optimal character choice versus Hungrybox. In unsurprising fashion, Fox remains Hungrybox’s most difficult matchup, a sentiment that has been widely echoed for a long time in the Melee community. It is an almost natural assumption that the best character in the game would be the hardest to play against, even if you’re #1.</p>
+<p>Does that mean that people should only play Fox to beat Hungrybox’s Jigglypuff?</p>
+<p>Recent tournament results would suggest that shouldn’t be the case.</p>
+<div class="figure">
+<img src="/img/SmashggShine2018.png" alt="Shine 2018 Top 8 Bracket | source: smash.gg" />
+<p class="caption">Shine 2018 Top 8 Bracket | source: smash.gg</p>
+</div>
+<p>Regardless, I am very glad to make my first post on my blog, especially since I have been sitting on this analysis since Tafo posted the stats in the tweet. Zain’s</p>
 <hr />
 </div>
 <div id="maximum-likelihood-estimation" class="section level3">
 <h3>Maximum Likelihood Estimation</h3>
 <pre class="r"><code>#Alternatively, we can use fitdistr to conduct a Maximum-Likelihood Estimation of alpha and beta
-Hbox.est2 &lt;- fitdistr(Hbox$Win.Average,dbeta,list(shape1=1,shape2=1), lower = c(0,0))
+Hbox.est2 &lt;- fitdistr(Hbox$WinAverage,dbeta,list(shape1=1,shape2=1), lower = c(0,0))
 
 Hbox.est2</code></pre>
 <pre><code>##     shape1      shape2  
 ##   10.403528    3.780885 
 ##  ( 4.665568) ( 1.625258)</code></pre>
-<pre class="r"><code>Hbox %&gt;%
-  ggplot(aes(Win.Average)) + 
-  geom_histogram(aes(y = ..density..), binwidth = .005) + 
-  stat_function(fun = function(x) 
-    dbeta(x, Hbox.est2$estimate[1], Hbox.est2$estimate[2]), 
-    color = &quot;red&quot;, size = 1)</code></pre>
-<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/Maximum%20Likelihood%20Estimation-1.png" width="672" /></p>
 <pre class="r"><code>#How did our empirical Bayes change the matchup averages?
 Hbox.eb2 &lt;- Hbox %&gt;%
-  mutate(eb_estimate2 = (Wins + Hbox.est2$estimate[1]) / (Total + Hbox.est2$estimate[1] + Hbox.est2$estimate[2]))
+  mutate(eb_estimate2 = (Wins + Hbox.est2$estimate[1]) / (TotalGames + Hbox.est2$estimate[1] + Hbox.est2$estimate[2]))
 
-Hbox.eb2 %&gt;%
-  ggplot(aes(Win.Average, eb_estimate2, color = Total)) + 
-  geom_hline(yintercept = Hbox.est2$estimate[1] / (Hbox.est2$estimate[1] + Hbox.est2$estimate[2]), 
-             color = &quot;red&quot;, lty = 2) + 
-  geom_point() + 
-  geom_abline(color = &quot;red&quot;) + 
-  scale_colour_gradient(trans = &quot;log&quot;, breaks = 10 ^ (1:5)) + 
-  labs(x = &quot;Win Average&quot;, y = &quot;Empirical Bayes Matchup Average&quot;)</code></pre>
-<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/Maximum%20Likelihood%20Estimation-2.png" width="672" /></p>
-<pre class="r"><code>#Again, what if we had no evidence at all? What would we predict Hbox&#39;s win average across all matchups to be?
+#Again, what if we had no evidence at all? What would we predict Hbox&#39;s win average across all matchups to be?
 sprintf(&quot;%.3f&quot;, Hbox.est2$estimate[1] / (Hbox.est2$estimate[1] + Hbox.est2$estimate[2]))</code></pre>
 <pre><code>## [1] &quot;0.733&quot;</code></pre>
 <pre class="r"><code>#Plot
-Hbox.eb2</code></pre>
-<pre><code>##    OpponentCharacter Wins Losses Total Win.Percent Win.Average
-## 1     Captain Falcon   32     10    42       76.19   0.7619048
-## 2              Falco    8      2    10       80.00   0.8000000
-## 3                Fox  145    104   249       58.23   0.5823293
-## 4       Ice Climbers    9      4    13       69.23   0.6923077
-## 5              Marth    7      1     8       87.50   0.8750000
-## 6            Pikachu    4      2     6       66.67   0.6666667
-## 7             Samus    12      2    14       85.71   0.8571429
-## 8              Sheik   12      2    14       85.71   0.8571429
-## 9              Yoshi    3      1     4       75.00   0.7500000
-## 10        Young Link    2      2     4       50.00   0.5000000
-##    eb_estimate2
-## 1     0.7547205
-## 2     0.7609665
-## 3     0.5904739
-## 4     0.7137740
-## 5     0.7844935
-## 6     0.7135966
-## 7     0.7948907
-## 8     0.7948907
-## 9     0.7370889
-## 10    0.6820967</code></pre>
-<pre class="r"><code>scaleFUN &lt;- function(x) sprintf(&quot;%.2s&quot;, x)
-
 ggplot(data = Hbox.eb2, aes(x = Hbox.eb2$OpponentCharacter, y = Hbox.eb2$eb_estimate, fill = Hbox.eb2$eb_estimate)) + 
   geom_bar(stat = &quot;identity&quot;, show.legend = FALSE) + 
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
@@ -236,11 +243,7 @@ ggplot(data = Hbox.eb2, aes(x = Hbox.eb2$OpponentCharacter, y = Hbox.eb2$eb_esti
   xlab(&quot;Opponent Character&quot;) + 
   scale_x_discrete(limits = c(&quot;Marth&quot;, &quot;Samus &quot;, &quot;Sheik&quot;, &quot;Falco&quot;, &quot;Captain Falcon&quot;, &quot;Yoshi&quot;, &quot;Ice Climbers&quot;, &quot;Pikachu&quot;, &quot;Fox&quot;, &quot;Young Link&quot;)) + 
   coord_cartesian(ylim = c(0.0, 1.0))</code></pre>
-<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/Maximum%20Likelihood%20Estimation-3.png" width="672" /></p>
+<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <hr />
-</div>
-<div id="conclusion" class="section level3">
-<h3>Conclusion</h3>
-<p><a href="http://www.espn.com/esports/story/_/id/24492926/zain-zain-naghmi-overcomes-juan-hungrybox-debiedma-win-shine-2018-title-boston" class="uri">http://www.espn.com/esports/story/_/id/24492926/zain-zain-naghmi-overcomes-juan-hungrybox-debiedma-win-shine-2018-title-boston</a></p>
 </div>
 </div>

@@ -18,7 +18,7 @@ body {
   flex: 1 0 auto;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 800px) {
 .container[role=main] {
     margin-left: 0;
     margin-right: 0;
@@ -75,7 +75,7 @@ code {
 .main-content {
   padding-top: 80px;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1200px) {
   .main-content {
     padding-top: 130px;
   }
@@ -162,7 +162,7 @@ img {
 
 .navbar-custom .navbar-brand,
 .navbar-custom .nav li a {
-  font-weight: 800;
+  font-weight: 400;
   color: #404040;
 }
 

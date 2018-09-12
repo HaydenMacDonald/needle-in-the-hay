@@ -1,4 +1,4 @@
-OpponentCharacter,Wins,Losses,Total,Win Percent
+OpponentCharacter,Wins,Losses,TotalGames,WinPercent
 Captain Falcon,32,10,42,76.19
 Falco,8,2,10,80.00
 Fox,145,104,249,58.23
