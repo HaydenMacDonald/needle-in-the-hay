@@ -37,13 +37,13 @@
   </url>
   
   <url>
-    <loc>/tags/bayes/</loc>
+    <loc>/categories/bayes/</loc>
     <lastmod>2018-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/bayes/</loc>
+    <loc>/tags/bayes/</loc>
     <lastmod>2018-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -61,13 +61,13 @@
   </url>
   
   <url>
-    <loc>/tags/esports/</loc>
+    <loc>/categories/esports/</loc>
     <lastmod>2018-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/esports/</loc>
+    <loc>/tags/esports/</loc>
     <lastmod>2018-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -108,13 +108,13 @@
   </url>
   
   <url>
-    <loc>/tags/r/</loc>
+    <loc>/categories/r/</loc>
     <lastmod>2018-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/r/</loc>
+    <loc>/tags/r/</loc>
     <lastmod>2018-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -132,13 +132,13 @@
   </url>
   
   <url>
-    <loc>/tags/rstats/</loc>
+    <loc>/categories/rstats/</loc>
     <lastmod>2018-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/rstats/</loc>
+    <loc>/tags/rstats/</loc>
     <lastmod>2018-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>

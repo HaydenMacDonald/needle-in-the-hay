@@ -179,7 +179,7 @@
   
   
   &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 14 minutes (2937 words)
+  <i class="fa fa-clock-o"></i> 15 minutes (2993 words)
   
   
 </span>
@@ -238,7 +238,7 @@
 <p>Here is where the essential question of this blog post comes in.</p>
 <p>Does Hungrybox win more versus Fox than he does versus Young Link? On face value, the answers seems obvious. Hungrybox wins 58.23% of his matches versus Fox and 50.00% of his matches versus Young Link, so clearly he is better at the Fox matchup, right?</p>
 <p>In order to make that conclusion, one would have to disregard the sample size or the amount of evidence behind each matchup. Up until 2017/11/07, Hungrybox had won 2/4 matches versus Young Link, whereas he had won 145/249 matches versus Fox. Knowing this, can we confidently say that Hungrybox’s win percentage versus Young Link is truly lower than his win percentage versus Fox?</p>
-<p>Thankfully, there is a statistical technique called <strong>empirical Bayes estimation</strong> that will allow us to predict the proportion of wins in each of Hungrybox’s character matchups. The specific goal of this analysis will be to gain a better estimate of Hungrybox’s win percentage versus Young Link and Fox, given the data available. This analysis will allow us to make an informed approximation of which is the best character to use against Hungrybox in high level play.</p>
+<p>Thankfully, there is a statistical technique called <strong>empirical Bayes estimation</strong> that will allow us to predict the proportion of wins in each of Hungrybox’s character matchups. The specific goal of this analysis will be to gain a better estimate of Hungrybox’s win percentage versus Young Link, given the data in Tafo’s tweet. This analysis will allow us to make an informed approximation of which is the best character to use against Hungrybox in high level play.</p>
 <hr />
 <blockquote>
 <p>Before we dive in, I would like to credit <a href="http://varianceexplained.org/">David Robinson</a> for his excellent series of posts on Bayesian data analysis. Learning about empirical Bayes estimation through his posts inspired me to use these methods on data that were interesting to me.</p>
@@ -333,7 +333,7 @@ Hbox.est</code></pre>
 <p>Again, our distribution and number of observations leaves something to be desired. Nonetheless, we will use this distribution to inform our approximations of Hungrybox’s individual character matchups.</p>
 <p>To do so, we add alpha and the number of wins in each matchup then divide that by the sum of the total number of games, alpha, and beta.</p>
 <p><span class="math display">\[
-\frac{Number of Wins + \alpha}{Total Number of Games + \alpha + \beta}
+\frac{Number of Wins + \alpha_0}{Total Number of Games + \alpha_0 + \beta_0}
 \]</span></p>
 <pre class="r"><code>#How does empirical Bayes estimation change the matchup averages?
 Hbox.eb &lt;- Hbox %&gt;%
@@ -387,46 +387,51 @@ Hbox.eb %&gt;%
 <div id="bonus-maximum-likelihood-estimation" class="section level3">
 <h3>Bonus: Maximum Likelihood Estimation</h3>
 <p>In addition to estimating the alpha and beta parameters through the method of moments, we can also use maximum likelihood estimation. Here, I use the <code>fitdistr()</code> function from the <code>MASS</code> package to do that with one line of code.</p>
-<pre class="r"><code>#Alternatively, we can use fitdistr to conduct a Maximum-Likelihood Estimation of alpha and beta
-Hbox.est2 &lt;- fitdistr(Hbox$WinAverage,dbeta,list(shape1=1,shape2=1), lower = c(0,0))
+<pre class="r"><code>Hbox.est2 &lt;- fitdistr(Hbox$WinAverage,dbeta,list(shape1=1,shape2=1), lower = c(0,0))
 
 Hbox.est2</code></pre>
 <pre><code>##     shape1      shape2  
 ##   10.403528    3.780885 
 ##  ( 4.665568) ( 1.625258)</code></pre>
 <p>Our estimates of alpha and beta have not changed substantially, but let’s see how this method may have differed in terms of our conclusions.</p>
-<pre class="r"><code>#How did our empirical Bayes change the matchup averages?
+<pre class="r"><code>#Empirical Bayes
 Hbox.eb2 &lt;- Hbox %&gt;%
   mutate(eb_estimate2 = (Wins + Hbox.est2$estimate[1]) / (TotalGames + Hbox.est2$estimate[1] + Hbox.est2$estimate[2]))
 
-#Again, what if we had no evidence at all? What would we predict Hbox&#39;s win average across all matchups to be?
-sprintf(&quot;%.3f&quot;, Hbox.est2$estimate[1] / (Hbox.est2$estimate[1] + Hbox.est2$estimate[2]))</code></pre>
+Hbox.eb2 %&gt;%
+  dplyr::select(-WinPercent) %&gt;%
+  arrange(desc(abs(eb_estimate2 - WinAverage)))</code></pre>
+<pre><code>##    OpponentCharacter Wins Losses TotalGames WinAverage eb_estimate2
+## 1         Young Link    2      2          4  0.5000000    0.6820967
+## 2              Marth    7      1          8  0.8750000    0.7844935
+## 3             Samus    12      2         14  0.8571429    0.7948907
+## 4              Sheik   12      2         14  0.8571429    0.7948907
+## 5            Pikachu    4      2          6  0.6666667    0.7135966
+## 6              Falco    8      2         10  0.8000000    0.7609665
+## 7       Ice Climbers    9      4         13  0.6923077    0.7137740
+## 8              Yoshi    3      1          4  0.7500000    0.7370889
+## 9                Fox  145    104        249  0.5823293    0.5904739
+## 10    Captain Falcon   32     10         42  0.7619048    0.7547205</code></pre>
+<p>Again, what if we had no evidence at all for a matchup? What would we predict Hbox’s win average to be in this situation?</p>
+<pre class="r"><code>sprintf(&quot;%.3f&quot;, Hbox.est2$estimate[1] / (Hbox.est2$estimate[1] + Hbox.est2$estimate[2]))</code></pre>
 <pre><code>## [1] &quot;0.733&quot;</code></pre>
-<pre class="r"><code>#Plot
-ggplot(data = Hbox.eb2, aes(x = Hbox.eb2$OpponentCharacter, y = Hbox.eb2$eb_estimate, fill = Hbox.eb2$eb_estimate)) + 
-  geom_bar(stat = &quot;identity&quot;, show.legend = FALSE) + 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
-  ylab(&quot;Empirical Estimation of Win Average&quot;) + 
-  xlab(&quot;Opponent Character&quot;) + 
-  scale_x_discrete(limits = c(&quot;Marth&quot;, &quot;Samus &quot;, &quot;Sheik&quot;, &quot;Falco&quot;, &quot;Captain Falcon&quot;, &quot;Yoshi&quot;, &quot;Ice Climbers&quot;, &quot;Pikachu&quot;, &quot;Fox&quot;, &quot;Young Link&quot;)) + 
-  coord_cartesian(ylim = c(0.0, 1.0))</code></pre>
-<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<p>Not very much! It’s nice that this method also reflects the same conclusions as our original analysis.</p>
+<p>And our estimates of win averages?</p>
+<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Our conclusions do not change very much! The estimates of Hungrybox’s win averages in matchups with or without data are very alike to our previous findings. It’s nice that this method also reflects the same conclusions as our original analysis.</p>
 <hr />
 </div>
 <div id="conclusions" class="section level3">
 <h3>Conclusions</h3>
 <p>Well, what did we learn? First we learned that sample size and the number of observations is important. We should not make bold conclusions on percentages or proportions that have a small number of underlying observations. That principle should also be applied to this analysis. Due to the nature of high level competitive Melee, only a few matchups made up the win average distribution. This affected the resolution of our estimates of the alpha, beta, and resulting estimates for each of Hungrybox’s matchups.</p>
-<p>With these limitations in mind, this analysis suggests that Young Link is not an optimal character choice versus Hungrybox. In unsurprising fashion, Fox remains Hungrybox’s most difficult matchup, a sentiment that has been widely echoed for a long time in the Melee community. It is an almost natural assumption that the best character in the game would be the hardest to play against, even if you’re #1. Despite the somewhat underwhelming conclusion, the important lesson is that extreme or simplistic solution of choosing Young Link should not be applied to complex</p>
-<p>Does that mean that people should only play Fox to beat Hungrybox’s Jigglypuff?</p>
-<p>Recent tournament results would suggest that shouldn’t be the case.</p>
+<p>With these limitations in mind, this analysis suggests that Young Link is not an optimal character choice versus Hungrybox. In unsurprising fashion, Fox remains Hungrybox’s most difficult matchup, a sentiment believed by Hungrybox himself and fans. It is an almost natural assumption that the best character in the game would be the hardest to play against, even if you’re #1. Despite the somewhat underwhelming conclusion, the important lesson is that extreme or simplistic solution of choosing Young Link (or any other character) should not be applied to complex problem of defeating the best player in the world.</p>
+<p>Does this mean that people should only play Fox to beat Hungrybox’s Jigglypuff?</p>
+<p>Recent tournament results would suggest that this is not necessary.</p>
 <div class="figure">
 <img src="/img/SmashggShine2018.png" alt="Shine 2018 Top 8 Bracket | source: smash.gg" />
 <p class="caption">Shine 2018 Top 8 Bracket | source: smash.gg</p>
 </div>
-<p>Zain’s meteoric rise through the high</p>
 <p>Zain’s astonishing rise through the Melee rankings led him to beat Hungrybox in two best-of-5 tournament matches at Shine 2018. Zain won a major tournament by beating Hungrybox in a decisive <a href="https://youtu.be/BGifpkfcvvg">3-1 Grand Finals set</a>. That feat is compounded by the fact that Zain beat Hungrybox using Marth, a character that historically performs poorly versus Hungrybox’s Jigglypuff. In fact, the last Marth player to beat Hungrybox was <a href="https://youtu.be/tDxvY_MVctI">PewPewU in 2015</a>. So, character matchups and their estimates are not everything and that’s exactly why competetitive Melee can be so exciting as a spectator.</p>
-<p>I am very glad to make my first post on my blog, especially since I have been sitting on this analysis since Tafo posted the stats in the tweet. Taking an analytical stance on one of the many nuances of Melee will always be a pleasure.</p>
+<p>I am very glad to make my first post on my blog, especially since I have been sitting on this analysis since Tafo posted the data on Twitter. Taking an analytical stance on one of the many nuances of Melee will always be a pleasure. Thanks again to David Robinson for inspiring this post.</p>
 <p>If you have any questions or concerns about this blog post, feel free to message me on Twitter or leave a Disqus comment. If you’re interested in watching competitive Melee, watch the documentary “The Smash Brothers” (linked above), search through competitive Melee VODs on YouTube, or watch livestreams of tournaments on Twitch. You can use <a href="http://whensmelee.com/">“When’s Melee?”</a> to find out when those tournaments are scheduled.</p>
 </div>
 </div>
