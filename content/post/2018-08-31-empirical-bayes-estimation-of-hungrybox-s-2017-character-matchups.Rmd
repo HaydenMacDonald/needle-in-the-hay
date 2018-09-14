@@ -28,40 +28,41 @@ Today, Melee is a popular esport across North America and Europe, where players 
 The best Melee player in the world is Juan "Hungrybox" DeBiedma, currently ranked #1 by a panel of competive players and community figures. Hungrybox plays Jigglypuff, a character originally found in the Pokémon franchise, and he is sponsored by Team Liquid, a high profile esports organization.
 
 His placings in the image below are from the first half of 2018.  
+&nbsp;  
 
 ![Panda Global Rankings Melee: Summer 2018](https://image.redbull.com/rbcom/052/2018-08-02/5a64fdf3-da49-443a-82bd-880ae5f04c36/0001/1/1050/1/mpgr-summer-2018-1.png)
 
 Hungrybox's dominance within the highest levels of Melee gives him the right to be called one of the "Five Gods" of Melee. The "Five Gods" title carries significant weight and generally begets more Hungrybox's dominance within the highest levels of Melee gives him the right to be called one of the "Five Gods" of Melee. The "Five Gods" title carries significant weight and generally begets more attention, positive or negative, than some would prefer. Although Hungrybox has many fans, there are many members of the Melee community (spectators and players alike) that do not like that Hungrybox is the best player in the world. Despite his indisputable #1 rankings in [2017](https://www.redbull.com/us-en/ssbmrank-2017-10-1) and Summer 2018, Hungrybox regularly faces criticism concerning his character choice, playstyle and/or personality. Some fans go as far to say that his play is actually "killing" Melee's competitive scene.  
 
 In late 2017, Hungrybox won five consecutive high level tournaments, much to the chagrin of his opponents and critics. Displeasure over his dominance led to some online discussions concerning "What should top players do to beat Hungrybox?". For context, Fox is considered to be the best character to use versus Jigglypuff, as he is generally considered to be the strongest but most technically challenging character to play. Fans in turmoil casted doubt on Fox and considered which alternate characters might be effective when facing Hungrybox. These discussions among fans became the subject of ridicule by Leffen, currently ranked #4 in the world, in the following tweet:  
-
+&nbsp;  
 ```{r Leffen tweet, echo=FALSE}
 blogdown::shortcode('tweet', '927971399301464065')
 ```
-
+&nbsp;  
 Leffen's tweet features screenshots of fan comments on Reddit that suggest absurd or simplistic strategies that disregard the logic behind high level play. His tweet should speak for itself, but there is a large knowledge gap between fans and top players when it comes to playing against the best player in the world.  
 
-The sentiment of Leffen's tweet is later echoed by Tafo, another community member. 
-
+The sentiment of Leffen's tweet is later echoed by Tafo, another community member.   
+&nbsp;  
 ```{r Tafo tweet, echo=FALSE}
 blogdown::shortcode('tweet', '927976731905900544')
 ```
-
+&nbsp;  
 Although Tafo's comments are also made at the expense of fans, he includes a dataset of Hungrybox's character matchup data for 2017 (against players in the top 50). Tafo effectively highlights a specific misunderstanding that fans have about character matchups in Melee.  
 
 ```{r Tafo tweet 2, echo=FALSE}
 blogdown::shortcode('tweet', '927978438274596864')
 ```
-
+&nbsp;  
 The essential sentiment is that fans tend to look past sample size when making inferences on performance. It is implied that fans will look at the win percentages on the right hand side of the table and take them at face value. Here is the same data reorganized:  
-
+&nbsp;  
 ```{r Data first look, echo=FALSE, message = FALSE}
 library(dplyr)
 Hbox <- read.csv(file = "Hbox2017.csv")
 Hbox %>%
   arrange(desc(WinPercent))
 ```
-
+&nbsp;  
 Here is where the essential question of this blog post comes in.  
 
 Does Hungrybox win more versus Fox than he does versus Young Link? On face value, the answers seems obvious. Hungrybox wins 58.23% of his matches versus Fox and 50.00% of his matches versus Young Link, so clearly he is better at the Fox matchup, right?  
@@ -152,7 +153,7 @@ Alternatively, here is a the distribution of win averages across all matchups. T
 For this analysis, we will be relying on the [beta distribution](https://en.wikipedia.org/wiki/Beta_distribution) and its parameters, alpha and beta, to model the distribution of win averages. Secondly, we will use that distribution to inform new estimates for each of Hungrybox's character matchups.  
 
 First, we must estimate the alpha and beta parameters for the beta distribution. For our purposes, we will use the "method of moments" to estimate the alpha and beta parameters from the mean and variance of our data using this custom function:  
-
+&nbsp;  
 ```{r Method of Moments function}
 estBetaParams <- function(mu, var) {
      alpha <- ((1 - mu) / var - 1 / mu) * mu ^ 2
@@ -164,7 +165,7 @@ estBetaParams <- function(mu, var) {
 > Credit goes to [this Cross Validated user](https://stats.stackexchange.com/questions/12232/calculating-the-parameters-of-a-beta-distribution-using-the-mean-and-variance) for their insight and function.    
 
 So, let's calculate the mean and variance of Hungrybox's win averages across all matchups and plug those values into our `estBetaParams` function.  
-
+&nbsp;  
 ```{r Method of Moments estimates}
 H.mu <- mean(Hbox$WinAverage)
 H.var <- var(Hbox$WinAverage)
@@ -175,7 +176,7 @@ paste(H.mu, H.var)
 Hbox.est <- estBetaParams(H.mu, H.var)
 Hbox.est
 ```
-
+&nbsp;  
 The resulting alpha and beta parameters will inform the shape of our beta distribution (shown in red).  
 
 ```{r Visualize beta distribution, echo = FALSE}
@@ -192,12 +193,12 @@ Hbox %>%
 
 Again, our distribution and number of observations leaves something to be desired. Nonetheless, we will use this distribution to inform our approximations of Hungrybox's individual character matchups.  
 
-To do so, we add alpha and the number of wins in each matchup then divide that by the sum of the total number of games, alpha, and beta.
-
+To do so, we add alpha and the number of wins in each matchup then divide that by the sum of the total number of games, alpha, and beta.  
+&nbsp;  
 $$
 \frac{Number of Wins + \alpha_0}{Total Number of Games + \alpha_0 + \beta_0}
 $$
-
+&nbsp;  
 ```{r Change in Estimates}
 #How does empirical Bayes estimation change the matchup averages?
 Hbox.eb <- Hbox %>%
@@ -234,11 +235,11 @@ Hbox.eb %>%
 Generally, we can see that as win averages increase, so do the empirical Bayes estimations of the win percentages. We also have two distinct red lines that represent different insights.  
 
 The y-intercept of the dashed red line indicates the estimate of Hungrybox's win average in a matchup given *no* data. What does this value tell us? Well, what if we had no matchup evidence at all for a matchup? Luigi or Peach are characters that are not included in this dataset. So what would our best estimate of Hungrybox's win averages versus those characters?  
-  
+&nbsp;  
 ```{r All matchups given no evidence}
 sprintf("%.3f", Hbox.est$alpha / (Hbox.est$alpha + Hbox.est$beta))
 ```
-
+&nbsp;  
 Given the data we have, we can estimate Hungrybox's win average to be 0.734 against characters with no previous evidence. That's an excellent win rate.  
 
 The solid red line indicates where Hungrybox's win averages are equal to the Bayesian estimates. What this allows us to infer, is the change in estimates. The further away a point lies from the line, the greater change between the original average and the new average. For example, Young Link, Sheik, Marth and Samus show more change in their estimates compared to the other characters.  
@@ -259,21 +260,22 @@ Hbox.eb %>%
 ```
 
 As mentioned before, Hungrybox's win average versus Young Link has increased substantially (0.500 to 0.634). This is likely due to the small number of observations in the matchup at the time of 2017/11/07 and how the base estimate of Hungrybox's win average (0.734) was higher than the original estimate. The new estimate for Young Link is now more in line with the estimates of all of Hungrybox's matchups. Conversely, there was only a very small change in Hungrybox's win average estimate for the Fox matchup. The win average estimate for Fox is now lower than any other matchup in the dataset.    
+&nbsp;  
 
 ----
 
 ### Bonus: Maximum Likelihood Estimation
 &nbsp;  
 In addition to estimating the alpha and beta parameters through the method of moments, we can also use maximum likelihood estimation. Here, I use the `fitdistr()` function from the `MASS` package to do that with one line of code.   
-
+&nbsp;  
 ```{r Maximum Likelihood Estimation}
 Hbox.est2 <- fitdistr(Hbox$WinAverage,dbeta,list(shape1=1,shape2=1), lower = c(0,0))
 
 Hbox.est2
 ```
-
+&nbsp;  
 Our estimates of alpha and beta have not changed substantially, but let’s see how this method may have differed in terms of our conclusions.  
-
+&nbsp;  
 ```{r}
 #Empirical Bayes
 Hbox.eb2 <- Hbox %>%
@@ -283,12 +285,13 @@ Hbox.eb2 %>%
   dplyr::select(-WinPercent) %>%
   arrange(desc(abs(eb_estimate2 - WinAverage)))
 ```
-
+&nbsp;  
 Again, what if we had no evidence at all for a matchup? What would we predict Hbox's win average to be in this situation?  
+&nbsp;  
 ```{r}
 sprintf("%.3f", Hbox.est2$estimate[1] / (Hbox.est2$estimate[1] + Hbox.est2$estimate[2]))
 ```
-
+&nbsp;  
 And our estimates of win averages?  
 
 ```{r, echo = FALSE}
@@ -316,9 +319,10 @@ With these limitations in mind, this analysis suggests that Young Link is not an
 Does this mean that people should only play Fox to beat Hungrybox's Jigglypuff?  
 
 Recent tournament results would suggest that this is not necessary.  
+&nbsp;  
 
 ![Shine 2018 Top 8 Bracket | source: smash.gg](/img/SmashggShine2018.png)
-
+&nbsp;  
 Zain’s astonishing rise through the Melee rankings led him to beat Hungrybox in two best-of-5 tournament matches at Shine 2018. Zain won a major tournament by beating Hungrybox in a decisive [3-1 Grand Finals set](https://youtu.be/BGifpkfcvvg). That feat is compounded by the fact that Zain beat Hungrybox using Marth, a character that historically performs poorly versus Hungrybox’s Jigglypuff. In fact, the last Marth player to beat Hungrybox was [PewPewU in 2015](https://youtu.be/tDxvY_MVctI). So, character matchups and their estimates are not everything and that's just one reason why competetitive Melee can be so exciting to watch. 
 
 I am very glad to make my first post on my blog, especially since I have been sitting on this analysis since Tafo posted the data on Twitter. Taking an analytical stance on one of the many nuances of Melee will always be a pleasure. Thanks again to David Robinson for inspiring this post.  
