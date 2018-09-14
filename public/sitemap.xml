@@ -8,26 +8,6 @@
   </url>
   
   <url>
-    <loc>/math-sample/</loc>
-    <lastmod>2017-03-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/code-sample/</loc>
-    <lastmod>2016-03-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/hello-r-markdown/</loc>
-    <lastmod>2015-07-23T21:13:14-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/test-markdown/</loc>
-    <lastmod>2015-02-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/</loc>
     <lastmod>2018-08-31T00:00:00+00:00</lastmod>
   </url>
@@ -37,13 +17,13 @@
   </url>
   
   <url>
-    <loc>/categories/bayes/</loc>
+    <loc>/tags/bayes/</loc>
     <lastmod>2018-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/bayes/</loc>
+    <loc>/categories/bayes/</loc>
     <lastmod>2018-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -55,8 +35,8 @@
   </url>
   
   <url>
-    <loc>/tags/code/</loc>
-    <lastmod>2016-03-08T00:00:00+00:00</lastmod>
+    <loc>/tags/esports/</loc>
+    <lastmod>2018-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -67,48 +47,12 @@
   </url>
   
   <url>
-    <loc>/tags/esports/</loc>
-    <lastmod>2018-08-31T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/example/</loc>
-    <lastmod>2017-03-05T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/markdown/</loc>
-    <lastmod>2015-02-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/math/</loc>
-    <lastmod>2017-03-05T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/page/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/plot/</loc>
-    <lastmod>2015-07-23T21:13:14-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/post/</loc>
-    <lastmod>2018-08-31T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/r/</loc>
     <lastmod>2018-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -120,25 +64,19 @@
   </url>
   
   <url>
-    <loc>/tags/r-markdown/</loc>
-    <lastmod>2015-07-23T21:13:14-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/regression/</loc>
-    <lastmod>2015-07-23T21:13:14-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/rstats/</loc>
+    <loc>/categories/r/</loc>
     <lastmod>2018-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/rstats/</loc>
+    <lastmod>2018-08-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/rstats/</loc>
     <lastmod>2018-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>

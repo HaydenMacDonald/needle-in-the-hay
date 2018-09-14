@@ -179,7 +179,7 @@
   
   
   &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 15 minutes (2993 words)
+  <i class="fa fa-clock-o"></i> 15 minutes (3003 words)
   
   
 </span>
@@ -201,7 +201,8 @@
       <article role="main" class="blog-post">
         <div id="melee" class="section level2">
 <h2>Melee!</h2>
-<p><a href="https://en.wikipedia.org/wiki/Super_Smash_Bros._Melee">Super Smash Bros. Melee for the Nintendo GameCube</a> was released in 2001. Since then, it has become one of the most fondly remembered and adored games of the last twenty years. The game features many characters from various Nintendo game franchises, which players choose between before entering a match. The objective of each match is relatively simple: fight your opponent(s) and hit them beyond the boundaries of the stage. In contrast to other fighting games, each time a player is struck they <em>gain</em> percentage points. As these percentage points accumulate, each successive attack received sends the player’s character further away and closer to the stage boundaries. Each time a player goes past the stage boundary, they lose a “stock” (i.e. a life). Lose all your stocks and the game is over.</p>
+<p> <br />
+<a href="https://en.wikipedia.org/wiki/Super_Smash_Bros._Melee">Super Smash Bros. Melee for the Nintendo GameCube</a> was released in 2001. Since then, it has become one of the most fondly remembered and adored games of the last twenty years. The game features many characters from various Nintendo game franchises, which players choose between before entering a match. The objective of each match is relatively simple: fight your opponent(s) and hit them beyond the boundaries of the stage. In contrast to other fighting games, each time a player is struck they <em>gain</em> percentage points. As these percentage points accumulate, each successive attack received sends the player’s character further away and closer to the stage boundaries. Each time a player goes past the stage boundary, they lose a “stock” (i.e. a life). Lose all your stocks and the game is over.</p>
 <p>Today, Melee is a popular esport across North America and Europe, where players can watch or enter tournaments with cash prizes. The early days of the competitive scene are documented in a <a href="https://youtu.be/jX9hbbA-WP4">4 hour fan-made documentary</a>. The film includes interviews with personalities and players from the scene and tells the story of how the game became a competitive phenomenon. Although the game is simple in premise, the game is actually very complicated mechanically and being truly great at the game requires an absurd amount of time and effort.</p>
 <p>The best Melee player in the world is Juan “Hungrybox” DeBiedma, currently ranked #1 by a panel of competive players and community figures. Hungrybox plays Jigglypuff, a character originally found in the Pokémon franchise, and he is sponsored by Team Liquid, a high profile esports organization.</p>
 <p>His placings in the image below are from the first half of 2018.</p>
@@ -241,11 +242,12 @@
 <p>Thankfully, there is a statistical technique called <strong>empirical Bayes estimation</strong> that will allow us to predict the proportion of wins in each of Hungrybox’s character matchups. The specific goal of this analysis will be to gain a better estimate of Hungrybox’s win percentage versus Young Link, given the data in Tafo’s tweet. This analysis will allow us to make an informed approximation of which is the best character to use against Hungrybox in high level play.</p>
 <hr />
 <blockquote>
-<p>Before we dive in, I would like to credit <a href="http://varianceexplained.org/">David Robinson</a> for his excellent series of posts on Bayesian data analysis. Learning about empirical Bayes estimation through his posts inspired me to use these methods on data that were interesting to me.</p>
+<p>Before we dive in, I would like to credit <a href="http://varianceexplained.org/">David Robinson</a> for his excellent series of posts on Bayesian data analysis. Learning about empirical Bayes estimation through his posts inspired me to use these methods on competitive Melee data.</p>
 </blockquote>
 <hr />
 <div id="set-up" class="section level3">
 <h3>Set-Up</h3>
+<p> </p>
 <pre class="r"><code>#data tidying and wrangling
 library(dplyr)
 library(tidyr)
@@ -262,7 +264,8 @@ library(MASS)</code></pre>
 </div>
 <div id="import-and-arrange-data" class="section level3">
 <h3>Import and Arrange Data</h3>
-<p>Here is the Hungrybox’s matchup data arranged by win percentage in descending order.</p>
+<p> <br />
+Here is the Hungrybox’s matchup data arranged by win percentage in descending order.</p>
 <pre class="r"><code>Hbox &lt;- read.csv(file = &quot;Hbox2017.csv&quot;)
 
 Hbox %&gt;%
@@ -284,6 +287,7 @@ Hbox %&gt;%
 </div>
 <div id="win-averages" class="section level3">
 <h3>Win Averages</h3>
+<p> </p>
 <pre class="r"><code>#Create new win average column
 Hbox &lt;- Hbox %&gt;%
   mutate(WinAverage = Wins/TotalGames)
@@ -296,17 +300,18 @@ Hbox2 &lt;- Hbox %&gt;%
 Hbox2 %&gt;%
   ggplot(aes(x = factor(WinAverage))) + 
   geom_bar() +
-  theme_tufte() +
+  theme_bw() +
   theme(axis.line = element_line(colour = &quot;#000000&quot;, size = 0.5), 
         axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.35)) +
-  labs(x = &quot;Win Average&quot;)</code></pre>
+  labs(x = &quot;Win Average&quot;, y = &quot;Count&quot;)</code></pre>
 <p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/Win%20Averages%20Histogram-1.png" width="672" /></p>
 <p>Alternatively, here is a the distribution of win averages across all matchups. This distribution leaves a lot to be desired because it has a small number of observations. This is due to the fact that there are not many characters (out of the 26 possible characters) that are played in high level Melee. Unfortunately, the small amount of data will not yield the strongest approximations of win percentages, but we will continue with what we have.</p>
 <hr />
 </div>
 <div id="prior" class="section level3">
 <h3>Prior</h3>
-<p>For this analysis, we will be relying on the <a href="https://en.wikipedia.org/wiki/Beta_distribution">beta distribution</a> and its parameters, alpha and beta, to model the distribution of win averages. Secondly, we will use that distribution to inform new estimates for each of Hungrybox’s character matchups.</p>
+<p> <br />
+For this analysis, we will be relying on the <a href="https://en.wikipedia.org/wiki/Beta_distribution">beta distribution</a> and its parameters, alpha and beta, to model the distribution of win averages. Secondly, we will use that distribution to inform new estimates for each of Hungrybox’s character matchups.</p>
 <p>First, we must estimate the alpha and beta parameters for the beta distribution. For our purposes, we will use the “method of moments” to estimate the alpha and beta parameters from the mean and variance of our data using this custom function:</p>
 <pre class="r"><code>estBetaParams &lt;- function(mu, var) {
      alpha &lt;- ((1 - mu) / var - 1 / mu) * mu ^ 2
@@ -358,6 +363,7 @@ Hbox.eb %&gt;%
 </div>
 <div id="visualize-the-changes-in-win-average-estimates" class="section level3">
 <h3>Visualize the changes in win average estimates</h3>
+<p> </p>
 <pre class="r"><code>Hbox.eb %&gt;%
   ggplot(aes(WinAverage, eb_estimate, colour = TotalGames)) + 
   geom_hline(yintercept = Hbox.est$alpha / (Hbox.est$alpha + Hbox.est$beta), 
@@ -368,7 +374,7 @@ Hbox.eb %&gt;%
   scale_colour_gradient(trans = &quot;log&quot;, 
                         breaks = 10 ^ (1:5)) + 
   labs(x = &quot;Win Average&quot;, y = &quot;Empirical Bayes Matchup Average&quot;) +
-  theme_tufte() +
+  theme_bw() +
   theme(axis.line = element_line(colour = &quot;#000000&quot;, size = 0.5), 
         axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.35)) +
   guides(colour = guide_colourbar(title = &quot;Total Games&quot;))</code></pre>
@@ -386,7 +392,8 @@ Hbox.eb %&gt;%
 </div>
 <div id="bonus-maximum-likelihood-estimation" class="section level3">
 <h3>Bonus: Maximum Likelihood Estimation</h3>
-<p>In addition to estimating the alpha and beta parameters through the method of moments, we can also use maximum likelihood estimation. Here, I use the <code>fitdistr()</code> function from the <code>MASS</code> package to do that with one line of code.</p>
+<p> <br />
+In addition to estimating the alpha and beta parameters through the method of moments, we can also use maximum likelihood estimation. Here, I use the <code>fitdistr()</code> function from the <code>MASS</code> package to do that with one line of code.</p>
 <pre class="r"><code>Hbox.est2 &lt;- fitdistr(Hbox$WinAverage,dbeta,list(shape1=1,shape2=1), lower = c(0,0))
 
 Hbox.est2</code></pre>
@@ -422,7 +429,8 @@ Hbox.eb2 %&gt;%
 </div>
 <div id="conclusions" class="section level3">
 <h3>Conclusions</h3>
-<p>Well, what did we learn? First we learned that sample size and the number of observations is important. We should not make bold conclusions on percentages or proportions that have a small number of underlying observations. That principle should also be applied to this analysis. Due to the nature of high level competitive Melee, only a few matchups made up the win average distribution. This affected the resolution of our estimates of the alpha, beta, and resulting estimates for each of Hungrybox’s matchups.</p>
+<p> <br />
+Well, what did we learn? First we learned that sample size and the number of observations is important. We should not make bold conclusions on percentages or proportions that have a small number of underlying observations. That principle should also be applied to this analysis. Due to the nature of high level competitive Melee, only a few matchups made up the win average distribution. This affected the resolution of our estimates of the alpha, beta, and resulting estimates for each of Hungrybox’s matchups.</p>
 <p>With these limitations in mind, this analysis suggests that Young Link is not an optimal character choice versus Hungrybox. In unsurprising fashion, Fox remains Hungrybox’s most difficult matchup, a sentiment believed by Hungrybox himself and fans. It is an almost natural assumption that the best character in the game would be the hardest to play against, even if you’re #1. Despite the somewhat underwhelming conclusion, the important lesson is that extreme or simplistic solution of choosing Young Link (or any other character) should not be applied to complex problem of defeating the best player in the world.</p>
 <p>Does this mean that people should only play Fox to beat Hungrybox’s Jigglypuff?</p>
 <p>Recent tournament results would suggest that this is not necessary.</p>
@@ -430,9 +438,10 @@ Hbox.eb2 %&gt;%
 <img src="/img/SmashggShine2018.png" alt="Shine 2018 Top 8 Bracket | source: smash.gg" />
 <p class="caption">Shine 2018 Top 8 Bracket | source: smash.gg</p>
 </div>
-<p>Zain’s astonishing rise through the Melee rankings led him to beat Hungrybox in two best-of-5 tournament matches at Shine 2018. Zain won a major tournament by beating Hungrybox in a decisive <a href="https://youtu.be/BGifpkfcvvg">3-1 Grand Finals set</a>. That feat is compounded by the fact that Zain beat Hungrybox using Marth, a character that historically performs poorly versus Hungrybox’s Jigglypuff. In fact, the last Marth player to beat Hungrybox was <a href="https://youtu.be/tDxvY_MVctI">PewPewU in 2015</a>. So, character matchups and their estimates are not everything and that’s exactly why competetitive Melee can be so exciting as a spectator.</p>
+<p>Zain’s astonishing rise through the Melee rankings led him to beat Hungrybox in two best-of-5 tournament matches at Shine 2018. Zain won a major tournament by beating Hungrybox in a decisive <a href="https://youtu.be/BGifpkfcvvg">3-1 Grand Finals set</a>. That feat is compounded by the fact that Zain beat Hungrybox using Marth, a character that historically performs poorly versus Hungrybox’s Jigglypuff. In fact, the last Marth player to beat Hungrybox was <a href="https://youtu.be/tDxvY_MVctI">PewPewU in 2015</a>. So, character matchups and their estimates are not everything and that’s just one reason why competetitive Melee can be so exciting to watch.</p>
 <p>I am very glad to make my first post on my blog, especially since I have been sitting on this analysis since Tafo posted the data on Twitter. Taking an analytical stance on one of the many nuances of Melee will always be a pleasure. Thanks again to David Robinson for inspiring this post.</p>
-<p>If you have any questions or concerns about this blog post, feel free to message me on Twitter or leave a Disqus comment. If you’re interested in watching competitive Melee, watch the documentary “The Smash Brothers” (linked above), search through competitive Melee VODs on YouTube, or watch livestreams of tournaments on Twitch. You can use <a href="http://whensmelee.com/">“When’s Melee?”</a> to find out when those tournaments are scheduled.</p>
+<p>If you have any questions or concerns about this blog post, feel free to message me on Twitter or leave a Disqus comment. If you’re interested in competitive Melee, you can watch <a href="https://youtu.be/jX9hbbA-WP4">“The Smash Brothers” documentary</a>, search through competitive Melee VODs on YouTube, or watch livestreams of tournaments on Twitch. You can use <a href="http://whensmelee.com/">“When’s Melee?”</a> to find out when those tournaments are scheduled.</p>
+<p>All of the code for this post can be found <a href="https://github.com/HaydenMacDonald/needle-in-the-hay/blob/master/content/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups.Rmd">here</a>.</p>
 </div>
 </div>
 
@@ -456,10 +465,6 @@ Hbox.eb2 %&gt;%
 
       
         <ul class="pager blog-pager">
-          
-            <li class="previous">
-              <a href="/math-sample/" data-toggle="tooltip" data-placement="top" title="Math Sample">&larr; Previous Post</a>
-            </li>
           
           
         </ul>

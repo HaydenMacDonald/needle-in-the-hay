@@ -22,15 +22,6 @@
     </item>
     
     <item>
-      <title>Code</title>
-      <link>/tags/code/</link>
-      <pubDate>Tue, 08 Mar 2016 00:00:00 +0000</pubDate>
-      <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
-      <guid>/tags/code/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Esports</title>
       <link>/tags/esports/</link>
       <pubDate>Fri, 31 Aug 2018 00:00:00 +0000</pubDate>
@@ -40,65 +31,11 @@
     </item>
     
     <item>
-      <title>Example</title>
-      <link>/tags/example/</link>
-      <pubDate>Sun, 05 Mar 2017 00:00:00 +0000</pubDate>
-      <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
-      <guid>/tags/example/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Markdown</title>
-      <link>/tags/markdown/</link>
-      <pubDate>Fri, 20 Feb 2015 00:00:00 +0000</pubDate>
-      <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
-      <guid>/tags/markdown/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Math</title>
-      <link>/tags/math/</link>
-      <pubDate>Sun, 05 Mar 2017 00:00:00 +0000</pubDate>
-      <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
-      <guid>/tags/math/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Plot</title>
-      <link>/tags/plot/</link>
-      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
-      <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
-      <guid>/tags/plot/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>R</title>
       <link>/tags/r/</link>
       <pubDate>Fri, 31 Aug 2018 00:00:00 +0000</pubDate>
       <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
       <guid>/tags/r/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>R Markdown</title>
-      <link>/tags/r-markdown/</link>
-      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
-      <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
-      <guid>/tags/r-markdown/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Regression</title>
-      <link>/tags/regression/</link>
-      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
-      <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
-      <guid>/tags/regression/</guid>
       <description></description>
     </item>
     
