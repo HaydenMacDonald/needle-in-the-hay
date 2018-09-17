@@ -115,8 +115,9 @@ Hbox %>%
   theme(axis.line = element_line(colour = "#000000", size = 0.5),
         axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.35)) + 
   labs(y = "Win Percentage", x = "Opponent Character") +
-  scale_x_discrete(limits = c("Marth", "Samus ", "Sheik", "Falco", "Captain Falcon", "Yoshi", "Ice Climbers", "Pikachu", "Fox", "Young Link")) + 
-  coord_cartesian(ylim = c(0,100))
+  scale_x_discrete(limits = c("Young Link","Fox", "Pikachu", "Ice Climbers", "Yoshi", "Captain Falcon", "Falco", "Sheik", "Samus ", "Marth")) + 
+  coord_cartesian(ylim = c(0,100)) +
+  coord_flip()
 ```
 
 And here is the win percentage data visualized. Across the x-axis is the characters of Hungrybox's opponents and the y-axis is Hungrybox's win percentage in those matchups at the time of 2017/11/07. Again, the raw data suggest that Hungrybox wins less versus Young Link than versus Fox. My goal is to generate a better approximation of Hungrybox's win averages across matchups.   
@@ -255,8 +256,9 @@ Hbox.eb %>%
   theme(axis.line = element_line(colour = "#000000", size = 0.5), 
         axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.35)) +
   labs(y = "Empirical Estimation of Win Average", x = "Opponent Character") + 
-  scale_x_discrete(limits = c("Marth", "Samus ", "Sheik", "Falco", "Captain Falcon", "Yoshi", "Ice Climbers", "Pikachu", "Fox", "Young Link")) + 
-  coord_cartesian(ylim = c(0.0, 1.0))
+  scale_x_discrete(limits = c("Young Link","Fox", "Pikachu", "Ice Climbers", "Yoshi", "Captain Falcon", "Falco", "Sheik", "Samus ", "Marth")) + 
+  coord_cartesian(ylim = c(0.0, 1.0)) +
+  coord_flip()
 ```
 
 As mentioned before, Hungrybox's win average versus Young Link has increased substantially (0.500 to 0.634). This is likely due to the small number of observations in the matchup at the time of 2017/11/07 and how the base estimate of Hungrybox's win average (0.734) was higher than the original estimate. The new estimate for Young Link is now more in line with the estimates of all of Hungrybox's matchups. Conversely, there was only a very small change in Hungrybox's win average estimate for the Fox matchup. The win average estimate for Fox is now lower than any other matchup in the dataset.    
@@ -303,7 +305,8 @@ ggplot(data = Hbox.eb2, aes(x = Hbox.eb2$OpponentCharacter, y = Hbox.eb2$eb_esti
   ylab("Empirical Estimation of Win Average") + 
   xlab("Opponent Character") + 
   scale_x_discrete(limits = c("Marth", "Samus ", "Sheik", "Falco", "Captain Falcon", "Yoshi", "Ice Climbers", "Pikachu", "Fox", "Young Link")) + 
-  coord_cartesian(ylim = c(0.0, 1.0))
+  coord_cartesian(ylim = c(0.0, 1.0)) +
+  coord_flip()
 ```
 
 Our conclusions do not change very much! The estimates of Hungrybox's win averages in matchups with or without data are very alike to our previous findings. It’s nice that this method also reflects the same conclusions as our original analysis.  
