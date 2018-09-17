@@ -179,7 +179,7 @@
   
   
   &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 14 minutes (2924 words)
+  <i class="fa fa-clock-o"></i> 14 minutes (2864 words)
   
   
 </span>
@@ -202,7 +202,7 @@
         <div id="melee" class="section level2">
 <h2>Melee!</h2>
 <p> <br />
-<a href="https://en.wikipedia.org/wiki/Super_Smash_Bros._Melee">Super Smash Bros. Melee for the Nintendo GameCube</a> was released in 2001. Since then, it has become one of the most fondly remembered and adored games of the last twenty years. The game features many characters from various Nintendo game franchises, which players choose between before entering a match. The objective of each match is relatively simple: fight your opponent(s) and hit them beyond the boundaries of the stage. In contrast to other fighting games, each time a player is struck they <em>gain</em> percentage points. As these percentage points accumulate, each successive attack received sends the player’s character further away and closer to the stage boundaries. Each time a player goes past the stage boundary, they lose a “stock” (i.e. a life). Lose all your stocks and the game is over.</p>
+<a href="https://en.wikipedia.org/wiki/Super_Smash_Bros._Melee">Super Smash Bros. Melee for the Nintendo GameCube</a> was released in 2001. Since then, it has become one of the most adored games of the last twenty years. The game features many characters from various Nintendo game franchises, which players choose between before entering a match. The objective of each match is relatively simple: fight your opponent(s) and hit them beyond the boundaries of the stage. In contrast to other fighting games, each time a player is struck they <em>gain</em> percentage points. As these percentage points accumulate, each successive attack received sends the player’s character further away and closer to the stage boundaries. Each time a player goes past the stage boundary, they lose a “stock” (i.e. a life). Lose all your stocks and the game is over.</p>
 <p>Today, Melee is a popular esport across North America and Europe, where players can watch or enter tournaments with cash prizes. The early days of the competitive scene are documented in a <a href="https://youtu.be/jX9hbbA-WP4">4 hour fan-made documentary</a>. The film includes interviews with personalities and players from the scene and tells the story of how the game became a competitive phenomenon. Although the game is simple in premise, the game is actually very complicated mechanically and being truly great at the game requires an absurd amount of time and effort.</p>
 <p>The best Melee player in the world is Juan “Hungrybox” DeBiedma, currently ranked #1 by a panel of competive players and community figures. Hungrybox plays Jigglypuff, a character originally found in the Pokémon franchise, and he is sponsored by Team Liquid, a high profile esports organization.</p>
 <p>His placings in the image below are from the first half of 2018.<br />
@@ -294,23 +294,10 @@ Hbox %&gt;%
 <div id="win-averages" class="section level3">
 <h3>Win Averages</h3>
 <p> </p>
-<pre class="r"><code>#Create new win average column
+<pre class="r"><code>#Calculate win averages
 Hbox &lt;- Hbox %&gt;%
-  mutate(WinAverage = Wins/TotalGames)
-
-#Round WinAverage to 2 decimals
-Hbox2 &lt;- Hbox %&gt;%
-  mutate(WinAverage = sprintf(&quot;%0.2f&quot;, WinAverage))
-
-#Plot histogram of win averages 
-Hbox2 %&gt;%
-  ggplot(aes(x = factor(WinAverage))) + 
-  geom_bar() +
-  theme_bw() +
-  theme(axis.line = element_line(colour = &quot;#000000&quot;, size = 0.5), 
-        axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.35)) +
-  labs(x = &quot;Win Average&quot;, y = &quot;Count&quot;)</code></pre>
-<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/Win%20Averages%20Histogram-1.png" width="672" /></p>
+  mutate(WinAverage = Wins/TotalGames)</code></pre>
+<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>Alternatively, here is a the distribution of win averages across all matchups. This distribution leaves a lot to be desired because it has a small number of observations. This is due to the fact that there are not many characters (out of the 26 possible characters) that are played in high level Melee. Unfortunately, the small amount of data will not yield the strongest approximations of win percentages, but we will continue with what we have.</p>
 <hr />
 </div>
@@ -331,9 +318,7 @@ For this analysis, we will be relying on the <a href="https://en.wikipedia.org/w
 <p>So, let’s calculate the mean and variance of Hungrybox’s win averages across all matchups and plug those values into the <code>estBetaParams</code> function.<br />
  </p>
 <pre class="r"><code>H.mu &lt;- mean(Hbox$WinAverage)
-H.var &lt;- var(Hbox$WinAverage)
-paste(H.mu, H.var)</code></pre>
-<pre><code>## [1] &quot;0.734249415243391 0.0155146002762766&quot;</code></pre>
+H.var &lt;- var(Hbox$WinAverage)</code></pre>
 <pre class="r"><code>Hbox.est &lt;- estBetaParams(H.mu, H.var)
 Hbox.est</code></pre>
 <pre><code>## $alpha
@@ -374,7 +359,7 @@ Hbox.eb %&gt;%
 <div id="visualize-the-changes-in-win-average-estimates" class="section level3">
 <h3>Visualize the changes in win average estimates</h3>
 <p> <br />
-<img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>Generally, we can see that as win averages increase, so do the empirical Bayes estimations of the win percentages. We also have two distinct red lines that represent different insights.</p>
 <p>The y-intercept of the dashed red line indicates the estimate of Hungrybox’s win average in a matchup given <em>no</em> data. What does this value tell us? Well, what if we had no matchup evidence at all for a matchup? Luigi or Peach are characters that are not included in this dataset. So what would our best estimate of Hungrybox’s win averages versus those characters?<br />
  </p>
@@ -383,7 +368,7 @@ Hbox.eb %&gt;%
 <p> <br />
 Given the data we have, we can estimate Hungrybox’s win average to be 0.734 against characters with no previous evidence. That’s an excellent win rate.</p>
 <p>The solid red line indicates where Hungrybox’s win averages are equal to the Bayesian estimates. What this allows us to infer, is the change in estimates. The further away a point lies from the line, the greater change between the original average and the new average. For example, Young Link, Sheik, Marth and Samus show more change in their estimates compared to the other characters.</p>
-<p>Now it’s time to turn back to our original chart. Let’s visualize a bar chart based on their new win average estimates.</p>
+<p>Now it’s time to turn back to our original win average data. Let’s visualize a chart that shows the difference between the old and new win average estimates.</p>
 <p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/Results-1.png" width="672" /></p>
 <p>As mentioned before, Hungrybox’s win average versus Young Link has increased substantially (0.500 to 0.634). This is likely due to the small number of observations in the matchup at the time of 2017/11/07 and how the base estimate of Hungrybox’s win average (0.734) was higher than the original estimate. The new estimate for Young Link is now more in line with the estimates of all of Hungrybox’s matchups. Conversely, there was only a very small change in Hungrybox’s win average estimate for the Fox matchup. The win average estimate for Fox is now lower than any other matchup in the dataset.<br />
  </p>
@@ -429,7 +414,7 @@ Again, what if we had no evidence at all for a matchup? What would we predict Hb
 <p> <br />
 And our estimates of win averages?</p>
 <pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
-<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>Our conclusions do not change very much! The estimates of Hungrybox’s win averages in matchups with or without data are very alike to our previous findings. It’s nice that this method also reflects the same conclusions as our original analysis.</p>
 <hr />
 </div>

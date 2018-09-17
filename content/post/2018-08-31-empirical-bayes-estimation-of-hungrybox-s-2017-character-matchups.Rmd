@@ -19,9 +19,13 @@ categories:
 - bayes
 ---
 
+```{r, echo = FALSE}
+options(digits = 7)
+```
+
 ## Melee!
 &nbsp;  
-[Super Smash Bros. Melee for the Nintendo GameCube](https://en.wikipedia.org/wiki/Super_Smash_Bros._Melee) was released in 2001. Since then, it has become one of the most fondly remembered and adored games of the last twenty years. The game features many characters from various Nintendo game franchises, which players choose between before entering a match. The objective of each match is relatively simple: fight your opponent(s) and hit them beyond the boundaries of the stage. In contrast to other fighting games, each time a player is struck they *gain* percentage points. As these percentage points accumulate, each successive attack received sends the player's character further away and closer to the stage boundaries. Each time a player goes past the stage boundary, they lose a "stock" (i.e. a life). Lose all your stocks and the game is over.  
+[Super Smash Bros. Melee for the Nintendo GameCube](https://en.wikipedia.org/wiki/Super_Smash_Bros._Melee) was released in 2001. Since then, it has become one of the most adored games of the last twenty years. The game features many characters from various Nintendo game franchises, which players choose between before entering a match. The objective of each match is relatively simple: fight your opponent(s) and hit them beyond the boundaries of the stage. In contrast to other fighting games, each time a player is struck they *gain* percentage points. As these percentage points accumulate, each successive attack received sends the player's character further away and closer to the stage boundaries. Each time a player goes past the stage boundary, they lose a "stock" (i.e. a life). Lose all your stocks and the game is over.  
 
 Today, Melee is a popular esport across North America and Europe, where players can watch or enter tournaments with cash prizes. The early days of the competitive scene are documented in a [4 hour fan-made documentary](https://youtu.be/jX9hbbA-WP4). The film includes interviews with personalities and players from the scene and tells the story of how the game became a competitive phenomenon. Although the game is simple in premise, the game is actually very complicated mechanically and being truly great at the game requires an absurd amount of time and effort.  
 
@@ -107,15 +111,17 @@ Hbox %>%
   arrange(desc(WinPercent))
 ```
 
-```{r Visualize matchups, echo = FALSE}
+```{r Visualize matchups, echo = FALSE, message = FALSE}
 Hbox %>%
-  ggplot(aes(x = OpponentCharacter, y = Hbox$WinPercent, fill = WinPercent)) + 
-  geom_bar(stat = "identity", show.legend = FALSE) + 
+  ggplot(aes(x = OpponentCharacter, y = WinPercent)) + 
+  geom_point(aes(colour = WinPercent), show.legend = FALSE) + 
+  geom_segment(aes(colour = WinPercent, xend = OpponentCharacter, yend = 0), show.legend = FALSE) +
   theme_bw() +
   theme(axis.line = element_line(colour = "#000000", size = 0.5),
         axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.35)) + 
   labs(y = "Win Percentage", x = "Opponent Character") +
   scale_x_discrete(limits = c("Young Link","Fox", "Pikachu", "Ice Climbers", "Yoshi", "Captain Falcon", "Falco", "Sheik", "Samus ", "Marth")) + 
+  scale_y_continuous(breaks = seq(0, 100, 10)) +
   coord_cartesian(ylim = c(0,100)) +
   coord_flip()
 ```
@@ -125,20 +131,23 @@ And here is the win percentage data visualized. Across the x-axis is the charact
 ----
 
 ### Win Averages
-&nbsp;  
+&nbsp;
 ```{r Win Averages Histogram}
-#Create new win average column
+#Calculate win averages
 Hbox <- Hbox %>%
   mutate(WinAverage = Wins/TotalGames)
+```
 
+```{r echo=FALSE, message = FALSE}
 #Round WinAverage to 2 decimals
 Hbox2 <- Hbox %>%
-  mutate(WinAverage = sprintf("%0.2f", WinAverage))
+  mutate(WinAverage = sprintf("%0.2f", WinAverage)) %>%
+  mutate(WinAverage = as.numeric(WinAverage))
 
 #Plot histogram of win averages 
 Hbox2 %>%
-  ggplot(aes(x = factor(WinAverage))) + 
-  geom_bar() +
+  ggplot(aes(x = WinAverage)) + 
+  geom_histogram(stat = "count", binwidth = .05) +
   theme_bw() +
   theme(axis.line = element_line(colour = "#000000", size = 0.5), 
         axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.35)) +
@@ -170,7 +179,6 @@ So, let's calculate the mean and variance of Hungrybox's win averages across all
 ```{r Method of Moments estimates}
 H.mu <- mean(Hbox$WinAverage)
 H.var <- var(Hbox$WinAverage)
-paste(H.mu, H.var)
 ```
 
 ```{r Alpha and Beta Estimates}
@@ -183,7 +191,7 @@ The resulting alpha and beta parameters will inform the shape of our beta distri
 ```{r Visualize beta distribution, echo = FALSE}
 Hbox %>%
   ggplot(aes(WinAverage)) + 
-  geom_histogram(aes(y = ..density..), binwidth = .005) + 
+  geom_histogram(aes(y = ..density..), binwidth = .01) + 
   stat_function(fun = function(x) dbeta(x, Hbox.est$alpha, Hbox.est$beta), 
                 color = "red", size = 1) +
   theme_bw() +
@@ -245,19 +253,21 @@ Given the data we have, we can estimate Hungrybox's win average to be 0.734 agai
 
 The solid red line indicates where Hungrybox's win averages are equal to the Bayesian estimates. What this allows us to infer, is the change in estimates. The further away a point lies from the line, the greater change between the original average and the new average. For example, Young Link, Sheik, Marth and Samus show more change in their estimates compared to the other characters.  
 
-Now it's time to turn back to our original chart. Let's visualize a bar chart based on their new win average estimates.  
+Now it's time to turn back to our original win average data. Let's visualize a chart that shows the difference between the old and new win average estimates.  
 
 ```{r Results, echo = FALSE, message = FALSE}
 #Now to plot our new estimates of Hbox's 2017 matchup win averages
 Hbox.eb %>%
-  ggplot(aes(x = OpponentCharacter, y = eb_estimate, fill = eb_estimate)) + 
-  geom_bar(stat = "identity", show.legend = FALSE) + 
+  ggplot(aes(x = OpponentCharacter)) + 
+  geom_segment(aes(xend = OpponentCharacter, y = WinAverage, yend = eb_estimate)) +
+  geom_point(aes(y = WinAverage), colour = "#08519c", show.legend = FALSE) + 
+  geom_point(aes(y = eb_estimate), colour = "#f768a1", show.legend = FALSE) +
   theme_bw() +
   theme(axis.line = element_line(colour = "#000000", size = 0.5), 
         axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.35)) +
-  labs(y = "Empirical Estimation of Win Average", x = "Opponent Character") + 
+  labs(y = "Win Average", x = "Opponent Character", title = "Method of Moments Estimation", subtitle = "New estimates in pink, original estimates in blue") + 
   scale_x_discrete(limits = c("Young Link","Fox", "Pikachu", "Ice Climbers", "Yoshi", "Captain Falcon", "Falco", "Sheik", "Samus ", "Marth")) + 
-  coord_cartesian(ylim = c(0.0, 1.0)) +
+  scale_y_continuous(breaks = seq(0.00, 1.00, 0.10)) +
   coord_flip()
 ```
 
@@ -297,19 +307,21 @@ sprintf("%.3f", Hbox.est2$estimate[1] / (Hbox.est2$estimate[1] + Hbox.est2$estim
 And our estimates of win averages?  
 
 ```{r, echo = FALSE}
-ggplot(data = Hbox.eb2, aes(x = Hbox.eb2$OpponentCharacter, y = Hbox.eb2$eb_estimate, fill = Hbox.eb2$eb_estimate)) + 
-  geom_bar(stat = "identity", show.legend = FALSE) + 
+Hbox.eb2 %>%
+  ggplot(aes(x = OpponentCharacter)) + 
+  geom_segment(aes(xend = OpponentCharacter, y = WinAverage, yend = eb_estimate2)) +
+  geom_point(aes(y = WinAverage), colour = "#08519c", show.legend = FALSE) + 
+  geom_point(aes(y = eb_estimate2), colour = "#f768a1", show.legend = FALSE) +
   theme_bw() +
   theme(axis.line = element_line(colour = "#000000", size = 0.5), 
-        axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.35)) + 
-  ylab("Empirical Estimation of Win Average") + 
-  xlab("Opponent Character") + 
+        axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.35)) +
+  labs(y = "Win Average", x = "Opponent Character", title = "Maximum Likelihood Estimation", subtitle = "New estimates in pink, original estimates in blue") + 
   scale_x_discrete(limits = c("Young Link","Fox", "Pikachu", "Ice Climbers", "Yoshi", "Captain Falcon", "Falco", "Sheik", "Samus ", "Marth")) + 
-  coord_cartesian(ylim = c(0.0, 1.0)) +
+  scale_y_continuous(breaks = seq(0.00, 1.00, 0.10)) +
   coord_flip()
 ```
 
-Our conclusions do not change very much! The estimates of Hungrybox's win averages in matchups with or without data are very alike to our previous findings. It’s nice that this method also reflects the same conclusions as our original analysis.  
+The data do not change very much! The estimates of Hungrybox's win averages in matchups with or without data are very alike to our previous findings. It’s nice that this method also reflects the same conclusions as our original analysis.  
 
 ----
 
