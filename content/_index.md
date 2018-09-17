@@ -11,8 +11,6 @@ To read more about me, see the <a href="/page/about">About page</a>.
 &nbsp;  
 I chose ["Needle in the Hay"](https://dictionary.cambridge.org/dictionary/english/a-needle-in-a-haystack) as the name for my blog because it is an analogy for the diligent search for the right questions, among many *possible* questions, and their approximate answers, among all *possible* answers.  
 
-It also has a tinge of self-branding.  
-
 My mission is to use the scientific method (i.e. data analytics) to sift through the "hay" in search of the "needle" when addressing new world business problems.
 &nbsp;  
 

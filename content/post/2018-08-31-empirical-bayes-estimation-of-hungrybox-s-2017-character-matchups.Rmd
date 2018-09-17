@@ -54,7 +54,7 @@ Although Tafo's comments are also made at the expense of fans, he includes a dat
 blogdown::shortcode('tweet', '927978438274596864')
 ```
 &nbsp;  
-The essential sentiment is that fans tend to look past sample size when making inferences on performance. It is implied that fans will look at the win percentages on the right hand side of the table and take them at face value. Here is the same data reorganized:  
+The essential sentiment is that fans tend to look past sample size when making inferences on matchup win rates or general performance. Here is the same data reorganized:  
 &nbsp;  
 ```{r Data first look, echo=FALSE, message = FALSE}
 library(dplyr)
@@ -165,7 +165,7 @@ estBetaParams <- function(mu, var) {
 
 > Credit goes to [this Cross Validated user](https://stats.stackexchange.com/questions/12232/calculating-the-parameters-of-a-beta-distribution-using-the-mean-and-variance) for their insight and function.    
 
-So, let's calculate the mean and variance of Hungrybox's win averages across all matchups and plug those values into our `estBetaParams` function.  
+So, let's calculate the mean and variance of Hungrybox's win averages across all matchups and plug those values into the `estBetaParams` function.  
 &nbsp;  
 ```{r Method of Moments estimates}
 H.mu <- mean(Hbox$WinAverage)
@@ -216,7 +216,7 @@ The data above have been arranged in descending order by the absolute difference
 
 ### Visualize the changes in win average estimates
 &nbsp;  
-```{r}
+```{r echo = FALSE}
 Hbox.eb %>%
   ggplot(aes(WinAverage, eb_estimate, colour = TotalGames)) + 
   geom_hline(yintercept = Hbox.est$alpha / (Hbox.est$alpha + Hbox.est$beta), 
@@ -245,9 +245,9 @@ Given the data we have, we can estimate Hungrybox's win average to be 0.734 agai
 
 The solid red line indicates where Hungrybox's win averages are equal to the Bayesian estimates. What this allows us to infer, is the change in estimates. The further away a point lies from the line, the greater change between the original average and the new average. For example, Young Link, Sheik, Marth and Samus show more change in their estimates compared to the other characters.  
 
-Now it's time to turn back to our original bar chart. Let's visualize a bar chart based on their new win average estimates.  
+Now it's time to turn back to our original chart. Let's visualize a bar chart based on their new win average estimates.  
 
-```{r Results, echo = FALSE}
+```{r Results, echo = FALSE, message = FALSE}
 #Now to plot our new estimates of Hbox's 2017 matchup win averages
 Hbox.eb %>%
   ggplot(aes(x = OpponentCharacter, y = eb_estimate, fill = eb_estimate)) + 
@@ -304,7 +304,7 @@ ggplot(data = Hbox.eb2, aes(x = Hbox.eb2$OpponentCharacter, y = Hbox.eb2$eb_esti
         axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.35)) + 
   ylab("Empirical Estimation of Win Average") + 
   xlab("Opponent Character") + 
-  scale_x_discrete(limits = c("Marth", "Samus ", "Sheik", "Falco", "Captain Falcon", "Yoshi", "Ice Climbers", "Pikachu", "Fox", "Young Link")) + 
+  scale_x_discrete(limits = c("Young Link","Fox", "Pikachu", "Ice Climbers", "Yoshi", "Captain Falcon", "Falco", "Sheik", "Samus ", "Marth")) + 
   coord_cartesian(ylim = c(0.0, 1.0)) +
   coord_flip()
 ```

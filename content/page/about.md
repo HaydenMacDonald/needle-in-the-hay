@@ -6,7 +6,7 @@ comments: false
 
 I am a Canadian graduate student studying at the University of Western Ontario.
 
-In August 2018, I achieved a Master of Science in Psychology from the University of Western Ontario. Currently, I am transitioning from cognitive psychology to a career in data analytics by enrolling in Ivey Business School's MSc in Business Analytics (commencing January 2019).
+In August 2018, I achieved a Master of Science in Psychology and currently, I am transitioning from cognitive psychology to a career in data analytics. I am enrolled in Ivey Business School's MSc in Business Analytics (commencing January 2019).
 
 My interests include research, statistical data analysis, and data visualization.
 

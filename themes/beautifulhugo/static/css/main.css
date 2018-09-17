@@ -34,14 +34,14 @@ p + p {
 }
 p a {
   /* text-decoration: underline */
-  color: #008AFF;
+  color: #0085a1;
 }
 h1,h2,h3,h4,h5,h6 {
   font-family: 'Noto Serif', 'Noto Serif', 'Noto Serif', 'Noto Serif', 'Noto Serif';
   font-weight: 400;
 }
 a {
-  color: #008AFF;
+  color: #0085a1;
 }
 a:hover,
 a:focus {
@@ -444,7 +444,7 @@ footer .theme-by {
 }
 
 .blog-tags a {
-  color: #008AFF;
+  color: #0085a1;
   text-decoration: none;
   padding: 0px 5px;
 }
@@ -455,7 +455,7 @@ footer .theme-by {
 
 .blog-tags a:hover {
   border-radius: 2px;
-  color: #008AFF;
+  color: #0085a1;
   background-color: #CCC;
 }
 
