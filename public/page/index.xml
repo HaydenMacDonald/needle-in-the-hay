@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pages on Needle in the Hay</title>
-    <link>/page/</link>
+    <link>/needleinthehay.ca/page/</link>
     <description>Recent content in Pages on Needle in the Hay</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</managingEditor>
     <webMaster>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</webMaster>
     
-	<atom:link href="/page/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/needleinthehay.ca/page/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>About Me</title>
-      <link>/page/about/</link>
+      <link>/needleinthehay.ca/page/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
-      <guid>/page/about/</guid>
+      <guid>/needleinthehay.ca/page/about/</guid>
       <description>I am a Canadian graduate student studying at the University of Western Ontario.
 In August 2018, I achieved a Master of Science in Psychology and currently, I am transitioning from cognitive psychology to a career in data analytics. I am enrolled in Ivey Business School&amp;rsquo;s MSc in Business Analytics (commencing January 2019).
 My interests include research, statistical data analysis, and data visualization.
