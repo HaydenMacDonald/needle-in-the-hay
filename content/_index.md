@@ -7,6 +7,8 @@ comments: false
 &nbsp;  
 I am Hayden MacDonald and this is my technical blog.
 
+To read through previous posts, see the <a href="/post">Blog section</a>.
+
 To read more about me, see the <a href="/page/about">About page</a>.  
 &nbsp;  
 
