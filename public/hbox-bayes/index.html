@@ -292,7 +292,7 @@ Hbox %&gt;%
 ## 10        Young Link    2      2          4      50.00</code></pre>
 <p> <br />
 And here is the win percentage data visualized.</p>
-<p><img src="/needleinthehay.capost/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/Visualize%20matchups-1.png" width="672" /></p>
+<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/Visualize%20matchups-1.png" width="672" /></p>
 <p>Across the x-axis is the characters of Hungrybox’s opponents and the y-axis is Hungrybox’s win percentage in those matchups at the time of 2017/11/07. Again, the raw data suggest that Hungrybox wins less versus Young Link than versus Fox. My goal is to generate a better approximation of Hungrybox’s win averages across matchups.</p>
 <hr />
 </div>
@@ -302,7 +302,7 @@ And here is the win percentage data visualized.</p>
 <pre class="r"><code>#Calculate win averages
 Hbox &lt;- Hbox %&gt;%
   mutate(WinAverage = Wins/TotalGames)</code></pre>
-<p><img src="/needleinthehay.capost/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>Alternatively, here is a the distribution of win averages across all matchups. This distribution leaves a lot to be desired because it has a small number of observations. This is due to the fact that there are not many characters (out of the 26 possible characters) that are played in high level Melee. Unfortunately, the small amount of data will not yield the strongest approximations of win percentages, but we will continue with what we have.</p>
 <hr />
 </div>
@@ -333,7 +333,7 @@ Hbox.est</code></pre>
 ## [1] 3.076596</code></pre>
 <p> <br />
 The resulting alpha and beta parameters will inform the shape of our beta distribution (shown in red).</p>
-<p><img src="/needleinthehay.capost/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/Visualize%20beta%20distribution-1.png" width="672" /></p>
+<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/Visualize%20beta%20distribution-1.png" width="672" /></p>
 <p>Again, our distribution and number of observations leaves something to be desired. Nonetheless, we will use this distribution to inform our approximations of Hungrybox’s individual character matchups.</p>
 <p>To do so, we add alpha and the number of wins in each matchup then divide that by the sum of the total number of games, alpha, and beta.<br />
  <br />
@@ -364,7 +364,7 @@ Hbox.eb %&gt;%
 <div id="visualize-the-changes-in-win-average-estimates" class="section level3">
 <h3>Visualize the changes in win average estimates</h3>
 <p> <br />
-<img src="/needleinthehay.capost/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>Generally, we can see that as win averages increase, so do the empirical Bayes estimations of the win percentages. We also have two distinct red lines that represent different insights.</p>
 <p>The y-intercept of the dashed red line indicates the estimate of Hungrybox’s win average in a matchup given <em>no</em> data. What does this value tell us? Well, what if we had no matchup evidence at all for a matchup? Luigi or Peach are characters that are not included in this dataset. So what would our best estimate of Hungrybox’s win averages versus those characters?<br />
  </p>
@@ -374,7 +374,7 @@ Hbox.eb %&gt;%
 Given the data we have, we can estimate Hungrybox’s win average to be 0.734 against characters with no previous evidence. That’s an excellent win rate.</p>
 <p>The solid red line indicates where Hungrybox’s win averages are equal to the Bayesian estimates. What this allows us to infer, is the change in estimates. The further away a point lies from the line, the greater change between the original average and the new average. For example, Young Link, Sheik, Marth and Samus show more change in their estimates compared to the other characters.</p>
 <p>Now it’s time to turn back to our original win average data. Let’s visualize a chart that shows the difference between the new and old win average estimates.</p>
-<p><img src="/needleinthehay.capost/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/Results-1.png" width="672" /></p>
+<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/Results-1.png" width="672" /></p>
 <p>As mentioned before, Hungrybox’s win average versus Young Link has increased substantially (0.500 to 0.674). The new estimate for Young Link is now more in line with the estimates of all of Hungrybox’s matchups. Conversely, there was only a very small change in Hungrybox’s win average estimate for the Fox matchup. The win average estimate for Fox is now lower than any other matchup in the dataset.<br />
  </p>
 <hr />
@@ -417,7 +417,7 @@ Again, what if we had no evidence at all for a matchup? What would we predict Hb
 <pre><code>## [1] &quot;0.733&quot;</code></pre>
 <p> <br />
 And our estimates of win averages?</p>
-<p><img src="/needleinthehay.capost/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>The data do not change very much! The estimates of Hungrybox’s win averages in matchups with or without data are very alike to our previous findings. It’s nice that this method also reflects the same conclusions as the methods of moments analysis.</p>
 <hr />
 </div>
