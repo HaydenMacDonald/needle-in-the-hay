@@ -11,5 +11,5 @@ I chose ["Needle in the Hay"](https://dictionary.cambridge.org/dictionary/englis
 My mission is to use the scientific method (i.e. data analytics) to sift through the "hay" in search of the "needle" when addressing new world business problems.  
 &nbsp;  
  
-### What should I expect to see on this blog?
+### What should I expect to see on this blog?  
 My goal for this blog is to create quality content that documents my professional growth in programming and data analytics. My posts will contain educational content for myself and others, but may also contain personal reflections or opinions. Most of my posts will be based in `R`, but as I continue with my studies I plan to include `Python` and `SQL` as well.
