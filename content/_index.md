@@ -1,3 +1,8 @@
+---
+title: Welcome
+comments: false
+---
+
 # Welcome
 &nbsp;  
 I am Hayden MacDonald and this is my technical blog.
