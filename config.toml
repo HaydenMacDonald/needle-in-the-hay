@@ -12,7 +12,7 @@ pygmentsCodefences = true
 pygmentsCodefencesGuessSyntax = true
 #pygmentsUseClassic = true
 pygmentOptions = "linenos=table"
-#disqusShortname = "needleinthehay"
+disqusShortname = "needleinthehay"
 #googleAnalytics = "XXX"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
