@@ -27,6 +27,8 @@ options(digits = 7)
 &nbsp;  
 [Super Smash Bros. Melee for the Nintendo GameCube](https://en.wikipedia.org/wiki/Super_Smash_Bros._Melee) was released in 2001. Since then, it has become one of the most adored games of the last twenty years. The game features many characters from various Nintendo game franchises, which players choose between before entering a match. The objective of each match is relatively simple: fight your opponent(s) and hit them beyond the boundaries of the stage. In contrast to other fighting games, each time a player is struck they *gain* percentage points. As these percentage points accumulate, each successive attack received sends the player's character further away and closer to the stage boundaries. Each time a player goes past the stage boundary, they lose a "stock" (i.e. a life). Lose all your stocks and the game is over.  
 
+![Competetive Melee](/img/hboxvzain.PNG)
+
 Today, Melee is a popular esport across North America and Europe, where players can watch or enter tournaments with cash prizes. The early days of the competitive scene are documented in a [4 hour fan-made documentary](https://youtu.be/jX9hbbA-WP4). The film includes interviews with personalities and players from the scene and tells the story of how the game became a competitive phenomenon. Although the game is simple in premise, the game is actually very complicated mechanically and being truly great at the game requires an absurd amount of time and effort.  
 
 The best Melee player in the world is Juan "Hungrybox" DeBiedma, currently ranked #1 by a panel of competive players and community figures. Hungrybox plays Jigglypuff, a character originally found in the Pokémon franchise, and he is sponsored by Team Liquid, a high profile esports organization.
@@ -110,7 +112,7 @@ Hbox <- read.csv(file = "Hbox2017.csv")
 Hbox %>%
   arrange(desc(WinPercent))
 ```
-
+&nbsp;  
 And here is the win percentage data visualized.  
 
 ```{r Visualize matchups, echo = FALSE, message = FALSE}
@@ -262,7 +264,7 @@ Hbox.eb %>%
   labs(y = "Win Average", 
        x = "Opponent Character", 
        title = "Method of Moments Estimation", 
-       subtitle = "New estimates in pink, original estimates in blue") + 
+       subtitle = "New estimates in pink, old estimates in blue") + 
   scale_y_continuous(breaks = seq(0.00, 1.00, 0.10)) +
   coord_flip()
 ```
@@ -311,7 +313,7 @@ Hbox.eb2 %>%
   labs(y = "Win Average", 
        x = "Opponent Character", 
        title = "Maximum Likelihood Estimation", 
-       subtitle = "New estimates in pink, original estimates in blue") + 
+       subtitle = "New estimates in pink, old estimates in blue") + 
   scale_y_continuous(breaks = seq(0.00, 1.00, 0.10)) +
   coord_flip()
 ```
