@@ -6,9 +6,9 @@ comments: false
 
 I am a Canadian graduate student studying at the University of Western Ontario.
 
-In August 2018, I achieved a Master of Science in Psychology and currently, I am transitioning from cognitive psychology to a career in data analytics. I am enrolled in Ivey Business School's MSc in Business Analytics (commencing January 2019).
+In August 2018, I achieved a Master of Science in Psychology. Currently, I am transitioning to a career in data analytics and I am enrolled in Ivey Business School's MSc in Business Analytics (commencing January 2019).  
 
-My interests include research, statistical data analysis, and data visualization.
+My interests include research, statistical data analysis, and data visualization.  
 
 In my spare time, I enjoy cooking, hiking, cycling, SCUBA diving, birding as well as watching films and eSports.  
 &nbsp;
@@ -38,7 +38,8 @@ Roberts, W. A., **MacDonald, H.** & Lo, K. H. (2018). Pigeons play the percentag
 
 Roberts, W.A., **MacDonald, H.**, Brown, L., & Macpherson, K. (2017). Release from proactive interference in rat spatial working memory. *Learn Behav*, *45*(3), 263-275. doi: [10.3758/s13420-017-0263-4](https://link.springer.com/article/10.3758%2Fs13420-017-0263-4)
 
-Roberts, W.A., Guitar, N.A., Marsh, H.L., & **MacDonald, H.** (2016). Memory systems in the rat: effects of reward probability, context, and congruency between working and reference memory. *Anim Cogn*, *19*(3), 593-604. doi: [10.1007/s10071-016-0964-7](https://link.springer.com/article/10.1007%2Fs10071-016-0964-7)
+Roberts, W.A., Guitar, N.A., Marsh, H.L., & **MacDonald, H.** (2016). Memory systems in the rat: effects of reward probability, context, and congruency between working and reference memory. *Anim Cogn*, *19*(3), 593-604. doi: [10.1007/s10071-016-0964-7](https://link.springer.com/article/10.1007%2Fs10071-016-0964-7)  
+&nbsp;  
 
 -------
 
