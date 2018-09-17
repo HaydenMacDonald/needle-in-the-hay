@@ -33,8 +33,8 @@ categories:
 <img src="https://image.redbull.com/rbcom/052/2018-08-02/5a64fdf3-da49-443a-82bd-880ae5f04c36/0001/1/1050/1/mpgr-summer-2018-1.png" alt="Panda Global Rankings Melee: Summer 2018" />
 <p class="caption">Panda Global Rankings Melee: Summer 2018</p>
 </div>
-<p>Hungrybox’s dominance within the highest levels of Melee gives him the right to be called one of the “Five Gods” of Melee. The “Five Gods” title carries significant weight and generally begets more Hungrybox’s dominance within the highest levels of Melee gives him the right to be called one of the “Five Gods” of Melee. The “Five Gods” title carries significant weight and generally begets more attention, positive or negative, than some would prefer. Although Hungrybox has many fans, there are many members of the Melee community (spectators and players alike) that do not like that Hungrybox is the best player in the world. Despite his indisputable #1 rankings in <a href="https://www.redbull.com/us-en/ssbmrank-2017-10-1">2017</a> and Summer 2018, Hungrybox regularly faces criticism concerning his character choice, playstyle and/or personality. Some fans go as far to say that his play is actually “killing” Melee’s competitive scene.</p>
-<p>In late 2017, Hungrybox won five consecutive high level tournaments, much to the chagrin of his opponents and critics. Displeasure over his dominance led to some online discussions concerning “What should top players do to beat Hungrybox?”. For context, Fox is considered to be the best character to use versus Jigglypuff, as he is generally considered to be the strongest but most technically challenging character to play. Fans in turmoil casted doubt on Fox and considered which alternate characters might be effective when facing Hungrybox. These discussions among fans became the subject of ridicule by Leffen, currently ranked #4 in the world, in the following tweet:<br />
+<p>Hungrybox’s dominance within the highest levels of Melee gives him the right to be called one of the “Five Gods” of Melee. The “Five Gods” title carries significant weight and generally begets more attention, positive or negative, than some would prefer. Although Hungrybox has many fans, there are many members of the Melee community (spectators and players alike) that do not like that Hungrybox is the best player in the world. Despite his indisputable #1 rankings in <a href="https://www.redbull.com/us-en/ssbmrank-2017-10-1">2017</a> and Summer 2018, Hungrybox regularly faces criticism concerning his character choice, playstyle and/or personality. Some fans go as far to say that his play is actually “killing” Melee’s competitive scene.</p>
+<p>In late 2017, Hungrybox won five consecutive high level tournaments, much to the chagrin of his opponents and critics. Displeasure over his dominance led to some online discussions concerning “What should top players do to beat Hungrybox?”. For context, Fox is considered to be the best character to use versus Jigglypuff, as he is generally considered to be the strongest but most technically challenging character to play. Fans in turmoil doubted Fox versus Jigglypuff and considered which alternate characters or strategies might be effective when facing Hungrybox. These discussions among fans became the subject of ridicule by Leffen, currently ranked #4 in the world, in the following tweet:<br />
  <br />
 {{% tweet "927971399301464065" %}}  <br />
 Leffen’s tweet features screenshots of fan comments on Reddit that suggest absurd or simplistic strategies that disregard the logic behind high level play. His tweet should speak for itself, but there is a large knowledge gap between fans and top players when it comes to playing against the best player in the world.</p>
@@ -102,9 +102,9 @@ Hbox %&gt;%
 ## 8            Pikachu    4      2          6      66.67
 ## 9                Fox  145    104        249      58.23
 ## 10        Young Link    2      2          4      50.00</code></pre>
-<pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
+<p>And here is the win percentage data visualized.</p>
 <p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/Visualize%20matchups-1.png" width="672" /></p>
-<p>And here is the win percentage data visualized. Across the x-axis is the characters of Hungrybox’s opponents and the y-axis is Hungrybox’s win percentage in those matchups at the time of 2017/11/07. Again, the raw data suggest that Hungrybox wins less versus Young Link than versus Fox. My goal is to generate a better approximation of Hungrybox’s win averages across matchups.</p>
+<p>Across the x-axis is the characters of Hungrybox’s opponents and the y-axis is Hungrybox’s win percentage in those matchups at the time of 2017/11/07. Again, the raw data suggest that Hungrybox wins less versus Young Link than versus Fox. My goal is to generate a better approximation of Hungrybox’s win averages across matchups.</p>
 <hr />
 </div>
 <div id="win-averages" class="section level3">
@@ -184,9 +184,9 @@ Hbox.eb %&gt;%
 <p> <br />
 Given the data we have, we can estimate Hungrybox’s win average to be 0.734 against characters with no previous evidence. That’s an excellent win rate.</p>
 <p>The solid red line indicates where Hungrybox’s win averages are equal to the Bayesian estimates. What this allows us to infer, is the change in estimates. The further away a point lies from the line, the greater change between the original average and the new average. For example, Young Link, Sheik, Marth and Samus show more change in their estimates compared to the other characters.</p>
-<p>Now it’s time to turn back to our original win average data. Let’s visualize a chart that shows the difference between the old and new win average estimates.</p>
+<p>Now it’s time to turn back to our original win average data. Let’s visualize a chart that shows the difference between the new and old win average estimates.</p>
 <p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/Results-1.png" width="672" /></p>
-<p>As mentioned before, Hungrybox’s win average versus Young Link has increased substantially (0.500 to 0.634). This is likely due to the small number of observations in the matchup at the time of 2017/11/07 and how the base estimate of Hungrybox’s win average (0.734) was higher than the original estimate. The new estimate for Young Link is now more in line with the estimates of all of Hungrybox’s matchups. Conversely, there was only a very small change in Hungrybox’s win average estimate for the Fox matchup. The win average estimate for Fox is now lower than any other matchup in the dataset.<br />
+<p>As mentioned before, Hungrybox’s win average versus Young Link has increased substantially (0.500 to 0.674). The new estimate for Young Link is now more in line with the estimates of all of Hungrybox’s matchups. Conversely, there was only a very small change in Hungrybox’s win average estimate for the Fox matchup. The win average estimate for Fox is now lower than any other matchup in the dataset.<br />
  </p>
 <hr />
 </div>
@@ -204,8 +204,7 @@ Hbox.est2</code></pre>
 <p> <br />
 Our estimates of alpha and beta have not changed substantially, but let’s see how this method may have differed in terms of our conclusions.<br />
  </p>
-<pre class="r"><code>#Empirical Bayes
-Hbox.eb2 &lt;- Hbox %&gt;%
+<pre class="r"><code>Hbox.eb2 &lt;- Hbox %&gt;%
   mutate(eb_estimate2 = (Wins + Hbox.est2$estimate[1]) / (TotalGames + Hbox.est2$estimate[1] + Hbox.est2$estimate[2]))
 
 Hbox.eb2 %&gt;%
@@ -229,23 +228,23 @@ Again, what if we had no evidence at all for a matchup? What would we predict Hb
 <pre><code>## [1] &quot;0.733&quot;</code></pre>
 <p> <br />
 And our estimates of win averages?</p>
-<pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
 <p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<p>Our conclusions do not change very much! The estimates of Hungrybox’s win averages in matchups with or without data are very alike to our previous findings. It’s nice that this method also reflects the same conclusions as our original analysis.</p>
+<p>The data do not change very much! The estimates of Hungrybox’s win averages in matchups with or without data are very alike to our previous findings. It’s nice that this method also reflects the same conclusions as the methods of moments analysis.</p>
 <hr />
 </div>
 <div id="conclusions" class="section level3">
 <h3>Conclusions</h3>
 <p> <br />
-Well, what did we learn? First we learned that sample size and the number of observations is important. We should not make bold conclusions on percentages or proportions that have a small number of underlying observations. That principle should also be applied to this analysis. Due to the nature of high level competitive Melee, only a few matchups made up the win average distribution. This affected the resolution of our estimates of the alpha, beta, and resulting estimates for each of Hungrybox’s matchups.</p>
-<p>With these limitations in mind, this analysis suggests that Young Link is not an optimal character choice versus Hungrybox. In unsurprising fashion, Fox remains Hungrybox’s most difficult matchup, a sentiment believed by Hungrybox himself and fans. It is an almost natural assumption that the best character in the game would be the hardest to play against, even if you’re #1. Despite the somewhat underwhelming conclusion, the important lesson is that extreme or simplistic solution of choosing Young Link (or any other character) should not be applied to complex problem of defeating the best player in the world.</p>
-<p>Does this mean that people should only play Fox to beat Hungrybox’s Jigglypuff?</p>
-<p>Recent tournament results would suggest that this is not necessary.<br />
+To reiterate, this empirical Bayesian estimation analysis used the distribution of Hungrybox’s win averages across all matchups to improve estimates of win averages in each of Hungrybox’s individual matchups.</p>
+<p>So, what did we learn? First we learned that sample size and the number of observations is important. We should not make bold conclusions on percentages or proportions that have a small number of underlying observations. That principle should also be applied to this analysis. Due to the nature of high level competitive Melee, only a few matchups made up Hungrybox’s win average distribution. This affected the estimates of the alpha and beta parameters of the beta distribution, as well as the resulting estimates for each of Hungrybox’s matchups.</p>
+<p>With these limitations in mind, this analysis suggests that Young Link is not an optimal character choice versus Hungrybox. In unsurprising fashion, Fox remains Hungrybox’s most difficult matchup, a sentiment believed by Hungrybox, himself. It is an almost natural assumption that the best character in the game would be the hardest to play against, even if you’re #1. Despite the somewhat underwhelming conclusion, the important lesson is that extreme or simplistic solutions should not be applied to complex problems. This statement holds especially true when there is little evidence behind the proposed solution. In order for Young Link to be considered as a legitimate character choice versus Hungrybox, we would require a substantial amount of evidence.</p>
+<p>So, does this mean that players should only play Fox against Hungrybox’s Jigglypuff?</p>
+<p>Recent tournament results suggest otherwise.<br />
  </p>
 <p><img src="/img/SmashggShine2018.png" alt="Shine 2018 Top 8 Bracket | source: smash.gg" />  <br />
-Zain’s astonishing rise through the Melee rankings led him to beat Hungrybox in two best-of-5 tournament matches at Shine 2018. Zain won a major tournament by beating Hungrybox in a decisive <a href="https://youtu.be/BGifpkfcvvg">3-1 Grand Finals set</a>. That feat is compounded by the fact that Zain beat Hungrybox using Marth, a character that historically performs poorly versus Hungrybox’s Jigglypuff. In fact, the last Marth player to beat Hungrybox was <a href="https://youtu.be/tDxvY_MVctI">PewPewU in 2015</a>. So, character matchups and their estimates are not everything and that’s just one reason why competetitive Melee can be so exciting to watch.</p>
-<p>I am very glad to make my first post on my blog, especially since I have been sitting on this analysis since Tafo posted the data on Twitter. Taking an analytical stance on one of the many nuances of Melee will always be a pleasure. Thanks again to David Robinson for inspiring this post.</p>
-<p>If you have any questions or concerns about this blog post, feel free to message me on Twitter or leave a Disqus comment. If you’re interested in competitive Melee, you can watch <a href="https://youtu.be/jX9hbbA-WP4">“The Smash Brothers” documentary</a>, search through competitive Melee VODs on YouTube, or watch livestreams of tournaments on Twitch. You can use <a href="http://whensmelee.com/">“When’s Melee?”</a> to find out when those tournaments are scheduled.</p>
+Zain’s astonishing rise through the Melee rankings led him to beat Hungrybox in two best-of-5 tournament matches at Shine 2018. One of those matches was a decisive <a href="https://youtu.be/BGifpkfcvvg">3-1 Grand Finals set</a> versus Hungrybox. That feat is compounded by the fact that Zain beat Hungrybox using Marth, a character that historically performs poorly versus Hungrybox’s Jigglypuff. In fact, the last Marth player to beat Hungrybox was <a href="https://youtu.be/tDxvY_MVctI">PewPewU in 2015</a>. So, character matchups and their estimates are not everything in Melee and that’s just one reason why the competetitive scene can be so exciting to watch.</p>
+<p>I am very glad to publish this first post on my blog, especially since I have been sitting on this analysis since Tafo posted the data on Twitter. Taking an analytical stance on one of the many nuances of Melee was very enjoyable for me and I hoped you enjoyed reading it. Thanks again to David Robinson for inspiring this post.</p>
+<p>If you have any questions or concerns about this blog post, feel free to message me on Twitter or leave a Disqus comment. If you’re interested in competitive Melee, you can watch <a href="https://youtu.be/jX9hbbA-WP4">“The Smash Brothers” documentary</a>, search through <a href="https://vods.co/melee">competitive Melee VODs</a>, or watch livestreams of tournaments on Twitch. You can use <a href="http://whensmelee.com/">“When’s Melee?”</a> to find out when those tournaments are scheduled.</p>
 <p>All of the code for this post can be found <a href="https://github.com/HaydenMacDonald/needle-in-the-hay/blob/master/content/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups.Rmd">here</a>.</p>
 </div>
 </div>
