@@ -3,86 +3,86 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/needleinthehay.ca/hbox-bayes/</loc>
+    <loc>/hbox-bayes/</loc>
     <lastmod>2018-08-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/needleinthehay.ca/</loc>
+    <loc>/</loc>
     <lastmod>2018-08-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/needleinthehay.ca/page/about/</loc>
+    <loc>/page/about/</loc>
   </url>
   
   <url>
-    <loc>/needleinthehay.ca/tags/bayes/</loc>
-    <lastmod>2018-08-31T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/needleinthehay.ca/categories/bayes/</loc>
+    <loc>/categories/bayes/</loc>
     <lastmod>2018-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/needleinthehay.ca/categories/</loc>
+    <loc>/tags/bayes/</loc>
     <lastmod>2018-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/needleinthehay.ca/tags/esports/</loc>
+    <loc>/categories/</loc>
     <lastmod>2018-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/needleinthehay.ca/categories/esports/</loc>
+    <loc>/categories/esports/</loc>
     <lastmod>2018-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/needleinthehay.ca/page/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/needleinthehay.ca/post/</loc>
+    <loc>/tags/esports/</loc>
     <lastmod>2018-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/needleinthehay.ca/tags/r/</loc>
+    <loc>/page/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
     <lastmod>2018-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/needleinthehay.ca/categories/r/</loc>
+    <loc>/categories/r/</loc>
     <lastmod>2018-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/needleinthehay.ca/tags/rstats/</loc>
+    <loc>/tags/r/</loc>
     <lastmod>2018-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/needleinthehay.ca/categories/rstats/</loc>
+    <loc>/categories/rstats/</loc>
     <lastmod>2018-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/needleinthehay.ca/tags/</loc>
+    <loc>/tags/rstats/</loc>
+    <lastmod>2018-08-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
     <lastmod>2018-08-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>

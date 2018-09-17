@@ -1,4 +1,4 @@
-baseurl = "needleinthehay.ca"
+baseurl = "http://needleinthehay.ca"
 DefaultContentLanguage = "en"
 #DefaultContentLanguage = "ja"
 title = "Needle in the Hay"

@@ -2,49 +2,49 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Needle in the Hay</title>
-    <link>/needleinthehay.ca/tags/</link>
+    <link>/tags/</link>
     <description>Recent content in Tags on Needle in the Hay</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</managingEditor>
     <webMaster>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</webMaster>
     <lastBuildDate>Fri, 31 Aug 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/needleinthehay.ca/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Bayes</title>
-      <link>/needleinthehay.ca/tags/bayes/</link>
+      <link>/tags/bayes/</link>
       <pubDate>Fri, 31 Aug 2018 00:00:00 +0000</pubDate>
       <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
-      <guid>/needleinthehay.ca/tags/bayes/</guid>
+      <guid>/tags/bayes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Esports</title>
-      <link>/needleinthehay.ca/tags/esports/</link>
+      <link>/tags/esports/</link>
       <pubDate>Fri, 31 Aug 2018 00:00:00 +0000</pubDate>
       <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
-      <guid>/needleinthehay.ca/tags/esports/</guid>
+      <guid>/tags/esports/</guid>
       <description></description>
     </item>
     
     <item>
       <title>R</title>
-      <link>/needleinthehay.ca/tags/r/</link>
+      <link>/tags/r/</link>
       <pubDate>Fri, 31 Aug 2018 00:00:00 +0000</pubDate>
       <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
-      <guid>/needleinthehay.ca/tags/r/</guid>
+      <guid>/tags/r/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Rstats</title>
-      <link>/needleinthehay.ca/tags/rstats/</link>
+      <link>/tags/rstats/</link>
       <pubDate>Fri, 31 Aug 2018 00:00:00 +0000</pubDate>
       <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
-      <guid>/needleinthehay.ca/tags/rstats/</guid>
+      <guid>/tags/rstats/</guid>
       <description></description>
     </item>
     
