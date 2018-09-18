@@ -27,7 +27,7 @@ options(digits = 7)
 &nbsp;  
 [Super Smash Bros. Melee for the Nintendo GameCube](https://en.wikipedia.org/wiki/Super_Smash_Bros._Melee) was released in 2001. Since then, it has become one of the most adored games of the last twenty years. The game features many characters from various Nintendo game franchises, which players choose between before entering a match. The objective of each match is relatively simple: fight your opponent(s) and hit them beyond the boundaries of the stage. In contrast to fighting games, each time a player is struck they *gain* percentage points. As these percentage points accumulate, each successive attack received sends the player's character further away and closer to the stage boundaries. Each time a player goes past the stage boundary, they lose a "stock" (i.e. a life). Lose all your stocks and the game is over.  
 &nbsp;  
-![Competetive Melee](/img/hboxvzain.PNG)
+![Competetive Melee](/img/hboxvzain.PNG)  
 
 Today, Melee is a popular esport across North America and Europe, where players can watch or enter tournaments with cash prizes. Although the game is simple in premise, the game is actually very complicated mechanically and being truly great at the game requires an absurd amount of time and effort.  
 
