@@ -223,15 +223,8 @@ Hbox.est2</code></pre>
 ##   10.403528    3.780885 
 ##  ( 4.665568) ( 1.625258)</code></pre>
 <p> <br />
-Our estimates of alpha and beta have not changed substantially, but let’s see how this method may have differed in terms of our conclusions.<br />
- </p>
-<pre class="r"><code>Hbox.eb2 &lt;- Hbox %&gt;%
-  mutate(eb_estimate2 = (Wins + Hbox.est2$estimate[1]) / (TotalGames + Hbox.est2$estimate[1] + Hbox.est2$estimate[2]))
-
-#Maximum Likelihood Estimation 
-Hbox.eb2 %&gt;%
-  dplyr::select(-WinPercent) %&gt;%
-  arrange(desc(abs(eb_estimate2 - WinAverage)))</code></pre>
+Our estimates of alpha and beta have not changed substantially, but let’s see how this method may have differed in terms of our conclusions.</p>
+<p>Maximum Likelihood Estimation</p>
 <pre><code>##    OpponentCharacter Wins Losses TotalGames WinAverage eb_estimate2
 ## 1         Young Link    2      2          4  0.5000000    0.6820967
 ## 2              Marth    7      1          8  0.8750000    0.7844935
@@ -243,10 +236,7 @@ Hbox.eb2 %&gt;%
 ## 8              Yoshi    3      1          4  0.7500000    0.7370889
 ## 9                Fox  145    104        249  0.5823293    0.5904739
 ## 10    Captain Falcon   32     10         42  0.7619048    0.7547205</code></pre>
-<pre class="r"><code>#Previous Analysis: Method of Moments
-Hbox.eb %&gt;%
-  dplyr::select(-WinPercent) %&gt;%
-  arrange(desc(abs(eb_estimate - WinAverage)))</code></pre>
+<p>Previous Analysis: Method of Moments</p>
 <pre><code>##    OpponentCharacter Wins Losses TotalGames WinAverage eb_estimate
 ## 1         Young Link    2      2          4  0.5000000   0.6740968
 ## 2              Marth    7      1          8  0.8750000   0.7917661
@@ -269,7 +259,7 @@ sprintf(&quot;%.3f&quot;, Hbox.est$alpha / (Hbox.est$alpha + Hbox.est$beta))</co
 <pre><code>## [1] &quot;0.734&quot;</code></pre>
 <p> <br />
 And our estimates of win averages?</p>
-<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-6-1.png" width="672" /><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
+<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-7-1.png" width="672" /><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
 <p>The data do not change very much! The estimates of Hungrybox’s win averages in matchups with or without data are very alike to our previous findings. It’s nice that this method also reflects the same conclusions as the methods of moments analysis.</p>
 <hr />
 </div>

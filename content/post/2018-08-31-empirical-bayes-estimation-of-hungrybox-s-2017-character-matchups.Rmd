@@ -312,8 +312,9 @@ Hbox.est2
 ```
 &nbsp;  
 Our estimates of alpha and beta have not changed substantially, but let’s see how this method may have differed in terms of our conclusions.  
-&nbsp;  
-```{r}
+
+Maximum Likelihood Estimation 
+```{r, echo = FALSE}
 Hbox.eb2 <- Hbox %>%
   mutate(eb_estimate2 = (Wins + Hbox.est2$estimate[1]) / (TotalGames + Hbox.est2$estimate[1] + Hbox.est2$estimate[2]))
 
@@ -321,7 +322,9 @@ Hbox.eb2 <- Hbox %>%
 Hbox.eb2 %>%
   dplyr::select(-WinPercent) %>%
   arrange(desc(abs(eb_estimate2 - WinAverage)))
-
+```
+Previous Analysis: Method of Moments
+```{r, echo = FALSE}
 #Previous Analysis: Method of Moments
 Hbox.eb %>%
   dplyr::select(-WinPercent) %>%
