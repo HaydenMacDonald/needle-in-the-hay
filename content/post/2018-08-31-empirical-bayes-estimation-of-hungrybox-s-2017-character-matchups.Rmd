@@ -54,10 +54,6 @@ blogdown::shortcode('tweet', '927976731905900544')
 &nbsp;  
 Although Tafo's comments are also made at the expense of fans, he includes a dataset of Hungrybox's character matchup data for 2017 (against players in the top 50). Tafo effectively highlights a specific misunderstanding that fans have about character matchups in Melee.  
 
-```{r Tafo tweet 2, echo=FALSE}
-blogdown::shortcode('tweet', '927978438274596864')
-```
-&nbsp;  
 The essential sentiment is that fans tend to look past sample size when making inferences on matchup win rates or general performance.  
 
 Here is the same data reorganized:  
