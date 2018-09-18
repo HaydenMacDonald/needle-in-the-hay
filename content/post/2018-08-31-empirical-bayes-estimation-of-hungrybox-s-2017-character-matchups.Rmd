@@ -373,7 +373,7 @@ Hbox.eb %>%
   coord_flip()
 ```
 
-The data do not change very much! The estimates of Hungrybox's win averages in matchups with or without data are very alike to our previous findings. It’s nice that this method also reflects the same conclusions as the methods of moments analysis.
+The data do not change very much! The estimates of Hungrybox's win averages in matchups with or without data are similar to those in the previous analysis. It’s nice that this method also reflects the same conclusions as the previous analysis.
 
 ----
 
