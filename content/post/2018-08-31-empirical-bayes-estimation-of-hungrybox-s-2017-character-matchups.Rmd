@@ -318,26 +318,25 @@ Maximum Likelihood Estimation
 Hbox.eb2 <- Hbox %>%
   mutate(eb_estimate2 = (Wins + Hbox.est2$estimate[1]) / (TotalGames + Hbox.est2$estimate[1] + Hbox.est2$estimate[2]))
 
-#Maximum Likelihood Estimation 
 Hbox.eb2 %>%
   dplyr::select(-WinPercent) %>%
   arrange(desc(abs(eb_estimate2 - WinAverage)))
 ```
 Previous Analysis: Method of Moments
 ```{r, echo = FALSE}
-#Previous Analysis: Method of Moments
 Hbox.eb %>%
   dplyr::select(-WinPercent) %>%
   arrange(desc(abs(eb_estimate - WinAverage)))
 ```
 &nbsp;  
 Again, what if we had no evidence at all for a matchup? What would we predict Hbox's win average to be in this situation?  
-&nbsp;  
-```{r}
-#Maximum Likelihood Estimation
-sprintf("%.3f", Hbox.est2$estimate[1] / (Hbox.est2$estimate[1] + Hbox.est2$estimate[2]))
 
-#Previous Analysis: Method of Moments
+Maximum Likelihood Estimation  
+```{r}
+sprintf("%.3f", Hbox.est2$estimate[1] / (Hbox.est2$estimate[1] + Hbox.est2$estimate[2]))
+```
+Previous Analysis: Method of Moments  
+```{r}
 sprintf("%.3f", Hbox.est$alpha / (Hbox.est$alpha + Hbox.est$beta))
 ```
 &nbsp;  

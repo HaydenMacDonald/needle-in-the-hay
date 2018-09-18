@@ -431,17 +431,16 @@ Our estimates of alpha and beta have not changed substantially, but let’s see 
 ## 9                Fox  145    104        249  0.5823293   0.5890789
 ## 10    Captain Falcon   32     10         42  0.7619048   0.7559290</code></pre>
 <p> <br />
-Again, what if we had no evidence at all for a matchup? What would we predict Hbox’s win average to be in this situation?<br />
- </p>
-<pre class="r"><code>#Maximum Likelihood Estimation
-sprintf(&quot;%.3f&quot;, Hbox.est2$estimate[1] / (Hbox.est2$estimate[1] + Hbox.est2$estimate[2]))</code></pre>
+Again, what if we had no evidence at all for a matchup? What would we predict Hbox’s win average to be in this situation?</p>
+<p>Maximum Likelihood Estimation</p>
+<pre class="r"><code>sprintf(&quot;%.3f&quot;, Hbox.est2$estimate[1] / (Hbox.est2$estimate[1] + Hbox.est2$estimate[2]))</code></pre>
 <pre><code>## [1] &quot;0.733&quot;</code></pre>
-<pre class="r"><code>#Previous Analysis: Method of Moments
-sprintf(&quot;%.3f&quot;, Hbox.est$alpha / (Hbox.est$alpha + Hbox.est$beta))</code></pre>
+<p>Previous Analysis: Method of Moments</p>
+<pre class="r"><code>sprintf(&quot;%.3f&quot;, Hbox.est$alpha / (Hbox.est$alpha + Hbox.est$beta))</code></pre>
 <pre><code>## [1] &quot;0.734&quot;</code></pre>
 <p> <br />
 And our estimates of win averages?</p>
-<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-7-1.png" width="672" /><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
+<p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-8-1.png" width="672" /><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
 <p>The data do not change very much! The estimates of Hungrybox’s win averages in matchups with or without data are very alike to our previous findings. It’s nice that this method also reflects the same conclusions as the methods of moments analysis.</p>
 <hr />
 </div>
