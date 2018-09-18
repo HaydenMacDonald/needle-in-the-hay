@@ -29,7 +29,7 @@ options(digits = 7)
 &nbsp;  
 ![Competetive Melee](/img/hboxvzain.PNG)
 
-Today, Melee is a popular esport across North America and Europe, where players can watch or enter tournaments with cash prizes. The early days of the competitive scene are documented in a [4 hour fan-made documentary](https://youtu.be/jX9hbbA-WP4). The film includes interviews with personalities and players from the scene and tells the story of how the game became a competitive phenomenon. Although the game is simple in premise, the game is actually very complicated mechanically and being truly great at the game requires an absurd amount of time and effort.  
+Today, Melee is a popular esport across North America and Europe, where players can watch or enter tournaments with cash prizes. Although the game is simple in premise, the game is actually very complicated mechanically and being truly great at the game requires an absurd amount of time and effort.  
 
 The best Melee player in the world is Juan "Hungrybox" DeBiedma, currently ranked #1 by a panel of competive players and community figures. Hungrybox plays Jigglypuff, a character originally found in the Pokémon franchise, and he is sponsored by Team Liquid, a high profile esports organization.
 
@@ -37,8 +37,6 @@ His placings in the image below are from the first half of 2018.
 &nbsp;  
 
 ![Panda Global Rankings Melee: Summer 2018](https://image.redbull.com/rbcom/052/2018-08-02/5a64fdf3-da49-443a-82bd-880ae5f04c36/0001/1/1050/1/mpgr-summer-2018-1.png)
-
-Hungrybox's dominance within the highest levels of Melee gives him the right to be called one of the "Five Gods" of Melee. The "Five Gods" title carries significant weight and generally begets more  attention (positive or negative) than some would prefer. Although Hungrybox has many fans, there are many members of the Melee community (spectators and players alike) that do not like that Hungrybox is the best player in the world. Despite his indisputable #1 rankings in [2017](https://www.redbull.com/us-en/ssbmrank-2017-10-1) and [Summer 2018](https://www.redbull.com/us-en/summer-mpgr-2018-10-1), Hungrybox regularly faces criticism concerning his character choice, playstyle and/or personality. Some fans go as far to say that his play is actually "killing" Melee's competitive scene.  
 
 In late 2017, Hungrybox won five consecutive high level tournaments, much to the chagrin of his opponents and critics. Displeasure over his dominance led to some online discussions of "What should top players do to beat Hungrybox?". For context, Fox is considered to be the best character to use versus Jigglypuff, as he is the strongest, but also the most technically challenging, character in the game. Fans in turmoil doubted Fox and discussed which alternate characters or strategies might be effective against Hungrybox. These discussions among fans became the subject of ridicule by Leffen, currently ranked #4 in the world, in the following tweet:  
 &nbsp;  
@@ -321,9 +319,15 @@ Our estimates of alpha and beta have not changed substantially, but let’s see 
 Hbox.eb2 <- Hbox %>%
   mutate(eb_estimate2 = (Wins + Hbox.est2$estimate[1]) / (TotalGames + Hbox.est2$estimate[1] + Hbox.est2$estimate[2]))
 
+#Maximum Likelihood Estimation 
 Hbox.eb2 %>%
   dplyr::select(-WinPercent) %>%
   arrange(desc(abs(eb_estimate2 - WinAverage)))
+
+#Previous Analysis: Method of Moments
+Hbox.eb %>%
+  dplyr::select(-WinPercent) %>%
+  arrange(desc(abs(eb_estimate - WinAverage)))
 ```
 &nbsp;  
 Again, what if we had no evidence at all for a matchup? What would we predict Hbox's win average to be in this situation?  
@@ -335,6 +339,7 @@ sprintf("%.3f", Hbox.est2$estimate[1] / (Hbox.est2$estimate[1] + Hbox.est2$estim
 And our estimates of win averages?  
 
 ```{r, echo = FALSE}
+#Maximum Likelihood Estimation
 Hbox.eb2 %>%
   ggplot(aes(x = reorder(OpponentCharacter, WinAverage))) + 
   geom_segment(aes(xend = OpponentCharacter, y = WinAverage, yend = eb_estimate2)) +
@@ -344,6 +349,21 @@ Hbox.eb2 %>%
   labs(y = "Win Average", 
        x = "Opponent Character", 
        title = "Maximum Likelihood Estimation", 
+       subtitle = "New estimates in pink, old estimates in blue") + 
+  scale_y_continuous(breaks = seq(0.00, 1.00, 0.10)) +
+  coord_flip()
+
+#Previous Analysis: Method of Moments
+Hbox.eb %>%
+  ggplot(aes(x = reorder(OpponentCharacter, WinAverage))) + 
+  geom_segment(aes(xend = OpponentCharacter, y = WinAverage, yend = eb_estimate)) +
+  geom_point(aes(y = WinAverage), colour = "#08519c", show.legend = FALSE) + 
+  geom_point(aes(y = eb_estimate), colour = "#f768a1", show.legend = FALSE) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.35)) +
+  labs(y = "Win Average", 
+       x = "Opponent Character", 
+       title = "Method of Moments Estimation", 
        subtitle = "New estimates in pink, old estimates in blue") + 
   scale_y_continuous(breaks = seq(0.00, 1.00, 0.10)) +
   coord_flip()
