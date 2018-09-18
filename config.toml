@@ -13,7 +13,7 @@ pygmentsCodefencesGuessSyntax = true
 #pygmentsUseClassic = true
 pygmentOptions = "linenos=table"
 disqusShortname = "needleinthehay"
-#googleAnalytics = "XXX"
+googleAnalytics = "UA-125960941-1"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [permalinks]
