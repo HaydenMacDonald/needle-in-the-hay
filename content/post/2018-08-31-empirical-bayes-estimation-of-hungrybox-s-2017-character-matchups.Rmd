@@ -329,7 +329,11 @@ Hbox.eb %>%
 Again, what if we had no evidence at all for a matchup? What would we predict Hbox's win average to be in this situation?  
 &nbsp;  
 ```{r}
+#Maximum Likelihood Estimation
 sprintf("%.3f", Hbox.est2$estimate[1] / (Hbox.est2$estimate[1] + Hbox.est2$estimate[2]))
+
+#Previous Analysis: Method of Moments
+sprintf("%.3f", Hbox.est$alpha / (Hbox.est$alpha + Hbox.est$beta))
 ```
 &nbsp;  
 And our estimates of win averages?  
