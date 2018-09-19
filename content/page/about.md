@@ -32,13 +32,13 @@ University of Western Ontario
 &nbsp;  
 **MacDonald, Hayden**, "Spatial memory for isolated arm locations on the radial maze" (2018). *Electronic Thesis and Dissertation Repository*. [5511](https://ir.lib.uwo.ca/etd/5511){target="_blank"}.  
 
-Roberts, W. A., **MacDonald, H.** & Lo, K. H. (2018). Pigeons play the percentages: Computation of probability in a bird. *Anim Cogn*, *21*(4), 575-581. doi: [10.1007/s10071-018-1192-0](https://link.springer.com/article/10.1007%2Fs10071-018-1192-0){target="_blank"}
+Roberts, W. A., **MacDonald, H.** & Lo, K. H. (2018). Pigeons play the percentages: Computation of probability in a bird. *Anim Cogn*, *21*(4), 575-581. doi: [10.1007/s10071-018-1192-0](https://link.springer.com/article/10.1007%2Fs10071-018-1192-0){:target="_blank"}
 
-**MacDonald, H.**, & Roberts, W.A. (2018). Cognitive flexibility and dual processing in pigeons: Temporal and contextual control of midsession reversal. *J Exp Psychol Anim Learn Cogn*, *44*(2), 149-161. doi: [10.1037/xan0000161](http://psycnet.apa.org/record/2018-07553-001){target="_blank"}
+**MacDonald, H.**, & Roberts, W.A. (2018). Cognitive flexibility and dual processing in pigeons: Temporal and contextual control of midsession reversal. *J Exp Psychol Anim Learn Cogn*, *44*(2), 149-161. doi: [10.1037/xan0000161](http://psycnet.apa.org/record/2018-07553-001){:target="_blank"}
 
-Roberts, W.A., **MacDonald, H.**, Brown, L., & Macpherson, K. (2017). Release from proactive interference in rat spatial working memory. *Learn Behav*, *45*(3), 263-275. doi: [10.3758/s13420-017-0263-4](https://link.springer.com/article/10.3758%2Fs13420-017-0263-4){target="_blank"}
+Roberts, W.A., **MacDonald, H.**, Brown, L., & Macpherson, K. (2017). Release from proactive interference in rat spatial working memory. *Learn Behav*, *45*(3), 263-275. doi: [10.3758/s13420-017-0263-4](https://link.springer.com/article/10.3758%2Fs13420-017-0263-4){:target="_blank"}
 
-Roberts, W.A., Guitar, N.A., Marsh, H.L., & **MacDonald, H.** (2016). Memory systems in the rat: effects of reward probability, context, and congruency between working and reference memory. *Anim Cogn*, *19*(3), 593-604. doi: [10.1007/s10071-016-0964-7](https://link.springer.com/article/10.1007%2Fs10071-016-0964-7){target="_blank"}
+Roberts, W.A., Guitar, N.A., Marsh, H.L., & **MacDonald, H.** (2016). Memory systems in the rat: effects of reward probability, context, and congruency between working and reference memory. *Anim Cogn*, *19*(3), 593-604. doi: [10.1007/s10071-016-0964-7](https://link.springer.com/article/10.1007%2Fs10071-016-0964-7){:target="_blank"}
 &nbsp;  
 
 -------
