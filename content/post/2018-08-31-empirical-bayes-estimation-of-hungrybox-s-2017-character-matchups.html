@@ -24,7 +24,7 @@ categories:
 <div id="melee" class="section level2">
 <h2>Melee!</h2>
 <p> <br />
-<a href="https://en.wikipedia.org/wiki/Super_Smash_Bros._Melee">Super Smash Bros. Melee for the Nintendo GameCube</a> was released in 2001. Since then, it has become one of the most adored games of the last twenty years. The game features many characters from various Nintendo game franchises, which players choose between before entering a match. The objective of each match is relatively simple: fight your opponent(s) and hit them beyond the boundaries of the stage. In contrast to fighting games, each time a player is struck they <em>gain</em> percentage points. As these percentage points accumulate, each successive attack received sends the player’s character further away and closer to the stage boundaries. Each time a player goes past the stage boundary, they lose a “stock” (i.e. a life). Lose all your stocks and the game is over.<br />
+<a href="https://en.wikipedia.org/wiki/Super_Smash_Bros._Melee" target="_blank">Super Smash Bros. Melee for the Nintendo GameCube</a> was released in 2001. Since then, it has become one of the most adored games of the last twenty years. The game features many characters from various Nintendo game franchises, which players choose between before entering a match. The objective of each match is relatively simple: fight your opponent(s) and hit them beyond the boundaries of the stage. In contrast to fighting games, each time a player is struck they <em>gain</em> percentage points. As these percentage points accumulate, each successive attack received sends the player’s character further away and closer to the stage boundaries. Each time a player goes past the stage boundary, they lose a “stock” (i.e. a life). Lose all your stocks and the game is over.<br />
  <br />
 <img src="/img/hboxvzain.PNG" alt="Competetive Melee" /></p>
 <p>Today, Melee is a popular esport across North America and Europe, where players can watch or enter tournaments with cash prizes. Although the game is simple in premise, the game is actually very complicated mechanically and being truly great at the game requires an absurd amount of time and effort.</p>
@@ -65,7 +65,7 @@ Here is where the essential question of this blog post comes in.</p>
 <p>Thankfully, there is a statistical technique called <strong>empirical Bayes estimation</strong> that will allow us to predict the proportion of wins in each of Hungrybox’s character matchups. The specific goal of this analysis will be to gain a better estimate of Hungrybox’s win percentage versus Young Link, given the data in Tafo’s tweet. This analysis will allow us to make an informed approximation of which is the best character to use against Hungrybox in high level play.</p>
 <hr />
 <blockquote>
-<p>Before we dive in, I would like to credit <a href="http://varianceexplained.org/">David Robinson</a> for his excellent series of posts on Bayesian data analysis. Learning about empirical Bayes estimation through his posts inspired me to use these methods on competitive Melee data.</p>
+<p>Before we dive in, I would like to credit <a href="http://varianceexplained.org/" target="_blank">David Robinson</a> for his excellent series of posts on Bayesian data analysis. Learning about empirical Bayes estimation through his posts inspired me to use these methods on competitive Melee data.</p>
 </blockquote>
 <hr />
 <div id="set-up" class="section level3">
@@ -123,7 +123,7 @@ Hbox &lt;- Hbox %&gt;%
 <div id="prior" class="section level3">
 <h3>Prior</h3>
 <p> <br />
-For this analysis, we will be relying on the <a href="https://en.wikipedia.org/wiki/Beta_distribution">beta distribution</a> and its parameters, alpha and beta, to model the distribution of win averages. Secondly, we will use that distribution to inform new estimates for each of Hungrybox’s character matchups.</p>
+For this analysis, we will be relying on the <a href="https://en.wikipedia.org/wiki/Beta_distribution" target="_blank">beta distribution</a> and its parameters, alpha and beta, to model the distribution of win averages. Secondly, we will use that distribution to inform new estimates for each of Hungrybox’s character matchups.</p>
 <p>First, we must estimate the alpha and beta parameters for the beta distribution. For our purposes, we will use the “method of moments” to estimate the alpha and beta parameters from the mean and variance of our data using this custom function:<br />
  </p>
 <pre class="r"><code>estBetaParams &lt;- function(mu, var) {
@@ -132,7 +132,7 @@ For this analysis, we will be relying on the <a href="https://en.wikipedia.org/w
      return(params = list(alpha = alpha, beta = beta))
  }</code></pre>
 <blockquote>
-<p>Credit goes to <a href="https://stats.stackexchange.com/questions/12232/calculating-the-parameters-of-a-beta-distribution-using-the-mean-and-variance">this Cross Validated user</a> for their insight and function.</p>
+<p>Credit goes to <a href="https://stats.stackexchange.com/questions/12232/calculating-the-parameters-of-a-beta-distribution-using-the-mean-and-variance" target="_blank">this Cross Validated user</a> for their insight and function.</p>
 </blockquote>
 <p>So, let’s calculate the mean and variance of Hungrybox’s win averages across all matchups and plug those values into the <code>estBetaParams</code> function.<br />
  </p>
@@ -204,10 +204,10 @@ To reiterate, this empirical Bayesian estimation analysis used the distribution 
 <p>Recent tournament results suggest otherwise.<br />
  </p>
 <p><img src="/img/SmashggShine2018.png" alt="Shine 2018 Top 8 Bracket | source: smash.gg" />  <br />
-Zain’s astonishing rise through the Melee rankings led him to beat Hungrybox in two best-of-5 tournament matches at Shine 2018. One of those matches was a decisive <a href="https://youtu.be/BGifpkfcvvg">3-1 Grand Finals set</a> versus Hungrybox. That feat is compounded by the fact that Zain beat Hungrybox using Marth, a character that historically performs poorly versus Hungrybox’s Jigglypuff. In fact, the last Marth player to beat Hungrybox was <a href="https://youtu.be/tDxvY_MVctI">PewPewU in 2015</a>. So, character matchups and their estimates are not everything in Melee and that’s just one reason why the competetitive scene can be so exciting to watch.</p>
+Zain’s astonishing rise through the Melee rankings led him to beat Hungrybox in two best-of-5 tournament matches at Shine 2018. One of those matches was a decisive <a href="https://youtu.be/BGifpkfcvvg" target="_blank">3-1 Grand Finals set</a> versus Hungrybox. That feat is compounded by the fact that Zain beat Hungrybox using Marth, a character that historically performs poorly versus Hungrybox’s Jigglypuff. In fact, the last Marth player to beat Hungrybox was <a href="https://youtu.be/tDxvY_MVctI" target="_blank">PewPewU in 2015</a>. So, character matchups and their estimates are not everything in Melee and that’s just one reason why the competetitive scene can be so exciting to watch.</p>
 <p>I am very glad to publish this first post on my blog, especially since I have been sitting on this analysis since Tafo posted the data on Twitter. Taking an analytical stance on one of the many nuances of Melee was very enjoyable for me and I hope you enjoyed reading it. Thanks again to David Robinson for inspiring this post.</p>
-<p>If you have any questions or concerns about this blog post, feel free to message me on Twitter or leave a Disqus comment. If you’re interested in competitive Melee, you can watch <a href="https://youtu.be/jX9hbbA-WP4">“The Smash Brothers” documentary</a>, search through <a href="https://vods.co/melee">competitive Melee VODs</a>, or watch livestreams of tournaments on Twitch. You can use <a href="http://whensmelee.com/">“When’s Melee?”</a> to find out when those tournaments are scheduled.</p>
-<p>All of the code for this post can be found <a href="https://github.com/HaydenMacDonald/needle-in-the-hay/blob/master/content/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups.Rmd">here</a>.<br />
+<p>If you have any questions or concerns about this blog post, feel free to message me on Twitter or leave a Disqus comment. If you’re interested in competitive Melee, you can watch <a href="https://youtu.be/jX9hbbA-WP4" target="_blank">“The Smash Brothers” documentary</a>, search through <a href="https://vods.co/melee" target="_blank">competitive Melee VODs</a>, or watch livestreams of tournaments on Twitch. You can use <a href="http://whensmelee.com/" target="_blank">“When’s Melee?”</a> to find out when those tournaments are scheduled.</p>
+<p>All of the code for this post can be found <a href="https://github.com/HaydenMacDonald/needle-in-the-hay/blob/master/content/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups.Rmd" target="_blank">here</a>.<br />
  </p>
 <hr />
 </div>
