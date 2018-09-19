@@ -47,4 +47,9 @@ Roberts, W.A., Guitar, N.A., Marsh, H.L., & **MacDonald, H.** (2016). Memory sys
 &nbsp;  
 **MacDonald, H.**, & Roberts, W. A. (2018, April). Spatial memory for isolated arm locations on the radial maze. Five minute talk presented at the International Conference On Comparative Cognition, Melbourne, Florida.
 
-**MacDonald, H.**, & Roberts, W. A. (2017, April). Time versus context in a visual mid-session reversal task. Poster presented at the International Conference On Comparative Cognition, Melbourne, Florida.
+**MacDonald, H.**, & Roberts, W. A. (2017, April). Time versus context in a visual mid-session reversal task. Poster presented at the International Conference On Comparative Cognition, Melbourne, Florida.  
+
+----
+
+This blog is built with blogdown, Hugo, the beautifulhugo theme and deployed using Netlify.
+
