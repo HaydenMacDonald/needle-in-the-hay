@@ -126,7 +126,7 @@ Hbox %>%
   coord_flip()
 ```
 
-Across the x-axis is the characters of Hungrybox's opponents and the y-axis is Hungrybox's win percentage in those matchups at the time of 2017/11/07. Again, the raw data suggest that Hungrybox wins less versus Young Link than versus Fox. My goal is to generate a better approximation of Hungrybox's win averages across matchups.   
+Across the x-axis is the characters of Hungrybox's opponents and the y-axis is Hungrybox's win percentage in those matchups at the time of 2017/11/07. Again, the raw data suggest that Hungrybox wins less versus Young Link than versus Fox. My goal is to generate a better approximation of Hungrybox's win averages across all matchups.   
 
 ----
 
