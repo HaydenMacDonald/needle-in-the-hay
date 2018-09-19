@@ -13,9 +13,9 @@ To read more about me, see the <a href="/page/about">About page</a>.
 &nbsp;  
 
 ### Why is your blog called "Needle in the Hay"?  
-I chose ["Needle in the Hay"](https://dictionary.cambridge.org/dictionary/english/a-needle-in-a-haystack) because it is an analogy for the diligent search for the right questions, among many *possible* questions, and their approximate answers, among all *possible* answers.  
+I chose ["Needle in the Hay"](https://dictionary.cambridge.org/dictionary/english/a-needle-in-a-haystack){target="_blank"} because it is an analogy for the diligent search for the right questions, among many *possible* questions, and their approximate answers, among all *possible* answers.  
 
-My mission is to use the scientific method (i.e. data analytics) to sift through the "hay" in search of the "needle" when addressing new world business problems.  
+My career mission is to use the scientific method (i.e. data analytics) to sift through the "hay" in search of the "needle" when addressing new world business problems.  
 &nbsp;  
  
 ### What should I expect to see on this blog?  
