@@ -29,7 +29,7 @@ options(digits = 7)
 &nbsp;  
 ![Competetive Melee](/img/hboxvzain.PNG)  
 
-Today, Melee is a popular esport across North America and Europe, where players can watch or enter tournaments with cash prizes. Although the game is simple in premise, the game is actually very complicated mechanically and being truly great at the game requires an absurd amount of time and effort.  
+Today, Melee is a popular esport across North America and Europe, where players can watch or enter tournaments with cash prizes. Although the game is simple in premise, mechanically, the game is incredibly complicated and players require a tremendous amount of practice to become a highly skilled at the game.
 
 The best Melee player in the world is Juan "Hungrybox" DeBiedma, currently ranked #1 by a panel of competive players and community figures. Hungrybox plays Jigglypuff, a character originally found in the Pokémon franchise, and he is sponsored by Team Liquid, a high profile esports organization.
 
@@ -40,7 +40,7 @@ His placings in the image below are from the first half of 2018.
 
 In late 2017, Hungrybox won five consecutive high level tournaments, much to the chagrin of his opponents and critics. Displeasure over his dominance led to some online discussions of "What should top players do to beat Hungrybox?".  
 
-For context, Fox is considered to be the best character to use versus Jigglypuff, as he is the strongest, but also the most technically challenging, character in the game. Fans in turmoil doubted Fox and discussed which alternate characters or strategies might be effective against Hungrybox. These discussions among fans became the subject of ridicule by Leffen, currently ranked #4 in the world, in the following tweet:  
+For context, [Fox from the StarFox series](https://www.ssbwiki.com/Fox_(SSBM)) is considered to be the best character to use versus Jigglypuff, as he is the best, but also the most technically challenging, character in the game. Fans in turmoil doubted Fox and discussed which alternate characters or strategies might be effective against Hungrybox. These discussions among fans became the subject of ridicule by Leffen, currently ranked #4 in the world, in the following tweet:  
 &nbsp;  
 ```{r Leffen tweet, echo=FALSE}
 blogdown::shortcode('tweet', '927971399301464065')
@@ -69,7 +69,7 @@ Hbox %>%
 &nbsp;  
 Here is where the essential question of this blog post comes in.  
 
-Does Hungrybox win more versus Fox than he does versus Young Link? On face value, the answers seems obvious. Hungrybox wins 58.23% of his matches versus Fox and 50.00% of his matches versus Young Link, so clearly he wins less versus Young Link, right?  
+Does Hungrybox win more versus Fox than he does versus [Young Link](https://www.ssbwiki.com/Young_Link_(SSBM))? At face value, the answers seems obvious. Hungrybox wins 58.23% of his matches versus Fox and 50.00% of his matches versus Young Link, so clearly he wins less versus Young Link, right?  
 
 In order to make that conclusion, one would have to disregard the sample size or the amount of evidence behind each matchup. Up until 2017/11/07, Hungrybox had won 2/4 matches versus Young Link, whereas he had won 145/249 matches versus Fox. Knowing this, can we confidently say that Hungrybox's win percentage versus Young Link is truly lower than his win percentage versus Fox?  
 
@@ -126,7 +126,7 @@ Hbox %>%
   coord_flip()
 ```
 
-Across the x-axis is the characters of Hungrybox's opponents and the y-axis is Hungrybox's win percentage in those matchups at the time of 2017/11/07. Again, the raw data suggest that Hungrybox wins less versus Young Link than versus Fox. My goal is to generate a better approximation of Hungrybox's win averages across all matchups.   
+Across the y-axis is the characters of Hungrybox's opponents and the x-axis is Hungrybox's win percentage in those matchups at the time of 2017/11/07. Again, the raw data suggest that Hungrybox wins less versus Young Link than versus Fox. My goal is to generate a better approximation of Hungrybox's win averages across all matchups.   
 
 ----
 
