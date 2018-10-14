@@ -51,5 +51,5 @@ Roberts, W.A., Guitar, N.A., Marsh, H.L., & **MacDonald, H.** (2016). Memory sys
 
 ----
 
-This blog is built with blogdown, Hugo, the beautifulhugo theme and deployed using Netlify.
+This blog is built with blogdown, Hugo, the beautifulhugo theme and deployed using Netlify. Content published on my blog is released under a <a href="https://github.com/HaydenMacDonald/needle-in-the-hay/blob/master/LICENSE">MIT License</a>.
 
