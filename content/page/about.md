@@ -50,6 +50,6 @@ Roberts, W.A., Guitar, N.A., Marsh, H.L., & **MacDonald, H.** (2016). Memory sys
 **MacDonald, H.**, & Roberts, W. A. (2017, April). Time versus context in a visual mid-session reversal task. Poster presented at the International Conference On Comparative Cognition, Melbourne, Florida.  
 
 ----
-&nbsp;
+&nbsp;  
 This blog is built with blogdown, Hugo, the beautifulhugo theme and deployed using Netlify. Content published on my blog is released under a <a href="https://github.com/HaydenMacDonald/needle-in-the-hay/blob/master/LICENSE">MIT License</a>.
 
