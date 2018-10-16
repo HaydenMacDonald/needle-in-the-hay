@@ -190,7 +190,7 @@ if (!doNotTrack) {
   
   
   &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 13 minutes (2717 words)
+  <i class="fa fa-clock-o"></i> 13 minutes (2722 words)
   
   
 </span>
@@ -216,7 +216,7 @@ if (!doNotTrack) {
 <a href="https://en.wikipedia.org/wiki/Super_Smash_Bros._Melee" target="_blank">Super Smash Bros. Melee for the Nintendo GameCube</a> was released in 2001. Since then, it has become one of the most adored games of the last twenty years. The game features many characters from various Nintendo game franchises, which players choose between before entering a match. The objective of each match is relatively simple: fight your opponent(s) and hit them beyond the boundaries of the stage. In contrast to fighting games, each time a player is struck they <em>gain</em> percentage points. As these percentage points accumulate, each successive attack received sends the player’s character further away and closer to the stage boundaries. Each time a player goes past the stage boundary, they lose a “stock” (i.e. a life). Lose all your stocks and the game is over.<br />
  <br />
 <img src="/img/hboxvzain.PNG" alt="Competetive Melee" /></p>
-<p>Today, Melee is a popular esport across North America and Europe, where players can watch or enter tournaments with cash prizes. Although the game is simple in premise, the game is actually very complicated mechanically and being truly great at the game requires an absurd amount of time and effort.</p>
+<p>Today, Melee is a popular esport across North America and Europe, where players can watch or enter tournaments with cash prizes. Although the game is simple in premise, mechanically, the game is incredibly complicated and players require a tremendous amount of practice to become a highly skilled at the game.</p>
 <p>The best Melee player in the world is Juan “Hungrybox” DeBiedma, currently ranked #1 by a panel of competive players and community figures. Hungrybox plays Jigglypuff, a character originally found in the Pokémon franchise, and he is sponsored by Team Liquid, a high profile esports organization.</p>
 <p>His placings in the image below are from the first half of 2018.<br />
  </p>
@@ -225,7 +225,7 @@ if (!doNotTrack) {
 <p class="caption">Panda Global Rankings Melee: Summer 2018</p>
 </div>
 <p>In late 2017, Hungrybox won five consecutive high level tournaments, much to the chagrin of his opponents and critics. Displeasure over his dominance led to some online discussions of “What should top players do to beat Hungrybox?”.</p>
-<p>For context, Fox is considered to be the best character to use versus Jigglypuff, as he is the strongest, but also the most technically challenging, character in the game. Fans in turmoil doubted Fox and discussed which alternate characters or strategies might be effective against Hungrybox. These discussions among fans became the subject of ridicule by Leffen, currently ranked #4 in the world, in the following tweet:<br />
+<p>For context, <a href="https://www.ssbwiki.com/Fox_(SSBM)">Fox from the StarFox series</a> is considered to be the best character to use versus Jigglypuff, as he is the best, but also the most technically challenging, character in the game. Fans in turmoil doubted Fox and discussed which alternate characters or strategies might be effective against Hungrybox. These discussions among fans became the subject of ridicule by Leffen, currently ranked #4 in the world, in the following tweet:<br />
  <br />
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">i was thinking, what should we do to beat hungrybox? as if it were fate, i came upon this reddit thread.<br>Now I know exactly what not to do! <a href="https://t.co/PyT3cPwnb1">pic.twitter.com/PyT3cPwnb1</a></p>&mdash; leffen (@TSM_Leffen) <a href="https://twitter.com/TSM_Leffen/status/927971399301464065?ref_src=twsrc%5Etfw">November 7, 2017</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -253,7 +253,7 @@ Although Tafo’s comments are also made at the expense of fans, he includes a d
 ## 10        Young Link    2      2          4      50.00</code></pre>
 <p> <br />
 Here is where the essential question of this blog post comes in.</p>
-<p>Does Hungrybox win more versus Fox than he does versus Young Link? On face value, the answers seems obvious. Hungrybox wins 58.23% of his matches versus Fox and 50.00% of his matches versus Young Link, so clearly he wins less versus Young Link, right?</p>
+<p>Does Hungrybox win more versus Fox than he does versus <a href="https://www.ssbwiki.com/Young_Link_(SSBM)">Young Link</a>? At face value, the answers seems obvious. Hungrybox wins 58.23% of his matches versus Fox and 50.00% of his matches versus Young Link, so clearly he wins less versus Young Link, right?</p>
 <p>In order to make that conclusion, one would have to disregard the sample size or the amount of evidence behind each matchup. Up until 2017/11/07, Hungrybox had won 2/4 matches versus Young Link, whereas he had won 145/249 matches versus Fox. Knowing this, can we confidently say that Hungrybox’s win percentage versus Young Link is truly lower than his win percentage versus Fox?</p>
 <p>Thankfully, there is a statistical technique called <strong>empirical Bayes estimation</strong> that will allow us to predict the proportion of wins in each of Hungrybox’s character matchups. The specific goal of this analysis will be to gain a better estimate of Hungrybox’s win percentage versus Young Link, given the data in Tafo’s tweet. This analysis will allow us to make an informed approximation of which is the best character to use against Hungrybox in high level play.</p>
 <hr />
@@ -300,7 +300,7 @@ Hbox %&gt;%
 <p> <br />
 And here is the win percentage data visualized.</p>
 <p><img src="/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups_files/figure-html/Visualize%20matchups-1.png" width="672" /></p>
-<p>Across the x-axis is the characters of Hungrybox’s opponents and the y-axis is Hungrybox’s win percentage in those matchups at the time of 2017/11/07. Again, the raw data suggest that Hungrybox wins less versus Young Link than versus Fox. My goal is to generate a better approximation of Hungrybox’s win averages across matchups.</p>
+<p>Across the y-axis is the characters of Hungrybox’s opponents and the x-axis is Hungrybox’s win percentage in those matchups at the time of 2017/11/07. Again, the raw data suggest that Hungrybox wins less versus Young Link than versus Fox. My goal is to generate a better approximation of Hungrybox’s win averages across all matchups.</p>
 <hr />
 </div>
 <div id="win-averages" class="section level3">
@@ -478,6 +478,10 @@ And our estimates of win averages?</p>
       
         <ul class="pager blog-pager">
           
+          
+            <li class="next">
+              <a href="/my-second-post/" data-toggle="tooltip" data-placement="top" title="[Title]">Next Post &rarr;</a>
+            </li>
           
         </ul>
       

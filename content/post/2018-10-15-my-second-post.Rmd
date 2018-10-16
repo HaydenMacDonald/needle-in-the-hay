@@ -11,7 +11,7 @@ tags: []
 subtitle: ''
 ---
 
-```{r setup, include=FALSE}
+```{r page formatting, include=FALSE}
 library(formatR)
 library(knitr)
 knitr::opts_chunk$set(echo = TRUE)
