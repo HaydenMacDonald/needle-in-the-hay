@@ -1,14 +1,17 @@
 ---
-title: "[Title]"
+title: "Boston 2018"
 author: "Hayden MacDonald"
-date: "2018-10-15"
+date: "2018-11-05"
 output:
   pdf_document: default
   html_document: default
-slug: my-second-post
-categories: []
-tags: []
-subtitle: ''
+slug: tufte-and-viz
+tags: 
+- data visualization
+- course
+- R
+- rstats
+subtitle: 'Tufte Course & Visualization Best Practices'
 ---
 
 ```{r page formatting, include=FALSE}
@@ -19,21 +22,49 @@ opts_chunk$set(echo = TRUE)
 opts_chunk$set(tidy.opts=list(width.cutoff=50),tidy=TRUE)
 ```
 
-```{r setup}
+```{r setup, include = FALSE}
 library(readr)
 library(tidyr)
 library(dplyr)
 library(ggplot2)
 ```
 
+I recently travelled to Boston to attend Edward Tufte's one day course, ["Presenting Data and Information"](https://www.edwardtufte.com/tufte/courses){target="_blank"}. I learned about the course through twitter and later did some reading about Tufte himself, who is an esteemed professor emeritus at Yale and previously taught with [John Tukey](https://en.wikipedia.org/wiki/John_Tukey){target="_blank"}. As a future business analytics student, I was intrigued by the supposed convenience of attending a one day course, especially in a historic city that was relatively close to me. The most enticing factor about this course was that it seemed to be the most design-focussed course that I had read about. In my past experience, most visualization tutorials and courses are typically beginner-friendly and usually emphasize teaching students when certain graphs should be used or how to generate those graphs using code. Since I had more than enough access to data visualization courses that emphasize generating graphs, I was more interested in learning about data visualization from a design standpoint.  
 
+My expectations were that the course would teach me
 
+* How to best *implement* data visualizations into presentations and reports  
+* Important guidelines, techniques or methods for how to best *design* data visualizations  
+* How to make my own data presentations more effective for my audience  
 
+## Review of Tufte's Course
 
+Upon checking in for the course, students are given  
 
+* a course syllabus  
+* two articles on graphical summaries ([1](http://laurenwilcox.net/candidacy/5_Powsner.pdf){target="_blank"} & [2](https://www.cs.tufts.edu/~nr/cs257/archive/edward-tufte/Summarizing%20Clinical.pdf){target="_blank"})  
+* and a package of 4 textbooks (*Visual Explanations*, *Envisioning Information*, *The Visual Display of Quantitative Information*, & *Beautiful Evidence*).  
 
+All of these materials are at least co-authored by Tufte. After receiving these materials from the course staff, a study hall is conducted, where students are expected to complete a list of readings in an hour. The amount of readings were acceptable and were selected from 3/4 provided textbooks.  
 
+After I finished these readings, I had developed a first impression for what this course was going to be like. Certainly, the course is professionally run, having a several assistant staff, beverages, suitable seating and venue (in Boston 2018, the venue was Westin Copley Place Hotel). There were a variety of attendees, which seemed to be a mix of researchers, students and professionals that were attending the course for the same reasons I was. Notably, I had a group of aerospace engineers sat behind me, medical researchers sat in front of me, and real estate and tech professionals sat next to me. This varied crowd was likely 400 people in total. It 
 
+Tufte begins the course with a session that showcases a variety of examples of both good and bad information design. An elegant scrolling music visualization (similar to a MIDI file), National Weather Service's simple but effective website, a horrid instruction manual for loading a dish washing machine's silverware basket, a deceptive New York Times article visualization, and an infamous slide from NASA's Columbia Disaster PowerPoint presentation. [Previous criticisms](https://eslide.com/why-edward-tufte-is-wrong/){target="_blank"} of Tufte's courses have also mentioned this particular slide and his interpretation of it. It was around this time that Tufte let his infamous disdain for PowerPoint be known in the venue. Without going too much into it, Tufte's criticism of the most ubiquitous presentation software is that information displays should emphasize content holistically, whereas PowerPoint slides force information into a hierarchy (which tends to benefit the presenter rather than the audience). After the course, I learned that this is not the only time Tufte has had [beef with Microsoft](https://www.edwardtufte.com/bboard/q-and-a-fetch-msg?msg_id=0003Y1&topic_id=1){target="_blank"}.  
+
+The end of this session contained one of my favourite parts of the course, which was discussing the Fundamental Principles of Analytical Design and Charles Joseph Minard's [Carte Figurative](https://en.wikipedia.org/wiki/Charles_Joseph_Minard#Information_graphics){target="_blank"}. The graphic is widely celebrated as one of the most influential and visually dense information graphics of its time, and conveniently exemplifies Tufte's principles of analytical design.  
+
+![Minard's Russian Campaign 1812-1813](https://upload.wikimedia.org/wikipedia/commons/2/29/Minard.png)
+
+The English-translated version of this visualization can be found [here](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Minard_Update.png/1920px-Minard_Update.png){target="_blank"}.
+
+The Tufte's Principles of Analytical Design are 
+
+1. Show comparisons
+2. Show causality, mechanism, structure and explanation
+3. Show multiple variables
+4. Integrate evidence
+5. Document credibility
+6. Content counts most of all
 
 
 
