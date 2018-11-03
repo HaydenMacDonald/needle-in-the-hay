@@ -7,18 +7,18 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</managingEditor>
     <webMaster>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</webMaster>
-    <lastBuildDate>Mon, 15 Oct 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 05 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>[Title]</title>
-      <link>/my-second-post/</link>
-      <pubDate>Mon, 15 Oct 2018 00:00:00 +0000</pubDate>
+      <title>Boston 2018</title>
+      <link>/tufte-and-viz/</link>
+      <pubDate>Mon, 05 Nov 2018 00:00:00 +0000</pubDate>
       <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
-      <guid>/my-second-post/</guid>
-      <description>library(readr)library(tidyr)library(dplyr)## ## Attaching package: &amp;#39;dplyr&amp;#39;## The following objects are masked from &amp;#39;package:stats&amp;#39;:## ## filter, lag## The following objects are masked from &amp;#39;package:base&amp;#39;:## ## intersect, setdiff, setequal, unionlibrary(ggplot2)</description>
+      <guid>/tufte-and-viz/</guid>
+      <description>I recently travelled to Boston to attend Edward Tufte’s one day course, “Presenting Data and Information”. I learned about the course through twitter and later did some reading about Tufte himself, who is an esteemed professor emeritus at Yale and previously taught with John Tukey. As a future business analytics student, I was intrigued by the supposed convenience of attending a one day course, especially in a historic city that was relatively close to me.</description>
     </item>
     
     <item>

@@ -3,8 +3,8 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/my-second-post/</loc>
-    <lastmod>2018-10-15T00:00:00+00:00</lastmod>
+    <loc>/tufte-and-viz/</loc>
+    <lastmod>2018-11-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -17,13 +17,13 @@
   </url>
   
   <url>
-    <loc>/categories/bayes/</loc>
+    <loc>/tags/bayes/</loc>
     <lastmod>2018-09-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/bayes/</loc>
+    <loc>/categories/bayes/</loc>
     <lastmod>2018-09-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -35,8 +35,14 @@
   </url>
   
   <url>
-    <loc>/categories/esports/</loc>
-    <lastmod>2018-09-18T00:00:00+00:00</lastmod>
+    <loc>/tags/course/</loc>
+    <lastmod>2018-11-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/data-visualization/</loc>
+    <lastmod>2018-11-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -47,8 +53,14 @@
   </url>
   
   <url>
+    <loc>/categories/esports/</loc>
+    <lastmod>2018-09-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/</loc>
-    <lastmod>2018-10-15T00:00:00+00:00</lastmod>
+    <lastmod>2018-11-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -58,7 +70,13 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2018-10-15T00:00:00+00:00</lastmod>
+    <lastmod>2018-11-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/r/</loc>
+    <lastmod>2018-11-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -69,19 +87,13 @@
   </url>
   
   <url>
-    <loc>/tags/r/</loc>
-    <lastmod>2018-09-18T00:00:00+00:00</lastmod>
+    <loc>/tags/rstats/</loc>
+    <lastmod>2018-11-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/rstats/</loc>
-    <lastmod>2018-09-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/rstats/</loc>
     <lastmod>2018-09-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
