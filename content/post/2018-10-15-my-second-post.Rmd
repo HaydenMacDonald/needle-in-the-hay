@@ -22,24 +22,17 @@ opts_chunk$set(echo = TRUE)
 opts_chunk$set(tidy.opts=list(width.cutoff=50),tidy=TRUE)
 ```
 
-```{r setup, include = FALSE}
-library(readr)
-library(tidyr)
-library(dplyr)
-library(ggplot2)
-```
-
-I recently travelled to Boston to attend Edward Tufte's one day course, ["Presenting Data and Information"](https://www.edwardtufte.com/tufte/courses){target="_blank"}. I learned about the course through twitter and later did some reading about Tufte himself, who is an esteemed professor emeritus at Yale and previously taught with [John Tukey](https://en.wikipedia.org/wiki/John_Tukey){target="_blank"}. 
+I recently travelled to Boston to attend Edward Tufte's one day course, ["Presenting Data and Information"](https://www.edwardtufte.com/tufte/courses){target="_blank"}. I learned about the course through twitter and later did some reading about [Tufte](https://en.wikipedia.org/wiki/Edward_Tufte), who is an esteemed professor emeritus of political science and statistics at Yale and previously taught with John Tukey. 
 &nbsp;  
 
-As a future business analytics student, I was intrigued by the supposed convenience of attending a one day course, especially in a historic city that was relatively close to me. The most enticing factor about this course was that it seemed to be the most design-focussed course that I had read about. In my past experience, most visualization tutorials and courses are typically beginner-friendly and usually emphasize teaching students when certain graphs should be used or how to generate those graphs using code. Since I had more than enough access to data visualization courses that emphasize generating graphs, I was more interested in learning about data visualization from a design standpoint.
+As a future business analytics student, I was interested in taking a convenient one day course taught by a world expert in data visualization. The most enticing factor about this course was that it seemed to be the most design-focussed course that I had read about. In my past experience, most visualization tutorials and courses are typically beginner-friendly and usually emphasize teaching students when certain graphs should be used or how to generate those graphs using code. Since I had more than enough access to data visualization courses that emphasize generating graphs, I was more interested in learning about data visualization from a design standpoint.
 &nbsp;  
 
-My expectations were that the course would teach me
+My expectations were that the course would teach me  
 
 * How to best *implement* data visualizations into presentations and reports  
-* Important guidelines, techniques or methods for how to best *design* data visualizations  
-* How to make my own data presentations more effective for my audience  
+* Important guidelines, techniques or methods for how to *design* data visualizations  
+* How to make my own data presentations more effective for my *audience*  
 &nbsp;
 
 ## Review of Tufte's Course
@@ -51,56 +44,107 @@ Upon checking in for the course, students are given
 * and a package of 4 textbooks (*Visual Explanations*, *Envisioning Information*, *The Visual Display of Quantitative Information*, & *Beautiful Evidence*).  
 &nbsp;
 
-All of these materials are at least co-authored by Tufte. After receiving these materials from the course staff, a study hall is conducted, where students are expected to complete a list of readings in an hour. The amount of readings were acceptable and were selected from 3/4 provided textbooks.
+All of these materials are at least co-authored by Tufte. After receiving these materials from the course staff, a study hall is conducted, where students are expected to complete a list of readings in an hour. The amount of readings were acceptable for the hour provided and were selected from three of the provided textbooks. As I finished the readings, I was quite excited to learn more about design and data visualization.
 &nbsp;  
 
-After I finished these readings, I had developed a first impression for what this course was going to be like. Certainly, the course is professionally run, having a several assistant staff, beverages, suitable seating and venue (in Boston 2018, the venue was Westin Copley Place Hotel). There were a variety of attendees, which seemed to be a mix of researchers, students and professionals that were attending the course for the same reasons I was. Notably, I had a group of aerospace engineers sat behind me, medical researchers sat in front of me, and real estate and tech professionals sat next to me. This varied crowd was likely 400 people in total.
+As the first session began, I had developed a first impression for what this course was going to be like. Tufte's style of lecturing is somewhat divisive, since he has a tendency for lecture in circles. This was confirmed by other students sitting in my vicinity, but since I was taking notes it was easy to trace back to points in the lecture where his current point belonged. Even though he tends to talk in a circular fashion, Tufte is succinct when lecturing the most important content. Tufte is also engaging and funny, and doesn't shy away from fairly bold statements across a wide variety of subjects. Thankfully, when he does talk about tangential topics (e.g. bringing notes to the doctor, the cruelty of bird artists, the state of medicinal research) he keeps it brief.
 &nbsp;  
 
-Tufte begins the course with a session that showcases a variety of examples of both good and bad information design. An elegant scrolling music visualization (similar to a MIDI file), National Weather Service's simple but effective website, a horrid instruction manual for loading a dish washing machine's silverware basket, a deceptive New York Times article visualization, and an infamous slide from NASA's Columbia Disaster PowerPoint presentation. 
+Additionally, the course is professionally run, having a several assistant staff, beverages, suitable seating and venue (in Boston 2018, the venue was Westin Copley Place Hotel). There were a variety of attendees, which seemed to be a mix of researchers, students and professionals, likely 400 people in total.
 &nbsp;  
 
-[Previous criticisms](https://eslide.com/why-edward-tufte-is-wrong/){target="_blank"} of Tufte's courses have also mentioned this particular slide and his interpretation of it. It was around this time that Tufte let his infamous disdain for PowerPoint be known in the venue. Without going too much into it, Tufte's criticism of the most ubiquitous presentation software is that information displays should emphasize content holistically, whereas PowerPoint slides force information into a hierarchy (which tends to benefit the presenter rather than the audience). After the course, I learned that this is not the only time Tufte has had [beef with Microsoft](https://www.edwardtufte.com/bboard/q-and-a-fetch-msg?msg_id=0003Y1&topic_id=1){target="_blank"}.
+Throughout the course, Tufte showcases a variety of examples of both good and bad information design. These included an elegant scrolling music visualization (similar to a MIDI file), the National Weather Service's simple but effective website, a horrid instruction manual for a dish washing machine's silverware basket, a deceptive visualization in a New York Times article, and a controversial slide from NASA's Columbia Disaster PowerPoint presentation. 
 &nbsp;  
 
-The end of this session contained one of my favourite parts of the course, which was discussing the Fundamental Principles of Analytical Design and Charles Joseph Minard's [Carte Figurative](https://en.wikipedia.org/wiki/Charles_Joseph_Minard#Information_graphics){target="_blank"}.
+[Previous criticisms](https://eslide.com/why-edward-tufte-is-wrong/){target="_blank"} of Tufte's courses have also mentioned this particular slide and his interpretation of it. It was around this time that Tufte let his infamous distaste for PowerPoint be known in the venue. Without going too much into it, Tufte's criticism of the most ubiquitous presentation software is that information displays should emphasize content holistically, whereas PowerPoint slides separate information into a hierarchy (which tends to benefit the presenter rather than the audience). After the course, I learned that this is not the only time Tufte has had [beef with Microsoft](https://www.edwardtufte.com/bboard/q-and-a-fetch-msg?msg_id=0003Y1&topic_id=1){target="_blank"}.
 &nbsp;  
 
-![Original French language version of this visualization can be found [here](https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Minard.png/1920px-Minard.png){target="_blank"}](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Minard_Update.png/1920px-Minard_Update.png)  
+The end of the first session contained one of my favourite parts of the course, which was discussing the Fundamental Principles of Analytical Design and Charles Joseph Minard's [Carte Figurative](https://en.wikipedia.org/wiki/Charles_Joseph_Minard#Information_graphics){target="_blank"}.
+&nbsp;  
+
+![[Wikipedia 2017](https://commons.wikimedia.org/wiki/File:Minard_Update.png). Original French language version of this visualization can be found [here](https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Minard.png/1920px-Minard.png){target="_blank"}.](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Minard_Update.png/1920px-Minard_Update.png)  
 
 The graphic is widely celebrated as one of the most influential and visually dense information graphics of its time, and conveniently exemplifies Tufte's principles of analytical design.   
 &nbsp;  
 
-##Tufte's Principles of Analytical Design  
+## Tufte's Principles of Analytical Design  
 
-1. Show Comparisons  
-2. Show Causality, Mechanism, Structure and Explanation  
-3. Show Multiple Variables  
-4. Integrate Evidence  
-5. Document Credibility  
-6. Content Counts Most of All  
+- Show Comparisons  
+  
+- Show Causality, Mechanism, Structure and Explanation  
+  
+- Show Multiple Variables  
+  
+- Integrate Evidence  
+  
+- Document Credibility  
+  
+- Content Counts Most of All  
 &nbsp;  
 
 Minard's graphic satisfies these principles in several ways, which Tufte breaks down over 15 pages in *Beautiful Evidence*.  
 &nbsp;  
 
-1. Minard **contrasts** the size of the army, temperature, direction (advancing or retreating), longitude and latitude, as well as date information.  
+- Minard **contrasts** the size of the army, temperature, direction (advancing or retreating), longitude and latitude, as well as date information throughout the graphic.  
   
-2. (& 4.) Minard integrates dates, locations, and *temperature* into the graphic which allows the viewer to assign the **cause** of infantry deaths to the declining temperature.  
+- Minard **integrates** dates, locations, and *temperature* information alongside casualty data which allows the viewer to assign the **cause** of infantry deaths to the declining temperature.  
   
-3. **Six** variables are integrated in order to reflect the complex nature of the events over time.  
+- **Six** variables are integrated in order to reflect the complex nature of the events over time.  
   
-5. Minard **cites his sources**, which are listed in the names above. These names are credible individuals that witnessed the events themselves.  
+- Minard **cites his sources**; the names of credible individuals that witnessed the events themselves.  
   
-6. The **information and data are emphasized** more than any other aspect in the graphic (e.g. formatting, scales, units).  
-  
+- The **information and data are emphasized** more than any other aspect in the graphic (e.g. formatting, scales, units).  
+&nbsp;
+
+Learning and seeing these principles in action was the biggest design-centric takeaway from the course. I was happy to hear these principles spelled out so concisely because, as I mentioned earlier, past courses I have taken did not lay out best practices or principles while teaching students how to create data visualizations.  
+
+So seeing these principles in a historical visualization is great, but now that we know these principles it is important to apply them to our own visualizations.  
 &nbsp;  
 
-Learning and seeing these principles in action were the biggest design centric takeaways from the course. I was happy to hear these principles spelled out so concisely because, as I mentioned earlier, previous visualization courses did not lay out best practices or principles 
+## Thesis Visualization Revamp  
+&nbsp;  
+I will use the principles mentioned above to improve a data visualization I created for my master's thesis. Although I just recently finshed my master's thesis, there is a lot I have learned about R and data visualization since finishing. Revisiting my thesis is a little painful since it only contains visualizations created in Excel. Although many of the visualizations received constructive cricism before, there are many aspects that can still be improved.
+&nbsp;  
+
+So here is the visualization I have chosen to revamp:  
+&nbsp;
+
+![Figure 4. Spatial working memory accuracy in each arm pattern across increasing levels of RI. Spatial working memory was measured as a percentage of correct choices within the first four choices of the test phase. Errors bars represent standard error. Chance accuracy (41%) is denoted by the dotted line.](/img/exp1.png)  
+  
+Note that I will not give any context for the the data being described in this visualization because I am focussed on enhancing its aesthetics and design. If you would like to understand the data, feel free to refer to [my thesis](https://ir.lib.uwo.ca/etd/5511/).  
 
 
 
+So first, let me outline what the visualization is doing right...  
+&nbsp;  
 
+- **Comparisons** are shown across the three lines representing three different treatment categories  
+  
+- The visualization shows the independent variable (retention interval) and grouping variable (pattern) **causing** variation in performance accuracy (dependent variable, y-axis)  
+  
+- The visualization contains **multiple variables**  
+&nbsp;  
+
+Next, here are my issues with the visualization without making excuses for them...  
+&nbsp;  
+
+- Time is represented as a categorical variable on the x-axis, since the distance between retention intervals are not to scale  
+  
+- The full range of possible values is not shown on the y-axis  
+  
+- The colours could be improved  
+  
+- Labelling and fonts could be improved  
+  
+- The data and information are obscured by formatting, the legend and summary statistics  
+&nbsp;  
+
+
+A great reminder of how much I have learned in this year alone.
+
+```{r echo = FALSE, out.width= "50%"}
+include_graphics("public/img/bostonsky.JPG")
+```
 
 
 
