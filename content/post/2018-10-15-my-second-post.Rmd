@@ -1,7 +1,7 @@
 ---
 title: "Boston 2018"
 author: "Hayden MacDonald"
-date: "2018-11-05"
+date: "2018-11-08"
 output:
   pdf_document: default
   html_document: default
@@ -98,7 +98,7 @@ Minard's graphic satisfies these principles in several ways, which Tufte breaks 
 
 Learning and seeing these principles in action was the biggest design-centric takeaway from the course. I was happy to hear these principles spelled out so concisely because, as I mentioned earlier, past courses I have taken did not lay out best practices or principles while teaching students how to create data visualizations.  
 
-So seeing these principles in a historical visualization is great, but now that we know these principles it is important to apply them to our own visualizations.  
+Seeing these principles in a historical visualization was enlightening, but now that we know these principles it is important to apply them to our own visualizations.  
 &nbsp;  
 
 ## Thesis Visualization Revamp  
@@ -132,18 +132,55 @@ Next, here are my issues with the visualization without making excuses for them.
   
 - The full range of possible values is not shown on the y-axis  
   
-- The colours could be improved  
-  
 - Labelling and fonts could be improved  
   
-- The data and information are obscured by formatting, the legend and summary statistics  
+- The data and information are obscured by formatting and the legend  
+  
+- The summary statistics (points representing averages) obscures trends and underlying distributions of the data
 &nbsp;  
+
+When we refer back to Tufte's principles, this visualization will not document credibility by citing sources. Since the data were recorded based on animal behaviour in a cognitive task, I will instead opt to document credibility by un-obscuring the underlying distribution of the data. This way the audience will be allowed to see how the data change across levels of different variables.  
+
+```{r setup, echo = FALSE, message = FALSE, warning = FALSE}
+library(readr)
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+library(ggrepel)
+```
+
+```{r import, message=FALSE}
+rdata <- read_csv("thesisexp1.csv")
+rdata$Pattern <- factor(rdata$Pattern)
+```
+
+```{r wrangle}
+rdata2 <- rdata %>%
+    group_by(Pattern, RI) %>%
+    summarize(mean = mean(PercentCorrect))
+
+rdata2
+```
+
+```{r viz}
+rdata2 %>%
+    ggplot(aes(x = RI, y = mean, group = Pattern, color = Pattern)) +
+    geom_point() +
+    geom_line() +
+    scale_x_log10() +
+    scale_y_continuous(limits = c(0, 100)) +
+    scale_color_manual(values = c("#9bbb59", "#c0504d", "#4f81bd")) +
+    labs(x = "Log Retention Interval", y = "Percent Correct (%)") +
+    geom_line(y = 41, colour = "black", linetype = 2) +
+    guides(colour = "none") +
+    theme_bw()
+```
 
 
 A great reminder of how much I have learned in this year alone.
 
 ```{r echo = FALSE, out.width= "50%"}
-include_graphics("public/img/bostonsky.JPG")
+include_graphics("C:/Users/Hayden/Documents/needle-in-the-hay/public/img/bostonsky.JPG")
 ```
 
 

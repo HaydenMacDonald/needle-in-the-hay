@@ -186,11 +186,11 @@ if (!doNotTrack) {
                   <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on 2018-11-05
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on 2018-11-08
   
   
   &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 6 minutes (1247 words)
+  <i class="fa fa-clock-o"></i> 7 minutes (1470 words)
   
   
 </span>
@@ -268,7 +268,7 @@ Upon checking in for the course, students are given</p>
  </p></li>
 </ul>
 <p>Learning and seeing these principles in action was the biggest design-centric takeaway from the course. I was happy to hear these principles spelled out so concisely because, as I mentioned earlier, past courses I have taken did not lay out best practices or principles while teaching students how to create data visualizations.</p>
-<p>So seeing these principles in a historical visualization is great, but now that we know these principles it is important to apply them to our own visualizations.<br />
+<p>Seeing these principles in a historical visualization was enlightening, but now that we know these principles it is important to apply them to our own visualizations.<br />
  </p>
 </div>
 <div id="thesis-visualization-revamp" class="section level2">
@@ -295,13 +295,43 @@ I will use the principles mentioned above to improve a data visualization I crea
 <ul>
 <li><p>Time is represented as a categorical variable on the x-axis, since the distance between retention intervals are not to scale</p></li>
 <li><p>The full range of possible values is not shown on the y-axis</p></li>
-<li><p>The colours could be improved</p></li>
 <li><p>Labelling and fonts could be improved</p></li>
-<li><p>The data and information are obscured by formatting, the legend and summary statistics<br />
- </p></li>
+<li><p>The data and information are obscured by formatting and the legend</p></li>
+<li><p>The summary statistics (points representing averages) obscures trends and underlying distributions of the data  </p></li>
 </ul>
+<p>When we refer back to Tufte’s principles, this visualization will not document credibility by citing sources. Since the data were recorded based on animal behaviour in a cognitive task, I will instead opt to document credibility by un-obscuring the underlying distribution of the data. This way the audience will be allowed to see how the data change across levels of different variables.</p>
+<pre class="r"><code>rdata &lt;- read_csv(&quot;thesisexp1.csv&quot;)
+rdata$Pattern &lt;- factor(rdata$Pattern)</code></pre>
+<pre class="r"><code>rdata2 &lt;- rdata %&gt;% group_by(Pattern, RI) %&gt;% summarize(mean = mean(PercentCorrect))
+
+rdata2</code></pre>
+<pre><code>## # A tibble: 12 x 3
+## # Groups:   Pattern [?]
+##    Pattern        RI  mean
+##    &lt;fct&gt;       &lt;int&gt; &lt;dbl&gt;
+##  1 Adjacent        5 100  
+##  2 Adjacent       60  90.6
+##  3 Adjacent      240  75  
+##  4 Adjacent     1440  54.7
+##  5 Alternating     5  96.9
+##  6 Alternating    60  96.9
+##  7 Alternating   240  95.3
+##  8 Alternating  1440  68.8
+##  9 Random          5  99.2
+## 10 Random         60  90.6
+## 11 Random        240  82.8
+## 12 Random       1440  56.2</code></pre>
+<pre class="r"><code>rdata2 %&gt;% ggplot(aes(x = RI, y = mean, group = Pattern, 
+    color = Pattern)) + geom_point() + geom_line() + 
+    scale_x_log10() + scale_y_continuous(limits = c(0, 
+    100)) + scale_color_manual(values = c(&quot;#9bbb59&quot;, 
+    &quot;#c0504d&quot;, &quot;#4f81bd&quot;)) + labs(x = &quot;Log Retention Interval&quot;, 
+    y = &quot;Percent Correct (%)&quot;) + geom_line(y = 41, 
+    colour = &quot;black&quot;, linetype = 2) + guides(colour = &quot;none&quot;) + 
+    theme_bw()</code></pre>
+<p><img src="/post/2018-10-15-my-second-post_files/figure-html/viz-1.png" width="672" /></p>
 <p>A great reminder of how much I have learned in this year alone.</p>
-<p><img src="public/img/bostonsky.JPG" width="50%" /></p>
+<p><img src="C:/Users/Hayden/Documents/needle-in-the-hay/public/img/bostonsky.JPG" width="50%" /></p>
 </div>
 
 
