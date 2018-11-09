@@ -22,15 +22,6 @@
     </item>
     
     <item>
-      <title>Course</title>
-      <link>/tags/course/</link>
-      <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
-      <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
-      <guid>/tags/course/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Data Visualization</title>
       <link>/tags/data-visualization/</link>
       <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
@@ -58,9 +49,18 @@
     </item>
     
     <item>
+      <title>Review</title>
+      <link>/tags/review/</link>
+      <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
+      <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
+      <guid>/tags/review/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Rstats</title>
       <link>/tags/rstats/</link>
-      <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 18 Sep 2018 00:00:00 +0000</pubDate>
       <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
       <guid>/tags/rstats/</guid>
       <description></description>
