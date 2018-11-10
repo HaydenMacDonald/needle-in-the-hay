@@ -240,7 +240,7 @@ In this new version of the same graphic, many of the original issues have been a
 - Summary statistics and the underlying distributions are shown simultaneously to tell the whole story  
 &nbsp;  
 
-Overall, the visualization does not look drastically different. The little changes have improved the graph's accessibility and efficiency in communicating information. This exercise reinforces how “the devil is in the detail” when designing effective data visualizations. Communicating information efficiently is a valuable skill that requires practice. Practicing simple changes that help you communicate that information will yield massive rewards.  
+Overall, the visualization does not look drastically different. The little changes have improved the graph's accessibility and efficiency in communicating information. This exercise reinforces how “the devil is in the detail” when designing effective data visualizations. Furthermore, communicating information efficiently is a valuable skill that requires practice. Practicing simple changes that help you communicate that information will yield massive rewards.  
 &nbsp;  
 
 ## Conclusion
@@ -266,6 +266,6 @@ knitr::include_graphics('/img/bostonsky.JPG')
 
 
 
-As always, the code for this post is available [here]().
+As always, the code for this post is available [here](https://github.com/HaydenMacDonald/needle-in-the-hay/blob/master/content/post/2018-10-15-boston-2018-tufte-and-viz.Rmd){target="_blank"}.
 &nbsp;  
   
