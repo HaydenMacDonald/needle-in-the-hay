@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>R on Needle in the Hay</title>
-    <link>/tags/r/</link>
-    <description>Recent content in R on Needle in the Hay</description>
+    <title>Data Visualization on Needle in the Hay</title>
+    <link>/tags/data-visualization/</link>
+    <description>Recent content in Data Visualization on Needle in the Hay</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</managingEditor>
     <webMaster>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</webMaster>
     <lastBuildDate>Thu, 08 Nov 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/data-visualization/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,15 +19,6 @@
       <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
       <guid>/tufte-and-viz/</guid>
       <description>I recently attended Edward Tufte’s course, “Presenting Data and Information”, in Boston. I learned about the course through twitter after reading about Tufte, who is a professor emeritus of political science and statistics at Yale. As a future business analytics student, I was very interested in a one day course taught by a data visualization expert. The most enticing factor was that it seemed to be the most design-focused course that I had read about.</description>
-    </item>
-    
-    <item>
-      <title>The Case Against Young Link</title>
-      <link>/hbox-bayes/</link>
-      <pubDate>Tue, 18 Sep 2018 00:00:00 +0000</pubDate>
-      <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
-      <guid>/hbox-bayes/</guid>
-      <description>Melee! Super Smash Bros. Melee for the Nintendo GameCube was released in 2001. Since then, it has become one of the most adored games of the last twenty years. The game features many characters from various Nintendo game franchises, which players choose between before entering a match. The objective of each match is relatively simple: fight your opponent(s) and hit them beyond the boundaries of the stage. In contrast to fighting games, each time a player is struck they gain percentage points.</description>
     </item>
     
   </channel>

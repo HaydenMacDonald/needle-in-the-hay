@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Course on Needle in the Hay</title>
+    <link>/tags/course/</link>
+    <description>Recent content in Course on Needle in the Hay</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</managingEditor>
+    <webMaster>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</webMaster>
+    <lastBuildDate>Thu, 08 Nov 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/course/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Boston 2018</title>
+      <link>/tufte-and-viz/</link>
+      <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
+      <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
+      <guid>/tufte-and-viz/</guid>
+      <description>I recently travelled to Boston to attend Edward Tufte’s one day course, “Presenting Data and Information”. I learned about the course through twitter and read about Tufte, who is an esteemed professor emeritus of political science and statistics at Yale. As a future business analytics student, I was interested in taking a convenient one day course taught by a world expert in data visualization. The most enticing factor was that it seemed to be the most design-focussed course that I had read about.</description>
+    </item>
+    
+  </channel>
+</rss>
