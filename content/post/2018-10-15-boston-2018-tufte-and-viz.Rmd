@@ -153,8 +153,7 @@ Next, here are my issues with the visualization...
 - The summary statistics obscure the underlying distributions of the data  
 &nbsp;  
 
-I will not integrate the "Document Credibility" principle by citing sources. Since the data are from an original scientific experiment, I will instead document credibility by showing the underlying distribution of the data (via jittered, translucent points). This way the audience will see the raw and summary data simultaneously so they can form their own interpretations from both.  
-
+I will not integrate the "Document Credibility" principle by citing sources. Since the data are from an original scientific experiment, I will instead document credibility by showing the underlying distribution of the data (via jittered, translucent points). This way the audience will see the raw and summary data simultaneously so they can form their own interpretations from both.
 &nbsp;  
 
 So let's improve this visualization!  
