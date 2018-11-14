@@ -76,7 +76,7 @@ Tufte also includes a controversial slide from NASA’s Columbia Disaster PowerP
 The first session ended with one of my favourite parts of the course: Tufte's lecture on the Fundamental Principles of Analytical Design and Charles Joseph Minard’s [Carte Figurative](https://en.wikipedia.org/wiki/Charles_Joseph_Minard#Information_graphics){target="_blank"}.  
 &nbsp;  
 
-![[Wikipedia 2017](https://commons.wikimedia.org/wiki/File:Minard_Update.png){target="_blank"}. Original French language version of this visualization can be found [here](https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Minard.png/1920px-Minard.png){target="_blank"}.](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Minard_Update.png/1920px-Minard_Update.png)  
+![[Wikipedia 2017](https://upload.wikimedia.org/wikipedia/commons/e/e2/Minard_Update.png){target="_blank"}. Original French language version of this visualization can be found [here](https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Minard.png/1920px-Minard.png){target="_blank"}.](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Minard_Update.png/1920px-Minard_Update.png)  
 
 This graphic is celebrated as one of the most influential and visually dense information graphics of its time. Conveniently, it also exemplifies Tufte’s principles of analytical design.  
 &nbsp;  
