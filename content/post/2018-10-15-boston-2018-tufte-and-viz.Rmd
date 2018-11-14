@@ -223,9 +223,8 @@ dev.off()
 ```
 
 ![Figure 4. Spatial working memory accuracy in each arm pattern across increasing levels of RI. Spatial working memory was measured as a percentage of correct choices within the first four choices of the test phase. Errors bars represent standard error. Jittered, translucent data points represent individual observations at each RI. Chance accuracy (41%) is denoted by the dotted line.](/img/revamp.png)  
-&nbsp;  
 
-In this new version of the same graphic, many of the original issues have been addressed.  
+In this new version of the graphic, many of the original issues have been addressed.  
 &nbsp;  
 
 - Time is now represented as a continuum, with the levels of the x-axis variable represented on a log scale  
