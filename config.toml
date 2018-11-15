@@ -22,7 +22,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 [Params]
   homeTitle = "Needle in the Hay" # Set a different text for the header on the home page
   subtitle = "A Data Blog"
-  logo = "img/hmd2.JPG"
+  logo = "img/headshotbw.jpg"
   favicon = "img/needle2.png"
   dateFormat = "2006-01-02"
   commit = false
