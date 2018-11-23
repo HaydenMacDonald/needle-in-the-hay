@@ -142,7 +142,7 @@ So first, let me outline what the visualization is doing right...
 Next, here are my issues with the visualization...  
 &nbsp;  
 
-- Time is represented as a categorical variable on the x-axis, since the distance between retention intervals are not to scale  
+- Time is represented as a categorical variable on the x-axis, since the distance between retention intervals is not to scale  
 &nbsp;
 - The full range of possible values is not shown on the y-axis  
 &nbsp;
