@@ -52,5 +52,6 @@ Roberts, W.A., Guitar, N.A., Marsh, H.L., & **MacDonald, H.** (2016). Memory sys
 
 ----
 &nbsp;  
-This blog is built with blogdown, Hugo, the beautifulhugo theme and deployed using Netlify. Content published on my blog is released under a <a href="https://github.com/HaydenMacDonald/needle-in-the-hay/blob/master/LICENSE">MIT License</a>.
-
+This blog is built with R, the <a href="https://github.com/rstudio/blogdown" target="_blank">blogdown package</a>, <a href="https://gohugo.io/" target="_blank">Hugo</a>, the <a href="https://themes.gohugo.io/beautifulhugo/" target="_blank">beautifulhugo theme</a> and deployed using <a href="https://www.netlify.com/" target="_blank">Netlify</a>. Content published on my blog is released under a <a href="https://github.com/HaydenMacDonald/needle-in-the-hay/blob/master/LICENSE" target="_blank">MIT License</a>.  
+&nbsp;  
+  
