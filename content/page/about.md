@@ -6,7 +6,7 @@ comments: false
 
 I am a Canadian graduate student studying at the University of Western Ontario.
 
-In August 2018, I achieved a Master of Science in Psychology. Currently, I am transitioning to a career in data analytics through Ivey Business School's MSc in Business Analytics (commencing January 2019).  
+In August 2018, I achieved a Master of Science in Psychology. Currently, I am pursuing a career in data analytics through Ivey Business School's MSc in Business Analytics (expected graduation May 2020).  
 
 My interests include research, statistical data analysis, and data visualization.  
 
@@ -17,7 +17,11 @@ In my spare time, I enjoy cooking, hiking, cycling, SCUBA diving, birding as wel
 
 ### Education
 &nbsp;  
-**Master of Science - Cognitive, Developmental & Brain Sciences (Graduation Fall 2018)**
+**Candidate for Master of Science in Management (MSc) - Business Analytics (Expected Graduation Spring 2020)**  
+Ivey Business School  
+University of Western Ontario  
+
+**Master of Science - Cognitive, Developmental & Brain Sciences (2018)**  
 Department of Psychology, Faculty of Social Science  
 University of Western Ontario  
 
@@ -49,6 +53,16 @@ Roberts, W.A., Guitar, N.A., Marsh, H.L., & **MacDonald, H.** (2016). Memory sys
 
 **MacDonald, H.**, & Roberts, W. A. (2017, April). Time versus context in a visual mid-session reversal task. Poster presented at the International Conference On Comparative Cognition, Melbourne, Florida.  
 &nbsp;  
+
+----
+
+### Technical Skills  
+
+- R
+- git
+- SQL
+- Excel
+- SPSS
 
 ----
 &nbsp;  
