@@ -101,7 +101,9 @@ monofont: Fira Code Medium
 ---
 ```
 &nbsp;  
-The default main font (`mainfont`) and code font (`monofont`) are set to [CMU Serif Roman](https://www.fontsquirrel.com/fonts/computer-modern){target="_blank"} and [Fira Code Medium](https://github.com/tonsky/FiraCode){target="_blank"}, respectively. Remove or change these options from the YAML header to customize your document.  
+Remove or change these options from the YAML header to customize your document.  
+
+The default main font (`mainfont`) and code font (`monofont`) are set to [CMU Serif Roman](https://www.fontsquirrel.com/fonts/computer-modern){target="_blank"} and [Fira Code Medium](https://github.com/tonsky/FiraCode){target="_blank"}, respectively. To use CMU Serif Roman and Fira Code Medium, follow their installation instructions. Additionally, you can change the syntax highlighting in code chunks through the highlight option in the YAML header. By default, it is set to `tango`. Other options include `default`, `pygments`, `kate`, `monochrome`, `espresso`, `zenburn`, and `haddock`. See this [blog post](https://www.garrickadenbuie.com/blog/2018/07/06/pandoc-syntax-highlighting-examples/){target="_blank"} by Garrick Aden-Buie for a gallery of these different options.
 &nbsp;  
 
 ## Related Packages
