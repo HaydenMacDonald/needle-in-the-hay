@@ -16,7 +16,7 @@ tags:
 &nbsp;  
 [R Markdown](https://rmarkdown.rstudio.com/){target="_blank"}</a><sup>[1](#myfootnote1)</sup> is a powerful R package that allows users to dynamically render their work (code, graphs, and text) into various file formats. Its wide range of output formats (including HTML, PDF, Word) makes it the most powerful and intuitive communication tool within the R community. Ultimately, R Markdown bridges the gap between data professionals and the audience they need to communicate to. In fact, I'm communicating to you right now through an R Markdown document rendered to HTML.  
 
-In this blog post, I introduce my package, `hmdrmd`, that extends the functionality of `rmarkdown` through templates that aim to organize analytical thinking in data-oriented projects.  
+In this blog post, I introduce my package, `hmdrmd`, that extends `rmarkdown` by providing document templates that organize analytical thinking in data-oriented projects.  
 &nbsp;
 
 #hmdrmd
@@ -50,7 +50,7 @@ To avoid continuously reformatting every new R Markdown document to this structu
 
 ## Case Study Analysis
 &nbsp;  
-The second R Markdown template in `hmdrmd` is for case study analyses. This template is based on William Ellet's case study guide in [The Case Study Handbook, Revised Edition: A Student's Guide](https://hbr.org/product/the-case-study-handbook-revised-edition-a-student-s-guide/10208E-KND-ENG){target="_blank"}<sup>[3](#myfootnote3)</sup>. This template is intended to be used by students in educational and research environments involving case analyses. This framework for thinking about case studies, in my opinion, is highly effective. This is because it instructs students to be conscious of the most important issues and information in any case study.  
+The second R Markdown template in `hmdrmd` is for case study analyses. This template is based on William Ellet's case study guide in [The Case Study Handbook, Revised Edition: A Student's Guide](https://hbr.org/product/the-case-study-handbook-revised-edition-a-student-s-guide/10208E-KND-ENG){target="_blank"}<sup>[3](#myfootnote3)</sup>. This template is intended to be used by students in educational and research environments involving case analyses. This framework , in my opinion, is highly effective because it instructs students to pay attention to the most important issues and information in a case.  
 
 The document contains 12 essential steps, separated into 6 sections:  
 &nbsp;  
