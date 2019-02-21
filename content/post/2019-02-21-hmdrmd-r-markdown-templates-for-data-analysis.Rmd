@@ -1,0 +1,130 @@
+---
+title: 'hmdrmd: R Markdown templates for data analysis'
+author: "Hayden MacDonald"
+date: "February 21, 2019"
+output: html_document
+slug: hmdrmd
+tags: 
+- R
+- data analysis
+- R Markdown
+- reporting
+- communication
+subtitle: 'Tufte Course & Visualization Best Practices'
+---
+
+# R Markdown
+&nbsp;  
+[R Markdown](https://rmarkdown.rstudio.com/){target="_blank"}</a><sup>[1](#myfootnote1)</sup> is a powerful R package that allows users to dynamically render their work (code, graphs, and text) into various file formats. Its wide range of output formats (including HTML, PDF, Word documents) makes it the most powerful and intuitive communication tool within the R community. Ultimately, R Markdown bridges the gap between data professionals and the audience they need to communicate to. In fact, I'm communicating to you right now through an R Markdown document rendered to HTML.  
+
+In this blog post, I introduce my package, `hmdrmd`, that extends the functionality of `rmarkdown` through templates that aim to organize analytical thinking in data-oriented projects.  
+&nbsp;
+
+#hmdrmd
+&nbsp;  
+
+## Tidy Analysis
+&nbsp;  
+While using R Markdown default files, I found that I was consistently reformatting my documents into same general structure. Being an acolyte of tidy data<sup>[2](#myfootnote2)</sup>, I organized my data projects into the following sections:  
+&nbsp;  
+
+- Packages
+- Import
+- Wrangle
+- Visualize
+- Model
+- Communicate / Export  
+&nbsp;  
+
+This framework is based on a now infamous diagram that describes the [tidyverse](https://www.tidyverse.org/) workflow (see *Figure 1*).
+
+![Figure 1. Tidy Data Analysis Workflow](/img/tidy.png)
+
+This diagram is particularly useful for organizing a data project into a logical workflow.  
+
+To avoid continuously reformatting every new R Markdown document to this structure, I created this template, called "Tidy Analysis".  
+&nbsp;  
+
+### Example of Tidy Analysis PDF output
+![]()
+![]()
+
+&nbsp;  
+
+## Case Study Analysis
+&nbsp;  
+The second R Markdown template in `hmdrmd` is for case study analyses. This template is based on William Ellet's case study guide in [The Case Study Handbook, Revised Edition: A Student's Guide](https://hbr.org/product/the-case-study-handbook-revised-edition-a-student-s-guide/10208E-KND-ENG)<sup>[3](#myfootnote3)</sup>. This template is intended to be used by students in educational and research environments involving case analyses. This framework for thinking about case studies, in my opinion, is highly effective. This is because it instructs students to be conscious of the most important issues and information in any case study.  
+
+The document contains 12 essential steps, separated into 6 sections:  
+&nbsp;  
+
+- Role and Scenario
+- Criteria
+- Analysis
+- Evaluation
+- Uncertainties
+- Action Plan  
+&nbsp;  
+
+### Example of Case Study Analysis PDF output
+
+![]()
+![]()
+![]()
+
+&nbsp;  
+
+## Usage
+
+In order to render pdf documents from R Markdown files, you will require LaTeX. If you have never installed a LaTex distribution, you can do so using the [TinyTeX package](https://github.com/yihui/tinytex).  
+&nbsp;  
+```{r, eval = FALSE}
+install.packages("tinytex")
+
+tinytex::install_tinytex()
+```
+&nbsp;  
+Once `hmdrmd` and `tinytex` are installed, you can access these templates in RStudio through the following path:  
+
+File > New File > R Markdown... > From Template.  
+
+![New R Markdown > From Template](/img/templates.png)  
+Defaults for pdf output are controlled through the YAML header. The default main font (`mainfont`) and code font (`monofont`) are set to [CMU Serif Roman](https://www.fontsquirrel.com/fonts/computer-modern){target="_blank"} and [Fira Code Medium](https://github.com/tonsky/FiraCode){target="_blank"}, respectively. Remove or change these options from the YAML header to customize your document's font.  
+&nbsp;  
+
+## Related Packages
+&nbsp;  
+
+- [rmarkdown](https://github.com/rstudio/rmarkdown){target="_blank"}
+- [knitr](https://github.com/yihui/knitr){target="_blank"}
+- [tufte](https://github.com/rstudio/tufte){target="_blank"}
+- [tint](https://github.com/eddelbuettel/tint){target="_blank"}
+- [rticles](https://github.com/rstudio/rticles){target="_blank"}
+
+&nbsp;  
+
+## Help 
+&nbsp;  
+Submit issues on [GitHub](https://github.com/HaydenMacDonald/hmdrmd){target="_blank"}.  
+&nbsp;  
+
+## Functionality
+&nbsp;  
+Currently, these templates only render to PDF documents. If you are interested in extending the functionality of this package, fork the original repository, make your changes and submit them as a pull request.  
+&nbsp;  
+
+## References
+&nbsp;  
+<a name="myfootnote1">1</a>: Allaire, JJ., Xie, Y., McPherson, J., Luraschi J., Ushey, K., Atkins, A., Wickham, H., Cheng, J., Chang, W., & Iannone, R. (2017). rmarkdown: Dynamic documents for R. R package version 1.11. URL: [https://CRAN.R-project.org/package=rmarkdown](https://CRAN.R-project.org/package=rmarkdown){target="_blank"}  
+
+<a name="myfootnote2">2</a>: Wickham, H. (2014), Tidy data. *Journal of Statistical Software*, *59*, URL: [https://www.jstatsoft.org/article/view/v059i10](https://www.jstatsoft.org/article/view/v059i10){target="_blank"}  
+
+<a name="myfootnote3">3</a>: Ellet, W. (2018). *The case study handbook, revised edition: A student's guide*. Boston, Massachussets: Harvard Business Review Press.  
+
+
+
+
+
+
+
+

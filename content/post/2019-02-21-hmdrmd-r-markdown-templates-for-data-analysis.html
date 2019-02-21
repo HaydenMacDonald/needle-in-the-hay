@@ -1,0 +1,122 @@
+---
+title: 'hmdrmd: R Markdown templates for data analysis'
+author: "Hayden MacDonald"
+date: "February 21, 2019"
+output: html_document
+slug: hmdrmd
+tags: 
+- R
+- data analysis
+- R Markdown
+- reporting
+- communication
+subtitle: 'Tufte Course & Visualization Best Practices'
+---
+
+
+
+<div id="r-markdown" class="section level1">
+<h1>R Markdown</h1>
+<p> <br />
+<a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a></a><sup><a href="#myfootnote1">1</a></sup> is a powerful R package that allows users to dynamically render their work (code, graphs, and text) into various file formats. Its wide range of output formats (including HTML, PDF, Word documents) makes it the most powerful and intuitive communication tool within the R community. Ultimately, R Markdown bridges the gap between data professionals and the audience they need to communicate to. In fact, I’m communicating to you right now through an R Markdown document rendered to HTML.</p>
+<p>In this blog post, I introduce my package, <code>hmdrmd</code>, that extends the functionality of <code>rmarkdown</code> through templates that aim to organize analytical thinking in data-oriented projects.<br />
+ </p>
+</div>
+<div id="hmdrmd" class="section level1">
+<h1>hmdrmd</h1>
+<p> </p>
+<div id="tidy-analysis" class="section level2">
+<h2>Tidy Analysis</h2>
+<p> <br />
+While using R Markdown default files, I found that I was consistently reformatting my documents into same general structure. Being an acolyte of tidy data<sup><a href="#myfootnote2">2</a></sup>, I organized my data projects into the following sections:<br />
+ </p>
+<ul>
+<li>Packages</li>
+<li>Import</li>
+<li>Wrangle</li>
+<li>Visualize</li>
+<li>Model</li>
+<li>Communicate / Export<br />
+ </li>
+</ul>
+<p>This framework is based on a now infamous diagram that describes the <a href="https://www.tidyverse.org/">tidyverse</a> workflow (see <em>Figure 1</em>).</p>
+<div class="figure">
+<img src="/img/tidy.png" alt="Figure 1. Tidy Data Analysis Workflow" />
+<p class="caption">Figure 1. Tidy Data Analysis Workflow</p>
+</div>
+<p>This diagram is particularly useful for organizing a data project into a logical workflow.</p>
+<p>To avoid continuously reformatting every new R Markdown document to this structure, I created this template, called “Tidy Analysis”.<br />
+ </p>
+<div id="example-of-tidy-analysis-pdf-output" class="section level3">
+<h3>Example of Tidy Analysis PDF output</h3>
+<p><img src="" /> <img src="" /></p>
+<p> </p>
+</div>
+</div>
+<div id="case-study-analysis" class="section level2">
+<h2>Case Study Analysis</h2>
+<p> <br />
+The second R Markdown template in <code>hmdrmd</code> is for case study analyses. This template is based on William Ellet’s case study guide in <a href="https://hbr.org/product/the-case-study-handbook-revised-edition-a-student-s-guide/10208E-KND-ENG">The Case Study Handbook, Revised Edition: A Student’s Guide</a><sup><a href="#myfootnote3">3</a></sup>. This template is intended to be used by students in educational and research environments involving case analyses. This framework for thinking about case studies, in my opinion, is highly effective. This is because it instructs students to be conscious of the most important issues and information in any case study.</p>
+<p>The document contains 12 essential steps, separated into 6 sections:<br />
+ </p>
+<ul>
+<li>Role and Scenario</li>
+<li>Criteria</li>
+<li>Analysis</li>
+<li>Evaluation</li>
+<li>Uncertainties</li>
+<li>Action Plan<br />
+ </li>
+</ul>
+<div id="example-of-case-study-analysis-pdf-output" class="section level3">
+<h3>Example of Case Study Analysis PDF output</h3>
+<p><img src="" /> <img src="" /> <img src="" /></p>
+<p> </p>
+</div>
+</div>
+<div id="usage" class="section level2">
+<h2>Usage</h2>
+<p>In order to render pdf documents from R Markdown files, you will require LaTeX. If you have never installed a LaTex distribution, you can do so using the <a href="https://github.com/yihui/tinytex">TinyTeX package</a>.<br />
+ </p>
+<pre class="r"><code>install.packages(&quot;tinytex&quot;)
+
+tinytex::install_tinytex()</code></pre>
+<p> <br />
+Once <code>hmdrmd</code> and <code>tinytex</code> are installed, you can access these templates in RStudio through the following path:</p>
+<p>File &gt; New File &gt; R Markdown… &gt; From Template.</p>
+<p><img src="/img/templates.png" alt="New R Markdown &gt; From Template" /><br />
+Defaults for pdf output are controlled through the YAML header. The default main font (<code>mainfont</code>) and code font (<code>monofont</code>) are set to <a href="https://www.fontsquirrel.com/fonts/computer-modern" target="_blank">CMU Serif Roman</a> and <a href="https://github.com/tonsky/FiraCode" target="_blank">Fira Code Medium</a>, respectively. Remove or change these options from the YAML header to customize your document’s font.<br />
+ </p>
+</div>
+<div id="related-packages" class="section level2">
+<h2>Related Packages</h2>
+<p> </p>
+<ul>
+<li><a href="https://github.com/rstudio/rmarkdown" target="_blank">rmarkdown</a></li>
+<li><a href="https://github.com/yihui/knitr" target="_blank">knitr</a></li>
+<li><a href="https://github.com/rstudio/tufte" target="_blank">tufte</a></li>
+<li><a href="https://github.com/eddelbuettel/tint" target="_blank">tint</a></li>
+<li><a href="https://github.com/rstudio/rticles" target="_blank">rticles</a></li>
+</ul>
+<p> </p>
+</div>
+<div id="help" class="section level2">
+<h2>Help</h2>
+<p> <br />
+Submit issues on <a href="https://github.com/HaydenMacDonald/hmdrmd" target="_blank">GitHub</a>.<br />
+ </p>
+</div>
+<div id="functionality" class="section level2">
+<h2>Functionality</h2>
+<p> <br />
+Currently, these templates only render to PDF documents. If you are interested in extending the functionality of this package, fork the original repository, make your changes and submit them as a pull request.<br />
+ </p>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<p> <br />
+<a name="myfootnote1">1</a>: Allaire, JJ., Xie, Y., McPherson, J., Luraschi J., Ushey, K., Atkins, A., Wickham, H., Cheng, J., Chang, W., &amp; Iannone, R. (2017). rmarkdown: Dynamic documents for R. R package version 1.11. URL: <a href="https://CRAN.R-project.org/package=rmarkdown" class="uri" target="_blank">https://CRAN.R-project.org/package=rmarkdown</a></p>
+<p><a name="myfootnote2">2</a>: Wickham, H. (2014), Tidy data. <em>Journal of Statistical Software</em>, <em>59</em>, URL: <a href="https://www.jstatsoft.org/article/view/v059i10" class="uri" target="_blank">https://www.jstatsoft.org/article/view/v059i10</a></p>
+<p><a name="myfootnote3">3</a>: Ellet, W. (2018). <em>The case study handbook, revised edition: A student’s guide</em>. Boston, Massachussets: Harvard Business Review Press.</p>
+</div>
+</div>

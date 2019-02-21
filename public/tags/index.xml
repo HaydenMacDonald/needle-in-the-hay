@@ -22,6 +22,24 @@
     </item>
     
     <item>
+      <title>Communication</title>
+      <link>/tags/communication/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
+      <guid>/tags/communication/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Data Analysis</title>
+      <link>/tags/data-analysis/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
+      <guid>/tags/data-analysis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Data Visualization</title>
       <link>/tags/data-visualization/</link>
       <pubDate>Sun, 11 Nov 2018 00:00:00 +0000</pubDate>
@@ -45,6 +63,24 @@
       <pubDate>Sun, 11 Nov 2018 00:00:00 +0000</pubDate>
       <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
       <guid>/tags/r/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R Markdown</title>
+      <link>/tags/r-markdown/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
+      <guid>/tags/r-markdown/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Reporting</title>
+      <link>/tags/reporting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
+      <guid>/tags/reporting/</guid>
       <description></description>
     </item>
     
