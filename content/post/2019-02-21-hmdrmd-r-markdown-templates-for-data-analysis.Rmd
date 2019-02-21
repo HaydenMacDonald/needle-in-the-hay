@@ -50,7 +50,7 @@ To avoid continuously reformatting every new R Markdown document to this structu
 
 ## Case Study Analysis
 &nbsp;  
-The second R Markdown template in `hmdrmd` is for case study analyses. This template is based on William Ellet's case study guide in [The Case Study Handbook, Revised Edition: A Student's Guide](https://hbr.org/product/the-case-study-handbook-revised-edition-a-student-s-guide/10208E-KND-ENG){target="_blank"}<sup>[3](#myfootnote3)</sup>. This template is intended to be used by students in educational and research environments involving case analyses. This framework for thinking about case studies, in my opinion, is highly effective. This is because it instructs students to be conscious of the most important issues and information in any case study.  
+The second R Markdown template in `hmdrmd` is for case study analyses. This template is based on William Ellet's case study guide in [The Case Study Handbook, Revised Edition: A Student's Guide](https://hbr.org/product/the-case-study-handbook-revised-edition-a-student-s-guide/10208E-KND-ENG){target="_blank"}<sup>[3](#myfootnote3)</sup>. This template is intended to be used by students in educational and research environments involving case analyses. This framework, in my opinion, is highly effective because it calls attention to the most important issues and information in any case study.  
 
 The document contains 12 essential steps, separated into 6 sections:  
 &nbsp;  
