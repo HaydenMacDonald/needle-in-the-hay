@@ -16,7 +16,7 @@ tags:
 &nbsp;  
 [R Markdown](https://rmarkdown.rstudio.com/){target="_blank"}</a><sup>[1](#myfootnote1)</sup> is a powerful R package that allows users to dynamically render their work (code, graphs, and text) into various file formats. Its wide range of output formats (including HTML, PDF, Word) makes it the most powerful and intuitive communication tool within the R community. Ultimately, R Markdown bridges the gap between data professionals and the audience they need to communicate to. In fact, I'm communicating to you right now through an R Markdown document rendered to HTML.  
 
-In this blog post, I introduce my package, `hmdrmd`, that extends `rmarkdown` by providing document templates that organize analytical thinking in data-oriented projects.  
+In this blog post, I introduce my package, `hmdrmd`, which extends `rmarkdown` by providing document templates for data-oriented projects.  
 &nbsp;
 
 #hmdrmd
