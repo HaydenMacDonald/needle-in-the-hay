@@ -145,7 +145,7 @@ Currently, these templates only render to PDF documents. If you are interested i
 
 <a name="myfootnote2">2</a>: Wickham, H. (2014). Tidy data. *Journal of Statistical Software*, *59*, URL: [https://www.jstatsoft.org/article/view/v059i10](https://www.jstatsoft.org/article/view/v059i10){target="_blank"}  
 
-<a name="myfootnote3">3</a>: Wickham, H., & Grolemund, G. (2017). R for data science. Sebastopol, California: O'Reilly Media. URL: [https://r4ds.had.co.nz/index.html](https://r4ds.had.co.nz/index.html){target="_blank"} 
+<a name="myfootnote3">3</a>: Wickham, H., & Grolemund, G. (2017). *R for data science*. Sebastopol, California: O'Reilly Media. URL: [https://r4ds.had.co.nz/index.html](https://r4ds.had.co.nz/index.html){target="_blank"} 
 
 <a name="myfootnote4">4</a>: Ellet, W. (2018). *The case study handbook, revised edition: A student's guide*. Boston, Massachussets: Harvard Business Review Press.  
 
