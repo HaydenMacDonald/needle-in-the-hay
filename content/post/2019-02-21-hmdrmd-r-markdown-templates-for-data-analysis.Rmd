@@ -35,7 +35,7 @@ While using R Markdown default files, I found that I was consistently reformatti
 - Communicate / Export  
 &nbsp;  
 
-This framework is based on a now infamous diagram that describes the [tidyverse](https://www.tidyverse.org/){target="_blank"} workflow (see *Figure 1*).
+This framework is based on a now infamous diagram that describes the ["R for Data Science"](https://r4ds.had.co.nz/index.html){target="_blank"}<sup>[3](#myfootnote3)</sup> workflow (see *Figure 1*).
 
 ![Figure 1. Tidy Data Analysis Workflow](/img/tidy.png)
 
@@ -50,7 +50,7 @@ To avoid continuously reformatting every new R Markdown document to this structu
 
 ## Case Study Analysis
 &nbsp;  
-The second R Markdown template in `hmdrmd` is for case study analyses. This template is based on William Ellet's case study guide in [The Case Study Handbook, Revised Edition: A Student's Guide](https://hbr.org/product/the-case-study-handbook-revised-edition-a-student-s-guide/10208E-KND-ENG){target="_blank"}<sup>[3](#myfootnote3)</sup>. This template is intended to be used by students in educational and research environments involving case analyses. This framework , in my opinion, is highly effective because it instructs students to pay attention to the most important issues and information in a case.  
+The second R Markdown template in `hmdrmd` is for case study analyses. This template is based on William Ellet's case study guide in [The Case Study Handbook, Revised Edition: A Student's Guide](https://hbr.org/product/the-case-study-handbook-revised-edition-a-student-s-guide/10208E-KND-ENG){target="_blank"}<sup>[4](#myfootnote4)</sup>. This template is intended to be used by students in educational and research environments involving case analyses. This framework , in my opinion, is highly effective because it instructs students to pay attention to the most important issues and information in a case.  
 
 The document contains 12 essential steps, separated into 6 sections:  
 &nbsp;  
@@ -145,7 +145,9 @@ Currently, these templates only render to PDF documents. If you are interested i
 
 <a name="myfootnote2">2</a>: Wickham, H. (2014). Tidy data. *Journal of Statistical Software*, *59*, URL: [https://www.jstatsoft.org/article/view/v059i10](https://www.jstatsoft.org/article/view/v059i10){target="_blank"}  
 
-<a name="myfootnote3">3</a>: Ellet, W. (2018). *The case study handbook, revised edition: A student's guide*. Boston, Massachussets: Harvard Business Review Press.  
+<a name="myfootnote3">3</a>: Wickham, H., & Grolemund, G. (2017). R for data science. Sebastopol, California: O'Reilly Media. URL: [https://r4ds.had.co.nz/index.html](https://r4ds.had.co.nz/index.html){target="_blank"} 
+
+<a name="myfootnote4">4</a>: Ellet, W. (2018). *The case study handbook, revised edition: A student's guide*. Boston, Massachussets: Harvard Business Review Press.  
 
 
 
