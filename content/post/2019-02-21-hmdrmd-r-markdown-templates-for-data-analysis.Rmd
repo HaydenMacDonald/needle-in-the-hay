@@ -71,8 +71,20 @@ The document contains 12 essential steps, separated into 6 sections:
 
 &nbsp;  
 
-## Usage
+## Installation
 
+You can download the package using the following code:  
+&nbsp;  
+```{r, eval = FALSE}
+if (!requireNamespace("devtools")) install.packages("devtools")
+
+devtools::install_github("HaydenMacDonald/hmdrmd")
+```
+
+&nbsp;  
+
+## Usage
+&nbsp;  
 In order to render pdf documents from R Markdown files, you will need LaTeX. If you have never installed a LaTex distribution, you can do so using the [TinyTeX package](https://github.com/yihui/tinytex){target="_blank"}.  
 &nbsp;  
 ```{r, eval = FALSE}
