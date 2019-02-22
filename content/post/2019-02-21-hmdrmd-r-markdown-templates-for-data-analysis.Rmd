@@ -1,0 +1,158 @@
+---
+title: 'hmdrmd: R Markdown templates for data analysis'
+author: "Hayden MacDonald"
+date: "2019-02-21"
+output: html_document
+slug: hmdrmd
+tags: 
+- R
+- data analysis
+- R Markdown
+- reporting
+- communication
+---
+
+# R Markdown
+&nbsp;  
+[R Markdown](https://rmarkdown.rstudio.com/){target="_blank"}</a><sup>[1](#myfootnote1)</sup> is a powerful R package that allows users to dynamically render their work (code, graphs, and text) into various file formats. Its wide range of output formats (including HTML, PDF, Word) makes it one of the most flexible and intuitive communication tools within the R community. Ultimately, R Markdown bridges the gap between data professionals and the audience they need to communicate to. In fact, I'm communicating to you right now through an R Markdown document rendered to HTML.  
+
+In this blog post, I introduce my package, `hmdrmd`, which extends `rmarkdown` by providing document templates for data-oriented projects.  
+&nbsp;
+
+#hmdrmd
+&nbsp;  
+
+## Tidy Analysis
+&nbsp;  
+While using R Markdown default files, I found that I was consistently reformatting my documents into same general structure. Being an acolyte of tidy data<sup>[2](#myfootnote2)</sup>, I organized my data projects into the following sections:  
+&nbsp;  
+
+- Packages
+- Import
+- Wrangle
+- Visualize
+- Model
+- Communicate / Export  
+&nbsp;  
+
+This framework is based on a now infamous diagram that describes the ["R for Data Science"](https://r4ds.had.co.nz/index.html){target="_blank"}<sup>[3](#myfootnote3)</sup> workflow (see *Figure 1*).
+
+![Figure 1. Tidy Data Analysis Workflow](/img/tidy.png)
+
+This diagram is particularly useful for organizing a data project into a logical workflow.  
+
+To avoid continuously reformatting every new R Markdown document to this structure, I created this template, called "Tidy Analysis".  
+&nbsp;  
+
+### Example of Tidy Analysis PDF output
+![](/img/tidy1.PNG)
+![](/img/tidy2.PNG)
+
+## Case Study Analysis
+&nbsp;  
+The second R Markdown template in `hmdrmd` is for case study analyses. This template is based on William Ellet's case study guide in [The Case Study Handbook, Revised Edition: A Student's Guide](https://hbr.org/product/the-case-study-handbook-revised-edition-a-student-s-guide/10208E-KND-ENG){target="_blank"}<sup>[4](#myfootnote4)</sup>. This template is intended to be used by students in educational and research environments involving case analyses. This framework , in my opinion, is highly effective because it instructs students to pay attention to the most important issues and information in a case.  
+
+The document contains 12 essential steps, separated into 6 sections:  
+&nbsp;  
+
+- Role and Scenario
+- Criteria
+- Analysis
+- Evaluation
+- Uncertainties
+- Action Plan  
+&nbsp;  
+
+### Example of Case Study Analysis PDF output
+
+![](/img/case1.PNG)
+![](/img/case2.PNG)
+![](/img/case3.PNG)
+
+&nbsp;  
+
+## Installation
+
+You can download the package using the following code:  
+&nbsp;  
+```{r, eval = FALSE}
+if (!requireNamespace("devtools")) install.packages("devtools")
+
+devtools::install_github("HaydenMacDonald/hmdrmd")
+```
+
+&nbsp;  
+
+## Usage
+&nbsp;  
+In order to render pdf documents from R Markdown files, you will need LaTeX. If you have never installed a LaTex distribution, you can do so using the [TinyTeX package](https://github.com/yihui/tinytex){target="_blank"}.  
+&nbsp;  
+```{r, eval = FALSE}
+install.packages("tinytex")
+
+tinytex::install_tinytex()
+```
+&nbsp;  
+Once `hmdrmd` and `tinytex` are installed, you can access these templates in RStudio through the following path:  
+
+File > New File > R Markdown... > From Template.  
+
+![New R Markdown > From Template](/img/templates.png)  
+Defaults for pdf output are controlled through the YAML header.  
+&nbsp;  
+```yaml
+---
+title: "title"
+author: "author"
+date: "`r Sys.Date()`"
+output: 
+  hmdrmd::case_study:
+    highlight: tango
+mainfont: CMU Serif Roman
+monofont: Fira Code Medium
+---
+```
+&nbsp;  
+Remove or change these options from the YAML header to customize your document.  
+
+The default main font (`mainfont`) and code font (`monofont`) are set to [CMU Serif Roman](https://www.fontsquirrel.com/fonts/computer-modern){target="_blank"} and [Fira Code Medium](https://github.com/tonsky/FiraCode){target="_blank"}, respectively. To use CMU Serif Roman and Fira Code Medium, follow their installation instructions. Additionally, you can change the syntax highlighting in code chunks through the highlight option in the YAML header. By default, it is set to `tango`. Other options include `default`, `pygments`, `kate`, `monochrome`, `espresso`, `zenburn`, and `haddock`. See this [blog post](https://www.garrickadenbuie.com/blog/2018/07/06/pandoc-syntax-highlighting-examples/){target="_blank"} by Garrick Aden-Buie for a gallery of these different options.
+&nbsp;  
+
+## Related Packages
+&nbsp;  
+
+- [rmarkdown](https://github.com/rstudio/rmarkdown){target="_blank"}
+- [knitr](https://github.com/yihui/knitr){target="_blank"}
+- [tufte](https://github.com/rstudio/tufte){target="_blank"}
+- [tint](https://github.com/eddelbuettel/tint){target="_blank"}
+- [rticles](https://github.com/rstudio/rticles){target="_blank"}
+
+&nbsp;  
+
+## Help 
+&nbsp;  
+Submit issues on [GitHub](https://github.com/HaydenMacDonald/hmdrmd){target="_blank"}.  
+&nbsp;  
+
+## Functionality
+&nbsp;  
+Currently, these templates only render to PDF documents. If you are interested in extending the functionality of this package, fork the original repository, make your changes and submit them as a pull request.  
+&nbsp;  
+
+## References
+&nbsp;  
+<a name="myfootnote1">1</a>: Allaire, JJ., Xie, Y., McPherson, J., Luraschi J., Ushey, K., Atkins, A., Wickham, H., Cheng, J., Chang, W., & Iannone, R. (2017). rmarkdown: Dynamic documents for R. R package version 1.11. URL: [https://CRAN.R-project.org/package=rmarkdown](https://CRAN.R-project.org/package=rmarkdown){target="_blank"}  
+
+<a name="myfootnote2">2</a>: Wickham, H. (2014). Tidy data. *Journal of Statistical Software*, *59*, URL: [https://www.jstatsoft.org/article/view/v059i10](https://www.jstatsoft.org/article/view/v059i10){target="_blank"}  
+
+<a name="myfootnote3">3</a>: Wickham, H., & Grolemund, G. (2017). *R for data science*. Sebastopol, California: O'Reilly Media. URL: [https://r4ds.had.co.nz/index.html](https://r4ds.had.co.nz/index.html){target="_blank"} 
+
+<a name="myfootnote4">4</a>: Ellet, W. (2018). *The case study handbook, revised edition: A student's guide*. Boston, Massachussets: Harvard Business Review Press.  
+
+
+
+
+
+
+
+

@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</managingEditor>
     <webMaster>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</webMaster>
-    <lastBuildDate>Sun, 11 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 21 Feb 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>hmdrmd: R Markdown templates for data analysis</title>
+      <link>/hmdrmd/</link>
+      <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
+      <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
+      <guid>/hmdrmd/</guid>
+      <description>R Markdown R Markdown1 is a powerful R package that allows users to dynamically render their work (code, graphs, and text) into various file formats. Its wide range of output formats (including HTML, PDF, Word) makes it one of the most flexible and intuitive communication tools within the R community. Ultimately, R Markdown bridges the gap between data professionals and the audience they need to communicate to. In fact, I’m communicating to you right now through an R Markdown document rendered to HTML.</description>
+    </item>
     
     <item>
       <title>Boston 2018</title>

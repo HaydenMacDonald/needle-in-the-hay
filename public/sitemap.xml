@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/hmdrmd/</loc>
+    <lastmod>2019-02-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tufte-and-viz/</loc>
     <lastmod>2018-11-11T00:00:00+00:00</lastmod>
   </url>
@@ -35,6 +40,18 @@
   </url>
   
   <url>
+    <loc>/tags/communication/</loc>
+    <lastmod>2019-02-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/data-analysis/</loc>
+    <lastmod>2019-02-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/data-visualization/</loc>
     <lastmod>2018-11-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -54,7 +71,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2018-11-11T00:00:00+00:00</lastmod>
+    <lastmod>2019-02-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -64,19 +81,31 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2018-11-11T00:00:00+00:00</lastmod>
+    <lastmod>2019-02-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/r/</loc>
-    <lastmod>2018-11-11T00:00:00+00:00</lastmod>
+    <lastmod>2019-02-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/r/</loc>
     <lastmod>2018-09-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/r-markdown/</loc>
+    <lastmod>2019-02-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/reporting/</loc>
+    <lastmod>2019-02-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

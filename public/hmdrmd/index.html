@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>hmdrmd: R Markdown templates for data analysis</title>
+  <meta property="og:title" content="hmdrmd: R Markdown templates for data analysis" />
+  <meta name="twitter:title" content="hmdrmd: R Markdown templates for data analysis" />
+  <meta name="description" content="R Markdown R Markdown1 is a powerful R package that allows users to dynamically render their work (code, graphs, and text) into various file formats. Its wide range of output formats (including HTML, PDF, Word) makes it one of the most flexible and intuitive communication tools within the R community. Ultimately, R Markdown bridges the gap between data professionals and the audience they need to communicate to. In fact, I’m communicating to you right now through an R Markdown document rendered to HTML.">
+  <meta property="og:description" content="R Markdown R Markdown1 is a powerful R package that allows users to dynamically render their work (code, graphs, and text) into various file formats. Its wide range of output formats (including HTML, PDF, Word) makes it one of the most flexible and intuitive communication tools within the R community. Ultimately, R Markdown bridges the gap between data professionals and the audience they need to communicate to. In fact, I’m communicating to you right now through an R Markdown document rendered to HTML.">
+  <meta name="twitter:description" content="R Markdown R Markdown1 is a powerful R package that allows users to dynamically render their work (code, graphs, and text) into various file formats. Its wide range of output formats (including HTML, …">
+  <meta name="author" content="Hayden MacDonald"/>
+  <link href='/img/needle2.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="/img/headshotbw.jpg" />
+  <meta name="twitter:image" content="/img/headshotbw.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@/HYDNMCDNLD" />
+  <meta name="twitter:creator" content="@/HYDNMCDNLD" />
+  <meta property="og:url" content="/hmdrmd/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Needle in the Hay" />
+
+  <meta name="generator" content="Hugo 0.48" />
+  <link rel="canonical" href="/hmdrmd/" />
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Needle in the Hay">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="/css/codeblock.css" />
+  <link rel="stylesheet" href="/css/solarized-dark.css" rel="stylesheet" id="theme-stylesheet">
+  <script src="/js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-125960941-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Needle in the Hay</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/post/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags/">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Needle in the Hay" href="/">
+            <img class="avatar-img" src="/img/headshotbw.jpg" alt="Needle in the Hay" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              <h1>hmdrmd: R Markdown templates for data analysis</h1>
+                
+                
+                  <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on 2019-02-21
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 4 minutes (646 words)
+  
+  
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <div id="r-markdown" class="section level1">
+<h1>R Markdown</h1>
+<p> <br />
+<a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a></a><sup><a href="#myfootnote1">1</a></sup> is a powerful R package that allows users to dynamically render their work (code, graphs, and text) into various file formats. Its wide range of output formats (including HTML, PDF, Word) makes it one of the most flexible and intuitive communication tools within the R community. Ultimately, R Markdown bridges the gap between data professionals and the audience they need to communicate to. In fact, I’m communicating to you right now through an R Markdown document rendered to HTML.</p>
+<p>In this blog post, I introduce my package, <code>hmdrmd</code>, which extends <code>rmarkdown</code> by providing document templates for data-oriented projects.<br />
+ </p>
+</div>
+<div id="hmdrmd" class="section level1">
+<h1>hmdrmd</h1>
+<p> </p>
+<div id="tidy-analysis" class="section level2">
+<h2>Tidy Analysis</h2>
+<p> <br />
+While using R Markdown default files, I found that I was consistently reformatting my documents into same general structure. Being an acolyte of tidy data<sup><a href="#myfootnote2">2</a></sup>, I organized my data projects into the following sections:<br />
+ </p>
+<ul>
+<li>Packages</li>
+<li>Import</li>
+<li>Wrangle</li>
+<li>Visualize</li>
+<li>Model</li>
+<li>Communicate / Export<br />
+ </li>
+</ul>
+<p>This framework is based on a now infamous diagram that describes the <a href="https://r4ds.had.co.nz/index.html" target="_blank">“R for Data Science”</a><sup><a href="#myfootnote3">3</a></sup> workflow (see <em>Figure 1</em>).</p>
+<div class="figure">
+<img src="/img/tidy.png" alt="Figure 1. Tidy Data Analysis Workflow" />
+<p class="caption">Figure 1. Tidy Data Analysis Workflow</p>
+</div>
+<p>This diagram is particularly useful for organizing a data project into a logical workflow.</p>
+<p>To avoid continuously reformatting every new R Markdown document to this structure, I created this template, called “Tidy Analysis”.<br />
+ </p>
+<div id="example-of-tidy-analysis-pdf-output" class="section level3">
+<h3>Example of Tidy Analysis PDF output</h3>
+<p><img src="/img/tidy1.PNG" /> <img src="/img/tidy2.PNG" /></p>
+</div>
+</div>
+<div id="case-study-analysis" class="section level2">
+<h2>Case Study Analysis</h2>
+<p> <br />
+The second R Markdown template in <code>hmdrmd</code> is for case study analyses. This template is based on William Ellet’s case study guide in <a href="https://hbr.org/product/the-case-study-handbook-revised-edition-a-student-s-guide/10208E-KND-ENG" target="_blank">The Case Study Handbook, Revised Edition: A Student’s Guide</a><sup><a href="#myfootnote4">4</a></sup>. This template is intended to be used by students in educational and research environments involving case analyses. This framework , in my opinion, is highly effective because it instructs students to pay attention to the most important issues and information in a case.</p>
+<p>The document contains 12 essential steps, separated into 6 sections:<br />
+ </p>
+<ul>
+<li>Role and Scenario</li>
+<li>Criteria</li>
+<li>Analysis</li>
+<li>Evaluation</li>
+<li>Uncertainties</li>
+<li>Action Plan<br />
+ </li>
+</ul>
+<div id="example-of-case-study-analysis-pdf-output" class="section level3">
+<h3>Example of Case Study Analysis PDF output</h3>
+<p><img src="/img/case1.PNG" /> <img src="/img/case2.PNG" /> <img src="/img/case3.PNG" /></p>
+<p> </p>
+</div>
+</div>
+<div id="installation" class="section level2">
+<h2>Installation</h2>
+<p>You can download the package using the following code:<br />
+ </p>
+<pre class="r"><code>if (!requireNamespace(&quot;devtools&quot;)) install.packages(&quot;devtools&quot;)
+
+devtools::install_github(&quot;HaydenMacDonald/hmdrmd&quot;)</code></pre>
+<p> </p>
+</div>
+<div id="usage" class="section level2">
+<h2>Usage</h2>
+<p> <br />
+In order to render pdf documents from R Markdown files, you will need LaTeX. If you have never installed a LaTex distribution, you can do so using the <a href="https://github.com/yihui/tinytex" target="_blank">TinyTeX package</a>.<br />
+ </p>
+<pre class="r"><code>install.packages(&quot;tinytex&quot;)
+
+tinytex::install_tinytex()</code></pre>
+<p> <br />
+Once <code>hmdrmd</code> and <code>tinytex</code> are installed, you can access these templates in RStudio through the following path:</p>
+<p>File &gt; New File &gt; R Markdown… &gt; From Template.</p>
+<p><img src="/img/templates.png" alt="New R Markdown &gt; From Template" /><br />
+Defaults for pdf output are controlled through the YAML header.<br />
+ </p>
+<pre class="yaml"><code>---
+title: &quot;title&quot;
+author: &quot;author&quot;
+date: &quot;2019-02-22&quot;
+output: 
+  hmdrmd::case_study:
+    highlight: tango
+mainfont: CMU Serif Roman
+monofont: Fira Code Medium
+---</code></pre>
+<p> <br />
+Remove or change these options from the YAML header to customize your document.</p>
+<p>The default main font (<code>mainfont</code>) and code font (<code>monofont</code>) are set to <a href="https://www.fontsquirrel.com/fonts/computer-modern" target="_blank">CMU Serif Roman</a> and <a href="https://github.com/tonsky/FiraCode" target="_blank">Fira Code Medium</a>, respectively. To use CMU Serif Roman and Fira Code Medium, follow their installation instructions. Additionally, you can change the syntax highlighting in code chunks through the highlight option in the YAML header. By default, it is set to <code>tango</code>. Other options include <code>default</code>, <code>pygments</code>, <code>kate</code>, <code>monochrome</code>, <code>espresso</code>, <code>zenburn</code>, and <code>haddock</code>. See this <a href="https://www.garrickadenbuie.com/blog/2018/07/06/pandoc-syntax-highlighting-examples/" target="_blank">blog post</a> by Garrick Aden-Buie for a gallery of these different options.  </p>
+</div>
+<div id="related-packages" class="section level2">
+<h2>Related Packages</h2>
+<p> </p>
+<ul>
+<li><a href="https://github.com/rstudio/rmarkdown" target="_blank">rmarkdown</a></li>
+<li><a href="https://github.com/yihui/knitr" target="_blank">knitr</a></li>
+<li><a href="https://github.com/rstudio/tufte" target="_blank">tufte</a></li>
+<li><a href="https://github.com/eddelbuettel/tint" target="_blank">tint</a></li>
+<li><a href="https://github.com/rstudio/rticles" target="_blank">rticles</a></li>
+</ul>
+<p> </p>
+</div>
+<div id="help" class="section level2">
+<h2>Help</h2>
+<p> <br />
+Submit issues on <a href="https://github.com/HaydenMacDonald/hmdrmd" target="_blank">GitHub</a>.<br />
+ </p>
+</div>
+<div id="functionality" class="section level2">
+<h2>Functionality</h2>
+<p> <br />
+Currently, these templates only render to PDF documents. If you are interested in extending the functionality of this package, fork the original repository, make your changes and submit them as a pull request.<br />
+ </p>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<p> <br />
+<a name="myfootnote1">1</a>: Allaire, JJ., Xie, Y., McPherson, J., Luraschi J., Ushey, K., Atkins, A., Wickham, H., Cheng, J., Chang, W., &amp; Iannone, R. (2017). rmarkdown: Dynamic documents for R. R package version 1.11. URL: <a href="https://CRAN.R-project.org/package=rmarkdown" class="uri" target="_blank">https://CRAN.R-project.org/package=rmarkdown</a></p>
+<p><a name="myfootnote2">2</a>: Wickham, H. (2014). Tidy data. <em>Journal of Statistical Software</em>, <em>59</em>, URL: <a href="https://www.jstatsoft.org/article/view/v059i10" class="uri" target="_blank">https://www.jstatsoft.org/article/view/v059i10</a></p>
+<p><a name="myfootnote3">3</a>: Wickham, H., &amp; Grolemund, G. (2017). <em>R for data science</em>. Sebastopol, California: O’Reilly Media. URL: <a href="https://r4ds.had.co.nz/index.html" class="uri" target="_blank">https://r4ds.had.co.nz/index.html</a></p>
+<p><a name="myfootnote4">4</a>: Ellet, W. (2018). <em>The case study handbook, revised edition: A student’s guide</em>. Boston, Massachussets: Harvard Business Review Press.</p>
+</div>
+</div>
+
+
+        
+          <div class="blog-tags">
+            
+              <a href="//tags/r/">R</a>&nbsp;
+            
+              <a href="//tags/data-analysis/">data analysis</a>&nbsp;
+            
+              <a href="//tags/r-markdown/">R Markdown</a>&nbsp;
+            
+              <a href="//tags/reporting/">reporting</a>&nbsp;
+            
+              <a href="//tags/communication/">communication</a>&nbsp;
+            
+          </div>
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <ul class="list-inline footer-links">
+                
+
+
+<li>
+    <a href="//twitter.com/share?url=%2fhmdrmd%2f&amp;text=hmdrmd%3a%20R%20Markdown%20templates%20for%20data%20analysis&amp;via=%2fHYDNMCDNLD"
+       target="_blank" alt="" title="Share on Twitter">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//plus.google.com/share?url=%2fhmdrmd%2f" target="_blank" title="Share on Google Plus">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.facebook.com/sharer/sharer.php?u=%2fhmdrmd%2f" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//reddit.com/submit?url=%2fhmdrmd%2f&amp;title=hmdrmd%3a%20R%20Markdown%20templates%20for%20data%20analysis" target="_blank" title="Share on Reddit">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.linkedin.com/shareArticle?url=%2fhmdrmd%2f&amp;title=hmdrmd%3a%20R%20Markdown%20templates%20for%20data%20analysis" target="_blank"
+       title="Share on LinkedIn">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+              </ul>
+            </section>
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="/tufte-and-viz/" data-toggle="tooltip" data-placement="top" title="Boston 2018">&larr; Previous Post</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "needleinthehay" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:hayden.macdonald.8778@gmail.com" title="Email Me: hayden.macdonald.8778@gmail.com">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com//HaydenMacDonald" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com//HYDNMCDNLD" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/hayden-macdonald/" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              Hayden MacDonald
+            
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="/">Needle in the Hay</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.48</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="/js/main.js"></script>
+<script src="/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+
