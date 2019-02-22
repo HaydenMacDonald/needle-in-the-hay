@@ -143,7 +143,7 @@ Currently, these templates only render to PDF documents. If you are interested i
 &nbsp;  
 <a name="myfootnote1">1</a>: Allaire, JJ., Xie, Y., McPherson, J., Luraschi J., Ushey, K., Atkins, A., Wickham, H., Cheng, J., Chang, W., & Iannone, R. (2017). rmarkdown: Dynamic documents for R. R package version 1.11. URL: [https://CRAN.R-project.org/package=rmarkdown](https://CRAN.R-project.org/package=rmarkdown){target="_blank"}  
 
-<a name="myfootnote2">2</a>: Wickham, H. (2014), Tidy data. *Journal of Statistical Software*, *59*, URL: [https://www.jstatsoft.org/article/view/v059i10](https://www.jstatsoft.org/article/view/v059i10){target="_blank"}  
+<a name="myfootnote2">2</a>: Wickham, H. (2014). Tidy data. *Journal of Statistical Software*, *59*, URL: [https://www.jstatsoft.org/article/view/v059i10](https://www.jstatsoft.org/article/view/v059i10){target="_blank"}  
 
 <a name="myfootnote3">3</a>: Ellet, W. (2018). *The case study handbook, revised edition: A student's guide*. Boston, Massachussets: Harvard Business Review Press.  
 
