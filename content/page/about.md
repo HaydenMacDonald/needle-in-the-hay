@@ -4,17 +4,43 @@ subtitle:
 comments: false
 ---
 
-I am a Canadian graduate student studying at the University of Western Ontario.
+My name is Hayden MacDonald and I am a Canadian graduate student studying at Ivey Business School, University of Western Ontario.
 
-In August 2018, I achieved a Master of Science in Psychology. Currently, I am pursuing a career in data analytics through Ivey Business School's MSc in Business Analytics (expected graduation May 2020).  
+Currently, I am pursuing a career in data analytics through Ivey Business School's MSc in Business Analytics (expected graduation May 2020).  
 
-My interests include research, statistical data analysis, and data visualization.  
+My interests include research, statistical data analysis, data visualization, technology, and marketing analytics.  
 
 In my spare time, I enjoy cooking, hiking, cycling, SCUBA diving, birding as well as watching films and eSports.  
 &nbsp;
 
 -------
+&nbsp;  
+### Work Experience
+&nbsp;  
+**Data Analyst Intern (Full-time Summer 2019, part-time Sep 2019 - present)**  
+Voices.com, London, Ontario  
 
+- Statistically analyzed customer data to deliver insights on segments of voice talent users.  
+- Calculated churn rates of subscribing talent and identified opportunities for specialized retention strategies.  
+- Delivered marketplace insights to leadership team by calculating buyer-to-seller and provider liquidity ratios.  
+- Created Salesforce and Tableau dashboards for automated reporting of talent-related metrics for product managers, talent sales team, and leadership team.  
+- Led analytical efforts to establish in-house A/B testing of website features to increase conversion rate of customers posting jobs to the website.  
+  
+**Graduate Teaching Assistant, Psychology 2210B (Winter 2017 & 2018)**  
+University of Western Ontario  
+
+- Organized individual appointments and group exam review sessions so students developed a broader and deeper understanding of course material.  
+- Facilitated student learning by giving feedback on all assignments and exams before the next evaluation.  
+  
+**Graduate Teaching Assistant, Psychology 1000 (Fall 2016)**  
+University of Western Ontario  
+
+- Conducted a review lecture for approximately 400 students to increase preparedness for a final exam.  
+- Advised students in one-on-one appointments to positively impact student understanding of course material.  
+&nbsp;  
+
+-------
+&nbsp;  
 ### Education
 &nbsp;  
 **Candidate for Master of Science in Management (MSc) - Business Analytics (Expected Graduation Spring 2020)**  
@@ -25,13 +51,15 @@ University of Western Ontario
 Department of Psychology, Faculty of Social Science  
 University of Western Ontario  
 
+- NSERC Canada Graduate Scholarship - Masters (2017 - 2018)  
+
 **Bachelor of Science - Honors Specialization in Animal Behaviour (2016)**  
 Department of Biology, Faculty of Science  
 University of Western Ontario  
 &nbsp;  
 
 -------
-
+&nbsp;  
 ### Publications  
 &nbsp;  
 **MacDonald, Hayden**, "Spatial memory for isolated arm locations on the radial maze" (2018). *Electronic Thesis and Dissertation Repository*. <a href="https://ir.lib.uwo.ca/etd/5511" target="_blank">5511</a>.  
@@ -59,10 +87,18 @@ Roberts, W.A., Guitar, N.A., Marsh, H.L., & **MacDonald, H.** (2016). Memory sys
 ### Technical Skills  
 
 - R
-- git
-- SQL
+- MySQL / PostgreSQL
 - Excel
-- SPSS
+- Git
+- Salesforce
+- Tableau
+- Python
+
+----
+
+### Software
+
+- <a href="https://needleinthehay.ca/hmdrmd/" target="_blank">hmdrmd</a>
 
 ----
 &nbsp;  
