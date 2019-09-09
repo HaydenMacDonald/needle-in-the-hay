@@ -1,28 +1,68 @@
 ---
-title: "Coding and data visualization tricks learned during my summer internship"
+title: "R tricks learned during my Voices.com internship"
 author: "Hayden MacDonald"
 date: '2019-09-08'
+output:
+  blogdown::html_page:
+    toc: true
 slug: code-tricks
-categories: 
+tags: 
 - data visualization
 - data joins
 - R
-tags: []
-subtitle: ''
 ---
+&nbsp;  
+This summer I worked as a Data Analyst Intern at Voices.com as a part of my MSc in Business Analytics. Voices.com is a marketplace website that matches business clients with voice over talent. Let me briefly explain the business model...  
 
+Imagine you are a running a business that is trying to create an internet video ad. Part of your ad requires a narrator to deliver your message to potential customers. You could source that voice-over through Voices.com. You would create a job posting to Voices.com that describes your project vision and needs. Voice-over talent from the around the world would audition for your job. You would select your favourite candidate and collaborate to complete the project. Once the talent sends the final voice-over, you would pay the talent for their work through Voices.com. You would also pay Voices.com a fee for using the platform.  
 
+During my internship at Voices.com, I became involved in a variety of analytics projects. First, I committed to a customer segmentation analysis on voice-over talent. Later in the summer, I analyzed talent churn, built dashboards for core metrics, and designed A/B tests! Through these projects, I procured even more experience with the R programming language. In this post, I will showcase R tricks that I learned this summer for data analysis and visualization. Hopefully, you can apply some of these tricks to your own data analysis projects.  
+&nbsp;  
 
+## 1. Removing multiple similarly-named objects from the environment
+&nbsp;  
+Say that you are in the middle of a data analysis and you need to test out a part of your code. If you're like me,  you will test sections of code and assign the results to a new object named something like `test`. After I'm finished testing my code, I'm left with a RStudio Environment that looks like this:  
 
-1. Removing multiple similarly named objects from the environment
+```{r, echo=FALSE, out.width='75%'}
+knitr::include_graphics('/img/env.png')
+```
 
-2. coord_cartesian() for trimming ggplot2 whitespace
+My first trick will allow us to selectively delete these `test` objects. This is accomplished through the following code:  
 
-3. High res plot outputs via Cairo
+```{r, eval = FALSE}
+rm(list = ls()[str_detect(ls(), "string")])
+```
 
-4. Intra-figure legends
+Let's break down what is going on in this code. This code contains four distinct parts:  
+&nbsp;  
 
-5. Fuzzy joins on intervals with genome_left_join
+- The `rm()` function removes objects from the R environment.  
+- The  `ls()` function lists all the objects in the R environment.  
+- The `str_detect()` function from the `stringr` package detects a specified pattern in a string.  
+- `"string"` is the pattern which our objects of interest have in common (e.g. "test").  
+
+The innermost part of the code, `str_detect(ls(), "string")`, detects the specified pattern within the environment. The previous code, enclosed in square brackets, indexes the list of object names in the environment (`ls()[str_detect(ls(), "string")]`). Finally, that code is entered as the list argument in the `rm()` function. Ultimately, this humble line of code removes objects with the matching pattern from the environment!  
+&nbsp;  
+
+## 2. `coord_cartesian()` for trimming ggplot2 whitespace
+
+  
+&nbsp;  
+
+## 3. Intra-figure legends in `ggplot2` graphics
+
+  
+&nbsp;  
+
+## 4. High resolution plot outputs via `CairoPNG()`
+
+  
+&nbsp;  
+
+## 5. Fuzzy joins on intervals with `genome_left_join()`
+
+  
+&nbsp;  
 
 
 

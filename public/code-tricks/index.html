@@ -5,12 +5,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>hmdrmd: R Markdown templates for data analysis</title>
-  <meta property="og:title" content="hmdrmd: R Markdown templates for data analysis" />
-  <meta name="twitter:title" content="hmdrmd: R Markdown templates for data analysis" />
-  <meta name="description" content="R Markdown R Markdown1 is a powerful R package that allows users to dynamically render their work (code, graphs, and text) into various file formats. Its wide range of outputs (including HTML, PDF, Word) makes it one of the most flexible and intuitive communication tools within the R community. Ultimately, R Markdown bridges the gap between data professionals and the audience they need to communicate to. In fact, I’m communicating to you right now through an R Markdown document rendered to HTML.">
-  <meta property="og:description" content="R Markdown R Markdown1 is a powerful R package that allows users to dynamically render their work (code, graphs, and text) into various file formats. Its wide range of outputs (including HTML, PDF, Word) makes it one of the most flexible and intuitive communication tools within the R community. Ultimately, R Markdown bridges the gap between data professionals and the audience they need to communicate to. In fact, I’m communicating to you right now through an R Markdown document rendered to HTML.">
-  <meta name="twitter:description" content="R Markdown R Markdown1 is a powerful R package that allows users to dynamically render their work (code, graphs, and text) into various file formats. Its wide range of outputs (including HTML, PDF, …">
+  <title>R tricks learned during my Voices.com internship</title>
+  <meta property="og:title" content="R tricks learned during my Voices.com internship" />
+  <meta name="twitter:title" content="R tricks learned during my Voices.com internship" />
+  <meta name="description" content="1. Removing multiple similarly-named objects from the environment2. coord_cartesian() for trimming ggplot2 whitespace3. Intra-figure legends in ggplot2 graphics4. High resolution plot outputs via CairoPNG()5. Fuzzy joins on intervals with genome_left_join() This summer I worked as a Data Analyst Intern at Voices.com as a part of my MSc in Business Analytics. Voices.com is a marketplace website that matches business clients with voice over talent.">
+  <meta property="og:description" content="1. Removing multiple similarly-named objects from the environment2. coord_cartesian() for trimming ggplot2 whitespace3. Intra-figure legends in ggplot2 graphics4. High resolution plot outputs via CairoPNG()5. Fuzzy joins on intervals with genome_left_join() This summer I worked as a Data Analyst Intern at Voices.com as a part of my MSc in Business Analytics. Voices.com is a marketplace website that matches business clients with voice over talent.">
+  <meta name="twitter:description" content="1. Removing multiple similarly-named objects from the environment2. coord_cartesian() for trimming ggplot2 whitespace3. Intra-figure legends in ggplot2 graphics4. High resolution plot outputs via …">
   <meta name="author" content="Hayden MacDonald"/>
   <link href='/img/needle2.png' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="/img/headshotbw.jpg" />
@@ -18,12 +18,12 @@
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@/HYDNMCDNLD" />
   <meta name="twitter:creator" content="@/HYDNMCDNLD" />
-  <meta property="og:url" content="/hmdrmd/" />
+  <meta property="og:url" content="/code-tricks/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Needle in the Hay" />
 
   <meta name="generator" content="Hugo 0.48" />
-  <link rel="canonical" href="/hmdrmd/" />
+  <link rel="canonical" href="/code-tricks/" />
   <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Needle in the Hay">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -176,17 +176,17 @@ if (!doNotTrack) {
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="post-heading">
-              <h1>hmdrmd: R Markdown templates for data analysis</h1>
+              <h1>R tricks learned during my Voices.com internship</h1>
                 
                 
                   <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on 2019-02-21
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on 2019-09-08
   
   
   &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 4 minutes (645 words)
+  <i class="fa fa-clock-o"></i> 3 minutes (507 words)
   
   
 </span>
@@ -206,148 +206,68 @@ if (!doNotTrack) {
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <div id="r-markdown" class="section level1">
-<h1>R Markdown</h1>
-<p> <br />
-<a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a></a><sup><a href="#myfootnote1">1</a></sup> is a powerful R package that allows users to dynamically render their work (code, graphs, and text) into various file formats. Its wide range of outputs (including HTML, PDF, Word) makes it one of the most flexible and intuitive communication tools within the R community. Ultimately, R Markdown bridges the gap between data professionals and the audience they need to communicate to. In fact, I’m communicating to you right now through an R Markdown document rendered to HTML.</p>
-<p>In this blog post, I introduce my package, <code>hmdrmd</code>, which extends <code>rmarkdown</code> by providing document templates for data-oriented projects.<br />
- </p>
-</div>
-<div id="hmdrmd" class="section level1">
-<h1>hmdrmd</h1>
-<p> </p>
-<div id="tidy-analysis" class="section level2">
-<h2>Tidy Analysis</h2>
-<p> <br />
-While using R Markdown default files, I found that I was consistently reformatting my documents into same general structure. Being an acolyte of tidy data<sup><a href="#myfootnote2">2</a></sup>, I organized my data projects into the following sections:<br />
- </p>
+        <div id="TOC">
 <ul>
-<li>Packages</li>
-<li>Import</li>
-<li>Wrangle</li>
-<li>Visualize</li>
-<li>Model</li>
-<li>Communicate / Export<br />
- </li>
+<li><a href="#removing-multiple-similarly-named-objects-from-the-environment">1. Removing multiple similarly-named objects from the environment</a></li>
+<li><a href="#coord_cartesian-for-trimming-ggplot2-whitespace">2. <code>coord_cartesian()</code> for trimming ggplot2 whitespace</a></li>
+<li><a href="#intra-figure-legends-in-ggplot2-graphics">3. Intra-figure legends in <code>ggplot2</code> graphics</a></li>
+<li><a href="#high-resolution-plot-outputs-via-cairopng">4. High resolution plot outputs via <code>CairoPNG()</code></a></li>
+<li><a href="#fuzzy-joins-on-intervals-with-genome_left_join">5. Fuzzy joins on intervals with <code>genome_left_join()</code></a></li>
 </ul>
-<p>This framework is based on a now infamous diagram that describes the <a href="https://r4ds.had.co.nz/index.html" target="_blank">“R for Data Science”</a><sup><a href="#myfootnote3">3</a></sup> workflow (see <em>Figure 1</em>).</p>
-<div class="figure">
-<img src="/img/tidy.png" alt="Figure 1. Tidy Data Analysis Workflow" />
-<p class="caption">Figure 1. Tidy Data Analysis Workflow</p>
 </div>
-<p>This diagram is particularly useful for organizing a data project into a logical workflow.</p>
-<p>To avoid continuously reformatting every new R Markdown document to this structure, I created this template, called “Tidy Analysis”.<br />
- </p>
-<div id="example-of-tidy-analysis-pdf-output" class="section level3">
-<h3>Example of Tidy Analysis PDF output</h3>
-<p><img src="/img/tidy1.PNG" /> <img src="/img/tidy2.PNG" /></p>
-</div>
-</div>
-<div id="case-study-analysis" class="section level2">
-<h2>Case Study Analysis</h2>
-<p> <br />
-The second R Markdown template in <code>hmdrmd</code> is for case study analyses. This template is based on William Ellet’s case study guide in <a href="https://hbr.org/product/the-case-study-handbook-revised-edition-a-student-s-guide/10208E-KND-ENG" target="_blank">The Case Study Handbook, Revised Edition: A Student’s Guide</a><sup><a href="#myfootnote4">4</a></sup>. This template is intended to be used by students in educational and research environments involving case analyses. This framework , in my opinion, is highly effective because it instructs students to pay attention to the most important issues and information in a case.</p>
-<p>The document contains 12 essential steps, separated into 6 sections:<br />
- </p>
-<ul>
-<li>Role and Scenario</li>
-<li>Criteria</li>
-<li>Analysis</li>
-<li>Evaluation</li>
-<li>Uncertainties</li>
-<li>Action Plan<br />
- </li>
-</ul>
-<div id="example-of-case-study-analysis-pdf-output" class="section level3">
-<h3>Example of Case Study Analysis PDF output</h3>
-<p><img src="/img/case1.PNG" /> <img src="/img/case2.PNG" /> <img src="/img/case3.PNG" /></p>
-<p> </p>
-</div>
-</div>
-<div id="installation" class="section level2">
-<h2>Installation</h2>
-<p>You can download the package using the following code:<br />
- </p>
-<pre class="r"><code>if (!requireNamespace(&quot;devtools&quot;)) install.packages(&quot;devtools&quot;)
 
-devtools::install_github(&quot;HaydenMacDonald/hmdrmd&quot;)</code></pre>
-<p> </p>
-</div>
-<div id="usage" class="section level2">
-<h2>Usage</h2>
 <p> <br />
-In order to render pdf documents from R Markdown files, you will need LaTeX. If you have never installed a LaTex distribution, you can do so using the <a href="https://github.com/yihui/tinytex" target="_blank">TinyTeX package</a>.<br />
+This summer I worked as a Data Analyst Intern at Voices.com as a part of my MSc in Business Analytics. Voices.com is a marketplace website that matches business clients with voice over talent. Let me briefly explain the business model…</p>
+<p>Imagine you are a running a business that is trying to create an internet video ad. Part of your ad requires a narrator to deliver your message to potential customers. You could source that voice-over through Voices.com. You would create a job posting to Voices.com that describes your project vision and needs. Voice-over talent from the around the world would audition for your job. You would select your favourite candidate and collaborate to complete the project. Once the talent sends the final voice-over, you would pay the talent for their work through Voices.com. You would also pay Voices.com a fee for using the platform.</p>
+<p>During my internship at Voices.com, I became involved in a variety of analytics projects. First, I committed to a customer segmentation analysis on voice-over talent. Later in the summer, I analyzed talent churn, built dashboards for core metrics, and designed A/B tests! Through these projects, I procured even more experience with the R programming language. In this post, I will showcase R tricks that I learned this summer for data analysis and visualization. Hopefully, you can apply some of these tricks to your own data analysis projects.<br />
  </p>
-<pre class="r"><code>install.packages(&quot;tinytex&quot;)
-
-tinytex::install_tinytex()</code></pre>
+<div id="removing-multiple-similarly-named-objects-from-the-environment" class="section level2">
+<h2>1. Removing multiple similarly-named objects from the environment</h2>
 <p> <br />
-Once <code>hmdrmd</code> and <code>tinytex</code> are installed, you can access these templates in RStudio through the following path:</p>
-<p>File &gt; New File &gt; R Markdown… &gt; From Template.</p>
-<p><img src="/img/templates.png" alt="New R Markdown &gt; From Template" /><br />
-Defaults for pdf output are controlled through the YAML header.<br />
+Say that you are in the middle of a data analysis and you need to test out a part of your code. If you’re like me, you will test sections of code and assign the results to a new object named something like <code>test</code>. After I’m finished testing my code, I’m left with a RStudio Environment that looks like this:</p>
+<p><img src="/img/env.png" width="75%" /></p>
+<p>My first trick will allow us to selectively delete these <code>test</code> objects. This is accomplished through the following code:</p>
+<pre class="r"><code>rm(list = ls()[str_detect(ls(), &quot;string&quot;)])</code></pre>
+<p>Let’s break down what is going on in this code. This code contains four distinct parts:<br />
  </p>
-<pre class="yaml"><code>---
-title: &quot;title&quot;
-author: &quot;author&quot;
-date: &quot;2019-02-25&quot;
-output: 
-  hmdrmd::case_study:
-    highlight: tango
-mainfont: CMU Serif Roman
-monofont: Fira Code Medium
----</code></pre>
-<p> <br />
-Remove or change these options from the YAML header to customize your document.</p>
-<p>The default main font (<code>mainfont</code>) and code font (<code>monofont</code>) are set to <a href="https://www.fontsquirrel.com/fonts/computer-modern" target="_blank">CMU Serif Roman</a> and <a href="https://github.com/tonsky/FiraCode" target="_blank">Fira Code Medium</a>, respectively. To use CMU Serif Roman and Fira Code Medium, follow their installation instructions. Additionally, you can change the syntax highlighting in code chunks through the highlight option in the YAML header. By default, it is set to <code>tango</code>. Other options include <code>default</code>, <code>pygments</code>, <code>kate</code>, <code>monochrome</code>, <code>espresso</code>, <code>zenburn</code>, and <code>haddock</code>. See this <a href="https://www.garrickadenbuie.com/blog/2018/07/06/pandoc-syntax-highlighting-examples/" target="_blank">blog post</a> by Garrick Aden-Buie for a gallery of these different options.  </p>
-</div>
-<div id="related-packages" class="section level2">
-<h2>Related Packages</h2>
-<p> </p>
 <ul>
-<li><a href="https://github.com/rstudio/rmarkdown" target="_blank">rmarkdown</a></li>
-<li><a href="https://github.com/yihui/knitr" target="_blank">knitr</a></li>
-<li><a href="https://github.com/rstudio/tufte" target="_blank">tufte</a></li>
-<li><a href="https://github.com/eddelbuettel/tint" target="_blank">tint</a></li>
-<li><a href="https://github.com/rstudio/rticles" target="_blank">rticles</a></li>
+<li>The <code>rm()</code> function removes objects from the R environment.<br />
+</li>
+<li>The <code>ls()</code> function lists all the objects in the R environment.<br />
+</li>
+<li>The <code>str_detect()</code> function from the <code>stringr</code> package detects a specified pattern in a string.<br />
+</li>
+<li><code>&quot;string&quot;</code> is the pattern which our objects of interest have in common (e.g. “test”).</li>
 </ul>
+<p>The innermost part of the code, <code>str_detect(ls(), &quot;string&quot;)</code>, detects the specified pattern within the environment. The previous code, enclosed in square brackets, indexes the list of object names in the environment (<code>ls()[str_detect(ls(), &quot;string&quot;)]</code>). Finally, that code is entered as the list argument in the <code>rm()</code> function. Ultimately, this humble line of code removes objects with the matching pattern from the environment!<br />
+ </p>
+</div>
+<div id="coord_cartesian-for-trimming-ggplot2-whitespace" class="section level2">
+<h2>2. <code>coord_cartesian()</code> for trimming ggplot2 whitespace</h2>
 <p> </p>
 </div>
-<div id="help" class="section level2">
-<h2>Help</h2>
-<p> <br />
-Submit issues on <a href="https://github.com/HaydenMacDonald/hmdrmd" target="_blank">GitHub</a>.<br />
- </p>
+<div id="intra-figure-legends-in-ggplot2-graphics" class="section level2">
+<h2>3. Intra-figure legends in <code>ggplot2</code> graphics</h2>
+<p> </p>
 </div>
-<div id="functionality" class="section level2">
-<h2>Functionality</h2>
-<p> <br />
-Currently, these templates only render to PDF documents. If you are interested in extending the functionality of this package, fork the original repository, make your changes and submit them as a pull request.<br />
- </p>
+<div id="high-resolution-plot-outputs-via-cairopng" class="section level2">
+<h2>4. High resolution plot outputs via <code>CairoPNG()</code></h2>
+<p> </p>
 </div>
-<div id="references" class="section level2">
-<h2>References</h2>
-<p> <br />
-<a name="myfootnote1">1</a>: Allaire, JJ., Xie, Y., McPherson, J., Luraschi J., Ushey, K., Atkins, A., Wickham, H., Cheng, J., Chang, W., &amp; Iannone, R. (2017). rmarkdown: Dynamic documents for R. R package version 1.11. URL: <a href="https://CRAN.R-project.org/package=rmarkdown" class="uri" target="_blank">https://CRAN.R-project.org/package=rmarkdown</a></p>
-<p><a name="myfootnote2">2</a>: Wickham, H. (2014). Tidy data. <em>Journal of Statistical Software</em>, <em>59</em>, URL: <a href="https://www.jstatsoft.org/article/view/v059i10" class="uri" target="_blank">https://www.jstatsoft.org/article/view/v059i10</a></p>
-<p><a name="myfootnote3">3</a>: Wickham, H., &amp; Grolemund, G. (2017). <em>R for data science</em>. Sebastopol, California: O’Reilly Media. URL: <a href="https://r4ds.had.co.nz/index.html" class="uri" target="_blank">https://r4ds.had.co.nz/index.html</a></p>
-<p><a name="myfootnote4">4</a>: Ellet, W. (2018). <em>The case study handbook, revised edition: A student’s guide</em>. Boston, Massachussets: Harvard Business Review Press.</p>
-</div>
+<div id="fuzzy-joins-on-intervals-with-genome_left_join" class="section level2">
+<h2>5. Fuzzy joins on intervals with <code>genome_left_join()</code></h2>
+<p> </p>
 </div>
 
 
         
           <div class="blog-tags">
             
+              <a href="//tags/data-visualization/">data visualization</a>&nbsp;
+            
+              <a href="//tags/data-joins/">data joins</a>&nbsp;
+            
               <a href="//tags/r/">R</a>&nbsp;
-            
-              <a href="//tags/data-analysis/">data analysis</a>&nbsp;
-            
-              <a href="//tags/r-markdown/">R Markdown</a>&nbsp;
-            
-              <a href="//tags/reporting/">reporting</a>&nbsp;
-            
-              <a href="//tags/communication/">communication</a>&nbsp;
             
           </div>
         
@@ -360,7 +280,7 @@ Currently, these templates only render to PDF documents. If you are interested i
 
 
 <li>
-    <a href="//twitter.com/share?url=%2fhmdrmd%2f&amp;text=hmdrmd%3a%20R%20Markdown%20templates%20for%20data%20analysis&amp;via=%2fHYDNMCDNLD"
+    <a href="//twitter.com/share?url=%2fcode-tricks%2f&amp;text=R%20tricks%20learned%20during%20my%20Voices.com%20internship&amp;via=%2fHYDNMCDNLD"
        target="_blank" alt="" title="Share on Twitter">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -371,7 +291,7 @@ Currently, these templates only render to PDF documents. If you are interested i
 
 
 <li>
-    <a href="//plus.google.com/share?url=%2fhmdrmd%2f" target="_blank" title="Share on Google Plus">
+    <a href="//plus.google.com/share?url=%2fcode-tricks%2f" target="_blank" title="Share on Google Plus">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
@@ -381,7 +301,7 @@ Currently, these templates only render to PDF documents. If you are interested i
 
 
 <li>
-    <a href="//www.facebook.com/sharer/sharer.php?u=%2fhmdrmd%2f" target="_blank" title="Share on Facebook">
+    <a href="//www.facebook.com/sharer/sharer.php?u=%2fcode-tricks%2f" target="_blank" title="Share on Facebook">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -391,7 +311,7 @@ Currently, these templates only render to PDF documents. If you are interested i
 
 
 <li>
-    <a href="//reddit.com/submit?url=%2fhmdrmd%2f&amp;title=hmdrmd%3a%20R%20Markdown%20templates%20for%20data%20analysis" target="_blank" title="Share on Reddit">
+    <a href="//reddit.com/submit?url=%2fcode-tricks%2f&amp;title=R%20tricks%20learned%20during%20my%20Voices.com%20internship" target="_blank" title="Share on Reddit">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
@@ -401,7 +321,7 @@ Currently, these templates only render to PDF documents. If you are interested i
 
 
 <li>
-    <a href="//www.linkedin.com/shareArticle?url=%2fhmdrmd%2f&amp;title=hmdrmd%3a%20R%20Markdown%20templates%20for%20data%20analysis" target="_blank"
+    <a href="//www.linkedin.com/shareArticle?url=%2fcode-tricks%2f&amp;title=R%20tricks%20learned%20during%20my%20Voices.com%20internship" target="_blank"
        title="Share on LinkedIn">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -419,13 +339,9 @@ Currently, these templates only render to PDF documents. If you are interested i
         <ul class="pager blog-pager">
           
             <li class="previous">
-              <a href="/tufte-and-viz/" data-toggle="tooltip" data-placement="top" title="Boston 2018">&larr; Previous Post</a>
+              <a href="/hmdrmd/" data-toggle="tooltip" data-placement="top" title="hmdrmd: R Markdown templates for data analysis">&larr; Previous Post</a>
             </li>
           
-          
-            <li class="next">
-              <a href="/code-tricks/" data-toggle="tooltip" data-placement="top" title="R tricks learned during my Voices.com internship">Next Post &rarr;</a>
-            </li>
           
         </ul>
       

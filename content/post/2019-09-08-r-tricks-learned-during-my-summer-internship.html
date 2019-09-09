@@ -1,0 +1,67 @@
+---
+title: "R tricks learned during my Voices.com internship"
+author: "Hayden MacDonald"
+date: '2019-09-08'
+output:
+  blogdown::html_page:
+    toc: true
+slug: code-tricks
+tags: 
+- data visualization
+- data joins
+- R
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#removing-multiple-similarly-named-objects-from-the-environment">1. Removing multiple similarly-named objects from the environment</a></li>
+<li><a href="#coord_cartesian-for-trimming-ggplot2-whitespace">2. <code>coord_cartesian()</code> for trimming ggplot2 whitespace</a></li>
+<li><a href="#intra-figure-legends-in-ggplot2-graphics">3. Intra-figure legends in <code>ggplot2</code> graphics</a></li>
+<li><a href="#high-resolution-plot-outputs-via-cairopng">4. High resolution plot outputs via <code>CairoPNG()</code></a></li>
+<li><a href="#fuzzy-joins-on-intervals-with-genome_left_join">5. Fuzzy joins on intervals with <code>genome_left_join()</code></a></li>
+</ul>
+</div>
+
+<p> <br />
+This summer I worked as a Data Analyst Intern at Voices.com as a part of my MSc in Business Analytics. Voices.com is a marketplace website that matches business clients with voice over talent. Let me briefly explain the business model…</p>
+<p>Imagine you are a running a business that is trying to create an internet video ad. Part of your ad requires a narrator to deliver your message to potential customers. You could source that voice-over through Voices.com. You would create a job posting to Voices.com that describes your project vision and needs. Voice-over talent from the around the world would audition for your job. You would select your favourite candidate and collaborate to complete the project. Once the talent sends the final voice-over, you would pay the talent for their work through Voices.com. You would also pay Voices.com a fee for using the platform.</p>
+<p>During my internship at Voices.com, I became involved in a variety of analytics projects. First, I committed to a customer segmentation analysis on voice-over talent. Later in the summer, I analyzed talent churn, built dashboards for core metrics, and designed A/B tests! Through these projects, I procured even more experience with the R programming language. In this post, I will showcase R tricks that I learned this summer for data analysis and visualization. Hopefully, you can apply some of these tricks to your own data analysis projects.<br />
+ </p>
+<div id="removing-multiple-similarly-named-objects-from-the-environment" class="section level2">
+<h2>1. Removing multiple similarly-named objects from the environment</h2>
+<p> <br />
+Say that you are in the middle of a data analysis and you need to test out a part of your code. If you’re like me, you will test sections of code and assign the results to a new object named something like <code>test</code>. After I’m finished testing my code, I’m left with a RStudio Environment that looks like this:</p>
+<p><img src="/img/env.png" width="75%" /></p>
+<p>My first trick will allow us to selectively delete these <code>test</code> objects. This is accomplished through the following code:</p>
+<pre class="r"><code>rm(list = ls()[str_detect(ls(), &quot;string&quot;)])</code></pre>
+<p>Let’s break down what is going on in this code. This code contains four distinct parts:<br />
+ </p>
+<ul>
+<li>The <code>rm()</code> function removes objects from the R environment.<br />
+</li>
+<li>The <code>ls()</code> function lists all the objects in the R environment.<br />
+</li>
+<li>The <code>str_detect()</code> function from the <code>stringr</code> package detects a specified pattern in a string.<br />
+</li>
+<li><code>&quot;string&quot;</code> is the pattern which our objects of interest have in common (e.g. “test”).</li>
+</ul>
+<p>The innermost part of the code, <code>str_detect(ls(), &quot;string&quot;)</code>, detects the specified pattern within the environment. The previous code, enclosed in square brackets, indexes the list of object names in the environment (<code>ls()[str_detect(ls(), &quot;string&quot;)]</code>). Finally, that code is entered as the list argument in the <code>rm()</code> function. Ultimately, this humble line of code removes objects with the matching pattern from the environment!<br />
+ </p>
+</div>
+<div id="coord_cartesian-for-trimming-ggplot2-whitespace" class="section level2">
+<h2>2. <code>coord_cartesian()</code> for trimming ggplot2 whitespace</h2>
+<p> </p>
+</div>
+<div id="intra-figure-legends-in-ggplot2-graphics" class="section level2">
+<h2>3. Intra-figure legends in <code>ggplot2</code> graphics</h2>
+<p> </p>
+</div>
+<div id="high-resolution-plot-outputs-via-cairopng" class="section level2">
+<h2>4. High resolution plot outputs via <code>CairoPNG()</code></h2>
+<p> </p>
+</div>
+<div id="fuzzy-joins-on-intervals-with-genome_left_join" class="section level2">
+<h2>5. Fuzzy joins on intervals with <code>genome_left_join()</code></h2>
+<p> </p>
+</div>

@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/code-tricks/</loc>
+    <lastmod>2019-09-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/hmdrmd/</loc>
     <lastmod>2019-02-21T00:00:00+00:00</lastmod>
   </url>
@@ -22,13 +27,13 @@
   </url>
   
   <url>
-    <loc>/tags/bayes/</loc>
+    <loc>/categories/bayes/</loc>
     <lastmod>2018-09-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/bayes/</loc>
+    <loc>/tags/bayes/</loc>
     <lastmod>2018-09-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -52,14 +57,14 @@
   </url>
   
   <url>
-    <loc>/tags/data-visualization/</loc>
-    <lastmod>2018-11-11T00:00:00+00:00</lastmod>
+    <loc>/tags/data-joins/</loc>
+    <lastmod>2019-09-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/esports/</loc>
-    <lastmod>2018-09-18T00:00:00+00:00</lastmod>
+    <loc>/tags/data-visualization/</loc>
+    <lastmod>2019-09-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -70,8 +75,14 @@
   </url>
   
   <url>
+    <loc>/tags/esports/</loc>
+    <lastmod>2018-09-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/</loc>
-    <lastmod>2019-02-21T00:00:00+00:00</lastmod>
+    <lastmod>2019-09-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -81,19 +92,19 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2019-02-21T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/r/</loc>
-    <lastmod>2019-02-21T00:00:00+00:00</lastmod>
+    <lastmod>2019-09-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/r/</loc>
     <lastmod>2018-09-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/r/</loc>
+    <lastmod>2019-09-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
