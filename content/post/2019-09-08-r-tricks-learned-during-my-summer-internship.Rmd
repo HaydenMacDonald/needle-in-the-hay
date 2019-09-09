@@ -12,18 +12,16 @@ tags:
 - R
 ---
 &nbsp;  
-This summer I worked as a Data Analyst Intern at Voices.com as a part of my MSc in Business Analytics. Voices.com is a marketplace website that matches business clients with voice over talent. Let me briefly explain the business model...  
+This summer I worked as a Data Analyst Intern at Voices.com as a part of my MSc in Business Analytics. Voices.com is a marketplace website that matches business clients with voice over talent. 
 
-Imagine you are a running a business that is trying to create an internet video ad. Part of your ad requires a narrator to deliver your message to potential customers. You could source that voice-over through Voices.com. You would create a job posting to Voices.com that describes your project vision and needs. Voice-over talent from the around the world would audition for your job. You would select your favourite candidate and collaborate to complete the project. Once the talent sends the final voice-over, you would pay the talent for their work through Voices.com. You would also pay Voices.com a fee for using the platform.  
-
-During my internship at Voices.com, I became involved in a variety of analytics projects. First, I committed to a customer segmentation analysis on voice-over talent. Later in the summer, I analyzed talent churn, built dashboards for core metrics, and designed A/B tests! Through these projects, I procured even more experience with the R programming language. In this post, I will showcase R tricks that I learned this summer for data analysis and visualization. Hopefully, you can apply some of these tricks to your own data analysis projects.  
+During my internship at Voices.com, I became involved in a variety of analytics projects. First, I committed to a customer segmentation analysis on voice-over talent. Later in the summer, I analyzed customer churn, built dashboards for core metrics, and designed A/B tests! Through these projects, I procured even more experience with the R programming language. In this post, I will showcase R tricks that I learned this summer for data analysis and visualization. Hopefully, you can apply some of these tricks to your own data analysis projects.  
 &nbsp;  
 
-## 1. Removing multiple similarly-named objects from the environment
+## 1. Removing similarly-named objects from R's Global Environment
 &nbsp;  
-Say that you are in the middle of a data analysis and you need to test out a part of your code. If you're like me,  you will test sections of code and assign the results to a new object named something like `test`. After I'm finished testing my code, I'm left with a RStudio Environment that looks like this:  
+Say that you are in the middle of a data analysis and you need to test out a part of your code. If you're like me,  you will test sections of code and assign the results to a new object named something like `test`. After I'm finished testing my code, I'm left with a RStudio environment that looks like this:  
 
-```{r, echo=FALSE, out.width='75%'}
+```{r, echo=FALSE, dpi = 300}
 knitr::include_graphics('/img/env.png')
 ```
 
@@ -41,21 +39,130 @@ Let's break down what is going on in this code. This code contains four distinct
 - The `str_detect()` function from the `stringr` package detects a specified pattern in a string.  
 - `"string"` is the pattern which our objects of interest have in common (e.g. "test").  
 
-The innermost part of the code, `str_detect(ls(), "string")`, detects the specified pattern within the environment. The previous code, enclosed in square brackets, indexes the list of object names in the environment (`ls()[str_detect(ls(), "string")]`). Finally, that code is entered as the list argument in the `rm()` function. Ultimately, this humble line of code removes objects with the matching pattern from the environment!  
+The innermost part of the code, `str_detect(ls(), "string")`, detects the specified pattern within the environment. The previous code, enclosed in square brackets, indexes the list of object names in the environment (`ls()[str_detect(ls(), "string")]`). Finally, that code is entered as the list argument in the `rm()` function. Ultimately, `rm(list = ls()[str_detect(ls(), "test")])` removes objects with the matching `"test"` pattern from the environment!  
 &nbsp;  
 
-## 2. `coord_cartesian()` for trimming ggplot2 whitespace
+## 2. `coord_cartesian()` for zooming in on ggplots
+&nbsp;  
+Say that you are producing a histogram from your data that looks something like this:  
 
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(tidyverse)
+
+customRed <- "#CC492B"
+customBlue <- "#0F88DB"
+customGreen <- "#69A52C"
+customGreen0 <- "#DeF7E9"
+customPurple <- "#8F74BF"
+customYellow <- "#FAC71B"
+customOrange <- "#FF7F26"
+```
+
+```{r, dpi = 300, warning=FALSE}
+aq <- as_tibble(airquality)
+
+ggplot(aq, aes(x = Ozone)) +
+  geom_histogram(fill = customBlue, binwidth = 5) +
+  theme_light() +
+  labs(y = "Count", x = "Ozone")
+```
+
+For whatever reason, you are only interested in visualizing a subset of this data. For example, we only want to visualize the histogram between Ozone values 0 and 50. You can achieve this using `xlim()`:   
+
+```{r, dpi = 300, warning=FALSE}
+ggplot(aq, aes(x = Ozone)) +
+  geom_histogram(fill = customBlue, binwidth = 5) +
+  theme_light() +
+  labs(y = "Count", x = "Ozone") +
+  xlim(c(0, 50))
+```
+
+But using `xlim()` has resulted in an odd behaviour. Our histogram looks different than the original above. This is because `xlim()` (and `scale_x_continuous(limits = ...)`) **has excluded all data that don't fall within the limits**. In this example, `xlim()` excluded data points near 0 and 50. This is problematic if our goal is to visualize the same data without excluding data that lies on the edge of our criteria.  
+
+Instead, we can use `coord_cartesian()` to achieve a true "zoom in" on our original data visualization.  
+
+```{r, dpi = 300, warning=FALSE}
+ggplot(aq, aes(x = Ozone)) +
+  geom_histogram(fill = customBlue, binwidth = 5) +
+  theme_light() +
+  labs(y = "Count", x = "Ozone") +
+  coord_cartesian(xlim = c(0, 50))
+```
+
+Setting the `xlim` argument within `coord_cartesian()` results in the desired behaviour. Remember this tip so that you don't accidentally exclude data from your visualizations!   
   
 &nbsp;  
 
 ## 3. Intra-figure legends in `ggplot2` graphics
+&nbsp;  
+I agree with Edward Tufte's disdain for legends in data visualizations. Legends, when placed on outside of a visualization, oblige your audience to look back-and-forth to interpret what you are presenting. This means that your audience has to focus on the *format* of your visualization before they can begin interpreting the content or message you are trying to deliver. That's why I always try to use direct labels on my data visualizations instead of legends, like so:
 
+```{r, dpi = 300, echo = FALSE}
+aq %>%
+  mutate(quarter = case_when(Month == 5 ~ "Q2",
+                             Month == 6 ~ "Q2",
+                             Month == 7 ~ "Q3",
+                             Month == 8 ~ "Q3",
+                             Month == 9 ~ "Q3")) %>%
+  group_by(quarter, Day) %>%
+  summarize(mean_temp = mean(Temp, na.rm = TRUE)) %>%
+  ggplot(aes(x = Day, y = mean_temp, group = quarter, colour = quarter)) +
+  geom_line(size = 1) + 
+  geom_point(size = 3) + 
+  scale_colour_manual(values = c(customBlue, customOrange)) + 
+  geom_text(aes(x = 20, y = mean_temp[21], label = "Q2"), colour = customBlue, size = 8, hjust = 0, vjust = 3, show.legend = FALSE) +
+  geom_text(aes(x = 20, y = mean_temp[61], label = "Q3"), colour = customOrange, size = 8, hjust = -1, show.legend = FALSE) +
+  labs(title = "Mean temperature by day grouped by quarter",
+       y = "Mean Temperature (F)") +
+  theme_light() +
+  guides(colour = FALSE)
+```
+
+But say you want to do the same direct labelling with a messier or more complicated visualization...
+
+```{r, dpi = 300, echo = FALSE}
+aq %>%
+  filter(Month != 5) %>%
+  ggplot(aes(x = Day, y = Temp, group = Month, colour = factor(Month))) +
+  geom_line(size = 1) + 
+  geom_point(size = 3) +
+  scale_colour_manual(values = c(customBlue, customOrange, customYellow, customPurple)) +
+  coord_cartesian(ylim = c(50, 100)) +
+  labs(title = "Mean temperature by day grouped by month",
+       y = "Mean Temperature (F)",
+       colour = "Month") +
+  theme_light() +
+  theme(legend.title = element_text(size = 12),
+        legend.text = element_text(size = 12))
+```
+
+Now, I would hope that you would never *have to* present a spaghetti graph like this, but this is a situation where direct labels are not the best option. Instead, we'll use a legend. To reduce the amount of back-and-forth your audience has to do, we can place the legend within the figure as a compromise.  
+
+```{r, dpi = 300}
+aq %>%
+  filter(Month != 5) %>%
+  ggplot(aes(x = Day, y = Temp, group = Month, colour = factor(Month))) +
+  geom_line(size = 1) + 
+  geom_point(size = 3) +
+  scale_colour_manual(values = c(customBlue, customOrange, customYellow, customPurple)) +
+  coord_cartesian(ylim = c(50, 100)) +
+  labs(title = "Mean temperature by day grouped by month",
+       y = "Mean Temperature (F)",
+       colour = "Month") +
+  theme_light() +
+  theme(legend.background = element_blank(),
+        legend.position = c(0.25, 0.2),
+        legend.title = element_text(size = 12),
+        legend.text = element_text(size = 12))
+```
+
+This is accomplished by using `theme(legend.background = element_blank(), legend.position = c(0.25, 0.2), ...)` to make the legend background transparent and to move the legend into the figure. This intra-figure legend will reduce, but not eliminate all of the  figure's interpretability issues. At the very least, it is a good compromise when you can't directly label your data.  
   
 &nbsp;  
 
 ## 4. High resolution plot outputs via `CairoPNG()`
 
+Exporting graphics in R can be challenging. New users will typically use RStudio's Export functionality in the viewer pane in order to save images to their working directory. Unfortunately, this does not always result in the best looking graphic. 
   
 &nbsp;  
 

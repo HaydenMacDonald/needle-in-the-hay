@@ -15,8 +15,8 @@ tags:
 
 <div id="TOC">
 <ul>
-<li><a href="#removing-multiple-similarly-named-objects-from-the-environment">1. Removing multiple similarly-named objects from the environment</a></li>
-<li><a href="#coord_cartesian-for-trimming-ggplot2-whitespace">2. <code>coord_cartesian()</code> for trimming ggplot2 whitespace</a></li>
+<li><a href="#removing-similarly-named-objects-from-rs-global-environment">1. Removing similarly-named objects from R’s Global Environment</a></li>
+<li><a href="#coord_cartesian-for-zooming-in-on-ggplots">2. <code>coord_cartesian()</code> for zooming in on ggplots</a></li>
 <li><a href="#intra-figure-legends-in-ggplot2-graphics">3. Intra-figure legends in <code>ggplot2</code> graphics</a></li>
 <li><a href="#high-resolution-plot-outputs-via-cairopng">4. High resolution plot outputs via <code>CairoPNG()</code></a></li>
 <li><a href="#fuzzy-joins-on-intervals-with-genome_left_join">5. Fuzzy joins on intervals with <code>genome_left_join()</code></a></li>
@@ -24,15 +24,14 @@ tags:
 </div>
 
 <p> <br />
-This summer I worked as a Data Analyst Intern at Voices.com as a part of my MSc in Business Analytics. Voices.com is a marketplace website that matches business clients with voice over talent. Let me briefly explain the business model…</p>
-<p>Imagine you are a running a business that is trying to create an internet video ad. Part of your ad requires a narrator to deliver your message to potential customers. You could source that voice-over through Voices.com. You would create a job posting to Voices.com that describes your project vision and needs. Voice-over talent from the around the world would audition for your job. You would select your favourite candidate and collaborate to complete the project. Once the talent sends the final voice-over, you would pay the talent for their work through Voices.com. You would also pay Voices.com a fee for using the platform.</p>
-<p>During my internship at Voices.com, I became involved in a variety of analytics projects. First, I committed to a customer segmentation analysis on voice-over talent. Later in the summer, I analyzed talent churn, built dashboards for core metrics, and designed A/B tests! Through these projects, I procured even more experience with the R programming language. In this post, I will showcase R tricks that I learned this summer for data analysis and visualization. Hopefully, you can apply some of these tricks to your own data analysis projects.<br />
+This summer I worked as a Data Analyst Intern at Voices.com as a part of my MSc in Business Analytics. Voices.com is a marketplace website that matches business clients with voice over talent.</p>
+<p>During my internship at Voices.com, I became involved in a variety of analytics projects. First, I committed to a customer segmentation analysis on voice-over talent. Later in the summer, I analyzed customer churn, built dashboards for core metrics, and designed A/B tests! Through these projects, I procured even more experience with the R programming language. In this post, I will showcase R tricks that I learned this summer for data analysis and visualization. Hopefully, you can apply some of these tricks to your own data analysis projects.<br />
  </p>
-<div id="removing-multiple-similarly-named-objects-from-the-environment" class="section level2">
-<h2>1. Removing multiple similarly-named objects from the environment</h2>
+<div id="removing-similarly-named-objects-from-rs-global-environment" class="section level2">
+<h2>1. Removing similarly-named objects from R’s Global Environment</h2>
 <p> <br />
-Say that you are in the middle of a data analysis and you need to test out a part of your code. If you’re like me, you will test sections of code and assign the results to a new object named something like <code>test</code>. After I’m finished testing my code, I’m left with a RStudio Environment that looks like this:</p>
-<p><img src="/img/env.png" width="75%" /></p>
+Say that you are in the middle of a data analysis and you need to test out a part of your code. If you’re like me, you will test sections of code and assign the results to a new object named something like <code>test</code>. After I’m finished testing my code, I’m left with a RStudio environment that looks like this:</p>
+<p><img src="/img/env.png" /><!-- --></p>
 <p>My first trick will allow us to selectively delete these <code>test</code> objects. This is accomplished through the following code:</p>
 <pre class="r"><code>rm(list = ls()[str_detect(ls(), &quot;string&quot;)])</code></pre>
 <p>Let’s break down what is going on in this code. This code contains four distinct parts:<br />
@@ -46,19 +45,68 @@ Say that you are in the middle of a data analysis and you need to test out a par
 </li>
 <li><code>&quot;string&quot;</code> is the pattern which our objects of interest have in common (e.g. “test”).</li>
 </ul>
-<p>The innermost part of the code, <code>str_detect(ls(), &quot;string&quot;)</code>, detects the specified pattern within the environment. The previous code, enclosed in square brackets, indexes the list of object names in the environment (<code>ls()[str_detect(ls(), &quot;string&quot;)]</code>). Finally, that code is entered as the list argument in the <code>rm()</code> function. Ultimately, this humble line of code removes objects with the matching pattern from the environment!<br />
+<p>The innermost part of the code, <code>str_detect(ls(), &quot;string&quot;)</code>, detects the specified pattern within the environment. The previous code, enclosed in square brackets, indexes the list of object names in the environment (<code>ls()[str_detect(ls(), &quot;string&quot;)]</code>). Finally, that code is entered as the list argument in the <code>rm()</code> function. Ultimately, <code>rm(list = ls()[str_detect(ls(), &quot;test&quot;)])</code> removes objects with the matching <code>&quot;test&quot;</code> pattern from the environment!<br />
  </p>
 </div>
-<div id="coord_cartesian-for-trimming-ggplot2-whitespace" class="section level2">
-<h2>2. <code>coord_cartesian()</code> for trimming ggplot2 whitespace</h2>
+<div id="coord_cartesian-for-zooming-in-on-ggplots" class="section level2">
+<h2>2. <code>coord_cartesian()</code> for zooming in on ggplots</h2>
+<p> <br />
+Say that you are producing a histogram from your data that looks something like this:</p>
+<pre class="r"><code>aq &lt;- as_tibble(airquality)
+
+ggplot(aq, aes(x = Ozone)) +
+  geom_histogram(fill = customBlue, binwidth = 5) +
+  theme_light() +
+  labs(y = &quot;Count&quot;, x = &quot;Ozone&quot;)</code></pre>
+<p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-4-1.png" width="2100" /></p>
+<p>For whatever reason, you are only interested in visualizing a subset of this data. For example, we only want to visualize the histogram between Ozone values 0 and 50. You can achieve this using <code>xlim()</code>:</p>
+<pre class="r"><code>ggplot(aq, aes(x = Ozone)) +
+  geom_histogram(fill = customBlue, binwidth = 5) +
+  theme_light() +
+  labs(y = &quot;Count&quot;, x = &quot;Ozone&quot;) +
+  xlim(c(0, 50))</code></pre>
+<p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-5-1.png" width="2100" /></p>
+<p>But using <code>xlim()</code> has resulted in an odd behaviour. Our histogram looks different than the original above. This is because <code>xlim()</code> (and <code>scale_x_continuous(limits = ...)</code>) <strong>has excluded all data that don’t fall within the limits</strong>. In this example, <code>xlim()</code> excluded data points near 0 and 50. This is problematic if our goal is to visualize the same data without excluding data that lies on the edge of our criteria.</p>
+<p>Instead, we can use <code>coord_cartesian()</code> to achieve a true “zoom in” on our original data visualization.</p>
+<pre class="r"><code>ggplot(aq, aes(x = Ozone)) +
+  geom_histogram(fill = customBlue, binwidth = 5) +
+  theme_light() +
+  labs(y = &quot;Count&quot;, x = &quot;Ozone&quot;) +
+  coord_cartesian(xlim = c(0, 50))</code></pre>
+<p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-6-1.png" width="2100" /></p>
+<p>Setting the <code>xlim</code> argument within <code>coord_cartesian()</code> results in the desired behaviour. Remember this tip so that you don’t accidentally exclude data from your visualizations!</p>
 <p> </p>
 </div>
 <div id="intra-figure-legends-in-ggplot2-graphics" class="section level2">
 <h2>3. Intra-figure legends in <code>ggplot2</code> graphics</h2>
+<p> <br />
+I agree with Edward Tufte’s disdain for legends in data visualizations. Legends, when placed on outside of a visualization, oblige your audience to look back-and-forth to interpret what you are presenting. This means that your audience has to focus on the <em>format</em> of your visualization before they can begin interpreting the content or message you are trying to deliver. That’s why I always try to use direct labels on my data visualizations instead of legends, like so:</p>
+<p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-7-1.png" width="2100" /></p>
+<p>But say you want to do the same direct labelling with a messier or more complicated visualization…</p>
+<p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-8-1.png" width="2100" /></p>
+<p>Now, I would hope that you would never <em>have to</em> present a spaghetti graph like this, but this is a situation where direct labels are not the best option. Instead, we’ll use a legend. To reduce the amount of back-and-forth your audience has to do, we can place the legend within the figure as a compromise.</p>
+<pre class="r"><code>aq %&gt;%
+  filter(Month != 5) %&gt;%
+  ggplot(aes(x = Day, y = Temp, group = Month, colour = factor(Month))) +
+  geom_line(size = 1) + 
+  geom_point(size = 3) +
+  scale_colour_manual(values = c(customBlue, customOrange, customYellow, customPurple)) +
+  coord_cartesian(ylim = c(50, 100)) +
+  labs(title = &quot;Mean temperature by day grouped by month&quot;,
+       y = &quot;Mean Temperature (F)&quot;,
+       colour = &quot;Month&quot;) +
+  theme_light() +
+  theme(legend.background = element_blank(),
+        legend.position = c(0.25, 0.2),
+        legend.title = element_text(size = 12),
+        legend.text = element_text(size = 12))</code></pre>
+<p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-9-1.png" width="2100" /></p>
+<p>This is accomplished by using <code>theme(legend.background = element_blank(), legend.position = c(0.25, 0.2), ...)</code> to make the legend background transparent and to move the legend into the figure. This intra-figure legend will reduce, but not eliminate all of the figure’s interpretability issues. At the very least, it is a good compromise when you can’t directly label your data.</p>
 <p> </p>
 </div>
 <div id="high-resolution-plot-outputs-via-cairopng" class="section level2">
 <h2>4. High resolution plot outputs via <code>CairoPNG()</code></h2>
+<p>Exporting graphics in R can be challenging. New users will typically use RStudio’s Export functionality in the viewer pane in order to save images to their working directory. Unfortunately, this does not always result in the best looking graphic.</p>
 <p> </p>
 </div>
 <div id="fuzzy-joins-on-intervals-with-genome_left_join" class="section level2">
