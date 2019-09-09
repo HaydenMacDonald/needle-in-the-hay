@@ -1,8 +1,8 @@
 ---
-title: "R Tricks learned during my summer internship"
+title: "Coding and data visualization tricks learned during my summer internship"
 author: "Hayden MacDonald"
 date: '2019-09-08'
-slug: r-tricks
+slug: code-tricks
 categories: 
 - data visualization
 - data joins
@@ -10,6 +10,19 @@ categories:
 tags: []
 subtitle: ''
 ---
+
+
+
+
+1. Removing multiple similarly named objects from the environment
+
+2. coord_cartesian() for trimming ggplot2 whitespace
+
+3. High res plot outputs via Cairo
+
+4. Intra-figure legends
+
+5. Fuzzy joins on intervals with genome_left_join
 
 
 
