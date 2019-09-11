@@ -1,11 +1,11 @@
 ---
-title: "R tricks learned during my Voices.com internship"
+title: "R tips learned during my Voices.com internship"
 author: "Hayden MacDonald"
 date: '2019-09-08'
 output:
   blogdown::html_page:
     toc: true
-slug: code-tricks
+slug: code-tips
 tags: 
 - data visualization
 - data joins
@@ -20,19 +20,20 @@ tags:
 <li><a href="#intra-figure-legends-in-ggplot2-graphics">3. Intra-figure legends in <code>ggplot2</code> graphics</a></li>
 <li><a href="#high-resolution-plot-outputs-via-cairopng">4. High resolution plot outputs via <code>CairoPNG()</code></a></li>
 <li><a href="#fuzzy-joins-on-intervals-with-genome_left_join">5. Fuzzy joins on intervals with <code>genome_left_join()</code></a></li>
+<li><a href="#explain-dates">EXPLAIN DATES</a></li>
 </ul>
 </div>
 
 <p> <br />
 This summer I worked as a Data Analyst Intern at Voices.com as a part of my MSc in Business Analytics. Voices.com is a marketplace website that matches business clients with voice over talent.</p>
-<p>During my internship at Voices.com, I became involved in a variety of analytics projects. First, I committed to a customer segmentation analysis on voice-over talent. Later in the summer, I analyzed customer churn, built dashboards for core metrics, and designed A/B tests! Through these projects, I procured even more experience with the R programming language. In this post, I will showcase R tricks that I learned this summer for data analysis and visualization. Hopefully, you can apply some of these tricks to your own data analysis projects.<br />
+<p>During my internship at Voices.com, I became involved in a variety of analytics projects. First, I committed to a customer segmentation analysis on voice-over talent. Later in the summer, I analyzed customer churn, built dashboards for core metrics, and designed A/B tests! Through these projects, I procured even more experience with the R programming language. In this post, I will showcase R tips that I learned this summer for data analysis and visualization. Hopefully, you can apply some of these tips to your own data analysis projects.<br />
  </p>
 <div id="removing-similarly-named-objects-from-rs-global-environment" class="section level2">
 <h2>1. Removing similarly-named objects from R’s Global Environment</h2>
 <p> <br />
 Say that you are in the middle of a data analysis and you need to test out a part of your code. If you’re like me, you will test sections of code and assign the results to a new object named something like <code>test</code>. After I’m finished testing my code, I’m left with a RStudio environment that looks like this:</p>
 <p><img src="/img/env.png" /><!-- --></p>
-<p>My first trick will allow us to selectively delete these <code>test</code> objects. This is accomplished through the following code:</p>
+<p>My first tip will allow us to selectively delete these <code>test</code> objects. This is accomplished through the following code:</p>
 <pre class="r"><code>rm(list = ls()[str_detect(ls(), &quot;string&quot;)])</code></pre>
 <p>Let’s break down what is going on in this code. This code contains four distinct parts:<br />
  </p>
@@ -84,7 +85,7 @@ I agree with Edward Tufte’s disdain for legends in data visualizations. Legend
 <p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-7-1.png" width="2100" /></p>
 <p>But say you want to do the same direct labelling with a messier or more complicated visualization…</p>
 <p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-8-1.png" width="2100" /></p>
-<p>Now, I would hope that you would never <em>have to</em> present a spaghetti graph like this, but this is a situation where direct labels are not the best option. Instead, we’ll use a legend. To reduce the amount of back-and-forth your audience has to do, we can place the legend within the figure as a compromise.</p>
+<p>Now, I would hope that you would never <em>have to</em> present a spaghetti graph like this, but this is a situation where direct labels are not as easily implemented. Instead, we’ll use a legend. To reduce the amount of back-and-forth your audience has to do, we can place the legend within the figure as a compromise.</p>
 <pre class="r"><code>aq %&gt;%
   filter(Month != 5) %&gt;%
   ggplot(aes(x = Day, y = Temp, group = Month, colour = factor(Month))) +
@@ -96,8 +97,8 @@ I agree with Edward Tufte’s disdain for legends in data visualizations. Legend
        y = &quot;Mean Temperature (F)&quot;,
        colour = &quot;Month&quot;) +
   theme_light() +
-  theme(legend.background = element_blank(),
-        legend.position = c(0.25, 0.2),
+  theme(legend.background = element_blank(),     ## These lines here!
+        legend.position = c(0.25, 0.2),          ## These lines here!
         legend.title = element_text(size = 12),
         legend.text = element_text(size = 12))</code></pre>
 <p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-9-1.png" width="2100" /></p>
@@ -106,10 +107,53 @@ I agree with Edward Tufte’s disdain for legends in data visualizations. Legend
 </div>
 <div id="high-resolution-plot-outputs-via-cairopng" class="section level2">
 <h2>4. High resolution plot outputs via <code>CairoPNG()</code></h2>
-<p>Exporting graphics in R can be challenging. New users will typically use RStudio’s Export functionality in the viewer pane in order to save images to their working directory. Unfortunately, this does not always result in the best looking graphic.</p>
+<p> <br />
+Exporting graphics in R can be challenging. New users will typically use RStudio’s Export functionality in the viewer pane in order to save images to their working directory. In my experience, this method results in pixelated, low resolution graphics. There is nothing more demotivating than working on a visualizations for hours, only to have them look mediocre when presenting them.</p>
+<p>This is where the <code>Cairo</code> package comes in. The formula for using <code>Cairo</code> outputs is as follows:</p>
+<pre class="r"><code>CairoPNG(filename = &quot;filename.png&quot;, res = 300, units = &quot;in&quot;, width = 16, height = 9)
+
+ggplot()...
+
+dev.off()</code></pre>
+<p>The first line initializes a graphics device via Cairo to render a high quality image of your visualization in the file format of your choosing. Here, I specify a PNG output through <code>CairoPNG()</code>, but other formats include JPEG, TIFF, and PDF. The second portion of the script should contain your visualization code. The last part is specifying <code>dev.off()</code>, which turns the graphics device off. After executing the code in order, a high quality output of your visualization will be found in your working directory.</p>
+<p>Note that your visualization might be slightly different from your viewer pane preview. It is then up to you to adjust your visualization code before running the whole code chunk again to see the changes. Use this tip so that your visualizations are always high res and crisp for your audience!</p>
 <p> </p>
 </div>
 <div id="fuzzy-joins-on-intervals-with-genome_left_join" class="section level2">
 <h2>5. Fuzzy joins on intervals with <code>genome_left_join()</code></h2>
+<p> <br />
+The last tip is for dirty data joining! You may find yourself in a situation where you want to join two data frames / tables but you don’t have the necessary number of unique identifiers. For example, you are looking at event data in two separate data frames, where one data frame contains subscription data and the other contains cancellation case data.</p>
+<pre class="r"><code>memberships</code></pre>
+<pre><code>## # A tibble: 8 x 4
+##   member_id sub_type start_date end_date  
+##       &lt;dbl&gt; &lt;chr&gt;    &lt;date&gt;     &lt;date&gt;    
+## 1         1 Silver   2019-09-05 2020-09-05
+## 2         1 Gold     2018-09-05 2019-09-05
+## 3         2 Gold     2019-07-01 2020-07-01
+## 4         2 Gold     2018-07-01 2019-07-01
+## 5         3 Silver   2019-02-01 2020-02-01
+## 6         3 Gold     2018-02-01 2019-02-01
+## 7         4 Silver   2018-05-25 2019-05-25
+## 8         4 Silver   2017-05-25 2018-05-25</code></pre>
+<pre class="r"><code>cancellations</code></pre>
+<pre><code>## # A tibble: 3 x 4
+##   member_id case_id case_open_date case_closed_date
+##       &lt;dbl&gt;   &lt;dbl&gt; &lt;date&gt;         &lt;date&gt;          
+## 1         1     643 2020-05-09     2020-05-12      
+## 2         3     388 2019-11-30     2019-12-01      
+## 3         4     182 2018-04-25     2018-04-27</code></pre>
+<p>In this example, we can identify which members have subscriptions and cancellation cases through <code>member_id</code>, but we lack sufficient information to figure out which cancellation cases belong to which subscriptions, if any. To know which cancellation cases belong to which subscription, we would require a unique subscription id variable in the cancellation case data (which we do not have). This problem can be solved with something called a <strong>fuzzy join</strong>.</p>
+<p>In many programming languages, a left or right join allows you to link data frames or tables that contain a key identifier variable that is common between the two. This allows for the data frames to be linked based on an <strong>exact</strong> match of the key id variables in each data frame. In our example, that would be the <code>member_id</code> variable. Fuzzy joins differ as they allow you to link data frames based on <strong>inexact</strong> matching. This inexact matching technique is particularly useful in combination with an exact match.</p>
+<p>In the following example, we will use <code>genome_left_join()</code> to perform a <strong>fuzzy left join</strong> of <code>cancellations</code> on <code>memberships</code> based on our criteria of an exact match of <code>member_id</code> and inexact match (overlap between dates) of subscription interval (<code>start_date</code> to <code>end_date</code>) and case interval (<code>case_open_date</code> to <code>case_closed_date</code>).</p>
+<pre class="r"><code>memberships &lt;- memberships %&gt;%
+                    mutate(start_date = as.numeric(start_date),
+                           end_date = as.numeric(end_date))
+
+#mem_canc &lt;- memberships %&gt;%
+                #genome_left_join(cancellations, by = c(&quot;member_id&quot; = &quot;member_id&quot;, &quot;start_date&quot; = &quot;case_open_date&quot;, &quot;end_date&quot; = &quot;case_closed_date&quot;))</code></pre>
+</div>
+<div id="explain-dates" class="section level2">
+<h2>EXPLAIN DATES</h2>
+<p>The result is a data frame containing all rows from <code>memberships</code> and the matched rows of <code>cancellations</code> based on our criteria of an exact match of <code>member_id</code> and inexact match (overlap between dates) of subscription interval and case interval.</p>
 <p> </p>
 </div>
