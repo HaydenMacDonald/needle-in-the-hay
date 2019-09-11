@@ -1,5 +1,5 @@
 ---
-title: "R tips learned during my Voices.com internship"
+title: "Five R tips from my Voices.com internship"
 author: "Hayden MacDonald"
 date: '2019-09-08'
 output:
@@ -31,12 +31,12 @@ My first tip will allow us to selectively delete these `test` objects. This is a
 rm(list = ls()[str_detect(ls(), "string")])
 ```
 
-Let's break down what is going on in this code. This code contains four distinct parts:  
+Let's break down what is going on in this code.  
 &nbsp;  
 
-- The `rm()` function removes objects from the R environment.  
-- The  `ls()` function lists all the objects in the R environment.  
-- The `str_detect()` function from the `stringr` package detects a specified pattern in a string.  
+- `rm()` removes objects from the R environment.  
+- `ls()` lists all the objects in the R environment.  
+- `str_detect()` from `stringr` detects a specified pattern in a string.  
 - `"string"` is the pattern which our objects of interest have in common (e.g. "test").  
 
 The innermost part of the code, `str_detect(ls(), "string")`, detects the specified pattern within the environment. The previous code, enclosed in square brackets, indexes the list of object names in the environment (`ls()[str_detect(ls(), "string")]`). Finally, that code is entered as the list argument in the `rm()` function. Ultimately, `rm(list = ls()[str_detect(ls(), "test")])` removes objects with the matching `"test"` pattern from the environment!  
@@ -89,7 +89,7 @@ ggplot(aq, aes(x = Ozone)) +
   coord_cartesian(xlim = c(0, 50))
 ```
 
-Setting the `xlim` argument within `coord_cartesian()` results in the desired behaviour. Remember this tip so that you don't accidentally exclude data from your visualizations!   
+Setting the `xlim` argument within `coord_cartesian()` results in the desired behaviour. Note that the previous erroneous behaviour of `xlim()` isn't restricted to histograms! Remember this tip so that you don't accidentally exclude data from your visualizations!   
   
 &nbsp;  
 
@@ -133,11 +133,12 @@ aq %>%
        colour = "Month") +
   theme_light() +
   theme(legend.title = element_text(size = 12),
-        legend.text = element_text(size = 12))
+        legend.text = element_text(size = 12)) +
+  guides(colour = FALSE)
 ```
 
 Now, I would hope that you would never *have to* present a spaghetti graph like this, but this is a situation where direct labels are not as easily implemented. Instead, we'll use a legend. To reduce the amount of back-and-forth your audience has to do, we can place the legend within the figure as a compromise.  
-
+&nbsp;  
 ```{r, dpi = 300}
 aq %>%
   filter(Month != 5) %>%
@@ -162,7 +163,7 @@ This is accomplished by using `theme(legend.background = element_blank(), legend
 
 ## 4. High resolution plot outputs via `CairoPNG()`
 &nbsp;  
-Exporting graphics in R can be challenging. New users will typically use RStudio's Export functionality in the viewer pane in order to save images to their working directory. In my experience, this method results in pixelated, low resolution graphics. There is nothing more demotivating than working on a visualizations for hours, only to have them look mediocre when presenting them.  
+Exporting graphics in R can be challenging. New users will typically use RStudio's Export button in the Plots window to save images to their working directory. In my experience, this method results in pixelated, low resolution graphics. There is nothing more demotivating than working on a visualizations for hours, only to have them look mediocre when presenting them.  
 
 This is where the `Cairo` package comes in. The formula for using `Cairo` outputs is as follows:  
 
@@ -174,7 +175,14 @@ ggplot()...
 dev.off()
 ```
 
-The first line initializes a graphics device via Cairo to render a high quality image of your visualization in the file format of your choosing. Here, I specify a PNG output through `CairoPNG()`, but other formats include JPEG, TIFF, and PDF. The second portion of the script should contain your visualization code. The last part is specifying `dev.off()`, which turns the graphics device off. After executing the code in order, a high quality output of your visualization will be found in your working directory.  
+1. The first line initializes a graphics device via Cairo to render a high quality image of your visualization in the file format of your choosing. Here, I specify a PNG output through `CairoPNG()`, but other formats include JPEG, TIFF, and PDF.  
+&nbsp;  
+2. The second portion of the script should contain your visualization code.  
+&nbsp;  
+3. The last part is specifying `dev.off()`, which turns the graphics device off.  
+&nbsp;  
+
+After executing the code in order, a high quality output of your visualization will be found in your working directory.  
 
 Note that your visualization might be slightly different from your viewer pane preview. It is then up to you to adjust your visualization code before running the whole code chunk again to see the changes. Use this tip so that your visualizations are always high res and crisp for your audience!  
   
@@ -189,25 +197,25 @@ library(fuzzyjoin)
 library(lubridate)
 library(IRanges)
 
-memberships <- tibble(member_id = c(1, 1, 2, 2, 3, 3, 4, 4),
-                       sub_type = c("Silver", "Gold", "Gold", "Gold", "Gold", "Silver", "Silver", "Silver"),
+memberships <- tibble(id = c(1, 1, 2, 2, 3, 3, 4, 4),
+                         sub_id = c(12, 41, 57, 62, 87, 78, 23, 35),
                      start_date = c("2019-09-05", "2018-09-05", "2019-07-01", "2018-07-01", "2018-02-01", "2019-02-01", "2017-05-25", "2018-05-25"),
                        end_date = c("2020-09-05", "2019-09-05", "2020-07-01", "2019-07-01", "2019-02-01", "2020-02-01", "2018-05-25", "2019-05-25")) 
 
 memberships <- memberships %>%
                     mutate(start_date = as_date(start_date),
                            end_date = as_date(end_date)) %>%
-                    arrange(member_id, desc(start_date))
+                    arrange(id, desc(start_date))
 
-cancellations <- tibble(member_id = c(1, 3, 4),
-                          case_id = c(643, 388, 182),
-                   case_open_date = c("2020-05-09", "2019-11-30", "2018-04-25"),
-                 case_close_date = c("2020-05-12", "2019-12-01", "2018-04-27")) 
+cancellations <- tibble(             id = c(1, 3, 4),
+                         case_open_date = c("2020-05-09", "2019-11-30", "2018-04-25"),
+                        case_close_date = c("2020-05-12", "2019-12-01", "2018-04-27"),
+                                 retain = c(TRUE, FALSE, FALSE)) 
 
 cancellations <- cancellations %>%
                     mutate(case_open_date = as_date(case_open_date),
                            case_close_date = as_date(case_close_date)) %>%
-                    arrange(member_id, desc(case_open_date))
+                    arrange(id, desc(case_open_date))
 ```
 
 ```{r}
@@ -218,50 +226,64 @@ memberships
 cancellations
 ```
 
-In this example, we can identify which members have subscriptions and cancellation cases through `member_id`, but we lack sufficient information to figure out which cancellation cases belong to which subscriptions, if any. To know which cancellation cases belong to which subscription, we would require a unique subscription id variable in the cancellation case data (which we do not have). This problem can be solved with something called a **fuzzy join**.  
+In this example, we can identify which members have subscriptions and cancellation cases through `id`. But we don't have enough information to know which subscription each cancellation case belongs to. To know this, we would need a unique subscription id variable in the cancellation case data. Unfortunately, we only have subscription ids in `memberships`. We can solve this problem with something called a **fuzzy join**.   
 
-In many programming languages, a left or right join allows you to link data frames or tables that contain a key identifier variable that is common between the two. This allows for the data frames to be linked based on an **exact** match of the key id variables in each data frame. In our example, that would be the `member_id` variable. Fuzzy joins differ as they allow you to link data frames based on **inexact** matching. This inexact matching technique is particularly useful in combination with an exact match.  
+In many programming languages, a left or right join allows you to link data frames or tables that contain a key identifier variable that is common between the two. This allows the analyst to link the data frames based on an **exact** match of the key id variables in each data frame. In our example, that would be the `id` variable. Fuzzy joins differ as they allow you to link data frames based on **inexact** matching. This inexact matching technique is particularly useful in combination with an exact match.  
 
-In the following example, we will use `genome_left_join()` from the `fuzzyjoin` package to perform a **fuzzy left join** of `cancellations` on `memberships`. This join will be based on criteria of an exact match of `member_id` and inexact match of the subscription interval (period between `start_date` to `end_date`) overlapping with the case interval (period between `case_open_date` to `case_close_date`).  
+In the following example, we will use `genome_left_join()` from the `fuzzyjoin` package to perform a **fuzzy left join** of `cancellations` on `memberships`. This join will be based on criteria of an exact match of `id` and an inexact match of the subscription period (between `start_date` to `end_date`) that overlaps with the case period (between `case_open_date` to `case_close_date`).  
 
 ```{r}
+# Convert start_date and end_date to numeric
 memberships <- memberships %>%
                     mutate(start_date = as.numeric(start_date),
                            end_date = as.numeric(end_date))
 
+# Convert case_open_date and case_close_date to numeric
 cancellations <- cancellations %>%
                     mutate(case_open_date = as.numeric(case_open_date),
                            case_close_date = as.numeric(case_close_date))
 
+# Fuzzy join
 mem_canc <- memberships %>%
                 genome_left_join(cancellations, 
-                                  by = c("member_id" = "member_id", 
+                                  by = c("id" = "id", 
                                          "start_date" = "case_open_date", 
                                          "end_date" = "case_close_date")) %>%
+# Then convert start_date, end_date, case_open_date, and case_close_date back to dates
                 mutate(     start_date = as_date(start_date),
                               end_date = as_date(end_date),
                         case_open_date = as_date(case_open_date),
                        case_close_date = as_date(case_close_date))
 ```
 
-The first two code chunks change our subscription and case dates to integers (which represent the number of days since 1970-01-01). The result of the join is a single data frame containing all columns from both data frames and all rows from `memberships` and the matched rows of `cancellations`. Any rows in `memberships` that do not have a matching row in `cancellations` are filled with NAs.  
+The first two code chunks change our subscription and case dates to integers (which represent the number of days since 1970-01-01). The result of the fuzzy join is a single data frame containing all rows from `memberships` and the matched rows of `cancellations`. Any rows in `memberships` that do not have a matching row in `cancellations` are filled with NAs.  
+
+```{r, echo=FALSE}
+mem_canc <- mem_canc %>%
+                select(-id.y)
+
+names(mem_canc)[1] <- "id"
+```
+
 
 ```{r}
 mem_canc
 ```
 
-Now we can clearly see which subscriptions the cancellation cases belong to. From here, I could further clean this data by changing the `end_date` of the subscription to match the cancellation `case_close_date` if the subscription was successfully cancelled according to `retained`. This would allow me to calculate churn rates of the subscribers, which has huge implications for a subscription business' monthly and annual revenue.  
+Now we can see which subscriptions the cancellation cases belong to. From here, I could further clean this data by changing the `end_date` of the subscription to match the cancellation `case_close_date`, if the subscription was successfully cancelled according to `retain`. This would allow me to calculate churn rates of the subscribers, which has huge implications for a subscription business' monthly and annual revenue.  
 
-Note: to perform a fuzzy join with `genome_left_join()` you will require the `Bioconductor` and `IRanges` packages. Installation instructions can be found <a href="https://www.bioconductor.org/packages/release/bioc/html/IRanges.html" target="_blank">here</a>.  
+Note: to perform a fuzzy join with `genome_left_join()` you will require the `Bioconductor` and `IRanges` packages as well. Installation instructions can be found <a href="https://www.bioconductor.org/packages/release/bioc/html/IRanges.html" target="_blank">here</a>.  
 
 &nbsp;  
 
 ## Conclusion
 &nbsp;  
 
-Thanks for reading this blog post! Hopefully, you'll be able to use some of these tips to make your data analyses cleaner, crisper, and more accurate! Feel free to share this content with others who may benefit from using any one of these tips. As always, the full code for this post is available <a href="" target="_blank">here</a>. Happy coding!
+Thanks for reading this blog post! Hopefully, you'll be able to use some of these tips to make your data analyses cleaner, crisper, and more accurate!  
 
+Feel free to share this content with others who may benefit from using any of these tips. As always, the full code for this post is available <a href="" target="_blank">here</a>. Happy coding!
 
+&nbsp;  
 
 
 
