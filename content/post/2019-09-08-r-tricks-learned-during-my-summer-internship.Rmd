@@ -32,13 +32,13 @@ rm(list = ls()[str_detect(ls(), "string")])
 ```
 
 Let's break down what is going on in this code.  
-&nbsp;  
+
 
 - `rm()` removes objects from the R environment.  
 - `ls()` lists all the objects in the R environment.  
 - `str_detect()` from `stringr` detects a specified pattern in a string.  
 - `"string"` is the pattern which our objects of interest have in common (e.g. "test").  
-
+&nbsp;  
 The innermost part of the code, `str_detect(ls(), "string")`, detects the specified pattern within the environment. The previous code, enclosed in square brackets, indexes the list of object names in the environment (`ls()[str_detect(ls(), "string")]`). Finally, that code is entered as the list argument in the `rm()` function. Ultimately, `rm(list = ls()[str_detect(ls(), "test")])` removes objects with the matching `"test"` pattern from the environment!  
 &nbsp;  
 
@@ -165,7 +165,7 @@ This is accomplished by using `theme(legend.background = element_blank(), legend
 &nbsp;  
 Exporting graphics in R can be challenging. New users will typically use RStudio's Export button in the Plots window to save images to their working directory. In my experience, this method results in pixelated, low resolution graphics. There is nothing more demotivating than working on a visualizations for hours, only to have them look mediocre when presenting them.  
 
-This is where the `Cairo` package comes in. The formula for using `Cairo` outputs is as follows:  
+This is where the `Cairo` package comes in. The formula for generating `Cairo` outputs is as follows:  
 
 ```{r, eval=FALSE}
 CairoPNG(filename = "filename.png", res = 300, units = "in", width = 16, height = 9)
@@ -190,8 +190,8 @@ Note that your visualization might be slightly different from your viewer pane p
 
 ## 5. Fuzzy joins on intervals with `genome_left_join()`
 &nbsp;  
-The last tip is for dirty data joining! You may find yourself in a situation where you want to join two data frames / tables but you don't have the necessary number of unique identifiers. For example, you are looking at event data in two separate data frames, where one data frame contains subscription data and the other contains cancellation case data.
-
+The last tip is for dirty data joining! You may find yourself in a situation where you want to join two data frames / tables but you don't have the necessary number of unique identifiers. For example, you are looking at event data in two separate data frames, where one data frame contains subscription data and the other contains cancellation case data.  
+&nbsp;  
 ```{r, echo = FALSE, warning=FALSE, message=FALSE}
 library(fuzzyjoin)
 library(lubridate)
@@ -231,7 +231,7 @@ In this example, we can identify which members have subscriptions and cancellati
 In many programming languages, a left or right join allows you to link data frames or tables that contain a key identifier variable that is common between the two. This allows the analyst to link the data frames based on an **exact** match of the key id variables in each data frame. In our example, that would be the `id` variable. Fuzzy joins differ as they allow you to link data frames based on **inexact** matching. This inexact matching technique is particularly useful in combination with an exact match.  
 
 In the following example, we will use `genome_left_join()` from the `fuzzyjoin` package to perform a **fuzzy left join** of `cancellations` on `memberships`. This join will be based on criteria of an exact match of `id` and an inexact match of the subscription period (between `start_date` to `end_date`) that overlaps with the case period (between `case_open_date` to `case_close_date`).  
-
+&nbsp;  
 ```{r}
 # Convert start_date and end_date to numeric
 memberships <- memberships %>%
@@ -255,9 +255,9 @@ mem_canc <- memberships %>%
                         case_open_date = as_date(case_open_date),
                        case_close_date = as_date(case_close_date))
 ```
-
+&nbsp;  
 The first two code chunks change our subscription and case dates to integers (which represent the number of days since 1970-01-01). The result of the fuzzy join is a single data frame containing all rows from `memberships` and the matched rows of `cancellations`. Any rows in `memberships` that do not have a matching row in `cancellations` are filled with NAs.  
-
+&nbsp;  
 ```{r, echo=FALSE}
 mem_canc <- mem_canc %>%
                 select(-id.y)
@@ -269,7 +269,7 @@ names(mem_canc)[1] <- "id"
 ```{r}
 mem_canc
 ```
-
+&nbsp;  
 Now we can see which subscriptions the cancellation cases belong to. From here, I could further clean this data by changing the `end_date` of the subscription to match the cancellation `case_close_date`, if the subscription was successfully cancelled according to `retain`. This would allow me to calculate churn rates of the subscribers, which has huge implications for a subscription business' monthly and annual revenue.  
 
 Note: to perform a fuzzy join with `genome_left_join()` you will require the `Bioconductor` and `IRanges` packages as well. Installation instructions can be found <a href="https://www.bioconductor.org/packages/release/bioc/html/IRanges.html" target="_blank">here</a>.  

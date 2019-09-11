@@ -228,8 +228,7 @@ Say that you are in the middle of a data analysis and you need to test out a par
 <p><img src="/img/env.png" /><!-- --></p>
 <p>My first tip will allow us to selectively delete these <code>test</code> objects. This is accomplished through the following code:</p>
 <pre class="r"><code>rm(list = ls()[str_detect(ls(), &quot;string&quot;)])</code></pre>
-<p>Let’s break down what is going on in this code.<br />
- </p>
+<p>Let’s break down what is going on in this code.</p>
 <ul>
 <li><code>rm()</code> removes objects from the R environment.<br />
 </li>
@@ -237,10 +236,11 @@ Say that you are in the middle of a data analysis and you need to test out a par
 </li>
 <li><code>str_detect()</code> from <code>stringr</code> detects a specified pattern in a string.<br />
 </li>
-<li><code>&quot;string&quot;</code> is the pattern which our objects of interest have in common (e.g. “test”).</li>
+<li><code>&quot;string&quot;</code> is the pattern which our objects of interest have in common (e.g. “test”).<br />
+ <br />
+The innermost part of the code, <code>str_detect(ls(), &quot;string&quot;)</code>, detects the specified pattern within the environment. The previous code, enclosed in square brackets, indexes the list of object names in the environment (<code>ls()[str_detect(ls(), &quot;string&quot;)]</code>). Finally, that code is entered as the list argument in the <code>rm()</code> function. Ultimately, <code>rm(list = ls()[str_detect(ls(), &quot;test&quot;)])</code> removes objects with the matching <code>&quot;test&quot;</code> pattern from the environment!<br />
+ </li>
 </ul>
-<p>The innermost part of the code, <code>str_detect(ls(), &quot;string&quot;)</code>, detects the specified pattern within the environment. The previous code, enclosed in square brackets, indexes the list of object names in the environment (<code>ls()[str_detect(ls(), &quot;string&quot;)]</code>). Finally, that code is entered as the list argument in the <code>rm()</code> function. Ultimately, <code>rm(list = ls()[str_detect(ls(), &quot;test&quot;)])</code> removes objects with the matching <code>&quot;test&quot;</code> pattern from the environment!<br />
- </p>
 </div>
 <div id="coord_cartesian-for-zooming-in-on-ggplots" class="section level2">
 <h2>2. <code>coord_cartesian()</code> for zooming in on ggplots</h2>
@@ -303,7 +303,7 @@ I agree with Edward Tufte’s disdain for legends in data visualizations. Legend
 <h2>4. High resolution plot outputs via <code>CairoPNG()</code></h2>
 <p> <br />
 Exporting graphics in R can be challenging. New users will typically use RStudio’s Export button in the Plots window to save images to their working directory. In my experience, this method results in pixelated, low resolution graphics. There is nothing more demotivating than working on a visualizations for hours, only to have them look mediocre when presenting them.</p>
-<p>This is where the <code>Cairo</code> package comes in. The formula for using <code>Cairo</code> outputs is as follows:</p>
+<p>This is where the <code>Cairo</code> package comes in. The formula for generating <code>Cairo</code> outputs is as follows:</p>
 <pre class="r"><code>CairoPNG(filename = &quot;filename.png&quot;, res = 300, units = &quot;in&quot;, width = 16, height = 9)
 
 ggplot()...
@@ -326,7 +326,8 @@ dev.off()</code></pre>
 <div id="fuzzy-joins-on-intervals-with-genome_left_join" class="section level2">
 <h2>5. Fuzzy joins on intervals with <code>genome_left_join()</code></h2>
 <p> <br />
-The last tip is for dirty data joining! You may find yourself in a situation where you want to join two data frames / tables but you don’t have the necessary number of unique identifiers. For example, you are looking at event data in two separate data frames, where one data frame contains subscription data and the other contains cancellation case data.</p>
+The last tip is for dirty data joining! You may find yourself in a situation where you want to join two data frames / tables but you don’t have the necessary number of unique identifiers. For example, you are looking at event data in two separate data frames, where one data frame contains subscription data and the other contains cancellation case data.<br />
+ </p>
 <pre class="r"><code>memberships</code></pre>
 <pre><code>## # A tibble: 8 x 4
 ##      id sub_id start_date end_date  
@@ -348,7 +349,8 @@ The last tip is for dirty data joining! You may find yourself in a situation whe
 ## 3     4 2018-04-25     2018-04-27      FALSE</code></pre>
 <p>In this example, we can identify which members have subscriptions and cancellation cases through <code>id</code>. But we don’t have enough information to know which subscription each cancellation case belongs to. To know this, we would need a unique subscription id variable in the cancellation case data. Unfortunately, we only have subscription ids in <code>memberships</code>. We can solve this problem with something called a <strong>fuzzy join</strong>.</p>
 <p>In many programming languages, a left or right join allows you to link data frames or tables that contain a key identifier variable that is common between the two. This allows the analyst to link the data frames based on an <strong>exact</strong> match of the key id variables in each data frame. In our example, that would be the <code>id</code> variable. Fuzzy joins differ as they allow you to link data frames based on <strong>inexact</strong> matching. This inexact matching technique is particularly useful in combination with an exact match.</p>
-<p>In the following example, we will use <code>genome_left_join()</code> from the <code>fuzzyjoin</code> package to perform a <strong>fuzzy left join</strong> of <code>cancellations</code> on <code>memberships</code>. This join will be based on criteria of an exact match of <code>id</code> and an inexact match of the subscription period (between <code>start_date</code> to <code>end_date</code>) that overlaps with the case period (between <code>case_open_date</code> to <code>case_close_date</code>).</p>
+<p>In the following example, we will use <code>genome_left_join()</code> from the <code>fuzzyjoin</code> package to perform a <strong>fuzzy left join</strong> of <code>cancellations</code> on <code>memberships</code>. This join will be based on criteria of an exact match of <code>id</code> and an inexact match of the subscription period (between <code>start_date</code> to <code>end_date</code>) that overlaps with the case period (between <code>case_open_date</code> to <code>case_close_date</code>).<br />
+ </p>
 <pre class="r"><code># Convert start_date and end_date to numeric
 memberships &lt;- memberships %&gt;%
                     mutate(start_date = as.numeric(start_date),
@@ -370,7 +372,9 @@ mem_canc &lt;- memberships %&gt;%
                               end_date = as_date(end_date),
                         case_open_date = as_date(case_open_date),
                        case_close_date = as_date(case_close_date))</code></pre>
-<p>The first two code chunks change our subscription and case dates to integers (which represent the number of days since 1970-01-01). The result of the fuzzy join is a single data frame containing all rows from <code>memberships</code> and the matched rows of <code>cancellations</code>. Any rows in <code>memberships</code> that do not have a matching row in <code>cancellations</code> are filled with NAs.</p>
+<p> <br />
+The first two code chunks change our subscription and case dates to integers (which represent the number of days since 1970-01-01). The result of the fuzzy join is a single data frame containing all rows from <code>memberships</code> and the matched rows of <code>cancellations</code>. Any rows in <code>memberships</code> that do not have a matching row in <code>cancellations</code> are filled with NAs.<br />
+ </p>
 <pre class="r"><code>mem_canc</code></pre>
 <pre><code>## # A tibble: 8 x 7
 ##      id sub_id start_date end_date   case_open_date case_close_date retain
@@ -383,7 +387,8 @@ mem_canc &lt;- memberships %&gt;%
 ## 6     3     87 2018-02-01 2019-02-01 NA             NA              NA    
 ## 7     4     35 2018-05-25 2019-05-25 NA             NA              NA    
 ## 8     4     23 2017-05-25 2018-05-25 2018-04-25     2018-04-27      FALSE</code></pre>
-<p>Now we can see which subscriptions the cancellation cases belong to. From here, I could further clean this data by changing the <code>end_date</code> of the subscription to match the cancellation <code>case_close_date</code>, if the subscription was successfully cancelled according to <code>retain</code>. This would allow me to calculate churn rates of the subscribers, which has huge implications for a subscription business’ monthly and annual revenue.</p>
+<p> <br />
+Now we can see which subscriptions the cancellation cases belong to. From here, I could further clean this data by changing the <code>end_date</code> of the subscription to match the cancellation <code>case_close_date</code>, if the subscription was successfully cancelled according to <code>retain</code>. This would allow me to calculate churn rates of the subscribers, which has huge implications for a subscription business’ monthly and annual revenue.</p>
 <p>Note: to perform a fuzzy join with <code>genome_left_join()</code> you will require the <code>Bioconductor</code> and <code>IRanges</code> packages as well. Installation instructions can be found <a href="https://www.bioconductor.org/packages/release/bioc/html/IRanges.html" target="_blank">here</a>.</p>
 <p> </p>
 </div>
