@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Five R tips from my Voices.com internship</title>
+  <meta property="og:title" content="Five R tips from my Voices.com internship" />
+  <meta name="twitter:title" content="Five R tips from my Voices.com internship" />
+  <meta name="description" content="1. Removing similarly-named objects from R’s Global Environment2. coord_cartesian() for zooming in on ggplots3. Intra-figure legends in ggplot2 graphics4. High resolution plot outputs via CairoPNG()5. Fuzzy joins on intervals with genome_left_join()Conclusion This summer, I had the pleasure of working as a Data Analyst Intern at Voices.com as a part of my MSc in Business Analytics. Voices.com is a marketplace website that matches business clients with voice over talent.">
+  <meta property="og:description" content="1. Removing similarly-named objects from R’s Global Environment2. coord_cartesian() for zooming in on ggplots3. Intra-figure legends in ggplot2 graphics4. High resolution plot outputs via CairoPNG()5. Fuzzy joins on intervals with genome_left_join()Conclusion This summer, I had the pleasure of working as a Data Analyst Intern at Voices.com as a part of my MSc in Business Analytics. Voices.com is a marketplace website that matches business clients with voice over talent.">
+  <meta name="twitter:description" content="1. Removing similarly-named objects from R’s Global Environment2. coord_cartesian() for zooming in on ggplots3. Intra-figure legends in ggplot2 graphics4. High resolution plot outputs via …">
+  <meta name="author" content="Hayden MacDonald"/>
+  <link href='/img/needle2.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="/img/headshotbw.jpg" />
+  <meta name="twitter:image" content="/img/headshotbw.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@/HYDNMCDNLD" />
+  <meta name="twitter:creator" content="@/HYDNMCDNLD" />
+  <meta property="og:url" content="/code-tips/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Needle in the Hay" />
+
+  <meta name="generator" content="Hugo 0.48" />
+  <link rel="canonical" href="/code-tips/" />
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Needle in the Hay">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="/css/codeblock.css" />
+  <link rel="stylesheet" href="/css/solarized-dark.css" rel="stylesheet" id="theme-stylesheet">
+  <script src="/js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-125960941-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Needle in the Hay</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/post/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags/">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Needle in the Hay" href="/">
+            <img class="avatar-img" src="/img/headshotbw.jpg" alt="Needle in the Hay" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              <h1>Five R tips from my Voices.com internship</h1>
+                
+                
+                  <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on 2019-09-08
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 9 minutes (1896 words)
+  
+  
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <div id="TOC">
+<ul>
+<li><a href="#removing-similarly-named-objects-from-rs-global-environment">1. Removing similarly-named objects from R’s Global Environment</a></li>
+<li><a href="#coord_cartesian-for-zooming-in-on-ggplots">2. <code>coord_cartesian()</code> for zooming in on ggplots</a></li>
+<li><a href="#intra-figure-legends-in-ggplot2-graphics">3. Intra-figure legends in <code>ggplot2</code> graphics</a></li>
+<li><a href="#high-resolution-plot-outputs-via-cairopng">4. High resolution plot outputs via <code>CairoPNG()</code></a></li>
+<li><a href="#fuzzy-joins-on-intervals-with-genome_left_join">5. Fuzzy joins on intervals with <code>genome_left_join()</code></a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</div>
+
+<p> <br />
+<img src="/img/voices_photo.jpg" /><!-- -->  <br />
+This summer, I had the pleasure of working as a Data Analyst Intern at <a href="https://www.voices.com" target="_blank">Voices.com</a> as a part of my MSc in Business Analytics. Voices.com is a marketplace website that matches business clients with voice over talent.</p>
+<p>During my internship at Voices.com, I became involved in a variety of analytics projects. I committed to a customer segmentation analysis on voice-over talent, analyzed customer churn, built dashboards for core metrics, and designed A/B tests! Through these projects, I procured even more experience with the R programming language. In this post, I will showcase R tips that I learned this summer for data analysis and visualization. Hopefully, you can apply some of these tips to your own data analysis projects.<br />
+ </p>
+<div id="removing-similarly-named-objects-from-rs-global-environment" class="section level2">
+<h2>1. Removing similarly-named objects from R’s Global Environment</h2>
+<p> <br />
+Say that you are in the middle of a data analysis and you need to test out a part of your code. If you’re like me, you will test sections of code and assign the results to a new object named something like <code>test</code>. After I’m finished testing my code, I’m left with a RStudio environment that looks like this:</p>
+<p><img src="/img/env.png" /><!-- --></p>
+<p>My first tip will allow us to selectively delete these <code>test</code> objects. This is accomplished through the following code:</p>
+<pre class="r"><code>rm(list = ls()[str_detect(ls(), &quot;string&quot;)])</code></pre>
+<p>Let’s break down what is going on in this code.</p>
+<ul>
+<li><code>rm()</code> removes objects from the R environment.<br />
+</li>
+<li><code>ls()</code> lists all the objects in the R environment.<br />
+</li>
+<li><code>str_detect()</code> from <code>stringr</code> detects a specified pattern in a string.<br />
+</li>
+<li><code>&quot;string&quot;</code> is the pattern which our objects of interest have in common (e.g. “test”).<br />
+ <br />
+The innermost part of the code, <code>str_detect(ls(), &quot;string&quot;)</code>, detects the specified pattern within the environment. The previous code, enclosed in square brackets, indexes the list of object names in the environment (<code>ls()[str_detect(ls(), &quot;string&quot;)]</code>). Finally, that code is entered as the list argument in the <code>rm()</code> function. Ultimately, <code>rm(list = ls()[str_detect(ls(), &quot;test&quot;)])</code> removes objects with the matching <code>&quot;test&quot;</code> pattern from the environment!<br />
+ </li>
+</ul>
+</div>
+<div id="coord_cartesian-for-zooming-in-on-ggplots" class="section level2">
+<h2>2. <code>coord_cartesian()</code> for zooming in on ggplots</h2>
+<p> <br />
+Say that you are producing a histogram from your data that looks something like this:</p>
+<pre class="r"><code>aq &lt;- as_tibble(airquality)
+
+ggplot(aq, aes(x = Ozone)) +
+  geom_histogram(fill = customBlue, binwidth = 5) +
+  theme_light() +
+  labs(y = &quot;Count&quot;, x = &quot;Ozone&quot;)</code></pre>
+<p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-5-1.png" width="2100" /></p>
+<p>For whatever reason, you are only interested in visualizing a subset of this data. For example, we only want to visualize the histogram between Ozone values 0 and 50. You can achieve this using <code>xlim()</code>:</p>
+<pre class="r"><code>ggplot(aq, aes(x = Ozone)) +
+  geom_histogram(fill = customBlue, binwidth = 5) +
+  theme_light() +
+  labs(y = &quot;Count&quot;, x = &quot;Ozone&quot;) +
+  xlim(c(0, 50))</code></pre>
+<p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-6-1.png" width="2100" /></p>
+<p>But using <code>xlim()</code> has resulted in an odd behaviour. Our histogram looks different than the original above. This is because <code>xlim()</code> (and <code>scale_x_continuous(limits = ...)</code>) <strong>has excluded all data that don’t fall within the limits</strong>. In this example, <code>xlim()</code> excluded data points near 0 and 50. This is problematic if our goal is to visualize the same data without excluding data that lies on the edge of our criteria.</p>
+<p>Instead, we can use <code>coord_cartesian()</code> to achieve a true “zoom in” on our original data visualization.</p>
+<pre class="r"><code>ggplot(aq, aes(x = Ozone)) +
+  geom_histogram(fill = customBlue, binwidth = 5) +
+  theme_light() +
+  labs(y = &quot;Count&quot;, x = &quot;Ozone&quot;) +
+  coord_cartesian(xlim = c(0, 50))</code></pre>
+<p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-7-1.png" width="2100" /></p>
+<p>Setting the <code>xlim</code> argument within <code>coord_cartesian()</code> results in the desired behaviour. Note that the previous erroneous behaviour of <code>xlim()</code> isn’t restricted to histograms! Remember this tip so that you don’t accidentally exclude data from your visualizations!</p>
+<p> </p>
+</div>
+<div id="intra-figure-legends-in-ggplot2-graphics" class="section level2">
+<h2>3. Intra-figure legends in <code>ggplot2</code> graphics</h2>
+<p> <br />
+I agree with Edward Tufte’s disdain for legends in data visualizations. Legends, when placed on outside of a visualization, oblige your audience to look back-and-forth to interpret what you are presenting. This means that your audience has to focus on the <em>format</em> of your visualization before they can begin interpreting the content or message you are trying to deliver. That’s why I always try to use direct labels on my data visualizations instead of legends, like so:</p>
+<p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-8-1.png" width="2100" /></p>
+<p>But say you want to do the same direct labelling with a messier or more complicated visualization…</p>
+<p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-9-1.png" width="2100" /></p>
+<p>Now, I would hope that you would never <em>have to</em> present a spaghetti graph like this, but this is a situation where direct labels are not as easily implemented. Instead, we’ll use a legend. To reduce the amount of back-and-forth your audience has to do, we can place the legend within the figure as a compromise.<br />
+ </p>
+<pre class="r"><code>aq %&gt;%
+  filter(Month != 5) %&gt;%
+  ggplot(aes(x = Day, y = Temp, group = Month, colour = factor(Month))) +
+  geom_line(size = 1) + 
+  geom_point(size = 3) +
+  scale_colour_manual(values = c(customBlue, customOrange, customYellow, customPurple)) +
+  coord_cartesian(ylim = c(50, 100)) +
+  labs(title = &quot;Mean temperature by day grouped by month&quot;,
+       y = &quot;Mean Temperature (F)&quot;,
+       colour = &quot;Month&quot;) +
+  theme_light() +
+  theme(legend.background = element_blank(),     ## These lines here!
+        legend.position = c(0.25, 0.2),          ## These lines here!
+        legend.title = element_text(size = 12),
+        legend.text = element_text(size = 12))</code></pre>
+<p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-10-1.png" width="2100" /></p>
+<p>This is accomplished by using <code>theme(legend.background = element_blank(), legend.position = c(0.25, 0.2), ...)</code> to make the legend background transparent and to move the legend into the figure. This intra-figure legend will reduce, but not eliminate all of the figure’s interpretability issues. At the very least, it is a good compromise when you can’t directly label your data.</p>
+<p> </p>
+</div>
+<div id="high-resolution-plot-outputs-via-cairopng" class="section level2">
+<h2>4. High resolution plot outputs via <code>CairoPNG()</code></h2>
+<p> <br />
+Exporting graphics in R can be challenging. New users will typically use RStudio’s Export button in the Plots window to save images to their working directory. In my experience, this method results in pixelated, low resolution graphics. There is nothing more demotivating than working on a visualizations for hours, only to have them look mediocre when presenting them.</p>
+<p>This is where the <code>Cairo</code> package comes in. The formula for generating <code>Cairo</code> outputs is as follows:</p>
+<pre class="r"><code>CairoPNG(filename = &quot;filename.png&quot;, res = 300, units = &quot;in&quot;, width = 16, height = 9)
+
+ggplot()...
+
+dev.off()</code></pre>
+<ol style="list-style-type: decimal">
+<li>The first line initializes a graphics device via Cairo to render a high quality image of your visualization in the file format of your choosing. Here, I specify a PNG output through <code>CairoPNG()</code>, but other formats include JPEG, TIFF, and PDF.<br />
+ <br />
+</li>
+<li>The second portion of the script should contain your visualization code.<br />
+ <br />
+</li>
+<li>The last part is specifying <code>dev.off()</code>, which turns the graphics device off.<br />
+ </li>
+</ol>
+<p>After executing the code in order, a high quality output of your visualization will be found in your working directory.</p>
+<p>Note that your visualization might be slightly different from your viewer pane preview. It is then up to you to adjust your visualization code before running the whole code chunk again to see the changes. Use this tip so that your visualizations are always high res and crisp for your audience!</p>
+<p> </p>
+</div>
+<div id="fuzzy-joins-on-intervals-with-genome_left_join" class="section level2">
+<h2>5. Fuzzy joins on intervals with <code>genome_left_join()</code></h2>
+<p> <br />
+The last tip is for dirty data joining! You may find yourself in a situation where you want to join two data frames / tables but you don’t have the necessary number of unique identifiers. For example, you are looking at event data in two separate data frames, where one data frame contains subscription data and the other contains cancellation case data.<br />
+ </p>
+<pre class="r"><code>memberships</code></pre>
+<pre><code>## # A tibble: 8 x 4
+##      id sub_id start_date end_date  
+##   &lt;dbl&gt;  &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;    
+## 1     1     12 2019-09-05 2020-09-05
+## 2     1     41 2018-09-05 2019-09-05
+## 3     2     57 2019-07-01 2020-07-01
+## 4     2     62 2018-07-01 2019-07-01
+## 5     3     78 2019-02-01 2020-02-01
+## 6     3     87 2018-02-01 2019-02-01
+## 7     4     35 2018-05-25 2019-05-25
+## 8     4     23 2017-05-25 2018-05-25</code></pre>
+<pre class="r"><code>cancellations</code></pre>
+<pre><code>## # A tibble: 3 x 4
+##      id case_open_date case_close_date retain
+##   &lt;dbl&gt; &lt;date&gt;         &lt;date&gt;          &lt;lgl&gt; 
+## 1     1 2020-05-09     2020-05-12      TRUE  
+## 2     3 2019-11-30     2019-12-01      FALSE 
+## 3     4 2018-04-25     2018-04-27      FALSE</code></pre>
+<p>In this example, we can identify which members have subscriptions and cancellation cases through <code>id</code>. But we don’t have enough information to know which subscription each cancellation case belongs to. To know this, we would need a unique subscription id variable in the cancellation case data. Unfortunately, we only have subscription ids in <code>memberships</code>. We can solve this problem with something called a <strong>fuzzy join</strong>.</p>
+<p>In many programming languages, a left or right join allows you to link data frames or tables that contain a key identifier variable that is common between the two. This allows the analyst to link the data frames based on an <strong>exact</strong> match of the key id variables in each data frame. In our example, that would be the <code>id</code> variable. Fuzzy joins differ as they allow you to link data frames based on <strong>inexact</strong> matching. This inexact matching technique is particularly useful in combination with an exact match.</p>
+<p>In the following example, we will use <code>genome_left_join()</code> from the <code>fuzzyjoin</code> package to perform a <strong>fuzzy left join</strong> of <code>cancellations</code> on <code>memberships</code>. This join will be based on criteria of an exact match of <code>id</code> and an inexact match of the subscription period (between <code>start_date</code> to <code>end_date</code>) that overlaps with the case period (between <code>case_open_date</code> to <code>case_close_date</code>).<br />
+ </p>
+<pre class="r"><code># Convert start_date and end_date to numeric
+memberships &lt;- memberships %&gt;%
+                    mutate(start_date = as.numeric(start_date),
+                           end_date = as.numeric(end_date))
+
+# Convert case_open_date and case_close_date to numeric
+cancellations &lt;- cancellations %&gt;%
+                    mutate(case_open_date = as.numeric(case_open_date),
+                           case_close_date = as.numeric(case_close_date))
+
+# Fuzzy join
+mem_canc &lt;- memberships %&gt;%
+                genome_left_join(cancellations, 
+                                  by = c(&quot;id&quot; = &quot;id&quot;, 
+                                         &quot;start_date&quot; = &quot;case_open_date&quot;, 
+                                         &quot;end_date&quot; = &quot;case_close_date&quot;)) %&gt;%
+# Then convert start_date, end_date, case_open_date, and case_close_date back to dates
+                mutate(     start_date = as_date(start_date),
+                              end_date = as_date(end_date),
+                        case_open_date = as_date(case_open_date),
+                       case_close_date = as_date(case_close_date))</code></pre>
+<p> <br />
+The first two code chunks change our subscription and case dates to integers (which represent the number of days since 1970-01-01). The result of the fuzzy join is a single data frame containing all rows from <code>memberships</code> and the matched rows of <code>cancellations</code>. Any rows in <code>memberships</code> that do not have a matching row in <code>cancellations</code> are filled with NAs.<br />
+ </p>
+<pre class="r"><code>mem_canc</code></pre>
+<pre><code>## # A tibble: 8 x 7
+##      id sub_id start_date end_date   case_open_date case_close_date retain
+##   &lt;dbl&gt;  &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     &lt;date&gt;         &lt;date&gt;          &lt;lgl&gt; 
+## 1     1     12 2019-09-05 2020-09-05 2020-05-09     2020-05-12      TRUE  
+## 2     1     41 2018-09-05 2019-09-05 NA             NA              NA    
+## 3     2     57 2019-07-01 2020-07-01 NA             NA              NA    
+## 4     2     62 2018-07-01 2019-07-01 NA             NA              NA    
+## 5     3     78 2019-02-01 2020-02-01 2019-11-30     2019-12-01      FALSE 
+## 6     3     87 2018-02-01 2019-02-01 NA             NA              NA    
+## 7     4     35 2018-05-25 2019-05-25 NA             NA              NA    
+## 8     4     23 2017-05-25 2018-05-25 2018-04-25     2018-04-27      FALSE</code></pre>
+<p> <br />
+Now we can see which subscriptions the cancellation cases belong to. From here, I could further clean this data by changing the <code>end_date</code> of the subscription to match the cancellation <code>case_close_date</code>, if the subscription was successfully cancelled according to <code>retain</code>. This would allow me to calculate churn rates of the subscribers, which has huge implications for a subscription business’ monthly and annual revenue.</p>
+<p>Note: to perform a fuzzy join with <code>genome_left_join()</code> you will require the <code>Bioconductor</code> and <code>IRanges</code> packages as well. Installation instructions can be found <a href="https://www.bioconductor.org/packages/release/bioc/html/IRanges.html" target="_blank">here</a>.</p>
+<p> </p>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p> </p>
+<p>Thanks for reading this blog post! Hopefully, you’ll be able to use some of these tips to make your data analyses cleaner, crisper, and more accurate!</p>
+<p>Feel free to share this content with others who may benefit from using any of these tips. As always, the full code for this post is available <a href="" target="_blank">here</a>. Happy coding!</p>
+<p> </p>
+</div>
+
+
+        
+          <div class="blog-tags">
+            
+              <a href="//tags/data-visualization/">data visualization</a>&nbsp;
+            
+              <a href="//tags/data-joins/">data joins</a>&nbsp;
+            
+              <a href="//tags/r/">R</a>&nbsp;
+            
+          </div>
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <ul class="list-inline footer-links">
+                
+
+
+<li>
+    <a href="//twitter.com/share?url=%2fcode-tips%2f&amp;text=Five%20R%20tips%20from%20my%20Voices.com%20internship&amp;via=%2fHYDNMCDNLD"
+       target="_blank" alt="" title="Share on Twitter">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//plus.google.com/share?url=%2fcode-tips%2f" target="_blank" title="Share on Google Plus">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.facebook.com/sharer/sharer.php?u=%2fcode-tips%2f" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//reddit.com/submit?url=%2fcode-tips%2f&amp;title=Five%20R%20tips%20from%20my%20Voices.com%20internship" target="_blank" title="Share on Reddit">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.linkedin.com/shareArticle?url=%2fcode-tips%2f&amp;title=Five%20R%20tips%20from%20my%20Voices.com%20internship" target="_blank"
+       title="Share on LinkedIn">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+              </ul>
+            </section>
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="/hmdrmd/" data-toggle="tooltip" data-placement="top" title="hmdrmd: R Markdown templates for data analysis">&larr; Previous Post</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "needleinthehay" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:hayden.macdonald.8778@gmail.com" title="Email Me: hayden.macdonald.8778@gmail.com">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com//HaydenMacDonald" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com//HYDNMCDNLD" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/hayden-macdonald/" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              Hayden MacDonald
+            
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="/">Needle in the Hay</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.48</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="/js/main.js"></script>
+<script src="/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

@@ -1,0 +1,209 @@
+---
+title: "Five R tips from my Voices.com internship"
+author: "Hayden MacDonald"
+date: '2019-09-08'
+output:
+  blogdown::html_page:
+    toc: true
+slug: code-tips
+tags: 
+- data visualization
+- data joins
+- R
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#removing-similarly-named-objects-from-rs-global-environment">1. Removing similarly-named objects from R’s Global Environment</a></li>
+<li><a href="#coord_cartesian-for-zooming-in-on-ggplots">2. <code>coord_cartesian()</code> for zooming in on ggplots</a></li>
+<li><a href="#intra-figure-legends-in-ggplot2-graphics">3. Intra-figure legends in <code>ggplot2</code> graphics</a></li>
+<li><a href="#high-resolution-plot-outputs-via-cairopng">4. High resolution plot outputs via <code>CairoPNG()</code></a></li>
+<li><a href="#fuzzy-joins-on-intervals-with-genome_left_join">5. Fuzzy joins on intervals with <code>genome_left_join()</code></a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</div>
+
+<p> <br />
+<img src="/img/voices_photo.jpg" /><!-- -->  <br />
+This summer, I had the pleasure of working as a Data Analyst Intern at <a href="https://www.voices.com" target="_blank">Voices.com</a> as a part of my MSc in Business Analytics. Voices.com is a marketplace website that matches business clients with voice over talent.</p>
+<p>During my internship at Voices.com, I became involved in a variety of analytics projects. I committed to a customer segmentation analysis on voice-over talent, analyzed customer churn, built dashboards for core metrics, and designed A/B tests! Through these projects, I procured even more experience with the R programming language. In this post, I will showcase R tips that I learned this summer for data analysis and visualization. Hopefully, you can apply some of these tips to your own data analysis projects.<br />
+ </p>
+<div id="removing-similarly-named-objects-from-rs-global-environment" class="section level2">
+<h2>1. Removing similarly-named objects from R’s Global Environment</h2>
+<p> <br />
+Say that you are in the middle of a data analysis and you need to test out a part of your code. If you’re like me, you will test sections of code and assign the results to a new object named something like <code>test</code>. After I’m finished testing my code, I’m left with a RStudio environment that looks like this:</p>
+<p><img src="/img/env.png" /><!-- --></p>
+<p>My first tip will allow us to selectively delete these <code>test</code> objects. This is accomplished through the following code:</p>
+<pre class="r"><code>rm(list = ls()[str_detect(ls(), &quot;string&quot;)])</code></pre>
+<p>Let’s break down what is going on in this code.</p>
+<ul>
+<li><code>rm()</code> removes objects from the R environment.<br />
+</li>
+<li><code>ls()</code> lists all the objects in the R environment.<br />
+</li>
+<li><code>str_detect()</code> from <code>stringr</code> detects a specified pattern in a string.<br />
+</li>
+<li><code>&quot;string&quot;</code> is the pattern which our objects of interest have in common (e.g. “test”).<br />
+ <br />
+The innermost part of the code, <code>str_detect(ls(), &quot;string&quot;)</code>, detects the specified pattern within the environment. The previous code, enclosed in square brackets, indexes the list of object names in the environment (<code>ls()[str_detect(ls(), &quot;string&quot;)]</code>). Finally, that code is entered as the list argument in the <code>rm()</code> function. Ultimately, <code>rm(list = ls()[str_detect(ls(), &quot;test&quot;)])</code> removes objects with the matching <code>&quot;test&quot;</code> pattern from the environment!<br />
+ </li>
+</ul>
+</div>
+<div id="coord_cartesian-for-zooming-in-on-ggplots" class="section level2">
+<h2>2. <code>coord_cartesian()</code> for zooming in on ggplots</h2>
+<p> <br />
+Say that you are producing a histogram from your data that looks something like this:</p>
+<pre class="r"><code>aq &lt;- as_tibble(airquality)
+
+ggplot(aq, aes(x = Ozone)) +
+  geom_histogram(fill = customBlue, binwidth = 5) +
+  theme_light() +
+  labs(y = &quot;Count&quot;, x = &quot;Ozone&quot;)</code></pre>
+<p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-5-1.png" width="2100" /></p>
+<p>For whatever reason, you are only interested in visualizing a subset of this data. For example, we only want to visualize the histogram between Ozone values 0 and 50. You can achieve this using <code>xlim()</code>:</p>
+<pre class="r"><code>ggplot(aq, aes(x = Ozone)) +
+  geom_histogram(fill = customBlue, binwidth = 5) +
+  theme_light() +
+  labs(y = &quot;Count&quot;, x = &quot;Ozone&quot;) +
+  xlim(c(0, 50))</code></pre>
+<p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-6-1.png" width="2100" /></p>
+<p>But using <code>xlim()</code> has resulted in an odd behaviour. Our histogram looks different than the original above. This is because <code>xlim()</code> (and <code>scale_x_continuous(limits = ...)</code>) <strong>has excluded all data that don’t fall within the limits</strong>. In this example, <code>xlim()</code> excluded data points near 0 and 50. This is problematic if our goal is to visualize the same data without excluding data that lies on the edge of our criteria.</p>
+<p>Instead, we can use <code>coord_cartesian()</code> to achieve a true “zoom in” on our original data visualization.</p>
+<pre class="r"><code>ggplot(aq, aes(x = Ozone)) +
+  geom_histogram(fill = customBlue, binwidth = 5) +
+  theme_light() +
+  labs(y = &quot;Count&quot;, x = &quot;Ozone&quot;) +
+  coord_cartesian(xlim = c(0, 50))</code></pre>
+<p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-7-1.png" width="2100" /></p>
+<p>Setting the <code>xlim</code> argument within <code>coord_cartesian()</code> results in the desired behaviour. Note that the previous erroneous behaviour of <code>xlim()</code> isn’t restricted to histograms! Remember this tip so that you don’t accidentally exclude data from your visualizations!</p>
+<p> </p>
+</div>
+<div id="intra-figure-legends-in-ggplot2-graphics" class="section level2">
+<h2>3. Intra-figure legends in <code>ggplot2</code> graphics</h2>
+<p> <br />
+I agree with Edward Tufte’s disdain for legends in data visualizations. Legends, when placed on outside of a visualization, oblige your audience to look back-and-forth to interpret what you are presenting. This means that your audience has to focus on the <em>format</em> of your visualization before they can begin interpreting the content or message you are trying to deliver. That’s why I always try to use direct labels on my data visualizations instead of legends, like so:</p>
+<p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-8-1.png" width="2100" /></p>
+<p>But say you want to do the same direct labelling with a messier or more complicated visualization…</p>
+<p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-9-1.png" width="2100" /></p>
+<p>Now, I would hope that you would never <em>have to</em> present a spaghetti graph like this, but this is a situation where direct labels are not as easily implemented. Instead, we’ll use a legend. To reduce the amount of back-and-forth your audience has to do, we can place the legend within the figure as a compromise.<br />
+ </p>
+<pre class="r"><code>aq %&gt;%
+  filter(Month != 5) %&gt;%
+  ggplot(aes(x = Day, y = Temp, group = Month, colour = factor(Month))) +
+  geom_line(size = 1) + 
+  geom_point(size = 3) +
+  scale_colour_manual(values = c(customBlue, customOrange, customYellow, customPurple)) +
+  coord_cartesian(ylim = c(50, 100)) +
+  labs(title = &quot;Mean temperature by day grouped by month&quot;,
+       y = &quot;Mean Temperature (F)&quot;,
+       colour = &quot;Month&quot;) +
+  theme_light() +
+  theme(legend.background = element_blank(),     ## These lines here!
+        legend.position = c(0.25, 0.2),          ## These lines here!
+        legend.title = element_text(size = 12),
+        legend.text = element_text(size = 12))</code></pre>
+<p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-10-1.png" width="2100" /></p>
+<p>This is accomplished by using <code>theme(legend.background = element_blank(), legend.position = c(0.25, 0.2), ...)</code> to make the legend background transparent and to move the legend into the figure. This intra-figure legend will reduce, but not eliminate all of the figure’s interpretability issues. At the very least, it is a good compromise when you can’t directly label your data.</p>
+<p> </p>
+</div>
+<div id="high-resolution-plot-outputs-via-cairopng" class="section level2">
+<h2>4. High resolution plot outputs via <code>CairoPNG()</code></h2>
+<p> <br />
+Exporting graphics in R can be challenging. New users will typically use RStudio’s Export button in the Plots window to save images to their working directory. In my experience, this method results in pixelated, low resolution graphics. There is nothing more demotivating than working on a visualizations for hours, only to have them look mediocre when presenting them.</p>
+<p>This is where the <code>Cairo</code> package comes in. The formula for generating <code>Cairo</code> outputs is as follows:</p>
+<pre class="r"><code>CairoPNG(filename = &quot;filename.png&quot;, res = 300, units = &quot;in&quot;, width = 16, height = 9)
+
+ggplot()...
+
+dev.off()</code></pre>
+<ol style="list-style-type: decimal">
+<li>The first line initializes a graphics device via Cairo to render a high quality image of your visualization in the file format of your choosing. Here, I specify a PNG output through <code>CairoPNG()</code>, but other formats include JPEG, TIFF, and PDF.<br />
+ <br />
+</li>
+<li>The second portion of the script should contain your visualization code.<br />
+ <br />
+</li>
+<li>The last part is specifying <code>dev.off()</code>, which turns the graphics device off.<br />
+ </li>
+</ol>
+<p>After executing the code in order, a high quality output of your visualization will be found in your working directory.</p>
+<p>Note that your visualization might be slightly different from your viewer pane preview. It is then up to you to adjust your visualization code before running the whole code chunk again to see the changes. Use this tip so that your visualizations are always high res and crisp for your audience!</p>
+<p> </p>
+</div>
+<div id="fuzzy-joins-on-intervals-with-genome_left_join" class="section level2">
+<h2>5. Fuzzy joins on intervals with <code>genome_left_join()</code></h2>
+<p> <br />
+The last tip is for dirty data joining! You may find yourself in a situation where you want to join two data frames / tables but you don’t have the necessary number of unique identifiers. For example, you are looking at event data in two separate data frames, where one data frame contains subscription data and the other contains cancellation case data.<br />
+ </p>
+<pre class="r"><code>memberships</code></pre>
+<pre><code>## # A tibble: 8 x 4
+##      id sub_id start_date end_date  
+##   &lt;dbl&gt;  &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;    
+## 1     1     12 2019-09-05 2020-09-05
+## 2     1     41 2018-09-05 2019-09-05
+## 3     2     57 2019-07-01 2020-07-01
+## 4     2     62 2018-07-01 2019-07-01
+## 5     3     78 2019-02-01 2020-02-01
+## 6     3     87 2018-02-01 2019-02-01
+## 7     4     35 2018-05-25 2019-05-25
+## 8     4     23 2017-05-25 2018-05-25</code></pre>
+<pre class="r"><code>cancellations</code></pre>
+<pre><code>## # A tibble: 3 x 4
+##      id case_open_date case_close_date retain
+##   &lt;dbl&gt; &lt;date&gt;         &lt;date&gt;          &lt;lgl&gt; 
+## 1     1 2020-05-09     2020-05-12      TRUE  
+## 2     3 2019-11-30     2019-12-01      FALSE 
+## 3     4 2018-04-25     2018-04-27      FALSE</code></pre>
+<p>In this example, we can identify which members have subscriptions and cancellation cases through <code>id</code>. But we don’t have enough information to know which subscription each cancellation case belongs to. To know this, we would need a unique subscription id variable in the cancellation case data. Unfortunately, we only have subscription ids in <code>memberships</code>. We can solve this problem with something called a <strong>fuzzy join</strong>.</p>
+<p>In many programming languages, a left or right join allows you to link data frames or tables that contain a key identifier variable that is common between the two. This allows the analyst to link the data frames based on an <strong>exact</strong> match of the key id variables in each data frame. In our example, that would be the <code>id</code> variable. Fuzzy joins differ as they allow you to link data frames based on <strong>inexact</strong> matching. This inexact matching technique is particularly useful in combination with an exact match.</p>
+<p>In the following example, we will use <code>genome_left_join()</code> from the <code>fuzzyjoin</code> package to perform a <strong>fuzzy left join</strong> of <code>cancellations</code> on <code>memberships</code>. This join will be based on criteria of an exact match of <code>id</code> and an inexact match of the subscription period (between <code>start_date</code> to <code>end_date</code>) that overlaps with the case period (between <code>case_open_date</code> to <code>case_close_date</code>).<br />
+ </p>
+<pre class="r"><code># Convert start_date and end_date to numeric
+memberships &lt;- memberships %&gt;%
+                    mutate(start_date = as.numeric(start_date),
+                           end_date = as.numeric(end_date))
+
+# Convert case_open_date and case_close_date to numeric
+cancellations &lt;- cancellations %&gt;%
+                    mutate(case_open_date = as.numeric(case_open_date),
+                           case_close_date = as.numeric(case_close_date))
+
+# Fuzzy join
+mem_canc &lt;- memberships %&gt;%
+                genome_left_join(cancellations, 
+                                  by = c(&quot;id&quot; = &quot;id&quot;, 
+                                         &quot;start_date&quot; = &quot;case_open_date&quot;, 
+                                         &quot;end_date&quot; = &quot;case_close_date&quot;)) %&gt;%
+# Then convert start_date, end_date, case_open_date, and case_close_date back to dates
+                mutate(     start_date = as_date(start_date),
+                              end_date = as_date(end_date),
+                        case_open_date = as_date(case_open_date),
+                       case_close_date = as_date(case_close_date))</code></pre>
+<p> <br />
+The first two code chunks change our subscription and case dates to integers (which represent the number of days since 1970-01-01). The result of the fuzzy join is a single data frame containing all rows from <code>memberships</code> and the matched rows of <code>cancellations</code>. Any rows in <code>memberships</code> that do not have a matching row in <code>cancellations</code> are filled with NAs.<br />
+ </p>
+<pre class="r"><code>mem_canc</code></pre>
+<pre><code>## # A tibble: 8 x 7
+##      id sub_id start_date end_date   case_open_date case_close_date retain
+##   &lt;dbl&gt;  &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     &lt;date&gt;         &lt;date&gt;          &lt;lgl&gt; 
+## 1     1     12 2019-09-05 2020-09-05 2020-05-09     2020-05-12      TRUE  
+## 2     1     41 2018-09-05 2019-09-05 NA             NA              NA    
+## 3     2     57 2019-07-01 2020-07-01 NA             NA              NA    
+## 4     2     62 2018-07-01 2019-07-01 NA             NA              NA    
+## 5     3     78 2019-02-01 2020-02-01 2019-11-30     2019-12-01      FALSE 
+## 6     3     87 2018-02-01 2019-02-01 NA             NA              NA    
+## 7     4     35 2018-05-25 2019-05-25 NA             NA              NA    
+## 8     4     23 2017-05-25 2018-05-25 2018-04-25     2018-04-27      FALSE</code></pre>
+<p> <br />
+Now we can see which subscriptions the cancellation cases belong to. From here, I could further clean this data by changing the <code>end_date</code> of the subscription to match the cancellation <code>case_close_date</code>, if the subscription was successfully cancelled according to <code>retain</code>. This would allow me to calculate churn rates of the subscribers, which has huge implications for a subscription business’ monthly and annual revenue.</p>
+<p>Note: to perform a fuzzy join with <code>genome_left_join()</code> you will require the <code>Bioconductor</code> and <code>IRanges</code> packages as well. Installation instructions can be found <a href="https://www.bioconductor.org/packages/release/bioc/html/IRanges.html" target="_blank">here</a>.</p>
+<p> </p>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p> </p>
+<p>Thanks for reading this blog post! Hopefully, you’ll be able to use some of these tips to make your data analyses cleaner, crisper, and more accurate!</p>
+<p>Feel free to share this content with others who may benefit from using any of these tips. As always, the full code for this post is available <a href="" target="_blank">here</a>. Happy coding!</p>
+<p> </p>
+</div>
