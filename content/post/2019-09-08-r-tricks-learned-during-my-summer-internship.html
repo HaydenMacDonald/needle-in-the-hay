@@ -25,8 +25,9 @@ tags:
 </div>
 
 <p> <br />
-This summer I worked as a Data Analyst Intern at <a href="https://www.voices.com" target="_blank">Voices.com</a> as a part of my MSc in Business Analytics. Voices.com is a marketplace website that matches business clients with voice over talent.</p>
-<p>During my internship at Voices.com, I became involved in a variety of analytics projects. First, I committed to a customer segmentation analysis on voice-over talent. Later in the summer, I analyzed customer churn, built dashboards for core metrics, and designed A/B tests! Through these projects, I procured even more experience with the R programming language. In this post, I will showcase R tips that I learned this summer for data analysis and visualization. Hopefully, you can apply some of these tips to your own data analysis projects.<br />
+<img src="/img/voices_photo.jpg" /><!-- -->  <br />
+This summer, I had the pleasure of working as a Data Analyst Intern at <a href="https://www.voices.com" target="_blank">Voices.com</a> as a part of my MSc in Business Analytics. Voices.com is a marketplace website that matches business clients with voice over talent.</p>
+<p>During my internship at Voices.com, I became involved in a variety of analytics projects. I committed to a customer segmentation analysis on voice-over talent, analyzed customer churn, built dashboards for core metrics, and designed A/B tests! Through these projects, I procured even more experience with the R programming language. In this post, I will showcase R tips that I learned this summer for data analysis and visualization. Hopefully, you can apply some of these tips to your own data analysis projects.<br />
  </p>
 <div id="removing-similarly-named-objects-from-rs-global-environment" class="section level2">
 <h2>1. Removing similarly-named objects from R’s Global Environment</h2>
@@ -59,14 +60,14 @@ ggplot(aq, aes(x = Ozone)) +
   geom_histogram(fill = customBlue, binwidth = 5) +
   theme_light() +
   labs(y = &quot;Count&quot;, x = &quot;Ozone&quot;)</code></pre>
-<p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-4-1.png" width="2100" /></p>
+<p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-5-1.png" width="2100" /></p>
 <p>For whatever reason, you are only interested in visualizing a subset of this data. For example, we only want to visualize the histogram between Ozone values 0 and 50. You can achieve this using <code>xlim()</code>:</p>
 <pre class="r"><code>ggplot(aq, aes(x = Ozone)) +
   geom_histogram(fill = customBlue, binwidth = 5) +
   theme_light() +
   labs(y = &quot;Count&quot;, x = &quot;Ozone&quot;) +
   xlim(c(0, 50))</code></pre>
-<p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-5-1.png" width="2100" /></p>
+<p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-6-1.png" width="2100" /></p>
 <p>But using <code>xlim()</code> has resulted in an odd behaviour. Our histogram looks different than the original above. This is because <code>xlim()</code> (and <code>scale_x_continuous(limits = ...)</code>) <strong>has excluded all data that don’t fall within the limits</strong>. In this example, <code>xlim()</code> excluded data points near 0 and 50. This is problematic if our goal is to visualize the same data without excluding data that lies on the edge of our criteria.</p>
 <p>Instead, we can use <code>coord_cartesian()</code> to achieve a true “zoom in” on our original data visualization.</p>
 <pre class="r"><code>ggplot(aq, aes(x = Ozone)) +
@@ -74,7 +75,7 @@ ggplot(aq, aes(x = Ozone)) +
   theme_light() +
   labs(y = &quot;Count&quot;, x = &quot;Ozone&quot;) +
   coord_cartesian(xlim = c(0, 50))</code></pre>
-<p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-6-1.png" width="2100" /></p>
+<p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-7-1.png" width="2100" /></p>
 <p>Setting the <code>xlim</code> argument within <code>coord_cartesian()</code> results in the desired behaviour. Note that the previous erroneous behaviour of <code>xlim()</code> isn’t restricted to histograms! Remember this tip so that you don’t accidentally exclude data from your visualizations!</p>
 <p> </p>
 </div>
@@ -82,9 +83,9 @@ ggplot(aq, aes(x = Ozone)) +
 <h2>3. Intra-figure legends in <code>ggplot2</code> graphics</h2>
 <p> <br />
 I agree with Edward Tufte’s disdain for legends in data visualizations. Legends, when placed on outside of a visualization, oblige your audience to look back-and-forth to interpret what you are presenting. This means that your audience has to focus on the <em>format</em> of your visualization before they can begin interpreting the content or message you are trying to deliver. That’s why I always try to use direct labels on my data visualizations instead of legends, like so:</p>
-<p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-7-1.png" width="2100" /></p>
-<p>But say you want to do the same direct labelling with a messier or more complicated visualization…</p>
 <p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-8-1.png" width="2100" /></p>
+<p>But say you want to do the same direct labelling with a messier or more complicated visualization…</p>
+<p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-9-1.png" width="2100" /></p>
 <p>Now, I would hope that you would never <em>have to</em> present a spaghetti graph like this, but this is a situation where direct labels are not as easily implemented. Instead, we’ll use a legend. To reduce the amount of back-and-forth your audience has to do, we can place the legend within the figure as a compromise.<br />
  </p>
 <pre class="r"><code>aq %&gt;%
@@ -102,7 +103,7 @@ I agree with Edward Tufte’s disdain for legends in data visualizations. Legend
         legend.position = c(0.25, 0.2),          ## These lines here!
         legend.title = element_text(size = 12),
         legend.text = element_text(size = 12))</code></pre>
-<p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-9-1.png" width="2100" /></p>
+<p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-10-1.png" width="2100" /></p>
 <p>This is accomplished by using <code>theme(legend.background = element_blank(), legend.position = c(0.25, 0.2), ...)</code> to make the legend background transparent and to move the legend into the figure. This intra-figure legend will reduce, but not eliminate all of the figure’s interpretability issues. At the very least, it is a good compromise when you can’t directly label your data.</p>
 <p> </p>
 </div>

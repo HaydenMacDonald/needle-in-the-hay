@@ -12,9 +12,13 @@ tags:
 - R
 ---
 &nbsp;  
-This summer I worked as a Data Analyst Intern at <a href="https://www.voices.com" target="_blank">Voices.com</a> as a part of my MSc in Business Analytics. Voices.com is a marketplace website that matches business clients with voice over talent. 
+```{r, echo=FALSE, dpi = 300}
+knitr::include_graphics('/img/voices_photo.jpg')
+```
+&nbsp;  
+This summer, I had the pleasure of working as a Data Analyst Intern at <a href="https://www.voices.com" target="_blank">Voices.com</a> as a part of my MSc in Business Analytics. Voices.com is a marketplace website that matches business clients with voice over talent. 
 
-During my internship at Voices.com, I became involved in a variety of analytics projects. First, I committed to a customer segmentation analysis on voice-over talent. Later in the summer, I analyzed customer churn, built dashboards for core metrics, and designed A/B tests! Through these projects, I procured even more experience with the R programming language. In this post, I will showcase R tips that I learned this summer for data analysis and visualization. Hopefully, you can apply some of these tips to your own data analysis projects.  
+During my internship at Voices.com, I became involved in a variety of analytics projects. I committed to a customer segmentation analysis on voice-over talent, analyzed customer churn, built dashboards for core metrics, and designed A/B tests! Through these projects, I procured even more experience with the R programming language. In this post, I will showcase R tips that I learned this summer for data analysis and visualization. Hopefully, you can apply some of these tips to your own data analysis projects.  
 &nbsp;  
 
 ## 1. Removing similarly-named objects from R's Global Environment
