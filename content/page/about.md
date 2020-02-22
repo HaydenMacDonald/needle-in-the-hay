@@ -67,7 +67,7 @@ University of Western Ontario
 &nbsp;  
 ### Publications  
 &nbsp;  
-**MacDonald, Hayden**, Lo, G. K. H., Macpherson, K., & Roberts, W.A. (2020). An isolation effect in rat spatial memory. *Journal of Experimental Psychology: Animal Learning and Cognition*. doi: <a href="https://psycnet.apa.org/record/2019-72853-001" target="_blank">10.1037/xan0000231</a>.
+**MacDonald, Hayden**, Lo, G. K. H., Macpherson, K., & Roberts, W.A. (2020). An isolation effect in rat spatial memory. *JEP: Anim Learn and Cogn*. doi: <a href="https://psycnet.apa.org/record/2019-72853-001" target="_blank">10.1037/xan0000231</a>.
 
 **MacDonald, Hayden**. (2018). Spatial memory for isolated arm locations on the radial maze. *Electronic Thesis and Dissertation Repository*. <a href="https://ir.lib.uwo.ca/etd/5511" target="_blank">5511</a>.  
 
@@ -82,8 +82,10 @@ Roberts, W.A., Guitar, N.A., Marsh, H.L., & **MacDonald, H.** (2016). Memory sys
 
 -------
 
-### Conferences
+### Conferences & Workshops
 &nbsp;  
+**MacDonald, H.** (2019, February) Ivey BA R Workshop - Intro to the Tidyverse. 2 hour workshop presented at Ivey Business School. <a href="https://drive.google.com/file/d/1lW2JloOUYSpNkdT8xwR84ZDXGClAJrf5/view?usp=sharing" target="_blank">PDF slides</a>.
+
 **MacDonald, H.**, & Roberts, W. A. (2018, April). Spatial memory for isolated arm locations on the radial maze. Five minute talk presented at the International Conference On Comparative Cognition, Melbourne, Florida.
 
 **MacDonald, H.**, & Roberts, W. A. (2017, April). Time versus context in a visual mid-session reversal task. Poster presented at the International Conference On Comparative Cognition, Melbourne, Florida.  
@@ -94,12 +96,12 @@ Roberts, W.A., Guitar, N.A., Marsh, H.L., & **MacDonald, H.** (2016). Memory sys
 ### Technical Skills  
 
 - R
-- MySQL / PostgreSQL
+- SQL / MySQL / PostgreSQL
 - Excel
 - Git
-- Salesforce
 - Tableau
 - Python
+- Salesforce
 
 ----
 
