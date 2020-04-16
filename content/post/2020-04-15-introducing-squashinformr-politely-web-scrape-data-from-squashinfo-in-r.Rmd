@@ -1,0 +1,71 @@
+---
+title: "Introducing squashinformr: Politely web scrape data from SquashInfo in R"
+author: "Hayden MacDonald"
+date: "2020-04-15"
+output:
+  blogdown::html_page:
+    toc: false
+slug: introducing-squashinformr
+image_preview: "img/squashinformr_ghcard.png"
+tags: 
+- web-scraping
+- R
+- r-package
+- data-analysis
+---
+
+```{r, echo=FALSE, dpi = 300, out.width="25%", out.height="25%", fig.align="right", eval=FALSE}
+knitr::include_graphics('/img/sticker.png', error = FALSE)
+```
+
+## A Project Salvaged <img src="/img/sticker.png" width="129" height="150" align="right" />
+&nbsp;  
+Earlier this year, I enrolled in a Data Management course as a part of my MSc in Business Analytics. The final project in this course involved writing a business case study, designing a database model, and building a MySQL database. As a squash enthusiast, I chose to base my project on the Professional Squash Association (PSA). The business case was that if the PSA invested in a database, they could enrich the viewing experience for PSA TV subscribers.  
+
+Long story short, I did not complete this project because it was cancelled due the spread of COVID-19.  
+
+Unfortunately, I had already put in approximately 20 hours of work into the project. Most of this work was a collection of R code used to scrape real data on PSA tournaments. So being as stubborn as I am, I committed to reusing the code by building an R package. The result is `squashinformr`: a package for scraping player, tournament, and ranking data from <a href="http://www.squashinfo.com/" target="_blank">SquashInfo</a>.  
+&nbsp;  
+
+## Politeness on the web
+&nbsp;  
+`squashinformr` is built on the <a href="https://github.com/dmi3kno/polite" target="_blank">`polite` package</a> and, therefore, inherits its principles on <a href="https://www.ddrive.no/post/be-nice-on-the-web/" target="_blank">"being nice on the web"</a>. In short, web scraping is a data collection method that can be harmful to websites and their users, if done carelessly. Therefore, it is important to use manners:  
+
+1. Seek permission to scrape before you begin.
+2. Take slowly, so as to not be mistaken for a DDoS attack.
+3. Never ask twice by using <a href="https://en.wikipedia.org/wiki/Memoization" target="_blank">memoization</a>.
+
+`squashinformr` abides by these principles to avoid causing harm to SquashInfo and its users. Following `polite` principles incurs mandatory delays (set by SquashInfo's robotstxt files) on the scraping process. Therefore, it is important that users are patient when using `squashinformr`. SquashInfo currently offers full access to their data and extra features through a premium membership. Please consider <a href="http://www.squashinfo.com/signup" target="_blank">signing up and/or subscribing</a> to SquashInfo to support their work.  
+&nbsp;  
+
+## Functions in v0.1.0
+&nbsp;  
+Generally, `squashinformr` functions fall into one of three families:  
+&nbsp;  
+
+- Player functions for scraping player profile data
+  - get_players()
+  - get_player_recent_results()
+  - get_player_recent_matches()
+  - get_player_recent_games()
+  - get_player_rankings_history()
+  - get_matchup()
+- Tournament functions for scraping tournament results data
+  - get_tournaments()
+  - get_tournament_players()
+  - get_tournament_matches()
+  - get_tournament_games()
+- Ranking functions for scraping current and historical rankings tables
+  - get_rankings()
+  - get_historical_rankings()
+
+&nbsp;  
+Let's take a closer look at these functions in action...
+&nbsp;  
+
+## Players
+
+## Tournaments
+
+## Rankings
+

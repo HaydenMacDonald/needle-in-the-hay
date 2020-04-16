@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Data Analysis on Needle in the Hay</title>
-    <link>/tags/data-analysis/</link>
-    <description>Recent content in Data Analysis on Needle in the Hay</description>
+    <title>Web Scraping on Needle in the Hay</title>
+    <link>/tags/web-scraping/</link>
+    <description>Recent content in Web Scraping on Needle in the Hay</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</managingEditor>
     <webMaster>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</webMaster>
     <lastBuildDate>Wed, 15 Apr 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/data-analysis/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/web-scraping/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,15 +19,6 @@
       <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
       <guid>/introducing-squashinformr/</guid>
       <description>A Project Salvaged  Earlier this year, I enrolled in a Data Management course as a part of my MSc in Business Analytics. The final project in this course involved writing a business case study, designing a database model, and building a MySQL database. As a squash enthusiast, I chose to base my project on the Professional Squash Association (PSA). The business case was that if the PSA invested in a database, they could enrich the viewing experience for PSA TV subscribers.</description>
-    </item>
-    
-    <item>
-      <title>hmdrmd: R Markdown templates for data analysis</title>
-      <link>/hmdrmd/</link>
-      <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
-      <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
-      <guid>/hmdrmd/</guid>
-      <description>R Markdown R Markdown1 is a powerful R package that allows users to dynamically render their work (code, graphs, and text) into various file formats. Its wide range of outputs (including HTML, PDF, Word) makes it one of the most flexible and intuitive communication tools within the R community. Ultimately, R Markdown bridges the gap between data professionals and the audience they need to communicate to. In fact, I’m communicating to you right now through an R Markdown document rendered to HTML.</description>
     </item>
     
   </channel>

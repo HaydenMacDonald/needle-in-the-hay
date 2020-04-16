@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</managingEditor>
     <webMaster>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</webMaster>
-    <lastBuildDate>Sun, 08 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 15 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Introducing squashinformr: Politely web scrape data from SquashInfo in R</title>
+      <link>/introducing-squashinformr/</link>
+      <pubDate>Wed, 15 Apr 2020 00:00:00 +0000</pubDate>
+      <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
+      <guid>/introducing-squashinformr/</guid>
+      <description>A Project Salvaged  Earlier this year, I enrolled in a Data Management course as a part of my MSc in Business Analytics. The final project in this course involved writing a business case study, designing a database model, and building a MySQL database. As a squash enthusiast, I chose to base my project on the Professional Squash Association (PSA). The business case was that if the PSA invested in a database, they could enrich the viewing experience for PSA TV subscribers.</description>
+    </item>
     
     <item>
       <title>Five R tips from my Voices.com internship</title>
