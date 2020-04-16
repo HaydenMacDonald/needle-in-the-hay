@@ -65,6 +65,21 @@ Let's take a closer look at these functions in action...
 
 ## Players
 
+Use `get_players()` to extract biographical information on players currently ranked within the top 500.  
+```{r}
+library(squashinformr)
+
+get_players(top = 10, category = "mens")
+```
+
+```{r}
+
+```
+
+
+
+
+
 ## Tournaments
 
 ## Rankings
