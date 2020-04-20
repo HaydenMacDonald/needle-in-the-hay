@@ -14,7 +14,7 @@ tags:
 - data-analysis
 ---
 
-```{r, echo=FALSE, dpi = 300, out.width="25%", out.height="25%", fig.align="right", eval=FALSE}
+```{r, echo=FALSE, dpi = 300, out.width="40%", out.height="40%", fig.align="right", eval=FALSE}
 knitr::include_graphics('/img/sticker.png', error = FALSE)
 ```
 
@@ -62,22 +62,207 @@ Generally, `squashinformr` functions fall into one of three families:
 &nbsp;  
 Let's take a closer look at these functions in action...
 &nbsp;  
-
+  
 ## Players
 
 Use `get_players()` to extract biographical information on players currently ranked within the top 500.  
-```{r}
+```{r, message=FALSE, warning=FALSE}
 library(squashinformr)
+library(tidyverse)
 
-get_players(top = 10, category = "mens")
+(top_50_men <- get_players(top = 50, category = "mens"))
+```
+
+If you're familiar with squash, you might be under the impression that players that are younger, taller, or lighter on their feet might have competitive advantages.  
+
+```{r, dpi = 300, echo = FALSE, warning=FALSE}
+dark_red <- "#bb0011"
+dark_orange <- "#d25d3c"
+light_orange <- "#e39669"
+tan <- "#eecc99"
+light_grey <- "#cdcfd6"
+light_purple <- "#95a1bd"
+blue <- "#4477bb"
+
+top_50_men %>%
+  select(rank, age, height, weight) %>%
+  mutate(bmi = weight / (height/100)^2) %>%
+  pivot_longer(-rank, names_to = "variable", values_to = "value") %>%
+  mutate(variable = str_to_title(variable),
+         variable = case_when(variable == "Age" ~"Age (years)", 
+                              variable == "Height" ~ "Height (cm)", 
+                              variable == "Weight" ~ "Weight (kg)",
+                              variable == "Bmi" ~ "BMI (kg/m^2)"),
+         variable = factor(variable, levels = c("Age (years)", "Weight (kg)", "Height (cm)", "BMI (kg/m^2)"))) %>%
+  ggplot(aes(x = rank, y = value, colour = rank)) +
+    geom_boxplot(outlier.shape = NA) +
+    geom_point(colour = dark_red, alpha = 0.5) +
+    #geom_smooth(method = "lm", se = FALSE, color = "#bb0011") +
+    facet_wrap(~variable, nrow = 1) +
+    scale_x_reverse() +
+    scale_y_continuous(breaks = seq(0, 200, 25)) +
+    theme_light() +
+    labs(x = "\nRank", 
+         y = "",
+         colour = "Rank") +
+    guides(colour = FALSE) +
+    theme(strip.background = element_blank(),
+          strip.text = element_text(colour = "black", size = 12),
+          axis.text = element_text(size = 12),
+          axis.title = element_text(size = 12))
+```
+
+The data returned from SquashInfo seem to imply that this is not the case! Age, height, weight, and BMI all seem to be uncorrelated with PSA rankings. Squash is a game of endurance, positioning, accuracy, and strategic choice.  
+&nbsp;  
+
+Use `get_player_recent_matches()` to retrieve a player's recent match data (past January 1, 2019). Let's get Raneem El Welily's recent match data.  
+
+```{r}
+(welily <- get_player_recent_matches(player = "Raneem El Welily", category = "womens"))
+```
+
+```{r, dpi = 300, echo = FALSE, warning=FALSE}
+library(patchwork)
+library(ggbeeswarm)
+
+welily <- welily %>%
+              mutate(result = factor(result, levels = c("W", "L")))
+
+
+w1 <- welily %>%
+        group_by(rank) %>%
+        summarize(`Match Wins` = sum(if_else(result == "W", 1, 0), na.rm = TRUE),
+                  `Match Losses` = sum(if_else(result == "L", 1, 0), na.rm = TRUE),
+                  `Game Wins` = sum(games_won, na.rm = TRUE),
+                  `Game Losses` = sum(games_lost, na.rm = TRUE)) %>%
+        pivot_longer(-rank, names_to = "variable", values_to = "value") %>% 
+        mutate(variable = factor(variable, levels = c("Match Wins", "Match Losses", "Game Wins", "Game Losses")),
+               wl = factor(if_else(str_detect(variable, "Wins"), "W", "L"), levels = c("W", "L"))) %>%
+        ggplot(aes(x = variable, y = value, colour = wl)) +
+          geom_segment(aes(xend = variable, y = 0, yend = value), size = 1) +
+          geom_point(size = 4, shape = 19) +
+          geom_text(aes(label = value, colour = wl), nudge_y = 7.5) +
+          scale_colour_manual(values = c(blue, dark_red)) +
+          coord_cartesian(ylim = c(0, 180)) +
+          guides(colour = FALSE) +
+          theme_light() +
+          labs(title = "El Welily's win-loss record (matches and games)",
+               x = "", 
+               y = "Count\n") +
+          theme(axis.text = element_text(size = 12),
+                axis.title = element_text(size = 12))
+
+
+w2 <- welily %>%
+        group_by(rank) %>%
+        summarize(`3-2 Wins` = sum(games_won == 3 & games_lost == 2, na.rm = TRUE),
+                  `3-1 Wins` = sum(games_won == 3 & games_lost == 1, na.rm = TRUE),
+                  `3-0 Wins` = sum(games_won == 3 & games_lost == 0, na.rm = TRUE),
+                  `0-3 Losses` = sum(games_won == 0 & games_lost == 3, na.rm = TRUE),  ## Match spread variables relative to Welily
+                  `1-3 Losses` = sum(games_won == 1 & games_lost == 3, na.rm = TRUE),
+                  `2-3 Losses` = sum(games_won == 2 & games_lost == 3, na.rm = TRUE)) %>%
+        pivot_longer(-rank, names_to = "variable", values_to = "value") %>% 
+        mutate(variable = factor(variable, levels = c("3-2 Wins", "3-1 Wins", "3-0 Wins", "0-3 Losses", "1-3 Losses", "2-3 Losses")),
+               wl = factor(if_else(str_detect(variable, "Wins"), "W", "L"), levels = c("W", "L"))) %>%
+        ggplot(aes(x = variable, y = value, colour = wl)) +
+          geom_segment(aes(xend = variable, y = 0, yend = value), size = 1) +
+          geom_point(size = 4, shape = 19) +
+          geom_text(aes(label = value), nudge_y = 5) +
+          scale_colour_manual(values = c(blue, dark_red)) +
+          coord_cartesian(ylim = c(0, 180)) +
+          guides(colour = FALSE) +
+          theme_light() +
+          labs(title = "Match spread statistics",
+               x = "", 
+               y = "") +
+          theme(axis.text = element_text(size = 12),
+                axis.text.y = element_blank(),
+                axis.title = element_text(size = 12))
+
+
+w1 + w2
+```
+
+
+Welily's match data exemplify her general dominance of women's competitons. She has a 5.45 win/loss ratio across all of the tournaments she participated in and 65% of her match wins are 3-0s. Even when she does lose a match, she does not make it easy for her opponents: the median match times in losses are longer regardless of the number of games played. Although the sample size is fairly low for Raneem's losses.  
+
+```{r, dpi = 300, echo = FALSE, warning=FALSE}
+welily %>%
+    mutate(spread = case_when((games_won == 3 & games_lost == 2) | (games_won == 2 & games_lost == 3) ~ "3-2 Win or 2-3 Loss",
+                              (games_won == 3 & games_lost == 1) | (games_won == 1 & games_lost == 3) ~ "3-1 Win or 1-3 Loss",
+                              (games_won == 3 & games_lost == 0) | (games_won == 0 & games_lost == 3) ~ "3-0 Win or 0-3 Loss",
+                              result == "W" ~ "Walkover",
+                              result == "L" ~ "Retired")) %>%
+    filter(spread != "Walkover", spread != "Retired") %>%
+    ggplot(aes(x = rank, y = match_time, colour = result)) +
+    geom_boxplot(outlier.shape = NA) +
+    geom_beeswarm(dodge.width = 0.75, alpha = 0.5) +
+    #geom_point(alpha = 0.5) +
+    scale_colour_manual(values = c(blue, dark_red)) +
+    guides(colour = FALSE) +
+    coord_cartesian(ylim = c(0, 180)) +
+    facet_wrap(~spread) +
+    theme_light() +
+    labs(title = "Match time distribution",
+         x = "", 
+         y = "Match Time (minutes)\n",
+         colour = "Result") +
+    theme(strip.background = element_blank(),
+          strip.text = element_text(colour = "black", size = 12),legend.position = c(0.5, 0.625),
+          legend.title = element_text(size = 14),
+          legend.text = element_text(size = 12),
+          axis.text = element_text(size = 12),
+          axis.text.x = element_blank(),
+          axis.title = element_text(size = 12))
+```
+
+Given Raneem's general dominance, how does she play versus the second best women's player, Nouran Gohar? We can use `get_matchup()` to get a quantitative take on their head-to-head performance.  
+
+```{r}
+(welily_v_gohar <- get_matchup(player_1 = "Raneem El Welily", player_2 = "Nouran Gohar", category = "womens", tidy = FALSE))
 ```
 
 ```{r}
-
+welily_v_gohar %>%
+  filter(metric != "player_1", metric != "player_2", str_detect(metric, "match")) %>%
+  mutate(metric = str_replace_all(metric, pattern = "_", replacement = " "),
+         metric = str_replace_all(metric, pattern = " (?=[0-9]+$)", replacement = "\\-"),
+         metric = str_to_title(metric),
+         value = as.numeric(value),
+         metric = factor(metric, 
+                         levels = c("Matches Played", "Player 1 Matches Won", "Player 2 Matches Won", 
+                                    "Matches 3-2", "Matches 3-1", "Matches 3-0", "Matches 0-3", "Matches 1-3", "Matches 2-3", "Avg Match Time"))) %>%
+  ggplot(aes(x = metric, y = value)) +
+    geom_segment(aes(xend = metric, y = 0, yend = value), size = 1, colour = blue) +
+    geom_point(size = 4, shape = 19, colour = dark_red) +
+    geom_text(aes(label = value), nudge_y = 2, colour = dark_red) +
+    coord_cartesian(ylim = c(0, 50)) +
+    #guides(colour = FALSE) +
+    theme_light() +
+    labs(title = "Raneem El Welily v Nouran Gohar",
+         subtitle = "Head-to-Head Match Statistics; Match spread statistics relative to Raneem El Welily",
+         x = "", 
+         y = "Value") +
+    theme(axis.text = element_text(size = 12),
+          axis.title = element_text(size = 12))
 ```
 
 
+```{r}
+library(gt)
 
+welily_v_gohar %>%
+  filter(metric != "player_1", metric != "player_2", metric != "player_1_rank", metric != "player_2_rank", !str_detect(metric, "match")) %>%
+  mutate(metric = str_replace_all(metric, pattern = "_", replacement = " "),
+         metric = str_replace_all(metric, pattern = " (?=[0-9]+$)", replacement = "\\-"),
+         metric = str_to_title(metric),
+         value = as.numeric(value)) %>%
+  rename(Metric = metric, Value = value) %>%
+  gt() %>%
+  tab_header(title = "Raneem El Welily v Nouran Gohar",
+             subtitle = glue::glue("Head-to-Head Game Statistics, 2019-2020")) %>%
+  fmt_number(columns = "Value", drop_trailing_zeros = TRUE)
+```
 
 
 ## Tournaments

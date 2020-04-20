@@ -70,6 +70,52 @@ Let’s take a closer look at these functions in action…
 </div>
 <div id="players" class="section level2">
 <h2>Players</h2>
+<p>Use <code>get_players()</code> to extract biographical information on players currently ranked within the top 500.</p>
+<pre class="r"><code>library(squashinformr)
+library(tidyverse)
+
+(top_50_men &lt;- get_players(top = 50, category = &quot;mens&quot;))</code></pre>
+<pre><code>## # A tibble: 50 x 15
+##     rank first last    age gender birthplace nationality residence height weight
+##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;
+##  1     1 Moha~ Elsh~    29 Male   Alexandria Egypt       Bristol,~    185     82
+##  2     2 Ali   Farag    27 Male   Cairo      Egypt       Cairo        183     70
+##  3     3 Karim Abde~    28 Male   Alexandria Egypt       Giza         173     72
+##  4     4 Tarek Momen    32 Male   Cairo      Egypt       Cairo        174     66
+##  5     5 Paul  Coll     27 Male   Greymouth  New Zealand Amsterda~    179     83
+##  6     6 Diego Elias    23 Male   Lima       Peru        Lima         188     82
+##  7     7 Marw~ Elsh~    26 Male   Alexandria Egypt       Bristol,~    183     73
+##  8     8 Simon Rösn~    32 Male   Wurzburg   Germany     Paderborn    190     89
+##  9     9 Migu~ Rodr~    34 Male   Bogota     Colombia    Bogota       170     72
+## 10    10 Joel  Makin    25 Male   Haverford~ Wales       Birmingh~    180     80
+## # ... with 40 more rows, and 5 more variables: plays &lt;chr&gt;, racket &lt;chr&gt;,
+## #   joined_psa &lt;dbl&gt;, university &lt;chr&gt;, club &lt;chr&gt;</code></pre>
+<p>If you’re familiar with squash, you might be under the impression that players that are younger, taller, or lighter on their feet might have competitive advantages.</p>
+<p><img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-3-1.png" width="2100" /></p>
+<p>The data returned from SquashInfo seem to imply that this is not the case! Age, height, weight, and BMI all seem to be uncorrelated with PSA rankings. Squash is a game of endurance, positioning, accuracy, and strategic choice.</p>
+</div>
+<div id="get_recent_matches---get_matchup" class="section level2">
+<h2>get_recent_matches -&gt; get_matchup()</h2>
+<p>Use <code>get_player_recent_matches()</code> to retrieve a player’s recent match data (past January 1, 2019)</p>
+<pre class="r"><code>(welily &lt;- get_player_recent_matches(player = &quot;Raneem El Welily&quot;, category = &quot;womens&quot;))</code></pre>
+<pre><code>## Scraping http://www.squashinfo.com/rankings/women/1</code></pre>
+<pre><code>## Scraping Raneem El Welily&#39;s profile</code></pre>
+<pre><code>## # A tibble: 71 x 12
+##     rank player opponent result games_won games_lost match_time round date      
+##    &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;      &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;date&gt;    
+##  1     1 Ranee~ Nour El~ L              2          3         72 QF    2020-03-01
+##  2     1 Ranee~ Yathreb~ W             NA         NA         NA R3    2020-03-01
+##  3     1 Ranee~ Alexand~ W              3          1         36 R2    2020-03-01
+##  4     1 Ranee~ Nour El~ L              2          3         59 F     2020-03-01
+##  5     1 Ranee~ Nouran ~ W              3          0         31 SF    2020-03-01
+##  6     1 Ranee~ Olivia ~ W              3          0         29 QF    2020-03-01
+##  7     1 Ranee~ Salma H~ W              3          0         22 R3    2020-03-01
+##  8     1 Ranee~ Juliann~ W              3          0         26 R2    2020-03-01
+##  9     1 Ranee~ Nouran ~ W              1          0         15 F     2020-02-01
+## 10     1 Ranee~ Hania E~ W              3          0         40 SF    2020-02-01
+## # ... with 61 more rows, and 3 more variables: event &lt;chr&gt;, country &lt;chr&gt;,
+## #   psa &lt;chr&gt;</code></pre>
+<p><img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-5-1.png" width="2100" /></p>
 </div>
 <div id="tournaments" class="section level2">
 <h2>Tournaments</h2>
