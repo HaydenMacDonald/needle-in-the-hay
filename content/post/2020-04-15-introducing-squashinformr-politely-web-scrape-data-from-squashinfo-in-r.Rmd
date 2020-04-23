@@ -14,17 +14,15 @@ tags:
 - data-analysis
 ---
 
-```{r, echo=FALSE, dpi = 300, out.width="40%", out.height="40%", fig.align="right", eval=FALSE}
-knitr::include_graphics('/img/sticker.png', error = FALSE)
+```{r, echo=FALSE, dpi=300, out.width="75%", out.height="75%", fig.align="center"}
+knitr::include_graphics('/img/squashinformr_ghcard.png', error = FALSE)
 ```
 
-## A Project Salvaged <img src="/img/sticker.png" width="129" height="150" align="right" />
+## A Project Salvaged
 &nbsp;  
-Earlier this year, I enrolled in a Data Management course as a part of my MSc in Business Analytics. The final project in this course involved writing a business case study, designing a database model, and building a MySQL database. As a squash enthusiast, I chose to base my project on the Professional Squash Association (PSA). The business case was that if the PSA invested in a database, they could enrich the viewing experience for PSA TV subscribers.  
+Earlier this year, I enrolled in a Data Management course as a part of my MSc in Business Analytics. The final project in this course involved writing a business case study, designing a database model, and building a MySQL database. As a squash enthusiast, I chose to base my project on the Professional Squash Association (PSA).  
 
-Long story short, I did not complete this project because it was cancelled due the spread of COVID-19.  
-
-Unfortunately, I had already put in approximately 20 hours of work into the project. Most of this work was a collection of R code used to scrape real data on PSA tournaments. So being as stubborn as I am, I committed to reusing the code by building an R package. The result is `squashinformr`: a package for scraping player, tournament, and ranking data from <a href="http://www.squashinfo.com/" target="_blank">SquashInfo</a>.  
+Long story short, I did not complete this project because it was cancelled due the spread of COVID-19. Unfortunately, I had already put in approximately 20 hours of coding into the project. So being as stubborn as I am, I committed to reusing the code by building an R package. The result is `squashinformr`: a package for scraping player, tournament, and ranking data from <a href="http://www.squashinfo.com/" target="_blank">SquashInfo</a>.  
 &nbsp;  
 
 ## Politeness on the web
@@ -35,10 +33,10 @@ Unfortunately, I had already put in approximately 20 hours of work into the proj
 2. Take slowly, so as to not be mistaken for a DDoS attack.
 3. Never ask twice by using <a href="https://en.wikipedia.org/wiki/Memoization" target="_blank">memoization</a>.
 
-`squashinformr` abides by these principles to avoid causing harm to SquashInfo and its users. Following `polite` principles incurs mandatory delays (set by SquashInfo's robotstxt files) on the scraping process. Therefore, it is important that users are patient when using `squashinformr`. SquashInfo currently offers full access to their data and extra features through a premium membership. Please consider <a href="http://www.squashinfo.com/signup" target="_blank">signing up and/or subscribing</a> to SquashInfo to support their work.  
+Following `polite` principles incurs mandatory delays (set by SquashInfo's Robotstxt files) on the scraping process. Therefore, it is important that users are patient when using `squashinformr`. SquashInfo currently offers full access to their data and extra features through a premium membership. Please consider <a href="http://www.squashinfo.com/signup" target="_blank">signing up and/or subscribing</a> to SquashInfo to support their work.  
 &nbsp;  
 
-## Functions in v0.1.0
+## Functions in 0.1.0
 &nbsp;  
 Generally, `squashinformr` functions fall into one of three families:  
 &nbsp;  
@@ -49,33 +47,38 @@ Generally, `squashinformr` functions fall into one of three families:
   - get_player_recent_matches()
   - get_player_recent_games()
   - get_player_rankings_history()
-  - get_matchup()
+  - get_matchup()<br><br>
+  
+
+- Ranking functions for scraping current and historical rankings tables
+  - get_rankings()
+  - get_historical_rankings()<br><br>
+  
+
 - Tournament functions for scraping tournament results data
   - get_tournaments()
   - get_tournament_players()
   - get_tournament_matches()
-  - get_tournament_games()
-- Ranking functions for scraping current and historical rankings tables
-  - get_rankings()
-  - get_historical_rankings()
+  - get_tournament_games()<br><br>
 
 &nbsp;  
 Let's take a closer look at these functions in action...
 &nbsp;  
-  
-## Players
+&nbsp;  
 
+## Player functions
+&nbsp;  
 Use `get_players()` to extract biographical information on players currently ranked within the top 500.  
 ```{r, message=FALSE, warning=FALSE}
 library(squashinformr)
 library(tidyverse)
 
-(top_50_men <- get_players(top = 50, category = "mens"))
+(top_25_men <- get_players(top = 25, category = "mens"))
 ```
 
 If you're familiar with squash, you might be under the impression that players that are younger, taller, or lighter on their feet might have competitive advantages.  
-
-```{r, dpi = 300, echo = FALSE, warning=FALSE}
+&nbsp;  
+```{r, dev = 'CairoPNG', fig.width = 8, fig.height = 4.5, dpi = 300, echo = FALSE, warning=FALSE}
 dark_red <- "#bb0011"
 dark_orange <- "#d25d3c"
 light_orange <- "#e39669"
@@ -84,7 +87,7 @@ light_grey <- "#cdcfd6"
 light_purple <- "#95a1bd"
 blue <- "#4477bb"
 
-top_50_men %>%
+top_25_men %>%
   select(rank, age, height, weight) %>%
   mutate(bmi = weight / (height/100)^2) %>%
   pivot_longer(-rank, names_to = "variable", values_to = "value") %>%
@@ -97,12 +100,13 @@ top_50_men %>%
   ggplot(aes(x = rank, y = value, colour = rank)) +
     geom_boxplot(outlier.shape = NA) +
     geom_point(colour = dark_red, alpha = 0.5) +
-    #geom_smooth(method = "lm", se = FALSE, color = "#bb0011") +
+    #geom_smooth(method = "lm", colour = dark_orange) +
     facet_wrap(~variable, nrow = 1) +
     scale_x_reverse() +
     scale_y_continuous(breaks = seq(0, 200, 25)) +
     theme_light() +
-    labs(x = "\nRank", 
+    labs(title = "Are certain physical attributes correlated with PSA rankings?",
+         x = "\nRank", 
          y = "",
          colour = "Rank") +
     guides(colour = FALSE) +
@@ -112,16 +116,18 @@ top_50_men %>%
           axis.title = element_text(size = 12))
 ```
 
-The data returned from SquashInfo seem to imply that this is not the case! Age, height, weight, and BMI all seem to be uncorrelated with PSA rankings. Squash is a game of endurance, positioning, accuracy, and strategic choice.  
+The data returned from SquashInfo seem to imply that this is not the case! Age, height, weight, and BMI do not seem to have any clear relationship with PSA rankings. There are many other factors that can contribute to player success including physical endurance, positioning, accuracy, and strategic playstyle.  
 &nbsp;  
+
+### Recent match data
 
 Use `get_player_recent_matches()` to retrieve a player's recent match data (past January 1, 2019). Let's get Raneem El Welily's recent match data.  
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 (welily <- get_player_recent_matches(player = "Raneem El Welily", category = "womens"))
 ```
 
-```{r, dpi = 300, echo = FALSE, warning=FALSE}
+```{r, dev = 'CairoPNG', fig.width = 8, fig.height = 4.5, dpi = 300, echo = FALSE, warning=FALSE}
 library(patchwork)
 library(ggbeeswarm)
 
@@ -136,19 +142,19 @@ w1 <- welily %>%
                   `Game Wins` = sum(games_won, na.rm = TRUE),
                   `Game Losses` = sum(games_lost, na.rm = TRUE)) %>%
         pivot_longer(-rank, names_to = "variable", values_to = "value") %>% 
-        mutate(variable = factor(variable, levels = c("Match Wins", "Match Losses", "Game Wins", "Game Losses")),
+        mutate(variable = factor(variable, levels = c("Game Losses", "Game Wins", "Match Losses", "Match Wins")),
                wl = factor(if_else(str_detect(variable, "Wins"), "W", "L"), levels = c("W", "L"))) %>%
         ggplot(aes(x = variable, y = value, colour = wl)) +
           geom_segment(aes(xend = variable, y = 0, yend = value), size = 1) +
           geom_point(size = 4, shape = 19) +
-          geom_text(aes(label = value, colour = wl), nudge_y = 7.5) +
-          scale_colour_manual(values = c(blue, dark_red)) +
-          coord_cartesian(ylim = c(0, 180)) +
+          geom_text(aes(label = value, colour = wl), nudge_y = 12) +
+          scale_colour_manual(values = c(blue, dark_orange)) +
+          coord_flip(ylim = c(0, 200)) +
           guides(colour = FALSE) +
           theme_light() +
           labs(title = "El Welily's win-loss record (matches and games)",
                x = "", 
-               y = "Count\n") +
+               y = "") +
           theme(axis.text = element_text(size = 12),
                 axis.title = element_text(size = 12))
 
@@ -162,31 +168,29 @@ w2 <- welily %>%
                   `1-3 Losses` = sum(games_won == 1 & games_lost == 3, na.rm = TRUE),
                   `2-3 Losses` = sum(games_won == 2 & games_lost == 3, na.rm = TRUE)) %>%
         pivot_longer(-rank, names_to = "variable", values_to = "value") %>% 
-        mutate(variable = factor(variable, levels = c("3-2 Wins", "3-1 Wins", "3-0 Wins", "0-3 Losses", "1-3 Losses", "2-3 Losses")),
+        mutate(variable = factor(variable, levels = c("2-3 Losses", "1-3 Losses", "0-3 Losses", "3-0 Wins", "3-1 Wins", "3-2 Wins")),
                wl = factor(if_else(str_detect(variable, "Wins"), "W", "L"), levels = c("W", "L"))) %>%
         ggplot(aes(x = variable, y = value, colour = wl)) +
           geom_segment(aes(xend = variable, y = 0, yend = value), size = 1) +
           geom_point(size = 4, shape = 19) +
-          geom_text(aes(label = value), nudge_y = 5) +
-          scale_colour_manual(values = c(blue, dark_red)) +
-          coord_cartesian(ylim = c(0, 180)) +
+          geom_text(aes(label = value), nudge_y = 12) +
+          scale_colour_manual(values = c(blue, dark_orange)) +
+          coord_flip(ylim = c(0, 200)) +
           guides(colour = FALSE) +
           theme_light() +
           labs(title = "Match spread statistics",
                x = "", 
-               y = "") +
+               y = "Count\n") +
           theme(axis.text = element_text(size = 12),
-                axis.text.y = element_blank(),
                 axis.title = element_text(size = 12))
 
 
-w1 + w2
+w1 / w2
 ```
 
-
-Welily's match data exemplify her general dominance of women's competitons. She has a 5.45 win/loss ratio across all of the tournaments she participated in and 65% of her match wins are 3-0s. Even when she does lose a match, she does not make it easy for her opponents: the median match times in losses are longer regardless of the number of games played. Although the sample size is fairly low for Raneem's losses.  
-
-```{r, dpi = 300, echo = FALSE, warning=FALSE}
+El Welily's match data exemplify her general dominance of women's competitons. She has a 5.45 win/loss ratio across all of the tournaments she participated in and 65% of her match wins are 3-0s. Even when she does lose a match, she does not make it easy for her opponents. Her median match times in losses are longer regardless of the number of games played. Although, the sample size is fairly low for El Welily's losses.  
+&nbsp;  
+```{r, dev = 'CairoPNG', fig.width = 8, fig.height = 4.5, dpi = 300, echo = FALSE, warning=FALSE}
 welily %>%
     mutate(spread = case_when((games_won == 3 & games_lost == 2) | (games_won == 2 & games_lost == 3) ~ "3-2 Win or 2-3 Loss",
                               (games_won == 3 & games_lost == 1) | (games_won == 1 & games_lost == 3) ~ "3-1 Win or 1-3 Loss",
@@ -198,12 +202,12 @@ welily %>%
     geom_boxplot(outlier.shape = NA) +
     geom_beeswarm(dodge.width = 0.75, alpha = 0.5) +
     #geom_point(alpha = 0.5) +
-    scale_colour_manual(values = c(blue, dark_red)) +
+    scale_colour_manual(values = c(blue, dark_orange)) +
     guides(colour = FALSE) +
     coord_cartesian(ylim = c(0, 180)) +
     facet_wrap(~spread) +
     theme_light() +
-    labs(title = "Match time distribution",
+    labs(title = "Match time distributions",
          x = "", 
          y = "Match Time (minutes)\n",
          colour = "Result") +
@@ -216,13 +220,13 @@ welily %>%
           axis.title = element_text(size = 12))
 ```
 
-Given Raneem's general dominance, how does she play versus the second best women's player, Nouran Gohar? We can use `get_matchup()` to get a quantitative take on their head-to-head performance.  
-
-```{r}
-(welily_v_gohar <- get_matchup(player_1 = "Raneem El Welily", player_2 = "Nouran Gohar", category = "womens", tidy = FALSE))
+Given El Welily's general dominance, how does she play versus the current #2 women's player, Nouran Gohar? We can use `get_matchup()` to get a quantitative take on their head-to-head performance.  
+&nbsp;  
+```{r, message=FALSE, warning=FALSE, results='hide'}
+(welily_v_gohar <- get_matchup("Raneem El Welily", "Nouran Gohar", category = "womens"))
 ```
 
-```{r}
+```{r, dev = 'CairoPNG', fig.width = 8, fig.height = 4.5, dpi = 300, echo = FALSE, warning=FALSE}
 welily_v_gohar %>%
   filter(metric != "player_1", metric != "player_2", str_detect(metric, "match")) %>%
   mutate(metric = str_replace_all(metric, pattern = "_", replacement = " "),
@@ -230,25 +234,26 @@ welily_v_gohar %>%
          metric = str_to_title(metric),
          value = as.numeric(value),
          metric = factor(metric, 
-                         levels = c("Matches Played", "Player 1 Matches Won", "Player 2 Matches Won", 
-                                    "Matches 3-2", "Matches 3-1", "Matches 3-0", "Matches 0-3", "Matches 1-3", "Matches 2-3", "Avg Match Time"))) %>%
+                         levels = c("Avg Match Time", "Matches 2-3", "Matches 1-3", "Matches 0-3", "Matches 3-0", "Matches 3-1", "Matches 3-2", 
+                                    "Player 2 Matches Won", "Player 1 Matches Won", "Matches Played"))) %>%
   ggplot(aes(x = metric, y = value)) +
-    geom_segment(aes(xend = metric, y = 0, yend = value), size = 1, colour = blue) +
-    geom_point(size = 4, shape = 19, colour = dark_red) +
+    geom_segment(aes(xend = metric, y = 0, yend = value), size = 1, colour = tan) +
+    geom_point(size = 4, shape = 21, fill = tan, colour = dark_red) +
     geom_text(aes(label = value), nudge_y = 2, colour = dark_red) +
-    coord_cartesian(ylim = c(0, 50)) +
+    coord_flip(ylim = c(0, 50)) +
     #guides(colour = FALSE) +
     theme_light() +
     labs(title = "Raneem El Welily v Nouran Gohar",
          subtitle = "Head-to-Head Match Statistics; Match spread statistics relative to Raneem El Welily",
          x = "", 
-         y = "Value") +
+         y = "") +
     theme(axis.text = element_text(size = 12),
           axis.title = element_text(size = 12))
 ```
 
-
-```{r}
+El Welily's currently holds a lead on Gohar by five matches since Janary 1, 2019 and a majority of her wins over Gohar have been decisive (3-1 or 3-0).  
+&nbsp;  
+```{r, dev = 'CairoPNG', fig.width = 8, fig.height = 4.5, dpi = 300, echo = FALSE, warning=FALSE}
 library(gt)
 
 welily_v_gohar %>%
@@ -263,9 +268,130 @@ welily_v_gohar %>%
              subtitle = glue::glue("Head-to-Head Game Statistics, 2019-2020")) %>%
   fmt_number(columns = "Value", drop_trailing_zeros = TRUE)
 ```
+&nbsp;  
+That being said, the game level data seems to show that Gohar can be equally dominant in any individual game, which is reflected in the approximately equal average advantages. So it may be that El Welily's consistency across games that allows her to win more matches over Gohar.  
+&nbsp;  
+
+## Ranking functions
+&nbsp;  
+
+...  
+&nbsp;  
+  
+## Tournament functions
+&nbsp;  
+`squashinformr` allows provides useful functions for pulling tournament data at multiple levels of detail; metadata, players, matches, and games.  
+
+The lowest level of detail is the tournament games, accessed via `get_tournament_games()`. Let's look at the most recent iteration of the JP Morgan Tournament of Champions, one of the premier squash tournaments for both categories.  
+
+```{r, message=FALSE, warning=FALSE}
+## Return game data for 2020's Tournament of Champions.
+(toc <- get_tournament_games("tournament of champions", year = 2020))
+```
+&nbsp;  
+Let's say we are interested in comparing the consistency of a player's performance in this tournament. We can ask, by what point margin did players win or lose on average throughout this tournament? We can look at each player's average point advantages earned in game wins versus their average point disadvantages earned in game losses.  
+
+```{r, dev = 'CairoPNG', fig.width = 8, fig.height = 8, dpi = 300, echo = FALSE, warning=FALSE}
+toc_stats <- toc %>%
+                filter(is.na(game_winner) == FALSE) %>%
+                mutate(game_loser = if_else(player_1 == game_winner, player_2, player_1)) %>%
+                pivot_longer(-c(tournament_name, category, tournament_date, round, match, 
+                                game, game_winner, game_loser, player_1_score, player_2_score, 
+                                player_1_seed, player_2_seed, player_1_nationality, player_2_nationality),
+                             names_to = "player_no", values_to = "name") %>%
+                group_by(category, name) %>%
+                mutate(win_loss = if_else(game_winner == name, "W", "L"),
+                       round_reached = max(round, na.rm = TRUE)) %>%
+                group_by(category, name, win_loss) %>%
+                summarize(round_reached = max(round, na.rm = TRUE),
+                          count = n(),
+                          avg_diff = mean(case_when(player_no == "player_1" ~ player_1_score - player_2_score,
+                                                    player_no == "player_2" ~ player_2_score - player_1_score), na.rm = TRUE),
+                          sd_diff = sd(case_when(player_no == "player_1" ~ player_1_score - player_2_score,
+                                                  player_no == "player_2" ~ player_2_score - player_1_score), na.rm = TRUE))
+
+toc_men <- toc_stats %>%
+                filter(category == "Men's") %>%
+                group_by(name) %>%
+                mutate(wl_diff = max(avg_diff, na.rm = TRUE) - min(avg_diff, na.rm = TRUE),
+                       no_wins = if_else("W" %in% win_loss, "Wins", "No wins"),
+                       games = sum(count, na.rm = TRUE),
+                       round_reached = max(round_reached, na.rm = TRUE)) %>%
+                arrange(no_wins, wl_diff)
+
+toc_men %>%
+  ggplot(aes(x = fct_reorder(name, games, .fun = max), y = avg_diff)) + 
+    geom_segment(aes(xend = name, y = 0, yend = avg_diff), size = 1, colour = light_purple) +
+    geom_point(aes(colour = win_loss, size = count), shape = 19) +
+    geom_hline(yintercept = 0, linetype = "dashed") +
+    scale_colour_manual(values = c(dark_orange, blue)) +
+    coord_flip(ylim = c(-10, 10)) +
+    #gghighlight(round_reached >= "QF", use_direct_label = FALSE, max_highlight = 16) +
+    #geom_text(aes(label = value), nudge_y = 2, colour = dark_orange) +
+    guides(size = FALSE, colour = FALSE) +
+    theme_light() +
+    labs(title = "Average point advantage/disadvantage in game wins/losses",
+         subtitle = "Point size increases with sample size of games won/lost; Players sorted by total games played",
+         x = "", 
+         y = "Average Point Advantage / Disadvantage") +
+    theme(plot.subtitle = element_text(size = 10),
+          axis.text.y = element_text(size = 8),
+          axis.text.x = element_text(size = 12),
+          axis.title = element_text(size = 12))
+```
 
 
-## Tournaments
+If we look at only players that reached the quarter-finals, we can see that most were able to defeat their opponents with a comfortable lead of 4 or 5 points.  
 
-## Rankings
+```{r, dev = 'CairoPNG', fig.width = 8, fig.height = 8, dpi = 300, echo = FALSE, warning=FALSE}
+toc_men %>%
+  group_by(name) %>%
+  filter(max(round_reached) >= "QF") %>%
+  ggplot(aes(x = fct_reorder(name, games, .fun = max), y = avg_diff)) + 
+    geom_segment(aes(xend = name, y = 0, yend = avg_diff), size = 1, colour = light_purple) +
+    geom_point(aes(colour = win_loss, size = count), shape = 19) +
+    geom_errorbar(aes(colour = win_loss, ymin = avg_diff - sd_diff, ymax = avg_diff + sd_diff), size = 1, width = 0.2) +
+    geom_text(aes(colour = win_loss, label = round(avg_diff, 2)), size = 6, nudge_x = -0.25) +
+    geom_hline(yintercept = 0, linetype = "dashed") +
+    scale_colour_manual(values = c(dark_orange, blue)) +
+    coord_flip(ylim = c(-10, 10)) +
+    guides(size = FALSE, colour = FALSE) +
+    theme_light() +
+    labs(title = "Average point advantage/disadvantage in game wins/losses",
+         subtitle = "Point size increases with sample size of games won/lost; Error bars are one standard deviation",
+         x = "", 
+         y = "Average Point Advantage / Disadvantage") +
+    theme(plot.subtitle = element_text(size = 10),
+          axis.text.y = element_text(size = 10),
+          axis.text.x = element_text(size = 12),
+          axis.title = element_text(size = 12))
+```
 
+Notably, the error bars for Karim Abdel Gawad, Simon Rösner, and Paul Coll extend out into the right of the figure. This reflects how they convincingly defeated many of their opponents up to the third round of the tournament.  
+
+Conversely, there are only two players that stand out from a defensive perspective, Mohamed Elshorbagy and Simon Rösner. Mohamed Elshorbagy, the champion of the tournament, lost only one game (to Tarek Momen in the final) and it was only by a margin of 2 points. Meanwhile, Simon Rösner only lost 3 games, all of which were by a 2 or 3 point margin during a defeat to Karim Abdel Gawad in a 5-game match.  
+&nbsp;  
+
+## Conclusion
+&nbsp;  
+
+
+
+The full code for this post is available <a href="" target="_blank">here</a>.  
+&nbsp;  
+  
+## Help
+&nbsp;  
+Submit issues on <a href="https://github.com/HaydenMacDonald/squashinformr" target="_blank">GitHub</a>.  
+  
+If you are interested in helping me extend the functionality of this package, fork this repository, make your changes and submit them as a pull request. The `squashinformr` project is released with a <a href="https://github.com/HaydenMacDonald/squashinformr/blob/master/.github/CODE_OF_CONDUCT.md" target="_blank">Contributor Code of Conduct</a>. By contributing to this project, you agree to its terms.  
+&nbsp;  
+  
+## Disclaimer
+&nbsp;  
+SquashInfo is a valuable resource for the international squash community. By creating and sharing this package, I do not intend to compete with SquashInfo or any of its stakeholders. The `squashinformr` package was created to allow individuals to access data from SquashInfo in an efficient and responsible way, using <a href="https://github.com/dmi3kno/polite" target="_blank">`polite` principles</a>. SquashInfo currently offers full access to their data and extra features through a premium membership. Please consider <a href="http://www.squashinfo.com/upgrade" target="_blank">signing up and subscribing</a> to SquashInfo to support their work.  
+&nbsp;  
+  
+## License
+&nbsp;  
+The `squashinformr` package is released under a <a href="https://github.com/HaydenMacDonald/squashinformr/blob/master/LICENSE.md" target="_blank">GPL-3</a> license.

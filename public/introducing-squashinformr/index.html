@@ -8,9 +8,11 @@
   <title>Introducing squashinformr: Politely web scrape data from SquashInfo in R</title>
   <meta property="og:title" content="Introducing squashinformr: Politely web scrape data from SquashInfo in R" />
   <meta name="twitter:title" content="Introducing squashinformr: Politely web scrape data from SquashInfo in …" />
-  <meta name="description" content="A Project Salvaged  Earlier this year, I enrolled in a Data Management course as a part of my MSc in Business Analytics. The final project in this course involved writing a business case study, designing a database model, and building a MySQL database. As a squash enthusiast, I chose to base my project on the Professional Squash Association (PSA). The business case was that if the PSA invested in a database, they could enrich the viewing experience for PSA TV subscribers.">
-  <meta property="og:description" content="A Project Salvaged  Earlier this year, I enrolled in a Data Management course as a part of my MSc in Business Analytics. The final project in this course involved writing a business case study, designing a database model, and building a MySQL database. As a squash enthusiast, I chose to base my project on the Professional Squash Association (PSA). The business case was that if the PSA invested in a database, they could enrich the viewing experience for PSA TV subscribers.">
-  <meta name="twitter:description" content="A Project Salvaged  Earlier this year, I enrolled in a Data Management course as a part of my MSc in Business Analytics. The final project in this course involved writing a business case study, …">
+  <meta name="description" content="A Project Salvaged Earlier this year, I enrolled in a Data Management course as a part of my MSc in Business Analytics. The final project in this course involved writing a business case study, designing a database model, and building a MySQL database. As a squash enthusiast, I chose to base my project on the Professional Squash Association (PSA).
+Long story short, I did not complete this project because it was cancelled due the spread of COVID-19.">
+  <meta property="og:description" content="A Project Salvaged Earlier this year, I enrolled in a Data Management course as a part of my MSc in Business Analytics. The final project in this course involved writing a business case study, designing a database model, and building a MySQL database. As a squash enthusiast, I chose to base my project on the Professional Squash Association (PSA).
+Long story short, I did not complete this project because it was cancelled due the spread of COVID-19.">
+  <meta name="twitter:description" content="A Project Salvaged Earlier this year, I enrolled in a Data Management course as a part of my MSc in Business Analytics. The final project in this course involved writing a business case study, …">
   <meta name="author" content="Hayden MacDonald"/>
   <link href='/img/needle2.png' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="/img/headshotbw.jpg" />
@@ -186,7 +188,7 @@ if (!doNotTrack) {
   
   
   &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 4 minutes (825 words)
+  <i class="fa fa-clock-o"></i> 11 minutes (2252 words)
   
   
 </span>
@@ -206,12 +208,12 @@ if (!doNotTrack) {
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <div id="a-project-salvaged" class="section level2">
-<h2>A Project Salvaged <img src="/img/sticker.png" width="129" height="150" align="right" /></h2>
+        <p><img src="/img/squashinformr_ghcard.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<div id="a-project-salvaged" class="section level2">
+<h2>A Project Salvaged</h2>
 <p> <br />
-Earlier this year, I enrolled in a Data Management course as a part of my MSc in Business Analytics. The final project in this course involved writing a business case study, designing a database model, and building a MySQL database. As a squash enthusiast, I chose to base my project on the Professional Squash Association (PSA). The business case was that if the PSA invested in a database, they could enrich the viewing experience for PSA TV subscribers.</p>
-<p>Long story short, I did not complete this project because it was cancelled due the spread of COVID-19.</p>
-<p>Unfortunately, I had already put in approximately 20 hours of work into the project. Most of this work was a collection of R code used to scrape real data on PSA tournaments. So being as stubborn as I am, I committed to reusing the code by building an R package. The result is <code>squashinformr</code>: a package for scraping player, tournament, and ranking data from <a href="http://www.squashinfo.com/" target="_blank">SquashInfo</a>.<br />
+Earlier this year, I enrolled in a Data Management course as a part of my MSc in Business Analytics. The final project in this course involved writing a business case study, designing a database model, and building a MySQL database. As a squash enthusiast, I chose to base my project on the Professional Squash Association (PSA).</p>
+<p>Long story short, I did not complete this project because it was cancelled due the spread of COVID-19. Unfortunately, I had already put in approximately 20 hours of coding into the project. So being as stubborn as I am, I committed to reusing the code by building an R package. The result is <code>squashinformr</code>: a package for scraping player, tournament, and ranking data from <a href="http://www.squashinfo.com/" target="_blank">SquashInfo</a>.<br />
  </p>
 </div>
 <div id="politeness-on-the-web" class="section level2">
@@ -223,11 +225,11 @@ Earlier this year, I enrolled in a Data Management course as a part of my MSc in
 <li>Take slowly, so as to not be mistaken for a DDoS attack.</li>
 <li>Never ask twice by using <a href="https://en.wikipedia.org/wiki/Memoization" target="_blank">memoization</a>.</li>
 </ol>
-<p><code>squashinformr</code> abides by these principles to avoid causing harm to SquashInfo and its users. Following <code>polite</code> principles incurs mandatory delays (set by SquashInfo’s robotstxt files) on the scraping process. Therefore, it is important that users are patient when using <code>squashinformr</code>. SquashInfo currently offers full access to their data and extra features through a premium membership. Please consider <a href="http://www.squashinfo.com/signup" target="_blank">signing up and/or subscribing</a> to SquashInfo to support their work.<br />
+<p>Following <code>polite</code> principles incurs mandatory delays (set by SquashInfo’s Robotstxt files) on the scraping process. Therefore, it is important that users are patient when using <code>squashinformr</code>. SquashInfo currently offers full access to their data and extra features through a premium membership. Please consider <a href="http://www.squashinfo.com/signup" target="_blank">signing up and/or subscribing</a> to SquashInfo to support their work.<br />
  </p>
 </div>
-<div id="functions-in-v0.1.0" class="section level2">
-<h2>Functions in v0.1.0</h2>
+<div id="functions-in-0.1.0" class="section level2">
+<h2>Functions in 0.1.0</h2>
 <p> <br />
 Generally, <code>squashinformr</code> functions fall into one of three families:<br />
  </p>
@@ -239,37 +241,39 @@ Generally, <code>squashinformr</code> functions fall into one of three families:
 <li>get_player_recent_matches()</li>
 <li>get_player_recent_games()</li>
 <li>get_player_rankings_history()</li>
-<li>get_matchup()</li>
+<li>get_matchup()<br><br></li>
+</ul></li>
+<li>Ranking functions for scraping current and historical rankings tables
+<ul>
+<li>get_rankings()</li>
+<li>get_historical_rankings()<br><br></li>
 </ul></li>
 <li>Tournament functions for scraping tournament results data
 <ul>
 <li>get_tournaments()</li>
 <li>get_tournament_players()</li>
 <li>get_tournament_matches()</li>
-<li>get_tournament_games()</li>
-</ul></li>
-<li>Ranking functions for scraping current and historical rankings tables
-<ul>
-<li>get_rankings()</li>
-<li>get_historical_rankings()</li>
+<li>get_tournament_games()<br><br></li>
 </ul></li>
 </ul>
 <p> <br />
 Let’s take a closer look at these functions in action…
+ <br />
  </p>
 </div>
-<div id="players" class="section level2">
-<h2>Players</h2>
-<p>Use <code>get_players()</code> to extract biographical information on players currently ranked within the top 500.</p>
+<div id="player-functions" class="section level2">
+<h2>Player functions</h2>
+<p> <br />
+Use <code>get_players()</code> to extract biographical information on players currently ranked within the top 500.</p>
 <pre class="r"><code>library(squashinformr)
 library(tidyverse)
 
-(top_50_men &lt;- get_players(top = 50, category = &quot;mens&quot;))</code></pre>
-<pre><code>## # A tibble: 50 x 15
+(top_25_men &lt;- get_players(top = 25, category = &quot;mens&quot;))</code></pre>
+<pre><code>## # A tibble: 25 x 15
 ##     rank first last    age gender birthplace nationality residence height weight
 ##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;
 ##  1     1 Moha~ Elsh~    29 Male   Alexandria Egypt       Bristol,~    185     82
-##  2     2 Ali   Farag    27 Male   Cairo      Egypt       Cairo        183     70
+##  2     2 Ali   Farag    28 Male   Cairo      Egypt       Cairo        183     70
 ##  3     3 Karim Abde~    28 Male   Alexandria Egypt       Giza         173     72
 ##  4     4 Tarek Momen    32 Male   Cairo      Egypt       Cairo        174     66
 ##  5     5 Paul  Coll     27 Male   Greymouth  New Zealand Amsterda~    179     83
@@ -278,18 +282,17 @@ library(tidyverse)
 ##  8     8 Simon Rösn~    32 Male   Wurzburg   Germany     Paderborn    190     89
 ##  9     9 Migu~ Rodr~    34 Male   Bogota     Colombia    Bogota       170     72
 ## 10    10 Joel  Makin    25 Male   Haverford~ Wales       Birmingh~    180     80
-## # ... with 40 more rows, and 5 more variables: plays &lt;chr&gt;, racket &lt;chr&gt;,
+## # ... with 15 more rows, and 5 more variables: plays &lt;chr&gt;, racket &lt;chr&gt;,
 ## #   joined_psa &lt;dbl&gt;, university &lt;chr&gt;, club &lt;chr&gt;</code></pre>
-<p>If you’re familiar with squash, you might be under the impression that players that are younger, taller, or lighter on their feet might have competitive advantages.</p>
-<p><img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-3-1.png" width="2100" /></p>
-<p>The data returned from SquashInfo seem to imply that this is not the case! Age, height, weight, and BMI all seem to be uncorrelated with PSA rankings. Squash is a game of endurance, positioning, accuracy, and strategic choice.</p>
-</div>
-<div id="get_recent_matches---get_matchup" class="section level2">
-<h2>get_recent_matches -&gt; get_matchup()</h2>
-<p>Use <code>get_player_recent_matches()</code> to retrieve a player’s recent match data (past January 1, 2019)</p>
+<p>If you’re familiar with squash, you might be under the impression that players that are younger, taller, or lighter on their feet might have competitive advantages.<br />
+ <br />
+<img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-3-1.png" width="2400" /></p>
+<p>The data returned from SquashInfo seem to imply that this is not the case! Age, height, weight, and BMI do not seem to have any clear relationship with PSA rankings. There are many other factors that can contribute to player success including physical endurance, positioning, accuracy, and strategic playstyle.<br />
+ </p>
+<div id="recent-match-data" class="section level3">
+<h3>Recent match data</h3>
+<p>Use <code>get_player_recent_matches()</code> to retrieve a player’s recent match data (past January 1, 2019). Let’s get Raneem El Welily’s recent match data.</p>
 <pre class="r"><code>(welily &lt;- get_player_recent_matches(player = &quot;Raneem El Welily&quot;, category = &quot;womens&quot;))</code></pre>
-<pre><code>## Scraping http://www.squashinfo.com/rankings/women/1</code></pre>
-<pre><code>## Scraping Raneem El Welily&#39;s profile</code></pre>
 <pre><code>## # A tibble: 71 x 12
 ##     rank player opponent result games_won games_lost match_time round date      
 ##    &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;      &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;date&gt;    
@@ -305,13 +308,472 @@ library(tidyverse)
 ## 10     1 Ranee~ Hania E~ W              3          0         40 SF    2020-02-01
 ## # ... with 61 more rows, and 3 more variables: event &lt;chr&gt;, country &lt;chr&gt;,
 ## #   psa &lt;chr&gt;</code></pre>
-<p><img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-5-1.png" width="2100" /></p>
+<p><img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-5-1.png" width="2400" /></p>
+<p>El Welily’s match data exemplify her general dominance of women’s competitons. She has a 5.45 win/loss ratio across all of the tournaments she participated in and 65% of her match wins are 3-0s. Even when she does lose a match, she does not make it easy for her opponents. Her median match times in losses are longer regardless of the number of games played. Although, the sample size is fairly low for El Welily’s losses.<br />
+ <br />
+<img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-6-1.png" width="2400" /></p>
+<p>Given El Welily’s general dominance, how does she play versus the current #2 women’s player, Nouran Gohar? We can use <code>get_matchup()</code> to get a quantitative take on their head-to-head performance.<br />
+ </p>
+<pre class="r"><code>(welily_v_gohar &lt;- get_matchup(&quot;Raneem El Welily&quot;, &quot;Nouran Gohar&quot;, category = &quot;womens&quot;))</code></pre>
+<p><img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-8-1.png" width="2400" /></p>
+<p>El Welily’s currently holds a lead on Gohar by five matches since Janary 1, 2019 and a majority of her wins over Gohar have been decisive (3-1 or 3-0).<br />
+ <br />
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#znimsisyfe .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#znimsisyfe .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#znimsisyfe .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#znimsisyfe .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#znimsisyfe .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#znimsisyfe .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#znimsisyfe .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#znimsisyfe .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#znimsisyfe .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#znimsisyfe .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#znimsisyfe .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#znimsisyfe .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#znimsisyfe .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#znimsisyfe .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#znimsisyfe .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#znimsisyfe .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#znimsisyfe .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#znimsisyfe .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#znimsisyfe .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#znimsisyfe .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#znimsisyfe .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#znimsisyfe .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#znimsisyfe .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#znimsisyfe .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#znimsisyfe .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#znimsisyfe .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#znimsisyfe .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#znimsisyfe .gt_left {
+  text-align: left;
+}
+
+#znimsisyfe .gt_center {
+  text-align: center;
+}
+
+#znimsisyfe .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#znimsisyfe .gt_font_normal {
+  font-weight: normal;
+}
+
+#znimsisyfe .gt_font_bold {
+  font-weight: bold;
+}
+
+#znimsisyfe .gt_font_italic {
+  font-style: italic;
+}
+
+#znimsisyfe .gt_super {
+  font-size: 65%;
+}
+
+#znimsisyfe .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="znimsisyfe" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="2" class="gt_heading gt_title gt_font_normal" style>Raneem El Welily v Nouran Gohar</th>
+    </tr>
+    <tr>
+      <th colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>Head-to-Head Game Statistics, 2019-2020</th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Metric</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Value</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left">Games Played</td>
+      <td class="gt_row gt_right">32</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Player 1 Games Won</td>
+      <td class="gt_row gt_right">20</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Player 2 Games Won</td>
+      <td class="gt_row gt_right">11</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Player 1 Avg Advantage</td>
+      <td class="gt_row gt_right">4.75</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Player 2 Avg Advantage</td>
+      <td class="gt_row gt_right">4.73</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Avg Point Diff</td>
+      <td class="gt_row gt_right">4.74</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Player 1 Tiebreak Wins</td>
+      <td class="gt_row gt_right">2</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Player 2 Tiebreak Wins</td>
+      <td class="gt_row gt_right">1</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Pct Games Tiebreak</td>
+      <td class="gt_row gt_right">6.25</td>
+    </tr>
+  </tbody>
+  
+  
+</table></div>
+ <br />
+That being said, the game level data seems to show that Gohar can be equally dominant in any individual game, which is reflected in the approximately equal average advantages. So it may be that El Welily’s consistency across games that allows her to win more matches over Gohar.<br />
+ </p>
 </div>
-<div id="tournaments" class="section level2">
-<h2>Tournaments</h2>
 </div>
-<div id="rankings" class="section level2">
-<h2>Rankings</h2>
+<div id="ranking-functions" class="section level2">
+<h2>Ranking functions</h2>
+<p> </p>
+<p>…<br />
+ </p>
+</div>
+<div id="tournament-functions" class="section level2">
+<h2>Tournament functions</h2>
+<p> <br />
+<code>squashinformr</code> allows provides useful functions for pulling tournament data at multiple levels of detail; metadata, players, matches, and games.</p>
+<p>The lowest level of detail is the tournament games, accessed via <code>get_tournament_games()</code>. Let’s look at the most recent iteration of the JP Morgan Tournament of Champions, one of the premier squash tournaments for both categories.</p>
+<pre class="r"><code>## Return game data for 2020&#39;s Tournament of Champions.
+(toc &lt;- get_tournament_games(&quot;tournament of champions&quot;, year = 2020))</code></pre>
+<pre><code>## # A tibble: 388 x 15
+##    tournament_name category tournament_date round match  game player_1 player_2
+##    &lt;chr&gt;           &lt;chr&gt;    &lt;date&gt;          &lt;ord&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;   
+##  1 JP Morgan Tour~ Men&#39;s    2020-01-17      F        64     4 Mohamed~ Tarek M~
+##  2 JP Morgan Tour~ Men&#39;s    2020-01-17      F        64     3 Mohamed~ Tarek M~
+##  3 JP Morgan Tour~ Men&#39;s    2020-01-17      F        64     2 Mohamed~ Tarek M~
+##  4 JP Morgan Tour~ Men&#39;s    2020-01-17      F        64     1 Mohamed~ Tarek M~
+##  5 JP Morgan Tour~ Women&#39;s  2020-01-17      F        62     3 Camille~ Nour El~
+##  6 JP Morgan Tour~ Women&#39;s  2020-01-17      F        62     2 Camille~ Nour El~
+##  7 JP Morgan Tour~ Women&#39;s  2020-01-17      F        62     1 Camille~ Nour El~
+##  8 JP Morgan Tour~ Men&#39;s    2020-01-17      SF       63     5 Tarek M~ Ali Far~
+##  9 JP Morgan Tour~ Men&#39;s    2020-01-17      SF       63     4 Tarek M~ Ali Far~
+## 10 JP Morgan Tour~ Men&#39;s    2020-01-17      SF       63     3 Tarek M~ Ali Far~
+## # ... with 378 more rows, and 7 more variables: game_winner &lt;chr&gt;,
+## #   player_1_score &lt;dbl&gt;, player_2_score &lt;dbl&gt;, player_1_seed &lt;dbl&gt;,
+## #   player_2_seed &lt;dbl&gt;, player_1_nationality &lt;chr&gt;, player_2_nationality &lt;chr&gt;</code></pre>
+<p> <br />
+Let’s say we are interested in comparing the consistency of a player’s performance in this tournament. We can ask, by what point margin did players win or lose on average throughout this tournament? We can look at each player’s average point advantages earned in game wins versus their average point disadvantages earned in game losses.</p>
+<p><img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-11-1.png" width="2400" /></p>
+<p>If we look at only players that reached the quarter-finals, we can see that most were able to defeat their opponents with a comfortable lead of 4 or 5 points.</p>
+<p><img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-12-1.png" width="2400" /></p>
+<p>Notably, the error bars for Karim Abdel Gawad, Simon Rösner, and Paul Coll extend out into the right of the figure. This reflects how they convincingly defeated many of their opponents up to the third round of the tournament.</p>
+<p>Conversely, there are only two players that stand out from a defensive perspective, Mohamed Elshorbagy and Simon Rösner. Mohamed Elshorbagy, the champion of the tournament, lost only one game (to Tarek Momen in the final) and it was only by a margin of 2 points. Meanwhile, Simon Rösner only lost 3 games, all of which were by a 2 or 3 point margin during a defeat to Karim Abdel Gawad in a 5-game match.<br />
+ </p>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p> </p>
+<p>The full code for this post is available <a href="" target="_blank">here</a>.<br />
+ </p>
+</div>
+<div id="help" class="section level2">
+<h2>Help</h2>
+<p> <br />
+Submit issues on <a href="https://github.com/HaydenMacDonald/squashinformr" target="_blank">GitHub</a>.</p>
+<p>If you are interested in helping me extend the functionality of this package, fork this repository, make your changes and submit them as a pull request. The <code>squashinformr</code> project is released with a <a href="https://github.com/HaydenMacDonald/squashinformr/blob/master/.github/CODE_OF_CONDUCT.md" target="_blank">Contributor Code of Conduct</a>. By contributing to this project, you agree to its terms.<br />
+ </p>
+</div>
+<div id="disclaimer" class="section level2">
+<h2>Disclaimer</h2>
+<p> <br />
+SquashInfo is a valuable resource for the international squash community. By creating and sharing this package, I do not intend to compete with SquashInfo or any of its stakeholders. The <code>squashinformr</code> package was created to allow individuals to access data from SquashInfo in an efficient and responsible way, using <a href="https://github.com/dmi3kno/polite" target="_blank"><code>polite</code> principles</a>. SquashInfo currently offers full access to their data and extra features through a premium membership. Please consider <a href="http://www.squashinfo.com/upgrade" target="_blank">signing up and subscribing</a> to SquashInfo to support their work.<br />
+ </p>
+</div>
+<div id="license" class="section level2">
+<h2>License</h2>
+<p> <br />
+The <code>squashinformr</code> package is released under a <a href="https://github.com/HaydenMacDonald/squashinformr/blob/master/LICENSE.md" target="_blank">GPL-3</a> license.</p>
 </div>
 
 
