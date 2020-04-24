@@ -18,8 +18,6 @@ tags:
 knitr::include_graphics('/img/squashinformr_ghcard.png', error = FALSE)
 ```
 
-## A Project Salvaged
-&nbsp;  
 Earlier this year, I enrolled in a Data Management course as a part of my MSc in Business Analytics. The final project in this course involved presenting a business case for a database and building a MySQL database as a solution. As a squash enthusiast, I chose to base my project on the <a href="https://psaworldtour.com/" target="_blank">Professional Squash Association (PSA)</a>.  
 
 Long story short, I did not complete this project because it was cancelled due the spread of COVID-19. Unfortunately, I had already put in approximately 20 hours of coding into the project. So being as stubborn as I am, I committed to reusing the code by building an R package. The result is `squashinformr`: a package for scraping player, tournament, and ranking data from <a href="http://www.squashinfo.com/" target="_blank">SquashInfo</a>.  
