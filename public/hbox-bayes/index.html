@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="/css/codeblock.css" />
-  <link rel="stylesheet" href="/css/solarized-dark.css" rel="stylesheet" id="theme-stylesheet">
+  <link rel="stylesheet" href="/css/github-gist-hmd.css" rel="stylesheet" id="theme-stylesheet">
   <script src="/js/highlight.pack.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
 
@@ -213,7 +213,7 @@ if (!doNotTrack) {
         <div id="melee" class="section level2">
 <h2>Melee!</h2>
 <p> <br />
-<a href="https://en.wikipedia.org/wiki/Super_Smash_Bros._Melee" target="_blank">Super Smash Bros. Melee for the Nintendo GameCube</a> was released in 2001. Since then, it has become one of the most adored games of the last twenty years. The game features many characters from various Nintendo game franchises, which players choose between before entering a match. The objective of each match is relatively simple: fight your opponent(s) and hit them beyond the boundaries of the stage. In contrast to fighting games, each time a player is struck they <em>gain</em> percentage points. As these percentage points accumulate, each successive attack received sends the player’s character further away and closer to the stage boundaries. Each time a player goes past the stage boundary, they lose a “stock” (i.e. a life). Lose all your stocks and the game is over.<br />
+<a href="https://en.wikipedia.org/wiki/Super_Smash_Bros._Melee" target="_blank">Super Smash Bros. Melee for the Nintendo GameCube</a> was released in 2001. Since then, it has become one of the most adored games of the last twenty years. The game features many characters from various Nintendo game franchises, which players choose between before entering a match. The objective of each match is relatively simple: fight your opponent(s) and hit them beyond the boundaries of the stage. In contrast to fighting games, each time a player is struck they <em>gain</em> percentage points. As these percentage points accumulate, each successive attack received sends the player’s character further away and closer to the stage boundaries. Each time a player goes past the stage boundary, they lose a “stock” (i.e. a life). Lose all your stocks and the game is over.<br />
  <br />
 <img src="/img/hboxvzain.PNG" alt="Competetive Melee" /></p>
 <p>Today, Melee is a popular esport across North America and Europe, where players can watch or enter tournaments with cash prizes. Although the game is simple in premise, mechanically, the game is incredibly complicated and players require a tremendous amount of practice to become a highly skilled at the game.</p>
@@ -229,13 +229,15 @@ if (!doNotTrack) {
  <br />
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">i was thinking, what should we do to beat hungrybox? as if it were fate, i came upon this reddit thread.<br>Now I know exactly what not to do! <a href="https://t.co/PyT3cPwnb1">pic.twitter.com/PyT3cPwnb1</a></p>&mdash; Leffen (@TSM_Leffen) <a href="https://twitter.com/TSM_Leffen/status/927971399301464065?ref_src=twsrc%5Etfw">November 7, 2017</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-  <br />
+
+ <br />
 Leffen’s tweet features screenshots of fan comments on Reddit that suggest absurd or simplistic strategies that disregard the logic behind high level play. His tweet should speak for itself, but there is a large knowledge gap between fans and top players when it comes to playing against the best player in the world.</p>
 <p>The sentiment of Leffen’s tweet is later echoed by Tafo, another community member.<br />
  <br />
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Imagine how many Young Link comments that would show up if I showed this yesterday (Hbox&#39;s 2017 char data) <a href="https://t.co/ZjT8tDy1QO">pic.twitter.com/ZjT8tDy1QO</a></p>&mdash; CLG Tafo (@tafokints) <a href="https://twitter.com/tafokints/status/927976731905900544?ref_src=twsrc%5Etfw">November 7, 2017</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-  <br />
+
+ <br />
 Although Tafo’s comments are also made at the expense of fans, he includes a dataset of Hungrybox’s character matchup data for 2017 (against players in the top 50). Tafo effectively highlights a specific misunderstanding that fans have about character matchups in Melee.</p>
 <p>The essential sentiment is that fans tend to look past sample size when making inferences on matchup win rates or general performance.</p>
 <p>Here is the same data reorganized:<br />
@@ -346,7 +348,8 @@ The resulting alpha and beta parameters will inform the shape of our beta distri
  <br />
 <span class="math display">\[
 \frac{Number of Wins + \alpha_0}{Total Number of Games + \alpha_0 + \beta_0}
-\]</span>  </p>
+\]</span>
+ </p>
 <pre class="r"><code>#How does empirical Bayes estimation change the matchup averages?
 Hbox.eb &lt;- Hbox %&gt;%
     mutate(eb_estimate = 
@@ -396,7 +399,8 @@ To reiterate, this empirical Bayesian estimation analysis used the distribution 
 <p>So, does this mean that players should only play Fox against Hungrybox’s Jigglypuff?</p>
 <p>Recent tournament results suggest otherwise.<br />
  </p>
-<p><img src="/img/SmashggShine2018.png" alt="Shine 2018 Top 8 Bracket | source: smash.gg" />  <br />
+<p><img src="/img/SmashggShine2018.png" alt="Shine 2018 Top 8 Bracket | source: smash.gg" />
+ <br />
 Zain’s astonishing rise through the Melee rankings led him to beat Hungrybox in two best-of-5 tournament matches at Shine 2018. One of those matches was a decisive <a href="https://youtu.be/BGifpkfcvvg" target="_blank">3-1 Grand Finals set</a> versus Hungrybox. That feat is compounded by the fact that Zain beat Hungrybox using Marth, a character that historically performs poorly versus Hungrybox’s Jigglypuff. In fact, the last Marth player to beat Hungrybox was <a href="https://youtu.be/tDxvY_MVctI" target="_blank">PewPewU in 2015</a>. So, character matchups and their estimates are not everything in Melee and that’s just one reason why the competetitive scene can be so exciting to watch.</p>
 <p>I am very glad to publish this first post on my blog, especially since I have been sitting on this analysis since Tafo posted the data on Twitter. Taking an analytical stance on one of the many nuances of Melee was very enjoyable for me and I hope you enjoyed reading it. Thanks again to David Robinson for inspiring this post.</p>
 <p>If you have any questions or concerns about this blog post, feel free to message me on Twitter or leave a Disqus comment. If you’re interested in competitive Melee, you can watch <a href="https://youtu.be/jX9hbbA-WP4" target="_blank">“The Smash Brothers” documentary</a>, search through <a href="https://vods.co/melee" target="_blank">competitive Melee VODs</a>, or watch livestreams of tournaments on Twitch. You can use <a href="http://whensmelee.com/" target="_blank">“When’s Melee?”</a> to find out when those tournaments are scheduled.</p>

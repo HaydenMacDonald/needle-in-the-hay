@@ -6,7 +6,7 @@ theme = "beautifulhugo"
 paginate = 5
 PaginatePath = "post"
 metaDataFormat = "yaml"
-pygmentsStyle = "solarized-dark"
+pygmentsStyle = "github-gist-hmd"
 #pygmentsUseClasses = true
 pygmentsCodefences = true
 pygmentsCodefencesGuessSyntax = true
@@ -30,6 +30,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   comments = true
   readingTime = true
   useHLJS = true
+  highlightjsLang = ["r", "yaml"]
   socialShare = true
   
 #  gcse = "012345678901234567890:abcdefghijk" # Get your code from google.com/cse. Make sure to go to "Look and Feel" and change Layout to "Full Width" and Theme to "Classic"
