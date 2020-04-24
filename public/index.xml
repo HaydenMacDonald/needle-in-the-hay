@@ -13,12 +13,12 @@
     
     
     <item>
-      <title>Introducing squashinformr: Politely web scrape data from SquashInfo in R</title>
+      <title>Introducing squashinformr</title>
       <link>/introducing-squashinformr/</link>
       <pubDate>Wed, 15 Apr 2020 00:00:00 +0000</pubDate>
       <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
       <guid>/introducing-squashinformr/</guid>
-      <description>A Project Salvaged Earlier this year, I enrolled in a Data Management course as a part of my MSc in Business Analytics. The final project in this course involved writing a business case study, designing a database model, and building a MySQL database. As a squash enthusiast, I chose to base my project on the Professional Squash Association (PSA).
+      <description>A Project Salvaged Earlier this year, I enrolled in a Data Management course as a part of my MSc in Business Analytics. The final project in this course involved presenting a business case for a database and building a MySQL database as a solution. As a squash enthusiast, I chose to base my project on the Professional Squash Association (PSA).
 Long story short, I did not complete this project because it was cancelled due the spread of COVID-19.</description>
     </item>
     
