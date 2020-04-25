@@ -467,7 +467,7 @@ Conversely, two players stand out from a "defensive" perspective. Simon Rösner 
 &nbsp;  
 In this post, I've shown only a small selection of the functions provided in `squashinformr`. Install the package and try it out yourself! There is a huge amount of data on this excellent sport that has yet to be explored. Cheers!
 
-The full code for this post is available <a href="" target="_blank">here</a>.  
+The full code for this post is available <a href="https://github.com/HaydenMacDonald/needle-in-the-hay/blob/master/content/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r.Rmd" target="_blank">here</a>.  
 &nbsp;  
   
 ## Help
