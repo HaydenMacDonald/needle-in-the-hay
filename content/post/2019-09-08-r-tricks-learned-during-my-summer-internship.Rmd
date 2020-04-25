@@ -10,10 +10,11 @@ tags:
 - data visualization
 - data joins
 - R
+description: "This summer, I had the pleasure of working as a Data Analyst Intern at Voices.com as a part of my MSc in Business Analytics."
 ---
 &nbsp;  
 ```{r, echo=FALSE, dpi = 300}
-knitr::include_graphics('/img/voices_photo.jpg')
+knitr::include_graphics('/img/voices_photo.jpg', error = FALSE)
 ```
 &nbsp;  
 This summer, I had the pleasure of working as a Data Analyst Intern at <a href="https://www.voices.com" target="_blank">Voices.com</a> as a part of my MSc in Business Analytics. Voices.com is a marketplace website that matches business clients with voice-over talent. 
@@ -26,7 +27,7 @@ During my internship at Voices.com, I became involved in a variety of analytics 
 Say that you are in the middle of a data analysis and you need to test out a part of your code. If you're like me,  you will test sections of code and assign the results to a new object named something like `test`. After I'm finished testing my code, I'm left with a RStudio environment that looks like this:  
 
 ```{r, echo=FALSE, dpi = 300}
-knitr::include_graphics('/img/env.png')
+knitr::include_graphics('/img/env.png', error = FALSE)
 ```
 
 My first tip will allow us to selectively delete these `test` objects. This is accomplished through the following code:  

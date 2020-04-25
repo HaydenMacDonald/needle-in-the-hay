@@ -8,9 +8,9 @@
   <title>Five R tips from my Voices.com internship</title>
   <meta property="og:title" content="Five R tips from my Voices.com internship" />
   <meta name="twitter:title" content="Five R tips from my Voices.com internship" />
-  <meta name="description" content="1. Removing similarly-named objects from R’s Global Environment2. coord_cartesian() for zooming in on ggplots3. Intra-figure legends in ggplot2 graphics4. High resolution plot outputs via CairoPNG()5. Fuzzy joins on intervals with genome_left_join()Conclusion This summer, I had the pleasure of working as a Data Analyst Intern at Voices.com as a part of my MSc in Business Analytics. Voices.com is a marketplace website that matches business clients with voice-over talent.">
-  <meta property="og:description" content="1. Removing similarly-named objects from R’s Global Environment2. coord_cartesian() for zooming in on ggplots3. Intra-figure legends in ggplot2 graphics4. High resolution plot outputs via CairoPNG()5. Fuzzy joins on intervals with genome_left_join()Conclusion This summer, I had the pleasure of working as a Data Analyst Intern at Voices.com as a part of my MSc in Business Analytics. Voices.com is a marketplace website that matches business clients with voice-over talent.">
-  <meta name="twitter:description" content="1. Removing similarly-named objects from R’s Global Environment2. coord_cartesian() for zooming in on ggplots3. Intra-figure legends in ggplot2 graphics4. High resolution plot outputs via …">
+  <meta name="description" content="This summer, I had the pleasure of working as a Data Analyst Intern at Voices.com as a part of my MSc in Business Analytics.">
+  <meta property="og:description" content="This summer, I had the pleasure of working as a Data Analyst Intern at Voices.com as a part of my MSc in Business Analytics.">
+  <meta name="twitter:description" content="This summer, I had the pleasure of working as a Data Analyst Intern at Voices.com as a part of my MSc in Business Analytics.">
   <meta name="author" content="Hayden MacDonald"/>
   <link href='/img/needle2.png' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="/img/headshotbw.jpg" />
@@ -218,7 +218,8 @@ if (!doNotTrack) {
 </div>
 
 <p> <br />
-<img src="/img/voices_photo.jpg" /><!-- -->  <br />
+<img src="/img/voices_photo.jpg" /><!-- -->
+ <br />
 This summer, I had the pleasure of working as a Data Analyst Intern at <a href="https://www.voices.com" target="_blank">Voices.com</a> as a part of my MSc in Business Analytics. Voices.com is a marketplace website that matches business clients with voice-over talent.</p>
 <p>During my internship at Voices.com, I became involved in a variety of analytics projects. I committed to a customer segmentation analysis on voice-over talent, analyzed customer churn, built dashboards for core metrics, and designed A/B tests! Through these projects, I procured even more experience with the R programming language. In this post, I will showcase R tips that I learned this summer for data analysis and visualization. Hopefully, you can apply some of these tips to your own data analysis projects.<br />
  </p>
@@ -237,9 +238,9 @@ Say that you are in the middle of a data analysis and you need to test out a par
 </li>
 <li><code>str_detect()</code> from <code>stringr</code> detects a specified pattern in a string.<br />
 </li>
-<li><code>&quot;string&quot;</code> is the pattern which our objects of interest have in common (e.g. “test”).<br />
+<li><code>"string"</code> is the pattern which our objects of interest have in common (e.g. “test”).<br />
  <br />
-The innermost part of the code, <code>str_detect(ls(), &quot;string&quot;)</code>, detects the specified pattern within the environment. The previous code, enclosed in square brackets, indexes the list of object names in the environment (<code>ls()[str_detect(ls(), &quot;string&quot;)]</code>). Finally, that code is entered as the list argument in the <code>rm()</code> function. Ultimately, <code>rm(list = ls()[str_detect(ls(), &quot;test&quot;)])</code> removes objects with the matching <code>&quot;test&quot;</code> pattern from the environment!<br />
+The innermost part of the code, <code>str_detect(ls(), "string")</code>, detects the specified pattern within the environment. The previous code, enclosed in square brackets, indexes the list of object names in the environment (<code>ls()[str_detect(ls(), "string")]</code>). Finally, that code is entered as the list argument in the <code>rm()</code> function. Ultimately, <code>rm(list = ls()[str_detect(ls(), "test")])</code> removes objects with the matching <code>"test"</code> pattern from the environment!<br />
  </li>
 </ul>
 </div>
@@ -481,7 +482,7 @@ Now we can see which subscriptions the cancellation cases belong to. From here, 
         <ul class="pager blog-pager">
           
             <li class="previous">
-              <a href="/hmdrmd/" data-toggle="tooltip" data-placement="top" title="hmdrmd: R Markdown templates for data analysis">&larr; Previous Post</a>
+              <a href="/hmdrmd/" data-toggle="tooltip" data-placement="top" title="Introducing hmdrmd">&larr; Previous Post</a>
             </li>
           
           

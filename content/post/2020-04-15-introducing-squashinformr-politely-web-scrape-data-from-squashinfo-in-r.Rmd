@@ -12,6 +12,7 @@ tags:
 - R
 - r-package
 - data-analysis
+description: "Politely web scrape data from SquashInfo in R"
 ---
 
 ```{r, echo=FALSE, dpi=300, out.width="75%", out.height="75%", fig.align="center"}
