@@ -1,7 +1,7 @@
 ---
 title: "Introducing squashinformr"
 author: "Hayden MacDonald"
-date: "2020-04-24"
+date: "2020-04-27"
 output:
   blogdown::html_page:
     toc: false
@@ -96,7 +96,7 @@ library(squashinformr)
 &nbsp;  
 If you're familiar with squash, you might be under the impression that players that are younger, taller, or lighter on their feet might have competitive advantages.  
 &nbsp;  
-```{r, dev = 'CairoPNG', fig.width = 8, fig.height = 4.5, dpi = 300, echo = FALSE, warning=FALSE}
+```{r, dev = 'CairoPNG', fig.width = 8, fig.height = 6, dpi = 300, echo = FALSE, warning=FALSE}
 dark_red <- "#bb0011"
 dark_orange <- "#d25d3c"
 light_orange <- "#e39669"
@@ -134,7 +134,7 @@ top_25_men %>%
           axis.title = element_text(size = 12))
 ```
 
-The data returned from SquashInfo seem to imply that this is not the case! Age, height, weight, and BMI do not seem to have any clear relationship with PSA rankings. There are many factors that contribute to player success, including endurance, positioning, accuracy, and play-style.  
+The data returned from SquashInfo seem to imply that this is not the case! Age, height, weight, and BMI do not seem to have any clear relationship with PSA rankings. There are many factors that contribute to a player's success, including endurance, positioning, accuracy, and play-style.  
 &nbsp;  
 
 ### Recent match data

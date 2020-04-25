@@ -228,9 +228,11 @@ This summer, I had the pleasure of working as a Data Analyst Intern at <a href="
 <p> <br />
 Say that you are in the middle of a data analysis and you need to test out a part of your code. If you’re like me, you will test sections of code and assign the results to a new object named something like <code>test</code>. After I’m finished testing my code, I’m left with a RStudio environment that looks like this:</p>
 <p><img src="/img/env.png" /><!-- --></p>
-<p>My first tip will allow us to selectively delete these <code>test</code> objects. This is accomplished through the following code:</p>
+<p>My first tip will allow us to selectively delete these <code>test</code> objects. This is accomplished through the following code:<br />
+ </p>
 <pre class="r"><code>rm(list = ls()[str_detect(ls(), &quot;string&quot;)])</code></pre>
-<p>Let’s break down what is going on in this code.</p>
+<p> <br />
+Let’s break down what is going on in this code.</p>
 <ul>
 <li><code>rm()</code> removes objects from the R environment.<br />
 </li>
@@ -247,7 +249,8 @@ The innermost part of the code, <code>str_detect(ls(), "string")</code>, detects
 <div id="coord_cartesian-for-zooming-in-on-ggplots" class="section level2">
 <h2>2. <code>coord_cartesian()</code> for zooming in on ggplots</h2>
 <p> <br />
-Say that you are producing a histogram from your data that looks something like this:</p>
+Say that you are producing a histogram from your data that looks something like this:<br />
+ </p>
 <pre class="r"><code>aq &lt;- as_tibble(airquality)
 
 ggplot(aq, aes(x = Ozone)) +
@@ -255,7 +258,8 @@ ggplot(aq, aes(x = Ozone)) +
   theme_light() +
   labs(y = &quot;Count&quot;, x = &quot;Ozone&quot;)</code></pre>
 <p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-5-1.png" width="2100" /></p>
-<p>For whatever reason, you are only interested in visualizing a subset of this data. For example, we only want to visualize the histogram between Ozone values 0 and 50. You can achieve this using <code>xlim()</code>:</p>
+<p>For whatever reason, you are only interested in visualizing a subset of this data. For example, we only want to visualize the histogram between Ozone values 0 and 50. You can achieve this using <code>xlim()</code>:<br />
+ </p>
 <pre class="r"><code>ggplot(aq, aes(x = Ozone)) +
   geom_histogram(fill = customBlue, binwidth = 5) +
   theme_light() +
@@ -263,7 +267,8 @@ ggplot(aq, aes(x = Ozone)) +
   xlim(c(0, 50))</code></pre>
 <p><img src="/post/2019-09-08-r-tricks-learned-during-my-summer-internship_files/figure-html/unnamed-chunk-6-1.png" width="2100" /></p>
 <p>But using <code>xlim()</code> has resulted in an odd behaviour. Our histogram looks different than the original above. This is because <code>xlim()</code> (and <code>scale_x_continuous(limits = ...)</code>) <strong>has excluded all data that don’t fall within the limits</strong>. In this example, <code>xlim()</code> excluded data points near 0 and 50. This is problematic if our goal is to visualize the same data without excluding data that lies on the edge of our criteria.</p>
-<p>Instead, we can use <code>coord_cartesian()</code> to achieve a true “zoom in” on our original data visualization.</p>
+<p>Instead, we can use <code>coord_cartesian()</code> to achieve a true “zoom in” on our original data visualization.<br />
+ </p>
 <pre class="r"><code>ggplot(aq, aes(x = Ozone)) +
   geom_histogram(fill = customBlue, binwidth = 5) +
   theme_light() +
@@ -305,7 +310,8 @@ I agree with Edward Tufte’s disdain for legends in data visualizations. Legend
 <h2>4. High resolution plot outputs via <code>CairoPNG()</code></h2>
 <p> <br />
 Exporting graphics in R can be challenging. New users will typically use RStudio’s Export button in the Plots window to save images to their working directory. In my experience, this method results in pixelated, low resolution graphics. There is nothing more demotivating than working on a visualizations for hours, only to have them look mediocre when presenting them.</p>
-<p>This is where the <code>Cairo</code> package comes in. The formula for generating <code>Cairo</code> outputs is as follows:</p>
+<p>This is where the <code>Cairo</code> package comes in. The formula for generating <code>Cairo</code> outputs is as follows:<br />
+ </p>
 <pre class="r"><code>CairoPNG(filename = &quot;filename.png&quot;, res = 300, units = &quot;in&quot;, width = 16, height = 9)
 
 ggplot()...
@@ -349,7 +355,8 @@ The last tip is for dirty data joining! You may find yourself in a situation whe
 ## 1     1 2020-05-09     2020-05-12      TRUE  
 ## 2     3 2019-11-30     2019-12-01      FALSE 
 ## 3     4 2018-04-25     2018-04-27      FALSE</code></pre>
-<p>In this example, we can identify which members have subscriptions and cancellation cases through <code>id</code>. But we don’t have enough information to know which subscription each cancellation case belongs to. To know this, we would need a unique subscription id variable in the cancellation case data. Unfortunately, we only have subscription ids in <code>memberships</code>. We can solve this problem with something called a <strong>fuzzy join</strong>.</p>
+<p> <br />
+In this example, we can identify which members have subscriptions and cancellation cases through <code>id</code>. But we don’t have enough information to know which subscription each cancellation case belongs to. To know this, we would need a unique subscription id variable in the cancellation case data. Unfortunately, we only have subscription ids in <code>memberships</code>. We can solve this problem with something called a <strong>fuzzy join</strong>.</p>
 <p>In many programming languages, a left or right join allows you to link data frames or tables that contain a key identifier variable that is common between the two. This allows the analyst to link the data frames based on an <strong>exact</strong> match of the key id variables in each data frame. In our example, that would be the <code>id</code> variable. Fuzzy joins differ as they allow you to link data frames based on <strong>inexact</strong> matching. This inexact matching technique is particularly useful in combination with an exact match.</p>
 <p>In the following example, we will use <code>genome_left_join()</code> from the <code>fuzzyjoin</code> package to perform a <strong>fuzzy left join</strong> of <code>cancellations</code> on <code>memberships</code>. This join will be based on criteria of an exact match of <code>id</code> and an inexact match of the subscription period (between <code>start_date</code> to <code>end_date</code>) that overlaps with the case period (between <code>case_open_date</code> to <code>case_close_date</code>).<br />
  </p>
@@ -396,8 +403,8 @@ Now we can see which subscriptions the cancellation cases belong to. From here, 
 </div>
 <div id="conclusion" class="section level2">
 <h2>Conclusion</h2>
-<p> </p>
-<p>Thanks for reading this blog post! Hopefully, you’ll be able to use some of these tips to make your data analyses cleaner, crisper, and more accurate!</p>
+<p> <br />
+Thanks for reading this blog post! Hopefully, you’ll be able to use some of these tips to make your data analyses cleaner, crisper, and more accurate!</p>
 <p>Feel free to share this content with others who may benefit from using any of these tips. As always, the full code for this post is available <a href="https://github.com/HaydenMacDonald/needle-in-the-hay/blob/master/content/post/2019-09-08-r-tricks-learned-during-my-summer-internship.Rmd" target="_blank">here</a>. Happy coding!</p>
 <p> </p>
 </div>
