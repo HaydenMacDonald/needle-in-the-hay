@@ -86,6 +86,7 @@ library(ggbeeswarm)
 library(gt)
 library(janitor)
 library(lubridate)
+library(ggbump)
 ```
 
 ```{r, message=FALSE, warning=FALSE}
@@ -356,17 +357,50 @@ ph %>%
         y = "Rank\n", 
         colour = "Player") +
    theme(plot.subtitle = element_text(size = 10),
-         axis.text.y = element_text(size = 8),
+         axis.text.y = element_text(size = 12),
          axis.text.x = element_text(size = 12),
          axis.title = element_text(size = 12),
          legend.position = c(0.80, 0.75),
          legend.text = element_text(size = 10),
          legend.title = element_text(size = 12))
 ```
-
-This is excellent data to use when discussing the story-lines of the sport. In this example, the current top 4 women's players all began their careers before 2012.  Since the end of 2014, they have occupied the top 20 rankings. We can see that Nouran Gohar had a meteoric rise through the rankings after her first PSA ranking in January 2011. How will these rankings shift over the next couple of years?  
 &nbsp;  
-  
+This is excellent data to use when discussing the story-lines of the sport. In this example, the current top 4 women's players all began their careers before 2012.  Since the end of 2014, they have occupied the top 20 rankings. We can see that Nouran Gohar had a meteoric rise through the rankings after her first PSA ranking in January 2011. The following graphic shows the a close-up of their ranking histories, within the last year.  
+&nbsp;  
+
+```{r, dev = 'CairoPNG', fig.width = 8, fig.height = 4, dpi = 300, echo = FALSE, warning=FALSE, fig.cap="Shoutout to the ggbump package!"}
+df <- ph %>%
+        filter(exact_date > ymd("2019-03-01") & exact_date < ymd("2020-05-01")) %>%
+        mutate(name = factor(name, levels = c("Raneem El Welily", "Nouran Gohar", "Nour El Sherbini", "Camille Serme"), labels = c("El Welily", "Gohar", "El Sherbini", "Serme")))
+
+ggplot(df, aes(x = exact_date, y = rank, colour = name)) +
+    geom_bump(size = 1, smooth = 8) + 
+    geom_point(size = 4) +
+    geom_text(data = df %>% filter(exact_date == ymd("2019-04-01")),
+              aes(x = exact_date - 15, label = name), size = 5, hjust = 1) +
+    geom_text(data = df %>% filter(exact_date == ymd("2020-04-01")),
+              aes(x = exact_date + 15, label = name), size = 5, hjust = 0) +
+    scale_colour_manual(values = c(dark_orange, light_purple, light_orange, blue)) +
+    scale_y_reverse(breaks = seq(1, 7, 1)) + 
+    coord_cartesian(xlim = c(ymd("2019-02-01"), ymd("2020-06-01"))) +
+    theme_minimal() +
+    theme(legend.position = "none",
+          panel.grid.major = element_blank()) +
+    labs(title = "Player ranking histories for the current top 4 women's players",
+         subtitle = "April 2019 to April 2020",
+         x = NULL, 
+         y = "Rank\n") +
+    guides(colour = FALSE) +
+    theme(panel.grid.major = element_line(size = 0.5, colour = "grey92"),
+          plot.subtitle = element_text(size = 10),
+          axis.text.y = element_text(size = 12),
+          axis.text.x = element_text(size = 12),
+          axis.title = element_text(size = 12))
+```
+&nbsp;  
+How will these rankings shift over the next couple of years?  
+&nbsp;  
+
 ## Tournament functions
 &nbsp;  
 `squashinformr` provides useful functions for pulling tournament data at many levels of detail. This includes tournament metadata, players, matches, and games.  
