@@ -1,7 +1,7 @@
 ---
 title: "Introducing squashinformr"
 author: "Hayden MacDonald"
-date: "2020-04-27"
+date: "2020-05-01"
 output:
   blogdown::html_page:
     toc: false
@@ -33,7 +33,7 @@ Long story short, I did not complete this project because it was cancelled due t
 2. Take slowly, so as to not be mistaken for a DDoS attack.
 3. Never ask twice by using <a href="https://en.wikipedia.org/wiki/Memoization" target="_blank">memoization</a>.
 
-Following `polite` principles incurs mandatory delays (set by SquashInfo's Robotstxt files) on the scraping process. Therefore, it is important that users are patient when using `squashinformr`. SquashInfo currently offers full access to their data and extra features through a premium membership. Please consider <a href="http://www.squashinfo.com/signup" target="_blank">signing up and/or subscribing</a> to SquashInfo to support their work.  
+Following `polite` principles incurs mandatory delays (set by SquashInfo's robots.txt file) on the scraping process. Therefore, it is important that users are patient when using `squashinformr`. SquashInfo currently offers full access to their data and extra features through a premium membership. Please consider <a href="http://www.squashinfo.com/signup" target="_blank">signing up and/or subscribing</a> to SquashInfo to support their work.  
 &nbsp;  
 
 ## Installation
@@ -47,7 +47,7 @@ remotes::install_github("HaydenMacDonald/squashinformr")
 ```
 &nbsp;  
 
-## Functions in 0.1.0
+## Functions in v0.1.2
 &nbsp;  
 Generally, `squashinformr` functions fall into one of three families:  
 &nbsp;  
@@ -239,7 +239,7 @@ welily %>%
 Given El Welily's general dominance, how does she play versus the current #2, Nouran Gohar? We can use `get_matchup()` to get a quantitative take on their head-to-head performance.  
 &nbsp;  
 ```{r, message=FALSE, warning=FALSE, results='hide'}
-(welily_v_gohar <- get_matchup("Raneem El Welily", "Nouran Gohar", category = "womens"))
+welily_v_gohar <- get_matchup("Raneem El Welily", "Nouran Gohar", category = "womens")
 ```
 &nbsp;  
 ```{r, dev = 'CairoPNG', fig.width = 8, fig.height = 4.5, dpi = 300, echo = FALSE, warning=FALSE}
@@ -293,7 +293,7 @@ But, game-level data show that Gohar can be equally dominant in any individual g
 PSA Rankings are the definitive international ranking that decide which players are the best in the world. They have a huge influence on how tournament organizers seed individual players. Using `get_rankings()`, let's scrape the top 15 players from the most recent rankings tables (April 2020 at time of writing) for both competition categories.  
 &nbsp;  
 ```{r, message=FALSE, warning=FALSE, results='hide'}
-(apr <- get_rankings(top = 15, category = "both"))
+apr <- get_rankings(top = 15, category = "both")
 ```
 &nbsp;  
 ```{r, echo=FALSE}
@@ -334,11 +334,11 @@ apr %>%
     fmt_missing(columns = "Change")
 ```
 &nbsp;  
-`get_rankings()` is useful for analyzing how player rankings have changed recently. Alternatively, `get_historical_rankings()` will pull a rankings table from any given month and year. Although, this function takes time to run, because it constructs historical rankings from individual player ranking histories. These individual histories can be accessed through `get_player_ranking_history()`.  
+`get_rankings()` is useful for analyzing how player rankings have changed recently. Alternatively, we can look back on an individual player's ranking history with `get_player_rankings_history()`.  
 &nbsp;  
 
 ```{r, message=FALSE, warning=FALSE, results='hide'}
-(ph <- get_player_rankings_history(rank = 1:4, category = "womens"))
+ph <- get_player_rankings_history(rank = 1:4, category = "womens")
 ```
 &nbsp;  
 ```{r, dev = 'CairoPNG', fig.width = 8, fig.height = 8, dpi = 300, echo = FALSE, warning=FALSE}
@@ -365,7 +365,7 @@ ph %>%
          legend.title = element_text(size = 12))
 ```
 &nbsp;  
-This is excellent data to use when discussing the story-lines of the sport. In this example, the current top 4 women's players all began their careers before 2012.  Since the end of 2014, they have occupied the top 20 rankings. We can see that Nouran Gohar had a meteoric rise through the rankings after her first PSA ranking in January 2011. The following graphic shows the a close-up of their ranking histories, within the last year.  
+This is excellent data to use when discussing the story-lines of the sport. In this example, the current top 4 women's players all began their careers before 2012.  Since the end of 2014, they have occupied the top 20 rankings. We can see that Nouran Gohar had a meteoric rise through the rankings after her first PSA ranking in January 2011. The following graphic shows the last year of these players' ranking histories.  
 &nbsp;  
 
 ```{r, dev = 'CairoPNG', fig.width = 8, fig.height = 4, dpi = 300, echo = FALSE, warning=FALSE, fig.cap="Shoutout to the ggbump package!"}
@@ -397,7 +397,7 @@ ggplot(df, aes(x = exact_date, y = rank, colour = name)) +
           axis.text.x = element_text(size = 12),
           axis.title = element_text(size = 12))
 ```
-&nbsp;  
+
 How will these rankings shift over the next couple of years?  
 &nbsp;  
 
@@ -492,7 +492,7 @@ toc_men %>%
           axis.title = element_text(size = 12))
 ```
 
-The averages for Karim Abdel Gawad, Simon Rösner, and Paul Coll are particularly high. This reflects how they defeated many of their opponents up to the third round of the tournament.  
+The averages for Karim Abdel Gawad, Simon Rösner, and Paul Coll are particularly high. This reflects how they handedly defeated many of their opponents up to the third round of the tournament.  
 
 Conversely, two players stand out from a "defensive" perspective. Simon Rösner only lost 3 games, all by a 2 or 3 point margin, during a game 5 defeat to Karim Abdel Gawad. Meanwhile, Mohamed Elshorbagy, the eventual champion, lost only one game. Tarek Momen took a game off of Elshorbagy in the final match, but only by a margin of 2 points. Elshorbagy certainly came to play in this tournament!  
 &nbsp;  
@@ -506,7 +506,7 @@ The full code for this post is available <a href="https://github.com/HaydenMacDo
   
 ## Help
 &nbsp;  
-Submit issues on <a href="https://github.com/HaydenMacDonald/squashinformr" target="_blank">GitHub</a>.  
+If you find a bug, please submit an issue on <a href="https://github.com/HaydenMacDonald/squashinformr" target="_blank">GitHub</a>.  
   
 If you are interested in helping me extend the functionality of this package, fork the repository, make changes, and submit them as a pull request. The `squashinformr` project is released with a <a href="https://github.com/HaydenMacDonald/squashinformr/blob/master/.github/CODE_OF_CONDUCT.md" target="_blank">Contributor Code of Conduct</a>. By contributing to this project, you agree to its terms.  
 &nbsp;  
