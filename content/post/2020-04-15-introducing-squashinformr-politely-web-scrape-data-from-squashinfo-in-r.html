@@ -1,7 +1,7 @@
 ---
 title: "Introducing squashinformr"
 author: "Hayden MacDonald"
-date: "2020-05-01"
+date: "2020-05-04"
 output:
   blogdown::html_page:
     toc: false
@@ -36,6 +36,10 @@ description: "Politely web scrape data from SquashInfo in R"
 </div>
 <div id="installation" class="section level2">
 <h2>Installation</h2>
+<p> <br />
+Install <code>squashinformr</code> via CRAN:<br />
+ </p>
+<pre class="r"><code>install.packages(&quot;squashinformr&quot;)</code></pre>
 <p> <br />
 Install the development version of <code>squashinformr</code> from its <a href="https://github.com/HaydenMacDonald/squashinformr" target="_blank">GitHub repository</a> via:<br />
  </p>
@@ -101,7 +105,7 @@ Use <code>get_players()</code> to extract biographical information on players cu
 <p> <br />
 If you’re familiar with squash, you might be under the impression that players that are younger, taller, or lighter on their feet might have competitive advantages.<br />
  <br />
-<img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-5-1.png" width="2400" /></p>
+<img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-6-1.png" width="2400" /></p>
 <p>The data returned from SquashInfo seem to imply that this is not the case! Age, height, weight, and BMI do not seem to have any clear relationship with PSA rankings. There are many factors that contribute to a player’s success, including endurance, positioning, accuracy, and play-style.<br />
  </p>
 <div id="recent-match-data" class="section level3">
@@ -125,22 +129,22 @@ If you’re familiar with squash, you might be under the impression that players
 ## # ... with 61 more rows, and 3 more variables: event &lt;chr&gt;, country &lt;chr&gt;,
 ## #   psa &lt;chr&gt;</code></pre>
 <p> <br />
-<img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-7-1.png" width="2400" /></p>
+<img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-8-1.png" width="2400" /></p>
 <p>El Welily’s 2019-2020 match data exemplify her general dominance of women’s competitons. She has a 5.45 win/loss ratio across the tournaments she participated in and 65% of her match wins are 3-0s. Even when she does lose a match, she does not make it easy for her opponents. Her median match times in losses are longer regardless of the number of games played. Although, the sample size is low for El Welily’s losses.<br />
  <br />
-<img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-8-1.png" width="2400" /></p>
+<img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-9-1.png" width="2400" /></p>
 <p>Given El Welily’s general dominance, how does she play versus the current #2, Nouran Gohar? We can use <code>get_matchup()</code> to get a quantitative take on their head-to-head performance.<br />
  </p>
 <pre class="r"><code>welily_v_gohar &lt;- get_matchup(&quot;Raneem El Welily&quot;, &quot;Nouran Gohar&quot;, category = &quot;womens&quot;)</code></pre>
 <p> <br />
-<img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-10-1.png" width="2400" /></p>
+<img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-11-1.png" width="2400" /></p>
 <p>El Welily’s currently holds a lead on Gohar by five matches since Janary 1, 2019 and a majority of her wins over Gohar have been decisive (3-1 or 3-0).<br />
  <br />
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#gupcbiokct .gt_table {
+#bpraxrnrxd .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -163,7 +167,7 @@ If you’re familiar with squash, you might be under the impression that players
   border-left-color: #D3D3D3;
 }
 
-#gupcbiokct .gt_heading {
+#bpraxrnrxd .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -175,7 +179,7 @@ If you’re familiar with squash, you might be under the impression that players
   border-right-color: #D3D3D3;
 }
 
-#gupcbiokct .gt_title {
+#bpraxrnrxd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -185,7 +189,7 @@ If you’re familiar with squash, you might be under the impression that players
   border-bottom-width: 0;
 }
 
-#gupcbiokct .gt_subtitle {
+#bpraxrnrxd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -195,13 +199,13 @@ If you’re familiar with squash, you might be under the impression that players
   border-top-width: 0;
 }
 
-#gupcbiokct .gt_bottom_border {
+#bpraxrnrxd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#gupcbiokct .gt_col_headings {
+#bpraxrnrxd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -216,7 +220,7 @@ If you’re familiar with squash, you might be under the impression that players
   border-right-color: #D3D3D3;
 }
 
-#gupcbiokct .gt_col_heading {
+#bpraxrnrxd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -236,7 +240,7 @@ If you’re familiar with squash, you might be under the impression that players
   overflow-x: hidden;
 }
 
-#gupcbiokct .gt_column_spanner_outer {
+#bpraxrnrxd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -248,15 +252,15 @@ If you’re familiar with squash, you might be under the impression that players
   padding-right: 4px;
 }
 
-#gupcbiokct .gt_column_spanner_outer:first-child {
+#bpraxrnrxd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#gupcbiokct .gt_column_spanner_outer:last-child {
+#bpraxrnrxd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#gupcbiokct .gt_column_spanner {
+#bpraxrnrxd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -268,7 +272,7 @@ If you’re familiar with squash, you might be under the impression that players
   width: 100%;
 }
 
-#gupcbiokct .gt_group_heading {
+#bpraxrnrxd .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -290,7 +294,7 @@ If you’re familiar with squash, you might be under the impression that players
   vertical-align: middle;
 }
 
-#gupcbiokct .gt_empty_group_heading {
+#bpraxrnrxd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -305,19 +309,19 @@ If you’re familiar with squash, you might be under the impression that players
   vertical-align: middle;
 }
 
-#gupcbiokct .gt_striped {
+#bpraxrnrxd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#gupcbiokct .gt_from_md > :first-child {
+#bpraxrnrxd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#gupcbiokct .gt_from_md > :last-child {
+#bpraxrnrxd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#gupcbiokct .gt_row {
+#bpraxrnrxd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -336,7 +340,7 @@ If you’re familiar with squash, you might be under the impression that players
   overflow-x: hidden;
 }
 
-#gupcbiokct .gt_stub {
+#bpraxrnrxd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -348,7 +352,7 @@ If you’re familiar with squash, you might be under the impression that players
   padding-left: 12px;
 }
 
-#gupcbiokct .gt_summary_row {
+#bpraxrnrxd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -358,7 +362,7 @@ If you’re familiar with squash, you might be under the impression that players
   padding-right: 5px;
 }
 
-#gupcbiokct .gt_first_summary_row {
+#bpraxrnrxd .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -368,7 +372,7 @@ If you’re familiar with squash, you might be under the impression that players
   border-top-color: #D3D3D3;
 }
 
-#gupcbiokct .gt_grand_summary_row {
+#bpraxrnrxd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -378,7 +382,7 @@ If you’re familiar with squash, you might be under the impression that players
   padding-right: 5px;
 }
 
-#gupcbiokct .gt_first_grand_summary_row {
+#bpraxrnrxd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -388,7 +392,7 @@ If you’re familiar with squash, you might be under the impression that players
   border-top-color: #D3D3D3;
 }
 
-#gupcbiokct .gt_table_body {
+#bpraxrnrxd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -397,7 +401,7 @@ If you’re familiar with squash, you might be under the impression that players
   border-bottom-color: #D3D3D3;
 }
 
-#gupcbiokct .gt_footnotes {
+#bpraxrnrxd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -411,13 +415,13 @@ If you’re familiar with squash, you might be under the impression that players
   border-right-color: #D3D3D3;
 }
 
-#gupcbiokct .gt_footnote {
+#bpraxrnrxd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#gupcbiokct .gt_sourcenotes {
+#bpraxrnrxd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -431,46 +435,46 @@ If you’re familiar with squash, you might be under the impression that players
   border-right-color: #D3D3D3;
 }
 
-#gupcbiokct .gt_sourcenote {
+#bpraxrnrxd .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#gupcbiokct .gt_left {
+#bpraxrnrxd .gt_left {
   text-align: left;
 }
 
-#gupcbiokct .gt_center {
+#bpraxrnrxd .gt_center {
   text-align: center;
 }
 
-#gupcbiokct .gt_right {
+#bpraxrnrxd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#gupcbiokct .gt_font_normal {
+#bpraxrnrxd .gt_font_normal {
   font-weight: normal;
 }
 
-#gupcbiokct .gt_font_bold {
+#bpraxrnrxd .gt_font_bold {
   font-weight: bold;
 }
 
-#gupcbiokct .gt_font_italic {
+#bpraxrnrxd .gt_font_italic {
   font-style: italic;
 }
 
-#gupcbiokct .gt_super {
+#bpraxrnrxd .gt_super {
   font-size: 65%;
 }
 
-#gupcbiokct .gt_footnote_marks {
+#bpraxrnrxd .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="gupcbiokct" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="bpraxrnrxd" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   <thead class="gt_header">
     <tr>
       <th colspan="2" class="gt_heading gt_title gt_font_normal" style>Raneem El Welily v Nouran Gohar</th>
@@ -542,7 +546,7 @@ PSA Rankings are the definitive international ranking that decide which players 
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#zdamtkgmmj .gt_table {
+#afpzvctywz .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -565,7 +569,7 @@ PSA Rankings are the definitive international ranking that decide which players 
   border-left-color: #D3D3D3;
 }
 
-#zdamtkgmmj .gt_heading {
+#afpzvctywz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -577,7 +581,7 @@ PSA Rankings are the definitive international ranking that decide which players 
   border-right-color: #D3D3D3;
 }
 
-#zdamtkgmmj .gt_title {
+#afpzvctywz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -587,7 +591,7 @@ PSA Rankings are the definitive international ranking that decide which players 
   border-bottom-width: 0;
 }
 
-#zdamtkgmmj .gt_subtitle {
+#afpzvctywz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -597,13 +601,13 @@ PSA Rankings are the definitive international ranking that decide which players 
   border-top-width: 0;
 }
 
-#zdamtkgmmj .gt_bottom_border {
+#afpzvctywz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zdamtkgmmj .gt_col_headings {
+#afpzvctywz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -618,7 +622,7 @@ PSA Rankings are the definitive international ranking that decide which players 
   border-right-color: #D3D3D3;
 }
 
-#zdamtkgmmj .gt_col_heading {
+#afpzvctywz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -638,7 +642,7 @@ PSA Rankings are the definitive international ranking that decide which players 
   overflow-x: hidden;
 }
 
-#zdamtkgmmj .gt_column_spanner_outer {
+#afpzvctywz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -650,15 +654,15 @@ PSA Rankings are the definitive international ranking that decide which players 
   padding-right: 4px;
 }
 
-#zdamtkgmmj .gt_column_spanner_outer:first-child {
+#afpzvctywz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zdamtkgmmj .gt_column_spanner_outer:last-child {
+#afpzvctywz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zdamtkgmmj .gt_column_spanner {
+#afpzvctywz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -670,7 +674,7 @@ PSA Rankings are the definitive international ranking that decide which players 
   width: 100%;
 }
 
-#zdamtkgmmj .gt_group_heading {
+#afpzvctywz .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -692,7 +696,7 @@ PSA Rankings are the definitive international ranking that decide which players 
   vertical-align: middle;
 }
 
-#zdamtkgmmj .gt_empty_group_heading {
+#afpzvctywz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -707,19 +711,19 @@ PSA Rankings are the definitive international ranking that decide which players 
   vertical-align: middle;
 }
 
-#zdamtkgmmj .gt_striped {
+#afpzvctywz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zdamtkgmmj .gt_from_md > :first-child {
+#afpzvctywz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#zdamtkgmmj .gt_from_md > :last-child {
+#afpzvctywz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#zdamtkgmmj .gt_row {
+#afpzvctywz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -738,7 +742,7 @@ PSA Rankings are the definitive international ranking that decide which players 
   overflow-x: hidden;
 }
 
-#zdamtkgmmj .gt_stub {
+#afpzvctywz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -750,7 +754,7 @@ PSA Rankings are the definitive international ranking that decide which players 
   padding-left: 12px;
 }
 
-#zdamtkgmmj .gt_summary_row {
+#afpzvctywz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -760,7 +764,7 @@ PSA Rankings are the definitive international ranking that decide which players 
   padding-right: 5px;
 }
 
-#zdamtkgmmj .gt_first_summary_row {
+#afpzvctywz .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -770,7 +774,7 @@ PSA Rankings are the definitive international ranking that decide which players 
   border-top-color: #D3D3D3;
 }
 
-#zdamtkgmmj .gt_grand_summary_row {
+#afpzvctywz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -780,7 +784,7 @@ PSA Rankings are the definitive international ranking that decide which players 
   padding-right: 5px;
 }
 
-#zdamtkgmmj .gt_first_grand_summary_row {
+#afpzvctywz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -790,7 +794,7 @@ PSA Rankings are the definitive international ranking that decide which players 
   border-top-color: #D3D3D3;
 }
 
-#zdamtkgmmj .gt_table_body {
+#afpzvctywz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -799,7 +803,7 @@ PSA Rankings are the definitive international ranking that decide which players 
   border-bottom-color: #D3D3D3;
 }
 
-#zdamtkgmmj .gt_footnotes {
+#afpzvctywz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -813,13 +817,13 @@ PSA Rankings are the definitive international ranking that decide which players 
   border-right-color: #D3D3D3;
 }
 
-#zdamtkgmmj .gt_footnote {
+#afpzvctywz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#zdamtkgmmj .gt_sourcenotes {
+#afpzvctywz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -833,46 +837,46 @@ PSA Rankings are the definitive international ranking that decide which players 
   border-right-color: #D3D3D3;
 }
 
-#zdamtkgmmj .gt_sourcenote {
+#afpzvctywz .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#zdamtkgmmj .gt_left {
+#afpzvctywz .gt_left {
   text-align: left;
 }
 
-#zdamtkgmmj .gt_center {
+#afpzvctywz .gt_center {
   text-align: center;
 }
 
-#zdamtkgmmj .gt_right {
+#afpzvctywz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zdamtkgmmj .gt_font_normal {
+#afpzvctywz .gt_font_normal {
   font-weight: normal;
 }
 
-#zdamtkgmmj .gt_font_bold {
+#afpzvctywz .gt_font_bold {
   font-weight: bold;
 }
 
-#zdamtkgmmj .gt_font_italic {
+#afpzvctywz .gt_font_italic {
   font-style: italic;
 }
 
-#zdamtkgmmj .gt_super {
+#afpzvctywz .gt_super {
   font-size: 65%;
 }
 
-#zdamtkgmmj .gt_footnote_marks {
+#afpzvctywz .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="zdamtkgmmj" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="afpzvctywz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   <thead class="gt_header">
     <tr>
       <th colspan="7" class="gt_heading gt_title gt_font_normal" style>Men's PSA Rankings (April 2020)</th>
@@ -1037,7 +1041,7 @@ PSA Rankings are the definitive international ranking that decide which players 
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#mrcbsbdnvl .gt_table {
+#caerotiosg .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1060,7 +1064,7 @@ PSA Rankings are the definitive international ranking that decide which players 
   border-left-color: #D3D3D3;
 }
 
-#mrcbsbdnvl .gt_heading {
+#caerotiosg .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1072,7 +1076,7 @@ PSA Rankings are the definitive international ranking that decide which players 
   border-right-color: #D3D3D3;
 }
 
-#mrcbsbdnvl .gt_title {
+#caerotiosg .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1082,7 +1086,7 @@ PSA Rankings are the definitive international ranking that decide which players 
   border-bottom-width: 0;
 }
 
-#mrcbsbdnvl .gt_subtitle {
+#caerotiosg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1092,13 +1096,13 @@ PSA Rankings are the definitive international ranking that decide which players 
   border-top-width: 0;
 }
 
-#mrcbsbdnvl .gt_bottom_border {
+#caerotiosg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#mrcbsbdnvl .gt_col_headings {
+#caerotiosg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1113,7 +1117,7 @@ PSA Rankings are the definitive international ranking that decide which players 
   border-right-color: #D3D3D3;
 }
 
-#mrcbsbdnvl .gt_col_heading {
+#caerotiosg .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1133,7 +1137,7 @@ PSA Rankings are the definitive international ranking that decide which players 
   overflow-x: hidden;
 }
 
-#mrcbsbdnvl .gt_column_spanner_outer {
+#caerotiosg .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1145,15 +1149,15 @@ PSA Rankings are the definitive international ranking that decide which players 
   padding-right: 4px;
 }
 
-#mrcbsbdnvl .gt_column_spanner_outer:first-child {
+#caerotiosg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#mrcbsbdnvl .gt_column_spanner_outer:last-child {
+#caerotiosg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#mrcbsbdnvl .gt_column_spanner {
+#caerotiosg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1165,7 +1169,7 @@ PSA Rankings are the definitive international ranking that decide which players 
   width: 100%;
 }
 
-#mrcbsbdnvl .gt_group_heading {
+#caerotiosg .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1187,7 +1191,7 @@ PSA Rankings are the definitive international ranking that decide which players 
   vertical-align: middle;
 }
 
-#mrcbsbdnvl .gt_empty_group_heading {
+#caerotiosg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1202,19 +1206,19 @@ PSA Rankings are the definitive international ranking that decide which players 
   vertical-align: middle;
 }
 
-#mrcbsbdnvl .gt_striped {
+#caerotiosg .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#mrcbsbdnvl .gt_from_md > :first-child {
+#caerotiosg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#mrcbsbdnvl .gt_from_md > :last-child {
+#caerotiosg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#mrcbsbdnvl .gt_row {
+#caerotiosg .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1233,7 +1237,7 @@ PSA Rankings are the definitive international ranking that decide which players 
   overflow-x: hidden;
 }
 
-#mrcbsbdnvl .gt_stub {
+#caerotiosg .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1245,7 +1249,7 @@ PSA Rankings are the definitive international ranking that decide which players 
   padding-left: 12px;
 }
 
-#mrcbsbdnvl .gt_summary_row {
+#caerotiosg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1255,7 +1259,7 @@ PSA Rankings are the definitive international ranking that decide which players 
   padding-right: 5px;
 }
 
-#mrcbsbdnvl .gt_first_summary_row {
+#caerotiosg .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1265,7 +1269,7 @@ PSA Rankings are the definitive international ranking that decide which players 
   border-top-color: #D3D3D3;
 }
 
-#mrcbsbdnvl .gt_grand_summary_row {
+#caerotiosg .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1275,7 +1279,7 @@ PSA Rankings are the definitive international ranking that decide which players 
   padding-right: 5px;
 }
 
-#mrcbsbdnvl .gt_first_grand_summary_row {
+#caerotiosg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1285,7 +1289,7 @@ PSA Rankings are the definitive international ranking that decide which players 
   border-top-color: #D3D3D3;
 }
 
-#mrcbsbdnvl .gt_table_body {
+#caerotiosg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1294,7 +1298,7 @@ PSA Rankings are the definitive international ranking that decide which players 
   border-bottom-color: #D3D3D3;
 }
 
-#mrcbsbdnvl .gt_footnotes {
+#caerotiosg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1308,13 +1312,13 @@ PSA Rankings are the definitive international ranking that decide which players 
   border-right-color: #D3D3D3;
 }
 
-#mrcbsbdnvl .gt_footnote {
+#caerotiosg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#mrcbsbdnvl .gt_sourcenotes {
+#caerotiosg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1328,46 +1332,46 @@ PSA Rankings are the definitive international ranking that decide which players 
   border-right-color: #D3D3D3;
 }
 
-#mrcbsbdnvl .gt_sourcenote {
+#caerotiosg .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#mrcbsbdnvl .gt_left {
+#caerotiosg .gt_left {
   text-align: left;
 }
 
-#mrcbsbdnvl .gt_center {
+#caerotiosg .gt_center {
   text-align: center;
 }
 
-#mrcbsbdnvl .gt_right {
+#caerotiosg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#mrcbsbdnvl .gt_font_normal {
+#caerotiosg .gt_font_normal {
   font-weight: normal;
 }
 
-#mrcbsbdnvl .gt_font_bold {
+#caerotiosg .gt_font_bold {
   font-weight: bold;
 }
 
-#mrcbsbdnvl .gt_font_italic {
+#caerotiosg .gt_font_italic {
   font-style: italic;
 }
 
-#mrcbsbdnvl .gt_super {
+#caerotiosg .gt_super {
   font-size: 65%;
 }
 
-#mrcbsbdnvl .gt_footnote_marks {
+#caerotiosg .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="mrcbsbdnvl" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="caerotiosg" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   <thead class="gt_header">
     <tr>
       <th colspan="7" class="gt_heading gt_title gt_font_normal" style>Women's PSA Rankings (April 2020)</th>
@@ -1532,12 +1536,12 @@ PSA Rankings are the definitive international ranking that decide which players 
  </p>
 <pre class="r"><code>ph &lt;- get_player_rankings_history(rank = 1:4, category = &quot;womens&quot;)</code></pre>
 <p> <br />
-<img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-16-1.png" width="2400" />
+<img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-17-1.png" width="2400" />
  <br />
 This is excellent data to use when discussing the story-lines of the sport. In this example, the current top 4 women’s players all began their careers before 2012. Since the end of 2014, they have occupied the top 20 rankings. We can see that Nouran Gohar had a meteoric rise through the rankings after her first PSA ranking in January 2011. The following graphic shows the last year of these players’ ranking histories.<br />
  </p>
-<div class="figure"><span id="fig:unnamed-chunk-17"></span>
-<img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-17-1.png" alt="Shoutout to the ggbump package!" width="2400" />
+<div class="figure"><span id="fig:unnamed-chunk-18"></span>
+<img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-18-1.png" alt="Shoutout to the ggbump package!" width="2400" />
 <p class="caption">
 Figure 1: Shoutout to the ggbump package!
 </p>
@@ -1571,9 +1575,9 @@ Figure 1: Shoutout to the ggbump package!
 ## #   player_2_seed &lt;dbl&gt;, player_1_nationality &lt;chr&gt;, player_2_nationality &lt;chr&gt;</code></pre>
 <p> <br />
 Let’s compare the consistency of a player’s performance in the men’s tournament. We can ask, by what point margin did players win or lose on average throughout this tournament?</p>
-<p><img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-19-1.png" width="2400" /></p>
-<p>If we only look at the quarter-finalists, we can see that most were able to defeat their opponents with a comfortable lead of 4 or 5 points.</p>
 <p><img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-20-1.png" width="2400" /></p>
+<p>If we only look at the quarter-finalists, we can see that most were able to defeat their opponents with a comfortable lead of 4 or 5 points.</p>
+<p><img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-21-1.png" width="2400" /></p>
 <p>The averages for Karim Abdel Gawad, Simon Rösner, and Paul Coll are particularly high. This reflects how they handedly defeated many of their opponents up to the third round of the tournament.</p>
 <p>Conversely, two players stand out from a “defensive” perspective. Simon Rösner only lost 3 games, all by a 2 or 3 point margin, during a game 5 defeat to Karim Abdel Gawad. Meanwhile, Mohamed Elshorbagy, the eventual champion, lost only one game. Tarek Momen took a game off of Elshorbagy in the final match, but only by a margin of 2 points. Elshorbagy certainly came to play in this tournament!<br />
  </p>

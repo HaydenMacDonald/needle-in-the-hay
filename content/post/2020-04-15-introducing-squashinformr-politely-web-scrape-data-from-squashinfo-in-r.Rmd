@@ -1,7 +1,7 @@
 ---
 title: "Introducing squashinformr"
 author: "Hayden MacDonald"
-date: "2020-05-01"
+date: "2020-05-04"
 output:
   blogdown::html_page:
     toc: false
@@ -37,6 +37,12 @@ Following `polite` principles incurs mandatory delays (set by SquashInfo's robot
 &nbsp;  
 
 ## Installation
+&nbsp;  
+Install `squashinformr` via CRAN:  
+&nbsp;  
+```{r, eval=FALSE, message=FALSE, warning=FALSE}
+install.packages("squashinformr")
+```
 &nbsp;  
 Install the development version of `squashinformr` from its <a href="https://github.com/HaydenMacDonald/squashinformr" target="_blank">GitHub repository</a> via:  
 &nbsp;  
