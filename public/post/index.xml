@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</managingEditor>
     <webMaster>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</webMaster>
-    <lastBuildDate>Sun, 08 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 04 May 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Introducing squashinformr</title>
+      <link>/introducing-squashinformr/</link>
+      <pubDate>Mon, 04 May 2020 00:00:00 +0000</pubDate>
+      <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
+      <guid>/introducing-squashinformr/</guid>
+      <description>Earlier this year, I enrolled in a Data Management course as a part of my MSc in Business Analytics. The final project in this course involved presenting a business case for a database and building a MySQL database as a solution. As a squash enthusiast, I chose to base my project on the Professional Squash Association (PSA).
+Long story short, I did not complete this project because it was cancelled due the spread of COVID-19.</description>
+    </item>
     
     <item>
       <title>Five R tips from my Voices.com internship</title>
@@ -22,7 +32,7 @@
     </item>
     
     <item>
-      <title>hmdrmd: R Markdown templates for data analysis</title>
+      <title>Introducing hmdrmd</title>
       <link>/hmdrmd/</link>
       <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
       <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
@@ -31,12 +41,12 @@
     </item>
     
     <item>
-      <title>Boston 2018</title>
+      <title>Tufte Course &amp; Visualization Best Practices</title>
       <link>/tufte-and-viz/</link>
       <pubDate>Sun, 11 Nov 2018 00:00:00 +0000</pubDate>
       <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
       <guid>/tufte-and-viz/</guid>
-      <description>I recently attended Edward Tufte’s course, “Presenting Data and Information”, in Boston. I learned about the course through twitter after reading about Tufte, who is a professor emeritus of political science and statistics at Yale. As a future business analytics student, I was very interested in a one day course taught by a data visualization expert. The most enticing factor was that it seemed to be the most design-focused course that I had read about.</description>
+      <description>I recently attended Edward Tufte’s course, “Presenting Data and Information”, in Boston. I learned about the course through twitter after reading about Tufte, who is a professor emeritus of political science and statistics at Yale.As a future business analytics student, I was very interested in a one day course taught by a data visualization expert. The most enticing factor was that it seemed to be the most design-focused course that I had read about.</description>
     </item>
     
     <item>

@@ -1,5 +1,6 @@
 ---
-title: 'hmdrmd: R Markdown templates for data analysis'
+title: 'Introducing hmdrmd'
+subtitle: 'R Markdown templates for data analysis'
 author: "Hayden MacDonald"
 date: "2019-02-21"
 output: html_document
@@ -10,6 +11,7 @@ tags:
 - R Markdown
 - reporting
 - communication
+description: "I introduce my package, hmdrmd, which extends rmarkdown by providing document templates for data-oriented projects."
 ---
 
 
@@ -20,10 +22,8 @@ tags:
 <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a></a><sup><a href="#myfootnote1">1</a></sup> is a powerful R package that allows users to dynamically render their work (code, graphs, and text) into various file formats. Its wide range of outputs (including HTML, PDF, Word) makes it one of the most flexible and intuitive communication tools within the R community. Ultimately, R Markdown bridges the gap between data professionals and the audience they need to communicate to. In fact, I’m communicating to you right now through an R Markdown document rendered to HTML.</p>
 <p>In this blog post, I introduce my package, <code>hmdrmd</code>, which extends <code>rmarkdown</code> by providing document templates for data-oriented projects.<br />
  </p>
-</div>
-<div id="hmdrmd" class="section level1">
-<h1>hmdrmd</h1>
-<p> </p>
+<p>#hmdrmd
+ </p>
 <div id="tidy-analysis" class="section level2">
 <h2>Tidy Analysis</h2>
 <p> <br />
@@ -48,7 +48,8 @@ While using R Markdown default files, I found that I was consistently reformatti
  </p>
 <div id="example-of-tidy-analysis-pdf-output" class="section level3">
 <h3>Example of Tidy Analysis PDF output</h3>
-<p><img src="/img/tidy1.PNG" /> <img src="/img/tidy2.PNG" /></p>
+<p><img src="/img/tidy1.PNG" />
+<img src="/img/tidy2.PNG" /></p>
 </div>
 </div>
 <div id="case-study-analysis" class="section level2">
@@ -68,7 +69,9 @@ The second R Markdown template in <code>hmdrmd</code> is for case study analyses
 </ul>
 <div id="example-of-case-study-analysis-pdf-output" class="section level3">
 <h3>Example of Case Study Analysis PDF output</h3>
-<p><img src="/img/case1.PNG" /> <img src="/img/case2.PNG" /> <img src="/img/case3.PNG" /></p>
+<p><img src="/img/case1.PNG" />
+<img src="/img/case2.PNG" />
+<img src="/img/case3.PNG" /></p>
 <p> </p>
 </div>
 </div>
@@ -98,7 +101,7 @@ Defaults for pdf output are controlled through the YAML header.<br />
 <pre class="yaml"><code>---
 title: &quot;title&quot;
 author: &quot;author&quot;
-date: &quot;2019-02-25&quot;
+date: &quot;2020-04-24&quot;
 output: 
   hmdrmd::case_study:
     highlight: tango
@@ -107,7 +110,8 @@ monofont: Fira Code Medium
 ---</code></pre>
 <p> <br />
 Remove or change these options from the YAML header to customize your document.</p>
-<p>The default main font (<code>mainfont</code>) and code font (<code>monofont</code>) are set to <a href="https://www.fontsquirrel.com/fonts/computer-modern" target="_blank">CMU Serif Roman</a> and <a href="https://github.com/tonsky/FiraCode" target="_blank">Fira Code Medium</a>, respectively. To use CMU Serif Roman and Fira Code Medium, follow their installation instructions. Additionally, you can change the syntax highlighting in code chunks through the highlight option in the YAML header. By default, it is set to <code>tango</code>. Other options include <code>default</code>, <code>pygments</code>, <code>kate</code>, <code>monochrome</code>, <code>espresso</code>, <code>zenburn</code>, and <code>haddock</code>. See this <a href="https://www.garrickadenbuie.com/blog/2018/07/06/pandoc-syntax-highlighting-examples/" target="_blank">blog post</a> by Garrick Aden-Buie for a gallery of these different options.  </p>
+<p>The default main font (<code>mainfont</code>) and code font (<code>monofont</code>) are set to <a href="https://www.fontsquirrel.com/fonts/computer-modern" target="_blank">CMU Serif Roman</a> and <a href="https://github.com/tonsky/FiraCode" target="_blank">Fira Code Medium</a>, respectively. To use CMU Serif Roman and Fira Code Medium, follow their installation instructions. Additionally, you can change the syntax highlighting in code chunks through the highlight option in the YAML header. By default, it is set to <code>tango</code>. Other options include <code>default</code>, <code>pygments</code>, <code>kate</code>, <code>monochrome</code>, <code>espresso</code>, <code>zenburn</code>, and <code>haddock</code>. See this <a href="https://www.garrickadenbuie.com/blog/2018/07/06/pandoc-syntax-highlighting-examples/" target="_blank">blog post</a> by Garrick Aden-Buie for a gallery of these different options.
+ </p>
 </div>
 <div id="related-packages" class="section level2">
 <h2>Related Packages</h2>
@@ -136,9 +140,9 @@ Currently, these templates only render to PDF documents. If you are interested i
 <div id="references" class="section level2">
 <h2>References</h2>
 <p> <br />
-<a name="myfootnote1">1</a>: Allaire, JJ., Xie, Y., McPherson, J., Luraschi J., Ushey, K., Atkins, A., Wickham, H., Cheng, J., Chang, W., &amp; Iannone, R. (2017). rmarkdown: Dynamic documents for R. R package version 1.11. URL: <a href="https://CRAN.R-project.org/package=rmarkdown" class="uri" target="_blank">https://CRAN.R-project.org/package=rmarkdown</a></p>
-<p><a name="myfootnote2">2</a>: Wickham, H. (2014). Tidy data. <em>Journal of Statistical Software</em>, <em>59</em>, URL: <a href="https://www.jstatsoft.org/article/view/v059i10" class="uri" target="_blank">https://www.jstatsoft.org/article/view/v059i10</a></p>
-<p><a name="myfootnote3">3</a>: Wickham, H., &amp; Grolemund, G. (2017). <em>R for data science</em>. Sebastopol, California: O’Reilly Media. URL: <a href="https://r4ds.had.co.nz/index.html" class="uri" target="_blank">https://r4ds.had.co.nz/index.html</a></p>
+<a name="myfootnote1">1</a>: Allaire, JJ., Xie, Y., McPherson, J., Luraschi J., Ushey, K., Atkins, A., Wickham, H., Cheng, J., Chang, W., &amp; Iannone, R. (2017). rmarkdown: Dynamic documents for R. R package version 1.11. URL: <a href="https://CRAN.R-project.org/package=rmarkdown" target="_blank">https://CRAN.R-project.org/package=rmarkdown</a></p>
+<p><a name="myfootnote2">2</a>: Wickham, H. (2014). Tidy data. <em>Journal of Statistical Software</em>, <em>59</em>, URL: <a href="https://www.jstatsoft.org/article/view/v059i10" target="_blank">https://www.jstatsoft.org/article/view/v059i10</a></p>
+<p><a name="myfootnote3">3</a>: Wickham, H., &amp; Grolemund, G. (2017). <em>R for data science</em>. Sebastopol, California: O’Reilly Media. URL: <a href="https://r4ds.had.co.nz/index.html" target="_blank">https://r4ds.had.co.nz/index.html</a></p>
 <p><a name="myfootnote4">4</a>: Ellet, W. (2018). <em>The case study handbook, revised edition: A student’s guide</em>. Boston, Massachussets: Harvard Business Review Press.</p>
 </div>
 </div>

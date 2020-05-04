@@ -1,0 +1,1609 @@
+---
+title: "Introducing squashinformr"
+author: "Hayden MacDonald"
+date: "2020-05-04"
+output:
+  blogdown::html_page:
+    toc: false
+slug: introducing-squashinformr
+image_preview: "img/squashinformr_ghcard.png"
+tags: 
+- web-scraping
+- R
+- r-package
+- data analysis
+- squash
+description: "Politely web scrape data from SquashInfo in R"
+---
+
+
+
+<p><img src="/img/squashinformr_ghcard.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+<p>Earlier this year, I enrolled in a Data Management course as a part of my MSc in Business Analytics. The final project in this course involved presenting a business case for a database and building a MySQL database as a solution. As a squash enthusiast, I chose to base my project on the <a href="https://psaworldtour.com/" target="_blank">Professional Squash Association (PSA)</a>.</p>
+<p>Long story short, I did not complete this project because it was cancelled due the spread of COVID-19. Unfortunately, I had already put in approximately 20 hours of coding into the project. So being as stubborn as I am, I committed to reusing the code by building an R package. The result is <code>squashinformr</code>: a package for scraping player, tournament, and ranking data from <a href="http://www.squashinfo.com/" target="_blank">SquashInfo</a>.<br />
+ </p>
+<div id="politeness-on-the-web" class="section level2">
+<h2>Politeness on the web</h2>
+<p> <br />
+<code>squashinformr</code> is built on the <a href="https://github.com/dmi3kno/polite" target="_blank"><code>polite</code> package</a> and, therefore, inherits its principles of <a href="https://www.ddrive.no/post/be-nice-on-the-web/" target="_blank">“being nice on the web”</a>. In short, web scraping is a data collection method that can be harmful to websites and their users, if done carelessly. Therefore, it is important to use our manners:</p>
+<ol style="list-style-type: decimal">
+<li>Seek permission to scrape before you begin.</li>
+<li>Take slowly, so as to not be mistaken for a DDoS attack.</li>
+<li>Never ask twice by using <a href="https://en.wikipedia.org/wiki/Memoization" target="_blank">memoization</a>.</li>
+</ol>
+<p>Following <code>polite</code> principles incurs mandatory delays (set by SquashInfo’s robots.txt file) on the scraping process. Therefore, it is important that users are patient when using <code>squashinformr</code>. SquashInfo currently offers full access to their data and extra features through a premium membership. Please consider <a href="http://www.squashinfo.com/signup" target="_blank">signing up and/or subscribing</a> to SquashInfo to support their work.<br />
+ </p>
+</div>
+<div id="installation" class="section level2">
+<h2>Installation</h2>
+<p> <br />
+Install <code>squashinformr</code> via CRAN:<br />
+ </p>
+<pre class="r"><code>install.packages(&quot;squashinformr&quot;)</code></pre>
+<p> <br />
+Install the development version of <code>squashinformr</code> from its <a href="https://github.com/HaydenMacDonald/squashinformr" target="_blank">GitHub repository</a> via:<br />
+ </p>
+<pre class="r"><code>if (!require(&quot;remotes&quot;)) install.packages(&quot;remotes&quot;)
+
+remotes::install_github(&quot;HaydenMacDonald/squashinformr&quot;)</code></pre>
+<p> </p>
+</div>
+<div id="functions-in-v0.1.2" class="section level2">
+<h2>Functions in v0.1.2</h2>
+<p> <br />
+Generally, <code>squashinformr</code> functions fall into one of three families:<br />
+ </p>
+<ul>
+<li>Player functions for scraping player profile data
+<ul>
+<li><code>get_players()</code></li>
+<li><code>get_player_recent_results()</code></li>
+<li><code>get_player_recent_matches()</code></li>
+<li><code>get_player_recent_games()</code></li>
+<li><code>get_player_rankings_history()</code></li>
+<li><code>get_matchup()</code><br><br></li>
+</ul></li>
+<li>Ranking functions for scraping current and historical rankings tables
+<ul>
+<li><code>get_rankings()</code></li>
+<li><code>get_historical_rankings()</code><br><br></li>
+</ul></li>
+<li>Tournament functions for scraping tournament results data
+<ul>
+<li><code>get_tournaments()</code></li>
+<li><code>get_tournament_players()</code></li>
+<li><code>get_tournament_matches()</code></li>
+<li><code>get_tournament_games()</code><br><br></li>
+</ul></li>
+</ul>
+<p>Let’s take a closer look at some of these functions in action…<br />
+ </p>
+</div>
+<div id="player-functions" class="section level2">
+<h2>Player functions</h2>
+<p> <br />
+Use <code>get_players()</code> to extract biographical information on players currently ranked within the top 500. Here, we’ll just scrape the current top 25 men’s players.<br />
+ </p>
+<pre class="r"><code>library(squashinformr)
+
+(top_25_men &lt;- get_players(top = 25, category = &quot;mens&quot;))</code></pre>
+<pre><code>## # A tibble: 25 x 15
+##     rank first last    age gender birthplace nationality residence height weight
+##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;
+##  1     1 Moha~ Elsh~    29 Male   Alexandria Egypt       Bristol,~    185     82
+##  2     2 Ali   Farag    28 Male   Cairo      Egypt       Cairo        183     70
+##  3     3 Karim Abde~    28 Male   Alexandria Egypt       Giza         173     72
+##  4     4 Tarek Momen    32 Male   Cairo      Egypt       Cairo        174     66
+##  5     5 Paul  Coll     27 Male   Greymouth  New Zealand Amsterda~    179     83
+##  6     6 Diego Elias    23 Male   Lima       Peru        Lima         188     82
+##  7     7 Marw~ Elsh~    26 Male   Alexandria Egypt       Bristol,~    183     73
+##  8     8 Simon Rösn~    32 Male   Wurzburg   Germany     Paderborn    190     89
+##  9     9 Migu~ Rodr~    34 Male   Bogota     Colombia    Bogota       170     72
+## 10    10 Joel  Makin    25 Male   Haverford~ Wales       Birmingh~    180     80
+## # ... with 15 more rows, and 5 more variables: plays &lt;chr&gt;, racket &lt;chr&gt;,
+## #   joined_psa &lt;dbl&gt;, university &lt;chr&gt;, club &lt;chr&gt;</code></pre>
+<p> <br />
+If you’re familiar with squash, you might be under the impression that players that are younger, taller, or lighter on their feet might have competitive advantages.<br />
+ <br />
+<img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-6-1.png" width="2400" /></p>
+<p>The data returned from SquashInfo seem to imply that this is not the case! Age, height, weight, and BMI do not seem to have any clear relationship with PSA rankings. There are many factors that contribute to a player’s success, including endurance, positioning, accuracy, and play-style.<br />
+ </p>
+<div id="recent-match-data" class="section level3">
+<h3>Recent match data</h3>
+<p>Use <code>get_player_recent_matches()</code> to retrieve a player’s recent match data (past January 1, 2019). Let’s get Raneem El Welily’s recent match data.<br />
+ </p>
+<pre class="r"><code>(welily &lt;- get_player_recent_matches(player = &quot;Raneem El Welily&quot;, category = &quot;womens&quot;))</code></pre>
+<pre><code>## # A tibble: 71 x 12
+##     rank player opponent result games_won games_lost match_time round date      
+##    &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;      &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;date&gt;    
+##  1     1 Ranee~ Nour El~ L              2          3         72 QF    2020-03-01
+##  2     1 Ranee~ Yathreb~ W             NA         NA         NA R3    2020-03-01
+##  3     1 Ranee~ Alexand~ W              3          1         36 R2    2020-03-01
+##  4     1 Ranee~ Nour El~ L              2          3         59 F     2020-03-01
+##  5     1 Ranee~ Nouran ~ W              3          0         31 SF    2020-03-01
+##  6     1 Ranee~ Olivia ~ W              3          0         29 QF    2020-03-01
+##  7     1 Ranee~ Salma H~ W              3          0         22 R3    2020-03-01
+##  8     1 Ranee~ Juliann~ W              3          0         26 R2    2020-03-01
+##  9     1 Ranee~ Nouran ~ W              1          0         15 F     2020-02-01
+## 10     1 Ranee~ Hania E~ W              3          0         40 SF    2020-02-01
+## # ... with 61 more rows, and 3 more variables: event &lt;chr&gt;, country &lt;chr&gt;,
+## #   psa &lt;chr&gt;</code></pre>
+<p> <br />
+<img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-8-1.png" width="2400" /></p>
+<p>El Welily’s 2019-2020 match data exemplify her general dominance of women’s competitons. She has a 5.45 win/loss ratio across the tournaments she participated in and 65% of her match wins are 3-0s. Even when she does lose a match, she does not make it easy for her opponents. Her median match times in losses are longer regardless of the number of games played. Although, the sample size is low for El Welily’s losses.<br />
+ <br />
+<img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-9-1.png" width="2400" /></p>
+<p>Given El Welily’s general dominance, how does she play versus the current #2, Nouran Gohar? We can use <code>get_matchup()</code> to get a quantitative take on their head-to-head performance.<br />
+ </p>
+<pre class="r"><code>welily_v_gohar &lt;- get_matchup(&quot;Raneem El Welily&quot;, &quot;Nouran Gohar&quot;, category = &quot;womens&quot;)</code></pre>
+<p> <br />
+<img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-11-1.png" width="2400" /></p>
+<p>El Welily’s currently holds a lead on Gohar by five matches since Janary 1, 2019 and a majority of her wins over Gohar have been decisive (3-1 or 3-0).<br />
+ <br />
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#bpraxrnrxd .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#bpraxrnrxd .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#bpraxrnrxd .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#bpraxrnrxd .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#bpraxrnrxd .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#bpraxrnrxd .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#bpraxrnrxd .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#bpraxrnrxd .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#bpraxrnrxd .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#bpraxrnrxd .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#bpraxrnrxd .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#bpraxrnrxd .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#bpraxrnrxd .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#bpraxrnrxd .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#bpraxrnrxd .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#bpraxrnrxd .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#bpraxrnrxd .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#bpraxrnrxd .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#bpraxrnrxd .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#bpraxrnrxd .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#bpraxrnrxd .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#bpraxrnrxd .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#bpraxrnrxd .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#bpraxrnrxd .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#bpraxrnrxd .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#bpraxrnrxd .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#bpraxrnrxd .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#bpraxrnrxd .gt_left {
+  text-align: left;
+}
+
+#bpraxrnrxd .gt_center {
+  text-align: center;
+}
+
+#bpraxrnrxd .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#bpraxrnrxd .gt_font_normal {
+  font-weight: normal;
+}
+
+#bpraxrnrxd .gt_font_bold {
+  font-weight: bold;
+}
+
+#bpraxrnrxd .gt_font_italic {
+  font-style: italic;
+}
+
+#bpraxrnrxd .gt_super {
+  font-size: 65%;
+}
+
+#bpraxrnrxd .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="bpraxrnrxd" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="2" class="gt_heading gt_title gt_font_normal" style>Raneem El Welily v Nouran Gohar</th>
+    </tr>
+    <tr>
+      <th colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>Head-to-Head Game Statistics, 2019-2020</th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Metric</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Value</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left">Games Played</td>
+      <td class="gt_row gt_right">32</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Player 1 Games Won</td>
+      <td class="gt_row gt_right">20</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Player 2 Games Won</td>
+      <td class="gt_row gt_right">11</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Player 1 Avg Advantage</td>
+      <td class="gt_row gt_right">4.75</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Player 2 Avg Advantage</td>
+      <td class="gt_row gt_right">4.73</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Avg Point Diff</td>
+      <td class="gt_row gt_right">4.74</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Player 1 Tiebreak Wins</td>
+      <td class="gt_row gt_right">2</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Player 2 Tiebreak Wins</td>
+      <td class="gt_row gt_right">1</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Pct Games Tiebreak</td>
+      <td class="gt_row gt_right">6.25</td>
+    </tr>
+  </tbody>
+  
+  
+</table></div>
+ <br />
+But, game-level data show that Gohar can be equally dominant in any individual game. Their approximately equal average point advantages reflects this. So it may be that El Welily’s consistency across games that allows her to win more matches over Gohar.<br />
+ </p>
+</div>
+</div>
+<div id="ranking-functions" class="section level2">
+<h2>Ranking functions</h2>
+<p> <br />
+PSA Rankings are the definitive international ranking that decide which players are the best in the world. They have a huge influence on how tournament organizers seed individual players. Using <code>get_rankings()</code>, let’s scrape the top 15 players from the most recent rankings tables (April 2020 at time of writing) for both competition categories.<br />
+ </p>
+<pre class="r"><code>apr &lt;- get_rankings(top = 15, category = &quot;both&quot;)</code></pre>
+<p> <br />
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#afpzvctywz .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#afpzvctywz .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#afpzvctywz .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#afpzvctywz .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#afpzvctywz .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#afpzvctywz .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#afpzvctywz .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#afpzvctywz .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#afpzvctywz .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#afpzvctywz .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#afpzvctywz .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#afpzvctywz .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#afpzvctywz .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#afpzvctywz .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#afpzvctywz .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#afpzvctywz .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#afpzvctywz .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#afpzvctywz .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#afpzvctywz .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#afpzvctywz .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#afpzvctywz .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#afpzvctywz .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#afpzvctywz .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#afpzvctywz .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#afpzvctywz .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#afpzvctywz .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#afpzvctywz .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#afpzvctywz .gt_left {
+  text-align: left;
+}
+
+#afpzvctywz .gt_center {
+  text-align: center;
+}
+
+#afpzvctywz .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#afpzvctywz .gt_font_normal {
+  font-weight: normal;
+}
+
+#afpzvctywz .gt_font_bold {
+  font-weight: bold;
+}
+
+#afpzvctywz .gt_font_italic {
+  font-style: italic;
+}
+
+#afpzvctywz .gt_super {
+  font-size: 65%;
+}
+
+#afpzvctywz .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="afpzvctywz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="7" class="gt_heading gt_title gt_font_normal" style>Men's PSA Rankings (April 2020)</th>
+    </tr>
+    <tr>
+      <th colspan="7" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style></th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Rank</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Previous Rank</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Change</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Name</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Highest Ranking</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Highest Ranking Date</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Country</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_center">1</td>
+      <td class="gt_row gt_center">1</td>
+      <td class="gt_row gt_center" style="color: #808080;">&mdash;</td>
+      <td class="gt_row gt_left">Mohamed Elshorbagy</td>
+      <td class="gt_row gt_center">1</td>
+      <td class="gt_row gt_left">2014-11-01</td>
+      <td class="gt_row gt_left">EGY</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center gt_striped">2</td>
+      <td class="gt_row gt_center gt_striped">2</td>
+      <td class="gt_row gt_center gt_striped" style="color: #808080;">&mdash;</td>
+      <td class="gt_row gt_left gt_striped">Ali Farag</td>
+      <td class="gt_row gt_center gt_striped">1</td>
+      <td class="gt_row gt_left gt_striped">2019-03-01</td>
+      <td class="gt_row gt_left gt_striped">EGY</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">3</td>
+      <td class="gt_row gt_center">4</td>
+      <td class="gt_row gt_center" style="color: #9F954E;">1</td>
+      <td class="gt_row gt_left">Karim Abdel Gawad</td>
+      <td class="gt_row gt_center">1</td>
+      <td class="gt_row gt_left">2017-05-01</td>
+      <td class="gt_row gt_left">EGY</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center gt_striped">4</td>
+      <td class="gt_row gt_center gt_striped">3</td>
+      <td class="gt_row gt_center gt_striped" style="color: #FF0000;">&minus;1</td>
+      <td class="gt_row gt_left gt_striped">Tarek Momen</td>
+      <td class="gt_row gt_center gt_striped">3</td>
+      <td class="gt_row gt_left gt_striped">2019-02-01</td>
+      <td class="gt_row gt_left gt_striped">EGY</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">5</td>
+      <td class="gt_row gt_center">5</td>
+      <td class="gt_row gt_center" style="color: #808080;">&mdash;</td>
+      <td class="gt_row gt_left">Paul Coll</td>
+      <td class="gt_row gt_center">5</td>
+      <td class="gt_row gt_left">2019-04-01</td>
+      <td class="gt_row gt_left">NZL</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center gt_striped">6</td>
+      <td class="gt_row gt_center gt_striped">6</td>
+      <td class="gt_row gt_center gt_striped" style="color: #808080;">&mdash;</td>
+      <td class="gt_row gt_left gt_striped">Diego Elias</td>
+      <td class="gt_row gt_center gt_striped">6</td>
+      <td class="gt_row gt_left gt_striped">2020-01-01</td>
+      <td class="gt_row gt_left gt_striped">PER</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">7</td>
+      <td class="gt_row gt_center">8</td>
+      <td class="gt_row gt_center" style="color: #9F954E;">1</td>
+      <td class="gt_row gt_left">Marwan Elshorbagy</td>
+      <td class="gt_row gt_center">3</td>
+      <td class="gt_row gt_left">2018-05-01</td>
+      <td class="gt_row gt_left">EGY</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center gt_striped">8</td>
+      <td class="gt_row gt_center gt_striped">7</td>
+      <td class="gt_row gt_center gt_striped" style="color: #FF0000;">&minus;1</td>
+      <td class="gt_row gt_left gt_striped">Simon Rösner</td>
+      <td class="gt_row gt_center gt_striped">3</td>
+      <td class="gt_row gt_left gt_striped">2018-12-01</td>
+      <td class="gt_row gt_left gt_striped">GER</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">9</td>
+      <td class="gt_row gt_center">9</td>
+      <td class="gt_row gt_center" style="color: #808080;">&mdash;</td>
+      <td class="gt_row gt_left">Miguel Rodriguez</td>
+      <td class="gt_row gt_center">4</td>
+      <td class="gt_row gt_left">2015-06-01</td>
+      <td class="gt_row gt_left">COL</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center gt_striped">10</td>
+      <td class="gt_row gt_center gt_striped">10</td>
+      <td class="gt_row gt_center gt_striped" style="color: #808080;">&mdash;</td>
+      <td class="gt_row gt_left gt_striped">Joel Makin</td>
+      <td class="gt_row gt_center gt_striped">10</td>
+      <td class="gt_row gt_left gt_striped">2020-03-01</td>
+      <td class="gt_row gt_left gt_striped">WAL</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">11</td>
+      <td class="gt_row gt_center">11</td>
+      <td class="gt_row gt_center" style="color: #808080;">&mdash;</td>
+      <td class="gt_row gt_left">Mohamed Abouelghar</td>
+      <td class="gt_row gt_center">7</td>
+      <td class="gt_row gt_left">2019-06-01</td>
+      <td class="gt_row gt_left">EGY</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center gt_striped">12</td>
+      <td class="gt_row gt_center gt_striped">12</td>
+      <td class="gt_row gt_center gt_striped" style="color: #808080;">&mdash;</td>
+      <td class="gt_row gt_left gt_striped">Fares Dessouky</td>
+      <td class="gt_row gt_center gt_striped">8</td>
+      <td class="gt_row gt_left gt_striped">2017-11-01</td>
+      <td class="gt_row gt_left gt_striped">EGY</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">13</td>
+      <td class="gt_row gt_center">13</td>
+      <td class="gt_row gt_center" style="color: #808080;">&mdash;</td>
+      <td class="gt_row gt_left">Saurav Ghosal</td>
+      <td class="gt_row gt_center">10</td>
+      <td class="gt_row gt_left">2019-04-01</td>
+      <td class="gt_row gt_left">IND</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center gt_striped">14</td>
+      <td class="gt_row gt_center gt_striped">14</td>
+      <td class="gt_row gt_center gt_striped" style="color: #808080;">&mdash;</td>
+      <td class="gt_row gt_left gt_striped">Mazen Hesham</td>
+      <td class="gt_row gt_center gt_striped">13</td>
+      <td class="gt_row gt_left gt_striped">2015-12-01</td>
+      <td class="gt_row gt_left gt_striped">EGY</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">15</td>
+      <td class="gt_row gt_center">17</td>
+      <td class="gt_row gt_center" style="color: #36B371;">2</td>
+      <td class="gt_row gt_left">Omar Mosaad</td>
+      <td class="gt_row gt_center">3</td>
+      <td class="gt_row gt_left">2016-06-01</td>
+      <td class="gt_row gt_left">EGY</td>
+    </tr>
+  </tbody>
+  
+  
+</table></div></p>
+<p> </p>
+<p><style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#caerotiosg .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#caerotiosg .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#caerotiosg .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#caerotiosg .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#caerotiosg .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#caerotiosg .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#caerotiosg .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#caerotiosg .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#caerotiosg .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#caerotiosg .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#caerotiosg .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#caerotiosg .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#caerotiosg .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#caerotiosg .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#caerotiosg .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#caerotiosg .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#caerotiosg .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#caerotiosg .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#caerotiosg .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#caerotiosg .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#caerotiosg .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#caerotiosg .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#caerotiosg .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#caerotiosg .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#caerotiosg .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#caerotiosg .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#caerotiosg .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#caerotiosg .gt_left {
+  text-align: left;
+}
+
+#caerotiosg .gt_center {
+  text-align: center;
+}
+
+#caerotiosg .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#caerotiosg .gt_font_normal {
+  font-weight: normal;
+}
+
+#caerotiosg .gt_font_bold {
+  font-weight: bold;
+}
+
+#caerotiosg .gt_font_italic {
+  font-style: italic;
+}
+
+#caerotiosg .gt_super {
+  font-size: 65%;
+}
+
+#caerotiosg .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="caerotiosg" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="7" class="gt_heading gt_title gt_font_normal" style>Women's PSA Rankings (April 2020)</th>
+    </tr>
+    <tr>
+      <th colspan="7" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style></th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Rank</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Previous Rank</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Change</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Name</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Highest Ranking</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Highest Ranking Date</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Country</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_center">1</td>
+      <td class="gt_row gt_center">1</td>
+      <td class="gt_row gt_center" style="color: #808080;">&mdash;</td>
+      <td class="gt_row gt_left">Raneem El Welily</td>
+      <td class="gt_row gt_center">1</td>
+      <td class="gt_row gt_left">2015-09-01</td>
+      <td class="gt_row gt_left">EGY</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center gt_striped">2</td>
+      <td class="gt_row gt_center gt_striped">2</td>
+      <td class="gt_row gt_center gt_striped" style="color: #808080;">&mdash;</td>
+      <td class="gt_row gt_left gt_striped">Nouran Gohar</td>
+      <td class="gt_row gt_center gt_striped">2</td>
+      <td class="gt_row gt_left gt_striped">2017-01-01</td>
+      <td class="gt_row gt_left gt_striped">EGY</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">3</td>
+      <td class="gt_row gt_center">4</td>
+      <td class="gt_row gt_center" style="color: #9F954E;">1</td>
+      <td class="gt_row gt_left">Nour El Sherbini</td>
+      <td class="gt_row gt_center">1</td>
+      <td class="gt_row gt_left">2016-05-01</td>
+      <td class="gt_row gt_left">EGY</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center gt_striped">4</td>
+      <td class="gt_row gt_center gt_striped">3</td>
+      <td class="gt_row gt_center gt_striped" style="color: #D56C2B;">&minus;1</td>
+      <td class="gt_row gt_left gt_striped">Camille Serme</td>
+      <td class="gt_row gt_center gt_striped">2</td>
+      <td class="gt_row gt_left gt_striped">2017-02-01</td>
+      <td class="gt_row gt_left gt_striped">FRA</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">5</td>
+      <td class="gt_row gt_center">5</td>
+      <td class="gt_row gt_center" style="color: #808080;">&mdash;</td>
+      <td class="gt_row gt_left">Nour El Tayeb</td>
+      <td class="gt_row gt_center">3</td>
+      <td class="gt_row gt_left">2018-02-01</td>
+      <td class="gt_row gt_left">EGY</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center gt_striped">6</td>
+      <td class="gt_row gt_center gt_striped">7</td>
+      <td class="gt_row gt_center gt_striped" style="color: #9F954E;">1</td>
+      <td class="gt_row gt_left gt_striped">Sarah-Jane Perry</td>
+      <td class="gt_row gt_center gt_striped">6</td>
+      <td class="gt_row gt_left gt_striped">2017-09-01</td>
+      <td class="gt_row gt_left gt_striped">ENG</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">7</td>
+      <td class="gt_row gt_center">10</td>
+      <td class="gt_row gt_center" style="color: #36B371;">3</td>
+      <td class="gt_row gt_left">Hania El Hammamy</td>
+      <td class="gt_row gt_center">7</td>
+      <td class="gt_row gt_left">2020-04-01</td>
+      <td class="gt_row gt_left">EGY</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center gt_striped">8</td>
+      <td class="gt_row gt_center gt_striped">8</td>
+      <td class="gt_row gt_center gt_striped" style="color: #808080;">&mdash;</td>
+      <td class="gt_row gt_left gt_striped">Amanda Sobhy</td>
+      <td class="gt_row gt_center gt_striped">6</td>
+      <td class="gt_row gt_left gt_striped">2016-10-01</td>
+      <td class="gt_row gt_left gt_striped">USA</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">9</td>
+      <td class="gt_row gt_center">6</td>
+      <td class="gt_row gt_center" style="color: #FF0000;">&minus;3</td>
+      <td class="gt_row gt_left">Joelle King</td>
+      <td class="gt_row gt_center">3</td>
+      <td class="gt_row gt_left">2019-02-01</td>
+      <td class="gt_row gt_left">NZL</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center gt_striped">10</td>
+      <td class="gt_row gt_center gt_striped">9</td>
+      <td class="gt_row gt_center gt_striped" style="color: #D56C2B;">&minus;1</td>
+      <td class="gt_row gt_left gt_striped">Tesni Evans</td>
+      <td class="gt_row gt_center gt_striped">9</td>
+      <td class="gt_row gt_left gt_striped">2018-11-01</td>
+      <td class="gt_row gt_left gt_striped">WAL</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">11</td>
+      <td class="gt_row gt_center">12</td>
+      <td class="gt_row gt_center" style="color: #9F954E;">1</td>
+      <td class="gt_row gt_left">Joshna Chinappa</td>
+      <td class="gt_row gt_center">10</td>
+      <td class="gt_row gt_left">2016-07-01</td>
+      <td class="gt_row gt_left">IND</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center gt_striped">12</td>
+      <td class="gt_row gt_center gt_striped">13</td>
+      <td class="gt_row gt_center gt_striped" style="color: #9F954E;">1</td>
+      <td class="gt_row gt_left gt_striped">Salma Hany</td>
+      <td class="gt_row gt_center gt_striped">12</td>
+      <td class="gt_row gt_left gt_striped">2019-03-01</td>
+      <td class="gt_row gt_left gt_striped">EGY</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">13</td>
+      <td class="gt_row gt_center">16</td>
+      <td class="gt_row gt_center" style="color: #36B371;">3</td>
+      <td class="gt_row gt_left">Olivia Blatchford Clyne</td>
+      <td class="gt_row gt_center">12</td>
+      <td class="gt_row gt_left">2017-12-01</td>
+      <td class="gt_row gt_left">USA</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center gt_striped">14</td>
+      <td class="gt_row gt_center gt_striped">15</td>
+      <td class="gt_row gt_center gt_striped" style="color: #9F954E;">1</td>
+      <td class="gt_row gt_left gt_striped">Yathreb Adel</td>
+      <td class="gt_row gt_center gt_striped">14</td>
+      <td class="gt_row gt_left gt_striped">2020-04-01</td>
+      <td class="gt_row gt_left gt_striped">EGY</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_center">15</td>
+      <td class="gt_row gt_center">14</td>
+      <td class="gt_row gt_center" style="color: #D56C2B;">&minus;1</td>
+      <td class="gt_row gt_left">Alison Waters</td>
+      <td class="gt_row gt_center">3</td>
+      <td class="gt_row gt_left">2010-10-01</td>
+      <td class="gt_row gt_left">ENG</td>
+    </tr>
+  </tbody>
+  
+  
+</table></div>
+ <br />
+<code>get_rankings()</code> is useful for analyzing how player rankings have changed recently. Alternatively, we can look back on an individual player’s ranking history with <code>get_player_rankings_history()</code>.<br />
+ </p>
+<pre class="r"><code>ph &lt;- get_player_rankings_history(rank = 1:4, category = &quot;womens&quot;)</code></pre>
+<p> <br />
+<img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-17-1.png" width="2400" />
+ <br />
+This is excellent data to use when discussing the story-lines of the sport. In this example, the current top 4 women’s players all began their careers before 2012. Since the end of 2014, they have occupied the top 20 rankings. We can see that Nouran Gohar had a meteoric rise through the rankings after her first PSA ranking in January 2011. The following graphic shows the last year of these players’ ranking histories.<br />
+ </p>
+<div class="figure"><span id="fig:unnamed-chunk-18"></span>
+<img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-18-1.png" alt="Shoutout to the ggbump package!" width="2400" />
+<p class="caption">
+Figure 1: Shoutout to the ggbump package!
+</p>
+</div>
+<p>How will these rankings shift over the next couple of years?<br />
+ </p>
+</div>
+<div id="tournament-functions" class="section level2">
+<h2>Tournament functions</h2>
+<p> <br />
+<code>squashinformr</code> provides useful functions for pulling tournament data at many levels of detail. This includes tournament metadata, players, matches, and games.</p>
+<p>The lowest level of detail is the tournament games, accessed via <code>get_tournament_games()</code>. Let’s use this function to look at the JP Morgan Tournament of Champions, one of the premier tournaments in squash.<br />
+ </p>
+<pre class="r"><code>## Return game data for 2020&#39;s Tournament of Champions.
+(toc &lt;- get_tournament_games(&quot;tournament of champions&quot;, year = 2020))</code></pre>
+<pre><code>## # A tibble: 388 x 15
+##    tournament_name category tournament_date round match  game player_1 player_2
+##    &lt;chr&gt;           &lt;chr&gt;    &lt;date&gt;          &lt;ord&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;   
+##  1 JP Morgan Tour~ Men&#39;s    2020-01-17      F        64     4 Mohamed~ Tarek M~
+##  2 JP Morgan Tour~ Men&#39;s    2020-01-17      F        64     3 Mohamed~ Tarek M~
+##  3 JP Morgan Tour~ Men&#39;s    2020-01-17      F        64     2 Mohamed~ Tarek M~
+##  4 JP Morgan Tour~ Men&#39;s    2020-01-17      F        64     1 Mohamed~ Tarek M~
+##  5 JP Morgan Tour~ Women&#39;s  2020-01-17      F        62     3 Camille~ Nour El~
+##  6 JP Morgan Tour~ Women&#39;s  2020-01-17      F        62     2 Camille~ Nour El~
+##  7 JP Morgan Tour~ Women&#39;s  2020-01-17      F        62     1 Camille~ Nour El~
+##  8 JP Morgan Tour~ Men&#39;s    2020-01-17      SF       63     5 Tarek M~ Ali Far~
+##  9 JP Morgan Tour~ Men&#39;s    2020-01-17      SF       63     4 Tarek M~ Ali Far~
+## 10 JP Morgan Tour~ Men&#39;s    2020-01-17      SF       63     3 Tarek M~ Ali Far~
+## # ... with 378 more rows, and 7 more variables: game_winner &lt;chr&gt;,
+## #   player_1_score &lt;dbl&gt;, player_2_score &lt;dbl&gt;, player_1_seed &lt;dbl&gt;,
+## #   player_2_seed &lt;dbl&gt;, player_1_nationality &lt;chr&gt;, player_2_nationality &lt;chr&gt;</code></pre>
+<p> <br />
+Let’s compare the consistency of a player’s performance in the men’s tournament. We can ask, by what point margin did players win or lose on average throughout this tournament?</p>
+<p><img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-20-1.png" width="2400" /></p>
+<p>If we only look at the quarter-finalists, we can see that most were able to defeat their opponents with a comfortable lead of 4 or 5 points.</p>
+<p><img src="/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-21-1.png" width="2400" /></p>
+<p>The averages for Karim Abdel Gawad, Simon Rösner, and Paul Coll are particularly high. This reflects how they handedly defeated many of their opponents up to the third round of the tournament.</p>
+<p>Conversely, two players stand out from a “defensive” perspective. Simon Rösner only lost 3 games, all by a 2 or 3 point margin, during a game 5 defeat to Karim Abdel Gawad. Meanwhile, Mohamed Elshorbagy, the eventual champion, lost only one game. Tarek Momen took a game off of Elshorbagy in the final match, but only by a margin of 2 points. Elshorbagy certainly came to play in this tournament!<br />
+ </p>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p> <br />
+In this post, I’ve shown only a small selection of the functions provided in <code>squashinformr</code>. Install the package and try it out yourself! There is a huge amount of data on this excellent sport that has yet to be explored. Cheers!</p>
+<p>The full code for this post is available <a href="https://github.com/HaydenMacDonald/needle-in-the-hay/blob/master/content/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r.Rmd" target="_blank">here</a>.<br />
+ </p>
+</div>
+<div id="help" class="section level2">
+<h2>Help</h2>
+<p> <br />
+If you find a bug, please submit an issue on <a href="https://github.com/HaydenMacDonald/squashinformr" target="_blank">GitHub</a>.</p>
+<p>If you are interested in helping me extend the functionality of this package, fork the repository, make changes, and submit them as a pull request. The <code>squashinformr</code> project is released with a <a href="https://github.com/HaydenMacDonald/squashinformr/blob/master/.github/CODE_OF_CONDUCT.md" target="_blank">Contributor Code of Conduct</a>. By contributing to this project, you agree to its terms.<br />
+ </p>
+</div>
+<div id="disclaimer" class="section level2">
+<h2>Disclaimer</h2>
+<p> <br />
+SquashInfo is a valuable resource for the international squash community. By creating and sharing this package, I do not intend to compete with SquashInfo or any of its stakeholders. The <code>squashinformr</code> package was created to allow individuals to access data from SquashInfo in an efficient and responsible way, using <a href="https://github.com/dmi3kno/polite" target="_blank"><code>polite</code> principles</a>. SquashInfo currently offers full access to their data and extra features through a premium membership. Please consider <a href="http://www.squashinfo.com/upgrade" target="_blank">signing up and subscribing</a> to SquashInfo to support their work.<br />
+ </p>
+</div>
+<div id="license" class="section level2">
+<h2>License</h2>
+<p>The <code>squashinformr</code> package is released under a <a href="https://github.com/HaydenMacDonald/squashinformr/blob/master/LICENSE.md" target="_blank">GPL-3</a> license.
+ </p>
+</div>

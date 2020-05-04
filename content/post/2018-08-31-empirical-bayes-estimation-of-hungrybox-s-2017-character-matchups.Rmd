@@ -1,12 +1,12 @@
 ---
 title: "The Case Against Young Link"
+subtitle: Empirical Bayes Estimation of Hungrybox's 2017 Character Matchup Win Averages
 author: "Hayden MacDonald"
 date: '2018-09-18'
 output:
   html_document:
     df_print: paged
 slug: hbox-bayes
-subtitle: Empirical Bayes Estimation of Hungrybox's 2017 Character Matchup Win Averages
 tags:
 - R
 - esports
@@ -16,6 +16,7 @@ categories:
 - rstats
 - esports
 - bayes
+description: "Super Smash Bros. Melee for the Nintendo GameCube was released in 2001. Since then, it has become one of the most adored games of the last twenty years."
 ---
 
 ```{r, echo = FALSE}

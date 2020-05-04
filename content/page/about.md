@@ -4,13 +4,13 @@ subtitle:
 comments: false
 ---
 
-My name is Hayden MacDonald and I am a Canadian graduate student studying at Ivey Business School, University of Western Ontario.
+My name is Hayden MacDonald and I am a Canadian-British data analyst.  
 
-Currently, I am pursuing a career in data analytics through Ivey Business School's MSc in Business Analytics (expected graduation May 2020).  
+I hold a Master of Science in Management - Business Analytics from Ivey Business School, Western University.  
 
-My interests include research, statistical data analysis, data visualization, technology, and marketing analytics.  
+My interests include technology, research, statistical data analysis, A/B testing, data visualization, and product/marketing analytics.  
 
-In my spare time, I enjoy cooking, hiking, cycling, SCUBA diving, birding as well as watching films and eSports.  
+In my spare time, I enjoy film, cooking, squash, SCUBA diving, birding, and eSports.  
 &nbsp;
 
 -------
@@ -48,7 +48,7 @@ University of Western Ontario
 &nbsp;  
 ### Education
 &nbsp;  
-**Master of Science in Management - Business Analytics (Graduation May 2020)**  
+**Master of Science in Management - Business Analytics (2020)**  
 Ivey Business School  
 University of Western Ontario  
 
@@ -107,6 +107,7 @@ Roberts, W.A., Guitar, N.A., Marsh, H.L., & **MacDonald, H.** (2016). Memory sys
 
 ### Software
 
+- <a href="https://github.com/HaydenMacDonald/squashinformr" target="_blank">squashinformr</a>
 - <a href="https://needleinthehay.ca/hmdrmd/" target="_blank">hmdrmd</a>
 
 ----

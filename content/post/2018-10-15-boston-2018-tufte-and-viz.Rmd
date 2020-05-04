@@ -1,5 +1,5 @@
 ---
-title: "Boston 2018"
+title: "Tufte Course & Visualization Best Practices"
 author: "Hayden MacDonald"
 date: "2018-11-11"
 output:
@@ -10,7 +10,7 @@ tags:
 - data visualization
 - review
 - R
-subtitle: 'Tufte Course & Visualization Best Practices'
+description: "I recently attended Edward Tufte's course, 'Presenting Data and Information', in Boston."
 ---
 
 ```{r page formatting, include=FALSE}
@@ -258,8 +258,8 @@ Tufte's course met my expectations because its content directly addressed what I
 Also, go to Boston. It is easily my favourite American city so far.  
 &nbsp;  
 
-```{r echo=FALSE, out.width='75%', out.}
-knitr::include_graphics('/img/bostonsky.JPG')
+```{r echo=FALSE, out.width='75%'}
+knitr::include_graphics('/img/bostonsky.JPG', error = FALSE)
 ```
 
 

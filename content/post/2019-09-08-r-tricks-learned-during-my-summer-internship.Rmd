@@ -10,10 +10,11 @@ tags:
 - data visualization
 - data joins
 - R
+description: "This summer, I had the pleasure of working as a Data Analyst Intern at Voices.com as a part of my MSc in Business Analytics."
 ---
 &nbsp;  
 ```{r, echo=FALSE, dpi = 300}
-knitr::include_graphics('/img/voices_photo.jpg')
+knitr::include_graphics('/img/voices_photo.jpg', error = FALSE)
 ```
 &nbsp;  
 This summer, I had the pleasure of working as a Data Analyst Intern at <a href="https://www.voices.com" target="_blank">Voices.com</a> as a part of my MSc in Business Analytics. Voices.com is a marketplace website that matches business clients with voice-over talent. 
@@ -26,15 +27,15 @@ During my internship at Voices.com, I became involved in a variety of analytics 
 Say that you are in the middle of a data analysis and you need to test out a part of your code. If you're like me,  you will test sections of code and assign the results to a new object named something like `test`. After I'm finished testing my code, I'm left with a RStudio environment that looks like this:  
 
 ```{r, echo=FALSE, dpi = 300}
-knitr::include_graphics('/img/env.png')
+knitr::include_graphics('/img/env.png', error = FALSE)
 ```
 
 My first tip will allow us to selectively delete these `test` objects. This is accomplished through the following code:  
-
+&nbsp;  
 ```{r, eval = FALSE}
 rm(list = ls()[str_detect(ls(), "string")])
 ```
-
+&nbsp;  
 Let's break down what is going on in this code.  
 
 
@@ -49,7 +50,7 @@ The innermost part of the code, `str_detect(ls(), "string")`, detects the specif
 ## 2. `coord_cartesian()` for zooming in on ggplots
 &nbsp;  
 Say that you are producing a histogram from your data that looks something like this:  
-
+&nbsp;  
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 library(tidyverse)
 
@@ -72,7 +73,7 @@ ggplot(aq, aes(x = Ozone)) +
 ```
 
 For whatever reason, you are only interested in visualizing a subset of this data. For example, we only want to visualize the histogram between Ozone values 0 and 50. You can achieve this using `xlim()`:   
-
+&nbsp;  
 ```{r, dpi = 300, warning=FALSE}
 ggplot(aq, aes(x = Ozone)) +
   geom_histogram(fill = customBlue, binwidth = 5) +
@@ -84,7 +85,7 @@ ggplot(aq, aes(x = Ozone)) +
 But using `xlim()` has resulted in an odd behaviour. Our histogram looks different than the original above. This is because `xlim()` (and `scale_x_continuous(limits = ...)`) **has excluded all data that don't fall within the limits**. In this example, `xlim()` excluded data points near 0 and 50. This is problematic if our goal is to visualize the same data without excluding data that lies on the edge of our criteria.  
 
 Instead, we can use `coord_cartesian()` to achieve a true "zoom in" on our original data visualization.  
-
+&nbsp;  
 ```{r, dpi = 300, warning=FALSE}
 ggplot(aq, aes(x = Ozone)) +
   geom_histogram(fill = customBlue, binwidth = 5) +
@@ -170,7 +171,7 @@ This is accomplished by using `theme(legend.background = element_blank(), legend
 Exporting graphics in R can be challenging. New users will typically use RStudio's Export button in the Plots window to save images to their working directory. In my experience, this method results in pixelated, low resolution graphics. There is nothing more demotivating than working on a visualizations for hours, only to have them look mediocre when presenting them.  
 
 This is where the `Cairo` package comes in. The formula for generating `Cairo` outputs is as follows:  
-
+&nbsp;  
 ```{r, eval=FALSE}
 CairoPNG(filename = "filename.png", res = 300, units = "in", width = 16, height = 9)
 
@@ -229,7 +230,7 @@ memberships
 ```{r}
 cancellations
 ```
-
+&nbsp;  
 In this example, we can identify which members have subscriptions and cancellation cases through `id`. But we don't have enough information to know which subscription each cancellation case belongs to. To know this, we would need a unique subscription id variable in the cancellation case data. Unfortunately, we only have subscription ids in `memberships`. We can solve this problem with something called a **fuzzy join**.   
 
 In many programming languages, a left or right join allows you to link data frames or tables that contain a key identifier variable that is common between the two. This allows the analyst to link the data frames based on an **exact** match of the key id variables in each data frame. In our example, that would be the `id` variable. Fuzzy joins differ as they allow you to link data frames based on **inexact** matching. This inexact matching technique is particularly useful in combination with an exact match.  
@@ -282,7 +283,6 @@ Note: to perform a fuzzy join with `genome_left_join()` you will require the `Bi
 
 ## Conclusion
 &nbsp;  
-
 Thanks for reading this blog post! Hopefully, you'll be able to use some of these tips to make your data analyses cleaner, crisper, and more accurate!  
 
 Feel free to share this content with others who may benefit from using any of these tips. As always, the full code for this post is available <a href="https://github.com/HaydenMacDonald/needle-in-the-hay/blob/master/content/post/2019-09-08-r-tricks-learned-during-my-summer-internship.Rmd" target="_blank">here</a>. Happy coding!
