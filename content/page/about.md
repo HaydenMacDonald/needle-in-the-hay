@@ -6,62 +6,12 @@ comments: false
 
 My name is Hayden MacDonald and I am a Canadian-British data analyst.  
 
-I hold a Master of Science in Management - Business Analytics from Ivey Business School, Western University.  
+I hold a Master of Science in Management - Business Analytics from Ivey Business School, Western University.
 
-My interests include technology, research, statistical data analysis, A/B testing, data visualization, and product/marketing analytics.  
+For a full list of my credentials, see <a href="/page/cv.html" target="_blank">my resume</a>.  
 
-In my spare time, I enjoy film, cooking, squash, SCUBA diving, birding, and eSports.  
+My interests include technology, research, statistics, A/B testing, data visualization, and product analytics. In my spare time, I enjoy film, cooking, squash, SCUBA diving, birding, and eSports.  
 &nbsp;
-
--------
-&nbsp;  
-### Experience
-&nbsp;  
-**Data Analyst Intern (Full-time Summer 2019, Part-time Sep 2019 - Present)**  
-Voices.com, London, Ontario  
-
-- Designed, monitored, and delivered final analysis of A/B tests to product managers, which on one occasion resulted in a 9% increase  in conversion rate on the Job Posting Form.  
-- Developed automated processes to calculate churn rates of subscribers and identified opportunities for specialized retention strategies.  
-- Delivered marketplace insights to leadership team by calculating buyer-to-seller and provider liquidity ratios.  
-- Created Salesforce and Tableau dashboards for automated reporting of A/B test data and talent-related metrics for product, talent sales, and leadership teams.  
-  
-**Graduate Teaching Assistant, BUS4590 - Introduction to Data Science (Fall 2019)**  
-Ivey Business School, University of Western Ontario  
-
-- Timely marked and provided feedback on R programming assignments.  
-- Advised students in one-on-one appointments to positively impact student understanding of course material.  
-  
-**Graduate Teaching Assistant, PSYCH2210B - Animal Cognition (Winter 2017, 2018)**  
-University of Western Ontario  
-
-- Organized individual appointments and group exam review sessions so students developed a broader and deeper understanding of course material.  
-- Facilitated student learning by giving feedback on all assignments and exams before the next evaluation.  
-  
-**Graduate Teaching Assistant, PSYCH1000 - Intro to Psychology (Fall 2016)**  
-University of Western Ontario  
-
-- Conducted a review lecture for approximately 400 students to increase preparedness for a final exam.  
-- Advised students in one-on-one appointments to positively impact student understanding of course material.  
-&nbsp;  
-
--------
-&nbsp;  
-### Education
-&nbsp;  
-**Master of Science in Management - Business Analytics (2020)**  
-Ivey Business School  
-University of Western Ontario  
-
-**Master of Science - Cognitive, Developmental & Brain Sciences (2018)**  
-Department of Psychology, Faculty of Social Science  
-University of Western Ontario  
-
-- NSERC Canada Graduate Scholarship - Masters (2017 - 2018)  
-  
-**Bachelor of Science - Honors Specialization in Animal Behaviour (2016)**  
-Department of Biology, Faculty of Science  
-University of Western Ontario  
-&nbsp;  
 
 -------
 &nbsp;  

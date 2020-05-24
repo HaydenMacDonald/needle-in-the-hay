@@ -65,6 +65,10 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
     url = "page/about/"
     weight = 2
 
+[[menu.main]]
+    name = "Resume"
+    url = "/page/cv.html"
+    weight = 3
 
 [[menu.main]]
     name = "Tags"
