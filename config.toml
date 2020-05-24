@@ -49,7 +49,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [Author]
   name = "Hayden MacDonald"
-  email = "hayden.macdonald.8778@gmail.com"
+  email = "hmd@needleinthehay.ca"
   github = "/HaydenMacDonald"
   twitter = "/HYDNMCDNLD"
   linkedin = "hayden-macdonald/"
