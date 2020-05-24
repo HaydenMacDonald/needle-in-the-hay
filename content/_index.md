@@ -5,11 +5,11 @@ comments: false
 
 # Welcome
 &nbsp;  
-I am Hayden MacDonald and this is my technical blog.
+I am Hayden MacDonald and this is my data blog.
 
 To read through previous posts, see the <a href="/post">Blog section</a>.
 
-To read more about me, see the <a href="/page/about">About page</a>.  
+To read more about me, see the <a href="/page/about">About page</a> or <a href="/page/cv.html" target="_blank">my resume</a>.  
 &nbsp;  
 
 ### Why is your blog called "Needle in the Hay"?  

@@ -5,8 +5,8 @@
     <link>/tags/r-package/</link>
     <description>Recent content in R Package on Needle in the Hay</description>
     <generator>Hugo -- gohugo.io</generator>
-    <managingEditor>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</managingEditor>
-    <webMaster>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</webMaster>
+    <managingEditor>hmd@needleinthehay.ca (Hayden MacDonald)</managingEditor>
+    <webMaster>hmd@needleinthehay.ca (Hayden MacDonald)</webMaster>
     <lastBuildDate>Mon, 04 May 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/r-package/index.xml" rel="self" type="application/rss+xml" />
@@ -16,7 +16,7 @@
       <title>Introducing squashinformr</title>
       <link>/introducing-squashinformr/</link>
       <pubDate>Mon, 04 May 2020 00:00:00 +0000</pubDate>
-      <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
+      <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
       <guid>/introducing-squashinformr/</guid>
       <description>Earlier this year, I enrolled in a Data Management course as a part of my MSc in Business Analytics. The final project in this course involved presenting a business case for a database and building a MySQL database as a solution. As a squash enthusiast, I chose to base my project on the Professional Squash Association (PSA).
 Long story short, I did not complete this project because it was cancelled due the spread of COVID-19.</description>

@@ -5,8 +5,8 @@
     <link>/page/</link>
     <description>Recent content in Pages on Needle in the Hay</description>
     <generator>Hugo -- gohugo.io</generator>
-    <managingEditor>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</managingEditor>
-    <webMaster>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</webMaster>
+    <managingEditor>hmd@needleinthehay.ca (Hayden MacDonald)</managingEditor>
+    <webMaster>hmd@needleinthehay.ca (Hayden MacDonald)</webMaster>
     
 	<atom:link href="/page/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,16 +15,15 @@
       <title>About Me</title>
       <link>/page/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>hayden.macdonald.8778@gmail.com (Hayden MacDonald)</author>
+      <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
       <guid>/page/about/</guid>
       <description>My name is Hayden MacDonald and I am a Canadian-British data analyst.
 I hold a Master of Science in Management - Business Analytics from Ivey Business School, Western University.
-My interests include technology, research, statistical data analysis, A/B testing, data visualization, and product/marketing analytics.
-In my spare time, I enjoy film, cooking, squash, SCUBA diving, birding, and eSports.
+For a full list of my credentials, see my resume.
+My interests include technology, research, statistics, A/B testing, data visualization, and product analytics. In my spare time, I enjoy film, cooking, squash, SCUBA diving, birding, and eSports.
 &amp;nbsp;
 &amp;nbsp;
-Experience &amp;nbsp;
-Data Analyst Intern (Full-time Summer 2019, Part-time Sep 2019 - Present)</description>
+Publications &amp;nbsp;</description>
     </item>
     
   </channel>
