@@ -1,50 +1,46 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Needle in the Hay</title>
-    <link>/categories/</link>
+    <link>https://needleinthehay.ca/categories/</link>
     <description>Recent content in Categories on Needle in the Hay</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>hmd@needleinthehay.ca (Hayden MacDonald)</managingEditor>
     <webMaster>hmd@needleinthehay.ca (Hayden MacDonald)</webMaster>
-    <lastBuildDate>Tue, 18 Sep 2018 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 18 Sep 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://needleinthehay.ca/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Bayes</title>
-      <link>/categories/bayes/</link>
+      <title>bayes</title>
+      <link>https://needleinthehay.ca/categories/bayes/</link>
       <pubDate>Tue, 18 Sep 2018 00:00:00 +0000</pubDate>
       <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
-      <guid>/categories/bayes/</guid>
+      <guid>https://needleinthehay.ca/categories/bayes/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Esports</title>
-      <link>/categories/esports/</link>
+      <title>esports</title>
+      <link>https://needleinthehay.ca/categories/esports/</link>
       <pubDate>Tue, 18 Sep 2018 00:00:00 +0000</pubDate>
       <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
-      <guid>/categories/esports/</guid>
+      <guid>https://needleinthehay.ca/categories/esports/</guid>
       <description></description>
     </item>
     
     <item>
       <title>R</title>
-      <link>/categories/r/</link>
+      <link>https://needleinthehay.ca/categories/r/</link>
       <pubDate>Tue, 18 Sep 2018 00:00:00 +0000</pubDate>
       <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
-      <guid>/categories/r/</guid>
+      <guid>https://needleinthehay.ca/categories/r/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Rstats</title>
-      <link>/categories/rstats/</link>
+      <title>rstats</title>
+      <link>https://needleinthehay.ca/categories/rstats/</link>
       <pubDate>Tue, 18 Sep 2018 00:00:00 +0000</pubDate>
       <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
-      <guid>/categories/rstats/</guid>
+      <guid>https://needleinthehay.ca/categories/rstats/</guid>
       <description></description>
     </item>
     

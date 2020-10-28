@@ -14,10 +14,15 @@ pygmentsCodefencesGuessSyntax = true
 pygmentOptions = "linenos=table"
 disqusShortname = "needleinthehay"
 googleAnalytics = "UA-125960941-1"
-ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\\.md$"]
 
 [permalinks]
   post = "/:slug/"
+  
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
 
 [Params]
   homeTitle = "Needle in the Hay" # Set a different text for the header on the home page

@@ -12,27 +12,27 @@
   <meta property="og:description" content="Politely web scrape data from SquashInfo in R">
   <meta name="twitter:description" content="Politely web scrape data from SquashInfo in R">
   <meta name="author" content="Hayden MacDonald"/>
-  <link href='/img/needle2.png' rel='icon' type='image/x-icon'/>
-  <meta property="og:image" content="/img/headshotbw.jpg" />
-  <meta name="twitter:image" content="/img/headshotbw.jpg" />
+  <link href='https://needleinthehay.ca/img/needle2.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://needleinthehay.ca/img/headshotbw.jpg" />
+  <meta name="twitter:image" content="https://needleinthehay.ca/img/headshotbw.jpg" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@/HYDNMCDNLD" />
   <meta name="twitter:creator" content="@/HYDNMCDNLD" />
-  <meta property="og:url" content="/introducing-squashinformr/" />
+  <meta property="og:url" content="https://needleinthehay.ca/introducing-squashinformr/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Needle in the Hay" />
 
-  <meta name="generator" content="Hugo 0.48" />
-  <link rel="canonical" href="/introducing-squashinformr/" />
-  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Needle in the Hay">
+  <meta name="generator" content="Hugo 0.76.5" />
+  <link rel="canonical" href="https://needleinthehay.ca/introducing-squashinformr/" />
+  <link rel="alternate" href="https://needleinthehay.ca/index.xml" type="application/rss+xml" title="Needle in the Hay">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://needleinthehay.ca/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
-  <link rel="stylesheet" href="/css/codeblock.css" />
-  <link rel="stylesheet" href="/css/github-gist-hmd.css" rel="stylesheet" id="theme-stylesheet">
-  <script src="/js/highlight.pack.js"></script>
+  <link rel="stylesheet" href="https://needleinthehay.ca/css/codeblock.css" />
+  <link rel="stylesheet" href="https://needleinthehay.ca/css/github-gist-hmd.css" rel="stylesheet" id="theme-stylesheet">
+  <script src="https://needleinthehay.ca/js/highlight.pack.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
 
 
@@ -111,7 +111,7 @@ if (!doNotTrack) {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">Needle in the Hay</a>
+      <a class="navbar-brand" href="https://needleinthehay.ca">Needle in the Hay</a>
     </div>
 
     <div class="collapse navbar-collapse" id="main-navbar">
@@ -157,8 +157,8 @@ if (!doNotTrack) {
     <div class="avatar-container">
       <div class="avatar-img-border">
         
-          <a title="Needle in the Hay" href="/">
-            <img class="avatar-img" src="/img/headshotbw.jpg" alt="Needle in the Hay" />
+          <a title="Needle in the Hay" href="https://needleinthehay.ca">
+            <img class="avatar-img" src="https://needleinthehay.ca/img/headshotbw.jpg" alt="Needle in the Hay" />
           </a>
         
       </div>
@@ -194,7 +194,7 @@ if (!doNotTrack) {
                   <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on 2020-05-04
+  <i class="fa fa-calendar-o"></i>&nbsp;
   
   
   &nbsp;|&nbsp;
@@ -218,7 +218,10 @@ if (!doNotTrack) {
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p><img src="/img/squashinformr_ghcard.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
+        
+
+
+<p><img src="/img/squashinformr_ghcard.png" width="75%" height="75%" style="display: block; margin: auto;" /></p>
 <p>Earlier this year, I enrolled in a Data Management course as a part of my MSc in Business Analytics. The final project in this course involved presenting a business case for a database and building a MySQL database as a solution. As a squash enthusiast, I chose to base my project on the <a href="https://psaworldtour.com/" target="_blank">Professional Squash Association (PSA)</a>.</p>
 <p>Long story short, I did not complete this project because it was cancelled due the spread of COVID-19. Unfortunately, I had already put in approximately 20 hours of coding into the project. So being as stubborn as I am, I committed to reusing the code by building an R package. The result is <code>squashinformr</code>: a package for scraping player, tournament, and ranking data from <a href="http://www.squashinfo.com/" target="_blank">SquashInfo</a>.<br />
  </p>
@@ -1812,15 +1815,15 @@ SquashInfo is a valuable resource for the international squash community. By cre
         
           <div class="blog-tags">
             
-              <a href="//tags/web-scraping/">web-scraping</a>&nbsp;
+              <a href="https://needleinthehay.ca/tags/web-scraping/">web-scraping</a>&nbsp;
             
-              <a href="//tags/r/">R</a>&nbsp;
+              <a href="https://needleinthehay.ca/tags/r/">R</a>&nbsp;
             
-              <a href="//tags/r-package/">r-package</a>&nbsp;
+              <a href="https://needleinthehay.ca/tags/r-package/">r-package</a>&nbsp;
             
-              <a href="//tags/data-analysis/">data analysis</a>&nbsp;
+              <a href="https://needleinthehay.ca/tags/data-analysis/">data analysis</a>&nbsp;
             
-              <a href="//tags/squash/">squash</a>&nbsp;
+              <a href="https://needleinthehay.ca/tags/squash/">squash</a>&nbsp;
             
           </div>
         
@@ -1833,7 +1836,7 @@ SquashInfo is a valuable resource for the international squash community. By cre
 
 
 <li>
-    <a href="//twitter.com/share?url=%2fintroducing-squashinformr%2f&amp;text=Introducing%20squashinformr&amp;via=%2fHYDNMCDNLD"
+    <a href="//twitter.com/share?url=https%3a%2f%2fneedleinthehay.ca%2fintroducing-squashinformr%2f&amp;text=Introducing%20squashinformr&amp;via=%2fHYDNMCDNLD"
        target="_blank" alt="" title="Share on Twitter">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -1844,7 +1847,7 @@ SquashInfo is a valuable resource for the international squash community. By cre
 
 
 <li>
-    <a href="//plus.google.com/share?url=%2fintroducing-squashinformr%2f" target="_blank" title="Share on Google Plus">
+    <a href="//plus.google.com/share?url=https%3a%2f%2fneedleinthehay.ca%2fintroducing-squashinformr%2f" target="_blank" title="Share on Google Plus">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
@@ -1854,7 +1857,7 @@ SquashInfo is a valuable resource for the international squash community. By cre
 
 
 <li>
-    <a href="//www.facebook.com/sharer/sharer.php?u=%2fintroducing-squashinformr%2f" target="_blank" title="Share on Facebook">
+    <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fneedleinthehay.ca%2fintroducing-squashinformr%2f" target="_blank" title="Share on Facebook">
         <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -1864,7 +1867,7 @@ SquashInfo is a valuable resource for the international squash community. By cre
 
 
 <li>
-    <a href="//reddit.com/submit?url=%2fintroducing-squashinformr%2f&amp;title=Introducing%20squashinformr" target="_blank" title="Share on Reddit">
+    <a href="//reddit.com/submit?url=https%3a%2f%2fneedleinthehay.ca%2fintroducing-squashinformr%2f&amp;title=Introducing%20squashinformr" target="_blank" title="Share on Reddit">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
@@ -1874,7 +1877,7 @@ SquashInfo is a valuable resource for the international squash community. By cre
 
 
 <li>
-    <a href="//www.linkedin.com/shareArticle?url=%2fintroducing-squashinformr%2f&amp;title=Introducing%20squashinformr" target="_blank"
+    <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fneedleinthehay.ca%2fintroducing-squashinformr%2f&amp;title=Introducing%20squashinformr" target="_blank"
        title="Share on LinkedIn">
          <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -1892,7 +1895,7 @@ SquashInfo is a valuable resource for the international squash community. By cre
         <ul class="pager blog-pager">
           
             <li class="previous">
-              <a href="/code-tips/" data-toggle="tooltip" data-placement="top" title="Five R tips from my Voices.com internship">&larr; Previous Post</a>
+              <a href="https://needleinthehay.ca/code-tips/" data-toggle="tooltip" data-placement="top" title="Five R tips from my Voices.com internship">&larr; Previous Post</a>
             </li>
           
           
@@ -1973,7 +1976,7 @@ SquashInfo is a valuable resource for the international squash community. By cre
           
           <li>
             
-            <a href="/index.xml" title="RSS">
+            <a href="https://needleinthehay.ca/index.xml" title="RSS">
             
               <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -1992,12 +1995,12 @@ SquashInfo is a valuable resource for the international squash community. By cre
 
           
             &nbsp;&bull;&nbsp;
-            <a href="/">Needle in the Hay</a>
+            <a href="https://needleinthehay.ca">Needle in the Hay</a>
           
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.48</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.76.5</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
@@ -2009,13 +2012,13 @@ SquashInfo is a valuable resource for the international squash community. By cre
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="/js/main.js"></script>
-<script src="/js/highlight.min.js"></script>
+<script src="https://needleinthehay.ca/js/main.js"></script>
+<script src="https://needleinthehay.ca/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
 <script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="/js/load-photoswipe.js"></script>
+<script src="https://needleinthehay.ca/js/load-photoswipe.js"></script>
 
 
 
