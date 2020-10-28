@@ -1,23 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Data Joins on Needle in the Hay</title>
-    <link>/tags/data-joins/</link>
-    <description>Recent content in Data Joins on Needle in the Hay</description>
+    <title>data joins on Needle in the Hay</title>
+    <link>https://needleinthehay.ca/tags/data-joins/</link>
+    <description>Recent content in data joins on Needle in the Hay</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>hmd@needleinthehay.ca (Hayden MacDonald)</managingEditor>
     <webMaster>hmd@needleinthehay.ca (Hayden MacDonald)</webMaster>
-    <lastBuildDate>Sun, 08 Sep 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/data-joins/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 08 Sep 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://needleinthehay.ca/tags/data-joins/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Five R tips from my Voices.com internship</title>
-      <link>/code-tips/</link>
+      <link>https://needleinthehay.ca/code-tips/</link>
       <pubDate>Sun, 08 Sep 2019 00:00:00 +0000</pubDate>
       <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
-      <guid>/code-tips/</guid>
+      <guid>https://needleinthehay.ca/code-tips/</guid>
       <description>1. Removing similarly-named objects from R’s Global Environment2. coord_cartesian() for zooming in on ggplots3. Intra-figure legends in ggplot2 graphics4. High resolution plot outputs via CairoPNG()5. Fuzzy joins on intervals with genome_left_join()Conclusion This summer, I had the pleasure of working as a Data Analyst Intern at Voices.com as a part of my MSc in Business Analytics. Voices.com is a marketplace website that matches business clients with voice-over talent.</description>
     </item>
     

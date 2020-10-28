@@ -1,90 +1,79 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Needle in the Hay</title>
-    <link>/</link>
+    <link>https://needleinthehay.ca/</link>
     <description>Recent content on Needle in the Hay</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>hmd@needleinthehay.ca (Hayden MacDonald)</managingEditor>
     <webMaster>hmd@needleinthehay.ca (Hayden MacDonald)</webMaster>
-    <lastBuildDate>Mon, 04 May 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 04 May 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://needleinthehay.ca/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Introducing squashinformr</title>
-      <link>/introducing-squashinformr/</link>
+      <link>https://needleinthehay.ca/introducing-squashinformr/</link>
       <pubDate>Mon, 04 May 2020 00:00:00 +0000</pubDate>
       <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
-      <guid>/introducing-squashinformr/</guid>
+      <guid>https://needleinthehay.ca/introducing-squashinformr/</guid>
       <description>Earlier this year, I enrolled in a Data Management course as a part of my MSc in Business Analytics. The final project in this course involved presenting a business case for a database and building a MySQL database as a solution. As a squash enthusiast, I chose to base my project on the Professional Squash Association (PSA).
 Long story short, I did not complete this project because it was cancelled due the spread of COVID-19.</description>
     </item>
     
     <item>
       <title>Five R tips from my Voices.com internship</title>
-      <link>/code-tips/</link>
+      <link>https://needleinthehay.ca/code-tips/</link>
       <pubDate>Sun, 08 Sep 2019 00:00:00 +0000</pubDate>
       <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
-      <guid>/code-tips/</guid>
+      <guid>https://needleinthehay.ca/code-tips/</guid>
       <description>1. Removing similarly-named objects from R’s Global Environment2. coord_cartesian() for zooming in on ggplots3. Intra-figure legends in ggplot2 graphics4. High resolution plot outputs via CairoPNG()5. Fuzzy joins on intervals with genome_left_join()Conclusion This summer, I had the pleasure of working as a Data Analyst Intern at Voices.com as a part of my MSc in Business Analytics. Voices.com is a marketplace website that matches business clients with voice-over talent.</description>
     </item>
     
     <item>
       <title>Introducing hmdrmd</title>
-      <link>/hmdrmd/</link>
+      <link>https://needleinthehay.ca/hmdrmd/</link>
       <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
       <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
-      <guid>/hmdrmd/</guid>
+      <guid>https://needleinthehay.ca/hmdrmd/</guid>
       <description>R Markdown R Markdown1 is a powerful R package that allows users to dynamically render their work (code, graphs, and text) into various file formats. Its wide range of outputs (including HTML, PDF, Word) makes it one of the most flexible and intuitive communication tools within the R community. Ultimately, R Markdown bridges the gap between data professionals and the audience they need to communicate to. In fact, I’m communicating to you right now through an R Markdown document rendered to HTML.</description>
     </item>
     
     <item>
       <title>Tufte Course &amp; Visualization Best Practices</title>
-      <link>/tufte-and-viz/</link>
+      <link>https://needleinthehay.ca/tufte-and-viz/</link>
       <pubDate>Sun, 11 Nov 2018 00:00:00 +0000</pubDate>
       <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
-      <guid>/tufte-and-viz/</guid>
+      <guid>https://needleinthehay.ca/tufte-and-viz/</guid>
       <description>I recently attended Edward Tufte’s course, “Presenting Data and Information”, in Boston. I learned about the course through twitter after reading about Tufte, who is a professor emeritus of political science and statistics at Yale.As a future business analytics student, I was very interested in a one day course taught by a data visualization expert. The most enticing factor was that it seemed to be the most design-focused course that I had read about.</description>
     </item>
     
     <item>
       <title>The Case Against Young Link</title>
-      <link>/hbox-bayes/</link>
+      <link>https://needleinthehay.ca/hbox-bayes/</link>
       <pubDate>Tue, 18 Sep 2018 00:00:00 +0000</pubDate>
       <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
-      <guid>/hbox-bayes/</guid>
+      <guid>https://needleinthehay.ca/hbox-bayes/</guid>
       <description>Melee! Super Smash Bros. Melee for the Nintendo GameCube was released in 2001. Since then, it has become one of the most adored games of the last twenty years. The game features many characters from various Nintendo game franchises, which players choose between before entering a match. The objective of each match is relatively simple: fight your opponent(s) and hit them beyond the boundaries of the stage. In contrast to fighting games, each time a player is struck they gain percentage points.</description>
     </item>
     
     <item>
       <title>About Me</title>
-      <link>/page/about/</link>
+      <link>https://needleinthehay.ca/page/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
-      <guid>/page/about/</guid>
+      <guid>https://needleinthehay.ca/page/about/</guid>
       <description>My name is Hayden MacDonald and I am a Canadian-British data analyst.
 I hold a Master of Science in Management - Business Analytics from Ivey Business School, Western University.
 For a full list of my credentials, see my resume.
 My interests include technology, research, statistics, A/B testing, data visualization, and product analytics. In my spare time, I enjoy film, cooking, squash, SCUBA diving, birding, and eSports.
-&amp;nbsp;
-&amp;nbsp;
-Publications &amp;nbsp;</description>
+  Publications  MacDonald, Hayden, Lo, G.</description>
     </item>
     
     <item>
       <title>Data Gallery</title>
-      <link>/page/data-gallery/</link>
+      <link>https://needleinthehay.ca/page/data-gallery/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
-      <guid>/page/data-gallery/</guid>
-      <description>Line and bump charts from &amp;lsquo;Introducing squashinformr&amp;rsquo; &amp;nbsp;
-&amp;nbsp;
-&amp;nbsp;
-&amp;nbsp;
-Cleveland Dot Plots from &amp;lsquo;Introducing squashinformr&amp;rsquo; &amp;nbsp;
-&amp;nbsp;</description>
+      <guid>https://needleinthehay.ca/page/data-gallery/</guid>
+      <description>Line and bump charts from &amp;lsquo;Introducing squashinformr&amp;rsquo;    Cleveland Dot Plots from &amp;lsquo;Introducing squashinformr&amp;rsquo;  </description>
     </item>
     
   </channel>

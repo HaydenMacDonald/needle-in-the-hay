@@ -1,23 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Communication on Needle in the Hay</title>
-    <link>/tags/communication/</link>
-    <description>Recent content in Communication on Needle in the Hay</description>
+    <title>communication on Needle in the Hay</title>
+    <link>https://needleinthehay.ca/tags/communication/</link>
+    <description>Recent content in communication on Needle in the Hay</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>hmd@needleinthehay.ca (Hayden MacDonald)</managingEditor>
     <webMaster>hmd@needleinthehay.ca (Hayden MacDonald)</webMaster>
-    <lastBuildDate>Thu, 21 Feb 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/communication/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 21 Feb 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://needleinthehay.ca/tags/communication/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Introducing hmdrmd</title>
-      <link>/hmdrmd/</link>
+      <link>https://needleinthehay.ca/hmdrmd/</link>
       <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
       <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
-      <guid>/hmdrmd/</guid>
+      <guid>https://needleinthehay.ca/hmdrmd/</guid>
       <description>R Markdown R Markdown1 is a powerful R package that allows users to dynamically render their work (code, graphs, and text) into various file formats. Its wide range of outputs (including HTML, PDF, Word) makes it one of the most flexible and intuitive communication tools within the R community. Ultimately, R Markdown bridges the gap between data professionals and the audience they need to communicate to. In fact, I’m communicating to you right now through an R Markdown document rendered to HTML.</description>
     </item>
     

@@ -1,131 +1,127 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Needle in the Hay</title>
-    <link>/tags/</link>
+    <link>https://needleinthehay.ca/tags/</link>
     <description>Recent content in Tags on Needle in the Hay</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>hmd@needleinthehay.ca (Hayden MacDonald)</managingEditor>
     <webMaster>hmd@needleinthehay.ca (Hayden MacDonald)</webMaster>
-    <lastBuildDate>Tue, 18 Sep 2018 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 04 May 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://needleinthehay.ca/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Bayes</title>
-      <link>/tags/bayes/</link>
-      <pubDate>Tue, 18 Sep 2018 00:00:00 +0000</pubDate>
-      <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
-      <guid>/tags/bayes/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Communication</title>
-      <link>/tags/communication/</link>
-      <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
-      <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
-      <guid>/tags/communication/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Data Analysis</title>
-      <link>/tags/data-analysis/</link>
+      <title>data analysis</title>
+      <link>https://needleinthehay.ca/tags/data-analysis/</link>
       <pubDate>Mon, 04 May 2020 00:00:00 +0000</pubDate>
       <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
-      <guid>/tags/data-analysis/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Data Joins</title>
-      <link>/tags/data-joins/</link>
-      <pubDate>Sun, 08 Sep 2019 00:00:00 +0000</pubDate>
-      <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
-      <guid>/tags/data-joins/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Data Visualization</title>
-      <link>/tags/data-visualization/</link>
-      <pubDate>Sun, 08 Sep 2019 00:00:00 +0000</pubDate>
-      <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
-      <guid>/tags/data-visualization/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Esports</title>
-      <link>/tags/esports/</link>
-      <pubDate>Tue, 18 Sep 2018 00:00:00 +0000</pubDate>
-      <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
-      <guid>/tags/esports/</guid>
+      <guid>https://needleinthehay.ca/tags/data-analysis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>R</title>
-      <link>/tags/r/</link>
+      <link>https://needleinthehay.ca/tags/r/</link>
       <pubDate>Mon, 04 May 2020 00:00:00 +0000</pubDate>
       <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
-      <guid>/tags/r/</guid>
+      <guid>https://needleinthehay.ca/tags/r/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>r-package</title>
+      <link>https://needleinthehay.ca/tags/r-package/</link>
+      <pubDate>Mon, 04 May 2020 00:00:00 +0000</pubDate>
+      <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
+      <guid>https://needleinthehay.ca/tags/r-package/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>squash</title>
+      <link>https://needleinthehay.ca/tags/squash/</link>
+      <pubDate>Mon, 04 May 2020 00:00:00 +0000</pubDate>
+      <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
+      <guid>https://needleinthehay.ca/tags/squash/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>web-scraping</title>
+      <link>https://needleinthehay.ca/tags/web-scraping/</link>
+      <pubDate>Mon, 04 May 2020 00:00:00 +0000</pubDate>
+      <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
+      <guid>https://needleinthehay.ca/tags/web-scraping/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>data joins</title>
+      <link>https://needleinthehay.ca/tags/data-joins/</link>
+      <pubDate>Sun, 08 Sep 2019 00:00:00 +0000</pubDate>
+      <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
+      <guid>https://needleinthehay.ca/tags/data-joins/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>data visualization</title>
+      <link>https://needleinthehay.ca/tags/data-visualization/</link>
+      <pubDate>Sun, 08 Sep 2019 00:00:00 +0000</pubDate>
+      <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
+      <guid>https://needleinthehay.ca/tags/data-visualization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>communication</title>
+      <link>https://needleinthehay.ca/tags/communication/</link>
+      <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
+      <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
+      <guid>https://needleinthehay.ca/tags/communication/</guid>
       <description></description>
     </item>
     
     <item>
       <title>R Markdown</title>
-      <link>/tags/r-markdown/</link>
+      <link>https://needleinthehay.ca/tags/r-markdown/</link>
       <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
       <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
-      <guid>/tags/r-markdown/</guid>
+      <guid>https://needleinthehay.ca/tags/r-markdown/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>R Package</title>
-      <link>/tags/r-package/</link>
-      <pubDate>Mon, 04 May 2020 00:00:00 +0000</pubDate>
-      <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
-      <guid>/tags/r-package/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Reporting</title>
-      <link>/tags/reporting/</link>
+      <title>reporting</title>
+      <link>https://needleinthehay.ca/tags/reporting/</link>
       <pubDate>Thu, 21 Feb 2019 00:00:00 +0000</pubDate>
       <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
-      <guid>/tags/reporting/</guid>
+      <guid>https://needleinthehay.ca/tags/reporting/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Review</title>
-      <link>/tags/review/</link>
+      <title>review</title>
+      <link>https://needleinthehay.ca/tags/review/</link>
       <pubDate>Sun, 11 Nov 2018 00:00:00 +0000</pubDate>
       <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
-      <guid>/tags/review/</guid>
+      <guid>https://needleinthehay.ca/tags/review/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Squash</title>
-      <link>/tags/squash/</link>
-      <pubDate>Mon, 04 May 2020 00:00:00 +0000</pubDate>
+      <title>bayes</title>
+      <link>https://needleinthehay.ca/tags/bayes/</link>
+      <pubDate>Tue, 18 Sep 2018 00:00:00 +0000</pubDate>
       <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
-      <guid>/tags/squash/</guid>
+      <guid>https://needleinthehay.ca/tags/bayes/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Web Scraping</title>
-      <link>/tags/web-scraping/</link>
-      <pubDate>Mon, 04 May 2020 00:00:00 +0000</pubDate>
+      <title>esports</title>
+      <link>https://needleinthehay.ca/tags/esports/</link>
+      <pubDate>Tue, 18 Sep 2018 00:00:00 +0000</pubDate>
       <author>hmd@needleinthehay.ca (Hayden MacDonald)</author>
-      <guid>/tags/web-scraping/</guid>
+      <guid>https://needleinthehay.ca/tags/esports/</guid>
       <description></description>
     </item>
     
