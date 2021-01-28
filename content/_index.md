@@ -14,7 +14,7 @@ To read more about me, see the <a href="/page/about">About page</a> or <a href="
 
 ### Why is your blog called "Needle in the Hay"?  
 &nbsp;  
-I chose <a href="https://dictionary.cambridge.org/dictionary/english/a-needle-in-a-haystack" target="_blank">"Needle in the Hay"</a> because it is an analogy for the diligent search for the right questions, among many *possible* questions, and their approximate answers, among all *possible* answers.  
+I chose <a href="https://dictionary.cambridge.org/dictionary/english/a-needle-in-a-haystack" target="_blank">"Needle in the Hay"</a> because it is an analogy for the diligent search for the right questions, among all *possible* questions.  
 
 My career mission is to use data analytics to sift through the "hay" in search of the "needle" when addressing new world business problems.  
 &nbsp;  

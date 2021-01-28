@@ -46,12 +46,12 @@ Roberts, W.A., Guitar, N.A., Marsh, H.L., & **MacDonald, H.** (2016). Memory sys
 ### Technical Skills  
 
 - R
-- SQL / MySQL / PostgreSQL
+- SQL
 - Excel
 - Git
 - Tableau
 - Python
-- Salesforce
+- JavaScript
 
 ----
 
