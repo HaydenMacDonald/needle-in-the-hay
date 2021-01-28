@@ -1,0 +1,21 @@
+---
+title: "Refactoring squashinformr"
+author: "Hayden MacDonald"
+date: "2021-01-28"
+output:
+  blogdown::html_page:
+    toc: false
+slug: refactoring-squashinformr
+image_preview: ""
+tags: 
+- R
+- code
+- best-practices
+description: "Using software development best practices to improve R package maintainability."
+---
+
+In the early days of the pandemic, I wrote `squashinformr`, an R package for web scraping professional squash data. I'm quite proud of the package, as it was my first real effort in creating open source. But as a novice in software development, I committed many cardinal sins when I wrote version 0.1.0. 
+
+When I published the first iteration on CRAN, my approach to writing code was very 'script-like'. I wrote code in a single Rmarkdown file that I would run from top to bottom. It's clear looking at `squashinformr`'s old code that I expected functions to behave the same way. I wrote the functions as if they were individual scripts that had no common behaviour or tasks. When in reality, some functions contained identical code except for a few variables. In short, the code was a mess and quite vulnerable to bugs.
+
+Since writing the package, I've internalized software development best practices at my work. Feeling more confident about my ability to write stable code, I refactored `squashinformr`. I'd like to break down examples of where I applied these best practices as if I were speaking to my past self. If you haven't heard of these rules, I would recommend  you can apply some of them in your own code. That way, you or someone else doesn't have to put in a lot of work to rewrite it in the future!
